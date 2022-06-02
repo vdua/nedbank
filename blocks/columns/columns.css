@@ -1,0 +1,31 @@
+.columns > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.columns img {
+    width: 100%;
+}
+
+/* lazy river */
+.columns.lazy-river > div:nth-child(odd) {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+@media (min-width: 900px) {
+    .columns > div {
+        flex-direction: unset;
+        align-items: center;
+    }
+
+    .columns > div > div {
+        flex: 1;
+        margin: 16px;
+    }
+
+    /* lazy river unset */
+    .columns.lazy-river > div, .columns.lazy-river > div:nth-child(odd) {
+        flex-direction: unset;
+    }
+}

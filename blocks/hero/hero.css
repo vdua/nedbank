@@ -10,31 +10,72 @@ main .hero-container {
   
 main .hero {
     position: relative;
-    padding: 2rem;
     min-height: 300px;
 }
 
-main .hero h1 {
-    max-width: 768px;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
+
+main .hero > div > div > * {
+    margin-left: 24px;
+    margin-right: 24px;
 }
 
+main .hero > div > div > p {
+    display: flex;
+    align-items: center;
+}
 
-main .hero picture {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    object-fit: cover;
-    box-sizing: border-box;
+main .hero > div > div > p:first-of-type {
+    margin: 0;
 }
 
 main .hero img {
+    min-height: 300px;
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    object-position: 75%;
+}
+
+main .hero .icon-play {
+    margin-left: 8px;
+}
+
+@media (min-width: 600px) {
+    main .hero {
+        padding-top: 32px;
+        padding-bottom: 32px;
+        color: white;
+    }
+
+
+    main .hero picture {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        object-fit: cover;
+        box-sizing: border-box;
+    }
+    
+    main .hero img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    main .hero > div {
+        max-width: 80%;
+    }
+
+}
+
+@media (min-width: 900px) {
+    main .hero > div > div > * {
+        margin-left: 96px;
+        margin-right: 96px;
+    }
+
+    main .hero > div {
+        max-width: 1000px;
+    }
 }

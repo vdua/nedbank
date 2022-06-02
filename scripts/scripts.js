@@ -635,8 +635,12 @@ function buildHeroBlock(main) {
   const picture = main.querySelector('picture');
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
+    const section = picture.closest('div');
+    const elems = [];
+    [...section.children].forEach((elem) => {
+      elems.push(elem);
+    });
+    section.append(buildBlock('hero', { elems }));
     main.prepend(section);
   }
 }
@@ -713,7 +717,7 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
+  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`);
 }
 
 /**

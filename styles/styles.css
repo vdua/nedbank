@@ -12,16 +12,16 @@
 
  :root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
+  --link-color: #008533;
+  --link-hover-color: #008533;
   --background-color: #fff;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
+  --overlay-background-color: #f2f9f5;
+  --highlight-background-color: #008533;
   --text-color: #000;
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
-  --heading-font-family: var(--body-font-family);
+  --body-font-family: 'Open Sans Regular', 'Open Sans-fallback';
+  --heading-font-family: 'Nedbank Sans Bold', 'Open Sans-fallback';
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
@@ -29,17 +29,25 @@
   --body-font-size-s: 18px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
-  --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xxl: 32px;
+  --heading-font-size-xl: 24px;
+  --heading-font-size-l: 22px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 28px;
+  --heading-font-size-xs: 16px;
 
   /* nav height */
   --nav-height: 64px;
 
 }
+
+@font-face {
+  font-family: "Open Sans-fallback";
+  size-adjust: 105.41%;
+  ascent-override: 105%;
+  src: local("Arial");
+}
+
 
 body {
   font-size: var(--body-font-size-m);
@@ -66,6 +74,7 @@ h4, h5, h6 {
   margin-top: 1em;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
+  font-family: var(--heading-font-family);
 }
 
 h1 { font-size: var(--heading-font-size-xxl) }
@@ -122,7 +131,7 @@ a.button:any-link, button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 30px;
+  border-radius: 5px;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
@@ -203,16 +212,16 @@ main img {
 
 @media (min-width: 900px) {
   :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;  
+    --heading-font-size-xxl: 64px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 24px;
+    --heading-font-size-s: 22px;
+    --heading-font-size-xs: 20px;  
   }
   
   .section > div {
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
   }
 }
@@ -225,4 +234,15 @@ main .section[data-section-status='initialized'] {
 
 main .section.highlight {
   background-color: var(--highlight-background-color);
+  color: white;
+  text-align: center;
+}
+
+main .section.highlight .default-content-wrapper a.button {
+  background-color: var(--background-color);
+  color: var(--link-color);
+}
+
+main .section.overlay {
+  background-color: var(--overlay-background-color);
 }
