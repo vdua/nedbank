@@ -1,14 +1,21 @@
 footer {
-  padding: 2rem;
-  background-color: var(--overlay-background-color);
   font-size: var(--body-font-size-s);
 }
 
-footer .footer {
-  max-width: 768px;
-  margin: auto;
+footer .default-content-wrapper {
+  margin-left: 80px;
 }
 
-footer .footer p {
-  margin: 0;
+footer .footer-links {
+  background-color: var(--overlay-background-color);
+}
+
+footer .footer-link-groups,
+footer .footer-social-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .footer-social-items .default-content-wrapper {
+  max-width: 1500px;
 }

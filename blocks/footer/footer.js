@@ -1,4 +1,4 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/scripts.js';
+import { readBlockConfig, decorateIcons, decorateSections } from '../../scripts/scripts.js';
 
 /**
  * loads and decorates the footer
@@ -14,6 +14,48 @@ export default async function decorate(block) {
   const html = await resp.text();
   const footer = document.createElement('div');
   footer.innerHTML = html;
+  await decorateSections(footer);
   await decorateIcons(footer);
+  decorateFooterLinks(footer);
+  decorateFooterSocial(footer);
   block.append(footer);
+}
+
+function decorateFooterLinks(footer) {
+  let footerLinkGroup = [];
+  const footerLinkGroups = [];
+  const pattern = /h[1-9]/i;
+  footer.querySelectorAll(':scope > .footer-links > div > *').forEach((item) => {
+    if (item.tagName.match(pattern) && footerLinkGroup.length > 0) {
+      footerLinkGroups.push(footerLinkGroup);
+      footerLinkGroup = [];
+    }
+    footerLinkGroup.push(item);
+  });
+  const footerLinkGroupsDiv = document.createElement('div');
+  footerLinkGroupsDiv.classList.add('footer-link-groups');
+  footerLinkGroups.forEach((footerLinkGroup) => {
+    const footerLinkGroupDiv = document.createElement('div');
+    footerLinkGroupDiv.classList.add('footer-link-group');
+    footerLinkGroup.forEach((item) => {
+      footerLinkGroupDiv.appendChild(item);
+    })
+    footerLinkGroupsDiv.appendChild(footerLinkGroupDiv);
+  });
+  const parent = footer.querySelector(':scope > .footer-links > div');
+  parent.innerHTML = '';
+  parent.appendChild(footerLinkGroupsDiv);
+}
+
+function decorateFooterSocial(footer) {
+  const pattern = /h[1-9]/i;
+  const footerSocialDiv = document.createElement('div');
+  footerSocialDiv.classList.add('footer-social-items');
+  footer.querySelectorAll(':scope > .footer-social > div > *').forEach((item) => {
+    if (!item.tagName.match(pattern)) {
+      footerSocialDiv.appendChild(item);
+    }
+  });
+  const parent = footer.querySelector(':scope > .footer-social > div');
+  parent.appendChild(footerSocialDiv);
 }
