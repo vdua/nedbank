@@ -16,6 +16,6 @@ footer .footer-social-items {
   justify-content: space-between;
 }
 
-footer .footer-social-items .default-content-wrapper {
+footer .footer-social > .default-content-wrapper {
   max-width: 1500px;
 }
