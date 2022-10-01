@@ -1,3 +1,8 @@
+main .hero>div {
+    display: flex;
+    flex-direction: row;
+}
+
 main .hero-container {
     padding: unset;
 }
@@ -7,14 +12,16 @@ main .hero-wrapper {
     margin: unset;
 }
 
-main .hero>div {
-    display: flex;
-}
-
 main .hero>div>* {
     flex: 1;
 }
 
 main .hero>div>div {
     padding: 50px;
+}
+
+@media (max-width: 900px) {
+    main .hero>div {
+        flex-direction: column-reverse;
+    }
 }
