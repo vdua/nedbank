@@ -640,7 +640,11 @@ function buildHeroBlock(main) {
     [...section.children].forEach((elem) => {
       elems.push(elem);
     });
-    section.append(buildBlock('hero', { elems }));
+    let blockName = 'hero';
+    if (window.location.pathname === '/') {
+      blockName = 'hero-home';
+    }
+    section.append(buildBlock(blockName, { elems }));
     main.prepend(section);
   }
 }

@@ -1,81 +1,20 @@
-/* block specific CSS goes here */
-
-main .hero-container > div {
-    max-width: unset;
-}
-  
 main .hero-container {
-    padding: 0;
-}
-  
-main .hero {
-    position: relative;
-    min-height: 300px;
+    padding: unset;
 }
 
-
-main .hero > div > div > * {
-    margin-left: 24px;
-    margin-right: 24px;
+main .hero-wrapper {
+    max-width: unset;
+    margin: unset;
 }
 
-main .hero > div > div > p {
+main .hero>div {
     display: flex;
-    align-items: center;
 }
 
-main .hero > div > div > p:first-of-type {
-    margin: 0;
+main .hero>div>* {
+    flex: 1;
 }
 
-main .hero img {
-    min-height: 300px;
-    object-fit: cover;
-    object-position: 75%;
-}
-
-main .hero .icon-play {
-    margin-left: 8px;
-}
-
-@media (min-width: 600px) {
-    main .hero {
-        padding-top: 32px;
-        padding-bottom: 32px;
-        color: white;
-    }
-
-
-    main .hero picture {
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        object-fit: cover;
-        box-sizing: border-box;
-    }
-    
-    main .hero img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-
-    main .hero > div {
-        max-width: 80%;
-    }
-
-}
-
-@media (min-width: 900px) {
-    main .hero > div > div > * {
-        margin-left: 96px;
-        margin-right: 96px;
-    }
-
-    main .hero > div {
-        max-width: 1000px;
-    }
+main .hero>div>div {
+    padding: 50px;
 }

@@ -1,0 +1,81 @@
+/* block specific CSS goes here */
+
+main .hero-home-container > div {
+    max-width: unset;
+}
+
+main .hero-home-container {
+    padding: 0;
+}
+
+main .hero-home {
+    position: relative;
+    min-height: 300px;
+}
+
+
+main .hero-home > div > div > * {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+main .hero-home > div > div > p {
+    display: flex;
+    align-items: center;
+}
+
+main .hero-home > div > div > p:first-of-type {
+    margin: 0;
+}
+
+main .hero-home img {
+    min-height: 300px;
+    object-fit: cover;
+    object-position: 75%;
+}
+
+main .hero-home .icon-play {
+    margin-left: 8px;
+}
+
+@media (min-width: 600px) {
+    main .hero-home {
+        padding-top: 32px;
+        padding-bottom: 32px;
+        color: white;
+    }
+
+
+    main .hero-home picture {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        object-fit: cover;
+        box-sizing: border-box;
+    }
+
+    main .hero-home img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    main .hero-home > div {
+        max-width: 80%;
+    }
+
+}
+
+@media (min-width: 900px) {
+    main .hero-home > div > div > * {
+        margin-left: 96px;
+        margin-right: 96px;
+    }
+
+    main .hero-home > div {
+        max-width: 1000px;
+    }
+}
