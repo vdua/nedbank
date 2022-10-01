@@ -3,15 +3,6 @@ main .hero>div {
     flex-direction: row;
 }
 
-main .hero-container {
-    padding: unset;
-}
-
-main .hero-wrapper {
-    max-width: unset;
-    margin: unset;
-}
-
 main .hero>div>* {
     flex: 1;
 }
