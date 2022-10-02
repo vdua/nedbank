@@ -18,6 +18,7 @@ export default async function decorate(block) {
     const borrowAmtInputDiv = document.createElement('div');
 
     const borrowAmtInput = document.createElement('input');
+    borrowAmtInput.setAttribute('type', 'text');
     borrowAmtInputDiv.appendChild(borrowAmtInput);
 
     const borrowAmtInputDesc = document.createElement('div');
@@ -101,15 +102,23 @@ export default async function decorate(block) {
 
     const actionsDiv = document.createElement('div');
     actionsDiv.classList.add('actions');
-    const loadDtls = document.createElement('a');
-    loadDtls.setAttribute('href', '#');
-    loadDtls.textContent = 'See load detail';
-    actionsDiv.appendChild(loadDtls);
+    actionsDiv.classList.add('button-container');
+    const loanDtls = document.createElement('p');
+    const loanDtlsLink = document.createElement('a');
+    loanDtlsLink.setAttribute('href', '#');
+    loanDtlsLink.textContent = 'See loan detail';
+    loanDtls.appendChild(loanDtlsLink);
+    actionsDiv.appendChild(loanDtls);
 
-    const loadApps = document.createElement('a');
-    loadApps.setAttribute('href', '#');
-    loadApps.textContent = 'Start load application';
-    actionsDiv.appendChild(loadApps);
+    const loanApp = document.createElement('p');
+    loanApp.classList.add('button-container');
+    const loanAppLink = document.createElement('a');
+    loanAppLink.classList.add('button');
+    loanAppLink.classList.add('primary');
+    loanAppLink.setAttribute('href', '#');
+    loanAppLink.textContent = 'Start loan application';
+    loanApp.appendChild(loanAppLink);
+    actionsDiv.appendChild(loanApp);
 
     rtPanel.appendChild(actionsDiv);
 

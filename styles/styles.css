@@ -141,6 +141,15 @@ pre {
   overflow: scroll;
 }
 
+label {
+  padding: 20px;
+}
+
+input[type=radio] {
+  border: 0px;
+  transform: scale(1.5);
+}
+
 /* buttons */
 
 a.button:any-link,

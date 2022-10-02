@@ -16,6 +16,21 @@
     padding: 20px;
 }
 
+.calculator input[type=text] {
+    border-color: var(--link-color);
+    padding-left: 23px;
+    border-radius: 0;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: "Open Sans Semibold";
+    color: #17252e;
+    border: 2px solid #bbb;
+    background-color: transparent;
+    height: 56px;
+    display: block;
+    width: 50%;
+}
+
 .calculator .field-desc {
     font-family: "Open Sans Regular";
     font-size: 14px;
@@ -44,7 +59,7 @@
     height: 34px;
     -webkit-appearance: none;
     margin: 10px 0;
-    width: 100%;
+    width: 50%;
 }
 
 .calculator input[type=range]:focus {
