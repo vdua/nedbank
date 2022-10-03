@@ -10,12 +10,20 @@ footer .footer-links {
   background-color: var(--overlay-background-color);
 }
 
-footer .footer-link-groups,
+
 footer .footer-social-items {
   display: flex;
   justify-content: space-between;
 }
 
-footer .footer-social > .default-content-wrapper {
+footer .footer-link-groups {
+  display: flex;
+}
+
+footer .footer-link-group {
+  padding: 0px 30px
+}
+
+footer .footer-social>.default-content-wrapper {
   max-width: 1500px;
 }
