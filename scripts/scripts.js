@@ -278,7 +278,10 @@ export function decorateSections($main) {
       const meta = readBlockConfig(sectionMeta);
       const keys = Object.keys(meta);
       keys.forEach((key) => {
-        if (key === 'style') section.classList.add(toClassName(meta.style));
+        if (key === 'style') {
+          const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
+          styles.forEach((style) => section.classList.add(style));
+        }
         else section.dataset[key] = meta[key];
       });
       sectionMeta.remove();

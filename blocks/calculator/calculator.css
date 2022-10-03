@@ -54,6 +54,12 @@
     padding-bottom: 16px;
 }
 
+.calculator .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 /*Slider Styling*/
 .calculator input[type=range] {
     height: 34px;

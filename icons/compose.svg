@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/Visual Icons/Compose Write Pencil</title>
+    <g id="Icons/Visual-Icons/Compose-Write-Pencil" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="thin-0003_write_pencil_new_edit" transform="translate(1.000000, 1.000000)" stroke="#78BE20" stroke-width="1.5">
+            <g id="Group">
+                <line x1="15" y1="21.875" x2="5" y2="21.875" id="Shape"></line>
+                <line x1="15" y1="18.125" x2="5" y2="18.125" id="Shape"></line>
+                <line x1="15" y1="14.375" x2="5" y2="14.375" id="Shape"></line>
+                <line x1="8.75" y1="10.625" x2="5" y2="10.625" id="Shape"></line>
+                <path d="M23.125,21.875 C23.125,21.981375 25.631375,28.88925 25.631375,28.88925 C25.827125,29.5035 26.61175,29.558 26.82725,28.8895 C26.82725,28.8895 29.375,21.981625 29.375,21.874875" id="Shape"></path>
+                <line x1="24.985" y1="27.032875" x2="27.423875" y2="27.032875" id="Shape"></line>
+                <path d="M18.374125,29.375 L1.730875,29.375 C1.190125,29.375 0.625,28.93025 0.625,28.38275 L0.625,1.61725 C0.625,1.06975 1.190125,0.625 1.730875,0.625 L14.457625,0.625 L19.375,5.583 L19.375,28.38275 C19.375,28.93025 18.91475,29.375 18.374125,29.375 L18.374125,29.375 Z" id="Shape"></path>
+                <polyline id="Shape" points="14.457625 0.626 14.457625 5.583 19.353125 5.583"></polyline>
+                <path d="M27,0.625 L25.593375,0.625 C24.21275,0.625 23.125,1.74525 23.125,3.126 L23.125,21.875 L29.375,21.875 L29.375,3.126 C29.375,1.74525 28.38075,0.625 27,0.625 L27,0.625 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

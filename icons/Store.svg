@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Store</title>
+    <g id="Store" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polyline id="Shape" stroke="#5FA317" stroke-width="1.5" points="32.8250667 16.9554667 32.8250667 34.2713333 7.49173333 34.2713333 7.49173333 16.9554667"></polyline>
+        <polygon id="Rectangle-path" stroke="#5FA317" stroke-width="1.5" points="12.8250667 22.2713333 18.1584 22.2713333 18.1584 34.2713333 12.8250667 34.2713333"></polygon>
+        <polygon id="Rectangle-path" stroke="#5FA317" stroke-width="1.5" points="22.2218667 22.3010667 27.5256 22.3010667 27.5256 26.2741333 22.2218667 26.2741333"></polygon>
+        <path d="M29.2524,11.3592 C29.2524,15.3662667 23.1894667,15.3682667 23.1894667,11.3592 C23.1894667,15.3656 17.1253333,15.3693333 17.1253333,11.3592 C17.1253333,15.3661333 11.0641333,15.3684 11.0641333,11.3592 C11.0641333,15.3516 5,15.3782667 5,11.3592 L9.96426667,5 L30.376,5 L35.3165333,11.3592 C35.3165333,15.3708 29.2524,15.3574667 29.2524,11.3592 Z" id="Shape" stroke="#5FA317" stroke-width="1.5"></path>
+    </g>
+</svg>

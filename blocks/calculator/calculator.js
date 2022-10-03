@@ -102,23 +102,17 @@ export default async function decorate(block) {
 
     const actionsDiv = document.createElement('div');
     actionsDiv.classList.add('actions');
-    actionsDiv.classList.add('button-container');
-    const loanDtls = document.createElement('p');
     const loanDtlsLink = document.createElement('a');
     loanDtlsLink.setAttribute('href', '#');
     loanDtlsLink.textContent = 'See loan detail';
-    loanDtls.appendChild(loanDtlsLink);
-    actionsDiv.appendChild(loanDtls);
+    actionsDiv.appendChild(loanDtlsLink);
 
-    const loanApp = document.createElement('p');
-    loanApp.classList.add('button-container');
     const loanAppLink = document.createElement('a');
     loanAppLink.classList.add('button');
     loanAppLink.classList.add('primary');
     loanAppLink.setAttribute('href', '#');
     loanAppLink.textContent = 'Start loan application';
-    loanApp.appendChild(loanAppLink);
-    actionsDiv.appendChild(loanApp);
+    actionsDiv.appendChild(loanAppLink);
 
     rtPanel.appendChild(actionsDiv);
 

@@ -15,6 +15,8 @@
   --link-color: #008533;
   --link-hover-color: #008533;
   --background-color: #fff;
+  --background-color-grey:#f9fbfb;
+  --background-color-black:#000000;
   --overlay-background-color: #f2f9f5;
   --highlight-background-color: #008533;
   --text-color: #000;
@@ -150,6 +152,14 @@ input[type=radio] {
   transform: scale(1.5);
 }
 
+.grey {
+  background-color: var(--background-color-grey);
+}
+
+.black {
+  background-color: var(--background-color-black);
+}
+
 /* buttons */
 
 a.button:any-link,
@@ -249,6 +259,10 @@ main .section[data-section-status='initialized'] {
   display: none;
 }
 
+main .section {
+  padding: 64px;
+}
+
 main .section.highlight {
   background-color: var(--highlight-background-color);
   color: white;
@@ -275,11 +289,30 @@ main .section.cards-container {
   text-align: center;
 }
 
-main .section.cards-container .cards-wrapper {
-  margin: auto;
-  width: 70%;
-}
-
 main .section.cards-container li {
   padding: 20px;
+}
+
+main .section.disclaimer {
+  width: 100%;
+  color: #8a9596;
+  font-family: "Open Sans Regular";
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 24px;
+  padding: 0 33px;
+  display: block;
+}
+
+main .section.readytoapply {
+  color: var(--background-color);
+  background-color: var(--text-color);
+}
+
+main .section.readytoapply > .default-content-wrapper{
+  text-align: center;
+}
+
+main .section.calc-example .columns.block > div {
+  border-bottom: 1px solid black;
 }
