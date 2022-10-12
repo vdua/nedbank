@@ -1,123 +1,107 @@
-export default async function decorate(block) {
-    const calculatorDiv = document.createElement('div');
-    calculatorDiv.classList.add('calculator');
+import {
+  loadBlock, buildBlock, decorateBlock, readBlockConfig,
+} from '../../scripts/scripts.js';
 
-    const leftPanel = document.createElement('div');
-    leftPanel.classList.add('left-panel');
-    const rtPanel = document.createElement('div');
-    rtPanel.classList.add('right-panel');
-    calculatorDiv.appendChild(leftPanel);
-    calculatorDiv.appendChild(rtPanel);
+function buildRepayCalcTab(config) {
+  const calc = document.createElement('div');
 
-    const form = document.createElement('form');
-
-    const borrowAmtLbl = document.createElement('p');
-    borrowAmtLbl.textContent = 'How much do you want to borrow?';
-    form.appendChild(borrowAmtLbl);
-
-    const borrowAmtInputDiv = document.createElement('div');
-
-    const borrowAmtInput = document.createElement('input');
-    borrowAmtInput.setAttribute('type', 'text');
-    borrowAmtInputDiv.appendChild(borrowAmtInput);
-
-    const borrowAmtInputDesc = document.createElement('div');
-    borrowAmtInputDesc.classList.add('field-desc');
-    borrowAmtInputDesc.classList.add('text-muted');
-    borrowAmtInputDesc.textContent = 'Enter an amount between R2,000 and R300,000';
-    borrowAmtInputDiv.appendChild(borrowAmtInputDesc);
-
-    form.appendChild(borrowAmtInputDiv);
-
-    const repaymentTermLbl = document.createElement('p');
-    repaymentTermLbl.textContent = 'What’s your preferred repayment term?';
-    form.appendChild(repaymentTermLbl);
-    const repaymentTermInput = document.createElement('input');
-    repaymentTermInput.setAttribute('type', 'range');
-    form.appendChild(repaymentTermInput);
-
-    const includeRepaymentLbl = document.createElement('p');
-    includeRepaymentLbl.textContent = 'Include insurance in your repayment';
-    form.appendChild(includeRepaymentLbl);
-
-    const includeRepaymentYes = document.createElement('input');
-    includeRepaymentYes.setAttribute('type', 'radio');
-    includeRepaymentYes.setAttribute('name', 'personalInsurance');
-    includeRepaymentYes.setAttribute('id', 'personal-insurance-yes');
-    form.appendChild(includeRepaymentYes);
-
-    const includeRepaymentYesLbl = document.createElement('label');
-    includeRepaymentYesLbl.setAttribute('for', 'personal-insurance-yes');
-    includeRepaymentYesLbl.textContent = 'Add R74.25 to the loan amount for insurance';
-    form.appendChild(includeRepaymentYesLbl);
-
-    form.appendChild(document.createElement('br'));
-
-    const includeRepaymentNo = document.createElement('input');
-    includeRepaymentNo.setAttribute('type', 'radio');
-    includeRepaymentNo.setAttribute('name', 'personalInsurance');
-    includeRepaymentNo.setAttribute('id', 'personal-insurance-no');
-    form.appendChild(includeRepaymentNo);
-
-    const includeRepaymentNoLbl = document.createElement('label');
-    includeRepaymentNoLbl.setAttribute('for', 'personal-insurance-no');
-    includeRepaymentNoLbl.textContent = 'I have my own insurance';
-    form.appendChild(includeRepaymentNoLbl);
-    leftPanel.appendChild(form);
-
-    const resultPanel = document.createElement('div');
-    resultPanel.classList.add('result-panel');
-
-    const paybackAmtLbl = document.createElement('p');
-    paybackAmtLbl.textContent = 'How much you’ll pay back each month?';
-    resultPanel.appendChild(paybackAmtLbl);
-
-    const paybackAmt = document.createElement('p');
-    paybackAmt.classList.add('calulated-value');
-    paybackAmt.classList.add('green');
-    paybackAmt.textContent = 'R190.18';
-    resultPanel.appendChild(paybackAmt);
-
-    const paybackAmtTotalLbl = document.createElement('p');
-    paybackAmtTotalLbl.textContent = 'How much you’ll pay back in total';
-    resultPanel.appendChild(paybackAmtTotalLbl);
-
-    const paybackTotalAmt = document.createElement('p');
-    paybackTotalAmt.classList.add('calulated-value');
-    paybackTotalAmt.textContent = 'R4,564.32';
-    resultPanel.appendChild(paybackTotalAmt);
-
-    const exampleInterestLbl = document.createElement('p');
-    exampleInterestLbl.textContent = 'Example interest rate';
-    resultPanel.appendChild(exampleInterestLbl);
-
-    const exampleInterest = document.createElement('input');
-    exampleInterest.setAttribute('type', 'range');
-    resultPanel.appendChild(exampleInterest);
-
-    const message = document.createElement('p');
-    message.textContent = 'On average, South Africans will pay interest of 18.25% to 25.75%. We’ll offer you an interest rate based on your payment history and risk profile.';
-    resultPanel.appendChild(message);
-    rtPanel.appendChild(resultPanel);
-
-    const actionsDiv = document.createElement('div');
-    actionsDiv.classList.add('actions');
-    const loanDtlsLink = document.createElement('a');
-    loanDtlsLink.setAttribute('href', '#');
-    loanDtlsLink.textContent = 'See loan detail';
-    actionsDiv.appendChild(loanDtlsLink);
-
-    const loanAppLink = document.createElement('a');
-    loanAppLink.classList.add('button');
-    loanAppLink.classList.add('primary');
-    loanAppLink.setAttribute('href', '#');
-    loanAppLink.textContent = 'Start loan application';
-    actionsDiv.appendChild(loanAppLink);
-
-    rtPanel.appendChild(actionsDiv);
-
-    block.innerHTML = '';
-    block.appendChild(calculatorDiv);
-
+  calc.innerHTML = `
+  <h4 id='repayment-calculator'>${config['repayment-calculator-title']}</h4>
+  <p>${config['repayment-calculator-description']}</p>
+  <div class='calculator'>
+    <div class="left-panel">
+      <form>
+        <p>${config['repayment-calculator-amount-field-label']}</p>
+        <div>
+          <input type="text">
+          <div class="field-desc text-muted">${config['repayment-calculator-amount-field-description']}</div>
+        </div>
+        <p>${config['repayment-calculator-term-field-label']}</p>
+        <input type="range">
+        <p>${config['repayment-calculator-insurance-field-label']}</p>
+        <input type="radio" name="personalInsurance" id="personal-insurance-yes">
+        <label for="personal-insurance-yes">Add R74.25 to the loan amount for insurance</label>
+        <br>
+        <input type="radio" name="personalInsurance" id="personal-insurance-no">
+        <label for="personal-insurance-no">I have my own insurance</label>
+      </form>
+    </div>
+    <div class="right-panel">
+      <div class="result-panel">
+        <p>How much you’ll pay back each month?</p>
+        <p class="calulated-value green">R190.18</p>
+        <p>How much you’ll pay back in total</p>
+        <p class="calulated-value">R4,564.32</p>
+        <p>Example interest rate</p>
+        <input type="range">
+        <p>On average, South Africans will pay interest of 18.25% to 25.75%. We’ll offer you an interest rate based on your payment history and risk profile.</p>
+      </div>
+      <div class="actions">
+        <a href="#">See loan detail</a>
+        <a class="button primary" href="#">Start loan application</a>
+      </div>
+    </div>
+  </div>
+  `;
+  return calc;
 }
 
+function buildLoanCalcTab(config) {
+  const calc = document.createElement('div');
+  calc.innerHTML = `
+      <h4 id='loan-consolidation-calculator'>${config['loan-consolidation-calculator-title']}</h4>
+      <p>${config['loan-consolidation-calculator-description']}</p>
+      <div class='calculator'>
+      <div class="left-panel">
+        <form>
+          <p>Loan 1 Details</p>
+          <p>What type of loan is it?</p>
+          <input type="text">
+          <p>Amount you still owe</p>
+          <div>
+            <input type="text">
+            <div class="field-desc text-muted">Enter an amount between R2,000 and R300,000</div>
+          </div>
+          <p>What’s your preferred repayment term?</p>
+          <input type="range">
+          <p>Include insurance in your repayment</p>
+          <input type="radio" name="personalInsurance" id="personal-insurance-yes">
+          <label for="personal-insurance-yes">Add R74.25 to the loan amount for insurance</label>
+          <br>
+          <input type="radio" name="personalInsurance" id="personal-insurance-no">
+          <label for="personal-insurance-no">I have my own insurance</label>
+        </form>
+      </div>
+      <div class="right-panel">
+        <div class="result-panel">
+          <p>Total Amount</p>
+          <p class="calulated-value">R20000</p>
+          <p>How much you’ll pay back each month</p>
+          <p class="calulated-value">R4,564.32</p>
+
+          <p>How much you’ll be saving</p>
+          <p>A single, easy to manage instalment will mean you spend less each month on fees.</p>
+
+          <p>Example interest rate</p>
+          <p class="calulated-value">19.25%</p>
+        </div>
+        <div class="actions">
+          <a href="#">See loan detail</a>
+          <a class="button primary" href="#">Get Started</a>
+        </div>
+      </div>
+    </div>
+  `;
+  return calc;
+}
+
+export default async function decorate(block) {
+  const blockCfg = readBlockConfig(block);
+  block.innerHTML = '';
+  const tabs = buildBlock('tabs', [[buildRepayCalcTab(blockCfg)], [buildLoanCalcTab(blockCfg)]]);
+  tabs.classList.add('tabs');
+  block.appendChild(tabs);
+  decorateBlock(tabs);
+  loadBlock(tabs);
+  return tabs;
+}
