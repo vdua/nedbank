@@ -40,8 +40,10 @@ const processFiles = async (parent) => {
   }
 });
 
-fs.watch('.', { recursive: true }, (eventType, fileName) => {
-  if (path.extname(fileName) === '.less' && eventType === 'change') {
-    compileAndSave(path.join(dirname, fileName));
-  }
-});
+if(process.argv.length > 2 && process.argv[2] == 'watch') {
+  fs.watch('.', { recursive: true }, (eventType, fileName) => {
+    if (path.extname(fileName) === '.less' && eventType === 'change') {
+      compileAndSave(path.join(dirname, fileName));
+    }
+  });
+}

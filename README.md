@@ -16,14 +16,22 @@ npm i
 ```sh
 npm tst
 ```
+## Compile all `.less` files to `.css`
+```sh
+npm run lessc
+```
 
-## Run less auto-compile and Franklin Pages
+The above command will run `node less-compile.js` which will compile all `*.less` files to `*.css` files.
+
+## Run less auto-compile and Franklin Pages together
 
 ```sh
 npm run up
 ```
 
-The above command will run `node less-compile.js` in parallel with `hlx up` which will start your local Franklin Pages development environment.
+The above command will run `less` compiler in watch mode (i.e. watching for any changes in the `*.less` files in the current directory and all its descendents and compiling those changes to `*.css`).
+
+And in parallel, it will also start up your local Franklin Pages development environment with `hlx up` command.
 
 ### Note on LESS usage and Franklin Local Development
 
