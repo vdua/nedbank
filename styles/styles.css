@@ -15,8 +15,8 @@
   --link-color: #008533;
   --link-hover-color: #008533;
   --background-color: #fff;
-  --background-color-grey:#f9fbfb;
-  --background-color-black:#000000;
+  --background-color-grey: #f9fbfb;
+  --background-color-black: #000000;
   --overlay-background-color: #f2f9f5;
   --highlight-background-color: #008533;
   --text-color: #000;
@@ -283,13 +283,15 @@ main .section.breadcrumb {
   padding: 1px 20px;
 }
 
-main .section.cards-container {
+main .section.cards-container,
+main .section.steps-container {
   margin: auto;
   padding: 64px;
   text-align: center;
 }
 
-main .section.cards-container li {
+main .section.cards-container li,
+main .section.steps-container li {
   padding: 20px;
 }
 
@@ -308,10 +310,10 @@ main .section.readytoapply {
   background-color: var(--text-color);
 }
 
-main .section.readytoapply > .default-content-wrapper{
+main .section.readytoapply>.default-content-wrapper {
   text-align: center;
 }
 
-main .section.calc-example .columns.block > div {
+main .section.calc-example .columns.block>div {
   border-bottom: 1px solid black;
 }
