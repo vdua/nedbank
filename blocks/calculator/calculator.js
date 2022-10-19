@@ -17,7 +17,14 @@ function buildRepayCalcTab(config) {
           <div class="field-desc text-muted">${config['repayment-calculator-amount-field-description']}</div>
         </div>
         <p>${config['repayment-calculator-term-field-label']}</p>
-        <input type="range">
+        <div class="range-wrap">
+          <output id='repayment-term-val' class='bubble'></output>
+          <input id='repayment-term-range' type="range" class="range" min="0" max="6">
+          <div class='range-boundary-labels'>
+            <p>6 Months</p>
+            <p>6 Years</p>
+          </div>
+        </div>
         <p>${config['repayment-calculator-insurance-field-label']}</p>
         <input type="radio" name="personalInsurance" id="personal-insurance-yes">
         <label for="personal-insurance-yes">Add R74.25 to the loan amount for insurance</label>
@@ -43,7 +50,26 @@ function buildRepayCalcTab(config) {
     </div>
   </div>
   `;
+
+  const range = calc.querySelector('#repayment-term-range');
+  const bubble = calc.querySelector('#repayment-term-val');
+  range.addEventListener('input', (evt) => {
+    setBubble(range, bubble);
+  });
+  setBubble(range, bubble);
   return calc;
+}
+
+function setBubble(range, bubble) {
+  const termVals = ['6 Months', '1 Year', '2 Years', '3 Years', '4 Years', '5 Years', '6 Years'];
+  const val = range.value;
+  const min = range.min ? range.min : 0;
+  const max = range.max ? range.max : 100;
+  const newVal = Number(((val - min) * 100) / (max - min));
+  bubble.innerHTML = termVals[parseInt(val, 10)];
+
+  // Sorta magic numbers based on size of the native UI thumb
+  //bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
 
 function buildLoanCalcTab(config) {
