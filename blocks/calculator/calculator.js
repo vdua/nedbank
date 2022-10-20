@@ -112,7 +112,7 @@ function buildLoanCalcTab(config) {
           <div class="range-wrap">
             <output id='loan-term-val' class='bubble'></output>
             <input id='loan-term-range' type="range" class="range" min="0" max="6">
-            <div class='loan-boundary-labels'>
+            <div class='range-boundary-labels'>
               <div class='text-muted'>6 Months</div>
               <div class='text-muted'>6 Years</div>
             </div>

@@ -10,7 +10,11 @@
     color: #5fa317;
 }
 
-.calculator .left-panel,
+.calculator .left-panel {
+    flex: 1;
+    padding: 20px;
+}
+
 .calculator .right-panel {
     flex: 1;
     padding: 20px;
@@ -45,7 +49,7 @@
     margin-bottom: 42px;
     border-radius: 10px;
     background-color: #f9fbfb;
-    box-shadow: 0 25px 20px -15px rgb(0 0 0 / 10%);
+    box-shadow: 0 25px 20px -15px rgba(0, 0, 0, 0.1);
 }
 
 .calculator .calulated-value {
