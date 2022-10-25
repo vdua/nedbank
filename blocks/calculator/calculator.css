@@ -24,7 +24,7 @@
     border-color: var(--link-color);
     padding-left: 23px;
     border-radius: 0;
-    font-size: 16px;
+    font-size: unset;
     line-height: 24px;
     font-family: "Open Sans Semibold";
     color: #17252e;
@@ -90,4 +90,10 @@
 .calculator .range-boundary-labels {
     display: flex;
     justify-content: space-between;
+}
+
+.calculator .currency-symbol {
+    position: relative;
+    top: 49px;
+    left: 10px;
 }

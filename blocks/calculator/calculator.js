@@ -2,6 +2,16 @@ import {
   loadBlock, buildBlock, decorateBlock, readBlockConfig,
 } from '../../scripts/scripts.js';
 
+function decorateCurrency(block) {
+  block.querySelectorAll('input[type=currency]').forEach((item) => {
+    const currencyDiv = document.createElement('div');
+    currencyDiv.innerHTML = `
+    <span class='currency-symbol class='.currency-symbol'>R</span>
+    <input class='currency' type='text'>
+    `;
+    item.parentNode.replaceChild(currencyDiv, item);
+  });
+}
 function setBubble(range, bubble, termVals) {
   const val = range.value;
   const min = range.min ? range.min : 0;
@@ -24,7 +34,7 @@ function buildRepayCalcTab(config) {
       <form>
         <p>${config['repayment-calculator-amount-field-label']}</p>
         <div>
-          <input type="text">
+          <input type='currency'>
           <div class="field-desc text-muted">${config['repayment-calculator-amount-field-description']}</div>
         </div>
         <p>${config['repayment-calculator-term-field-label']}</p>
@@ -105,7 +115,7 @@ function buildLoanCalcTab(config) {
           <input type="text">
           <p>Amount you still owe</p>
           <div>
-            <input type="text">
+            <input type="currency">
             <div class="field-desc text-muted">Enter an amount between R2,000 and R300,000</div>
           </div>
           <p>What’s your preferred repayment term?</p>
@@ -180,10 +190,13 @@ function buildLoanCalcTab(config) {
 export default async function decorate(block) {
   const blockCfg = readBlockConfig(block);
   block.innerHTML = '';
-  const tabs = buildBlock('tabs', [[buildRepayCalcTab(blockCfg)], [buildLoanCalcTab(blockCfg)]]);
+  const repayCalc = buildRepayCalcTab(blockCfg);
+  const loanCalc = buildLoanCalcTab(blockCfg);
+  const tabs = buildBlock('tabs', [[repayCalc], [loanCalc]]);
   tabs.classList.add('tabs');
   block.appendChild(tabs);
   decorateBlock(tabs);
+  decorateCurrency(tabs);
   loadBlock(tabs);
   return tabs;
 }
