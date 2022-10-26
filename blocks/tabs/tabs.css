@@ -4,6 +4,7 @@ main .tabs {
 
 main .tabs .tabs-title {
   position: relative;
+  font-family: 'Nedbank Sans Medium';
 }
 
 main .tabs .tabs-title::after {
@@ -106,6 +107,9 @@ main .tabs .tabs-content[aria-hidden="true"] {
   main .tabs .tabs-content {
     order: 2;
     width: 100%;
+    border: 1px solid #d5e4e1;
+    border-radius: 20px;
+    padding: 50px;
   }
 }
 

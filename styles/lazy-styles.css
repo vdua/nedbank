@@ -1,7 +1,7 @@
 /* below the fold CSS goes here */
 
 @font-face{font-family:"Nedbank Sans Regular";src:url("/styles/fonts/NedbankSans-Regular.otf"),url("/styles/fonts/NedbankSans-Regular.woff")}
-@font-face{font-family:"Nedbank Sans RegularItalic";src:url("clientlib-base/less/resources/fonts/NedbankSans-RegularItalic.otf")}
+@font-face{font-family:"Nedbank Sans RegularItalic";src:url("/styles/fonts/NedbankSans-RegularItalic.otf")}
 @font-face{font-family:"Nedbank Sans Black";src:url("/styles/fonts/NedbankSans-Black.otf")}
 @font-face{font-family:"Nedbank Sans BlackItalic";src:url("/styles/fonts/NedbankSans-BlackItalic.otf")}
 @font-face{font-family:"Nedbank Sans Bold";src:url("/styles/fonts/NedbankSans-Bold.otf"),url("/styles/fonts/NedbankSans-Bold.woff")}
