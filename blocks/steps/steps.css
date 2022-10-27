@@ -1,3 +1,8 @@
+main .steps {
+  max-width: 1228px;
+  margin: auto;
+}
+
 .steps>ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
@@ -69,8 +74,8 @@
 }
 
 
-.steps.muted>ul>li>.steps-body,
-.steps.muted>ul>li>.steps-body:hover {
+.steps.muted .steps-body,
+.steps.muted .steps-body:hover {
   box-shadow: unset;
   transform: unset;
   text-align: left;
@@ -84,11 +89,15 @@
   margin: 16px;
 }
 
-.steps>ul>li>.steps-body img {
+.steps .steps-body img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px 8px 0 0;
+}
+
+.steps .steps-body p {
+  padding: 20px;
 }
 
 .steps a.button {

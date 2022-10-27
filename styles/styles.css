@@ -19,7 +19,8 @@
   --background-color-black: #000000;
   --overlay-background-color: #f2f9f5;
   --highlight-background-color: #008533;
-  --text-color: #000;
+  --text-color: #494f50;
+  --heading-text-color: #17252e;
 
   /* fonts */
   --body-font-family: 'Open Sans Regular', 'Open Sans-fallback';
@@ -81,6 +82,7 @@ h6 {
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
   font-family: var(--heading-font-family);
+  color: var(--heading-text-color);
 }
 
 h1 {
@@ -243,10 +245,10 @@ main img {
 
 @media (min-width: 900px) {
   :root {
-    --heading-font-size-xxl: 64px;
+    --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 40px;
     --heading-font-size-l: 32px;
-    --heading-font-size-m: 24px;
+    --heading-font-size-m: 22px;
     --heading-font-size-s: 22px;
     --heading-font-size-xs: 20px;
   }

@@ -1,5 +1,6 @@
 .calculator-container {
-    padding: 64px;
+    max-width: 1228px;
+    margin: auto;
 }
 
 .calculator {
