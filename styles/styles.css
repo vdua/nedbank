@@ -314,6 +314,55 @@ main .section.readytoapply>.default-content-wrapper {
   text-align: center;
 }
 
+main .section.calc-example {
+  padding: 20px 106px;
+}
+
 main .section.calc-example .columns.block>div {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #979797;
+}
+
+main .legal-content .columns>div>div:nth-child(1),
+main .legal-content .columns>div>div:nth-child(3) {
+  margin: unset;
+  opacity: .87;
+  color: #494f50;
+  font-family: "Open Sans Bold";
+  font-weight: normal;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: 18px;
+  padding-left: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+main .legal-content .columns>div>div:nth-child(2),
+main .legal-content .columns>div>div:nth-child(4) {
+  margin: unset;
+  opacity: .87;
+  color: #494f50;
+  font-family: "Open Sans Regular";
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 19px;
+  padding-left: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+main .legal-content h2 {
+  font-size: 16px;
+  line-height: 29px;
+  color: #17252e;
+  font-family: "Open Sans Bold";
+  letter-spacing: 0;
+}
+
+main .legal-content p {
+  color: #494f50;
+  font-family: "Open Sans Regular";
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
 }
