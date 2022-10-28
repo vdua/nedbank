@@ -48,10 +48,10 @@ function buildRepayCalcTab(config) {
         </div>
         <p>${config['repayment-calculator-insurance-field-label']}</p>
         <input type="radio" name="personalInsurance" id="personal-insurance-yes">
-        <label for="personal-insurance-yes">Add R74.25 to the loan amount for insurance</label>
+        <label for="personal-insurance-yes">${config['repayment-calculator-insurance-field-option-1']}</label>
         <br>
         <input type="radio" name="personalInsurance" id="personal-insurance-no">
-        <label for="personal-insurance-no">I have my own insurance</label>
+        <label for="personal-insurance-no">${config['repayment-calculator-insurance-field-option-2']}</label>
       </form>
     </div>
     <div class="right-panel">
