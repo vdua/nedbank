@@ -1,0 +1,206 @@
+main .carousel-wrapper {
+    padding-bottom: 128px;
+    position: relative;
+    max-width: unset;
+    width: 1000px;
+  }
+  
+  main .carousel {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    margin: 32px 0;
+  }
+  
+  main .carousel picture {
+    position: relative;
+  }
+  
+  main .carousel img {
+    object-fit: cover;
+    height: 500px;
+  }
+  
+  main .carousel-image picture:not(:only-child) {
+    display: none;
+  }
+  
+  main .carousel-image picture:not(:only-child):nth-child(1) {
+    display: block;
+  }
+  
+  main .carousel > div {
+    /* width: 100%; */
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    position: relative;
+    align-items: flex-end;
+    display: flex;
+    color: var(--color-white);
+    width: 600vw;
+    max-width: var(--max-width);
+  }
+  
+  main .carousel .carousel-text {
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+    position: absolute;
+    background: white;
+    top: 20px;
+    left: 20px;
+  }
+  
+  main .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  
+  main .carousel-wrapper .carousel-buttons {
+    text-align: center;
+    margin-top: -48px;
+    position: absolute;
+    display: flex;
+    right: 0;
+    left: 0;
+    justify-content: center;
+  }
+  
+  main .carousel-buttons button {
+    display: block;
+    height: 14px;
+    width: 14px;
+    padding: 0;
+    margin: 10px;
+    border-radius: 7px;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+  }
+  
+  main .carousel-buttons button.selected {
+    background-color: green;
+  }
+  
+  main .carousel-wrapper .carousel-controls {
+    /* display: none; */
+    display: block;
+  }
+  
+  @media (min-width: 700px) {
+    main .carousel {
+      margin: 64px 0;
+    }
+  
+    main .carousel-image picture:not(:only-child):nth-child(1) {
+      display: none;
+    }
+  
+    main .carousel-image picture:not(:only-child):nth-child(2) {
+      display: block;
+    }
+  }
+  
+  main .carousel {
+    --max-width: 11.25rem;
+    --margin-left: calc(calc(100% / 2) - calc(var(--max-width) / 2));
+  
+    gap: 2.5rem;
+    margin-left: var(--margin-left);
+    margin-right: calc(calc(calc(100vw - 100%) - var(--scrollbar-width)) / -2);
+  }
+  
+  @media (min-width: 600px) {
+    main .carousel {
+      --margin-left: 8rem;
+    }
+  }
+  
+  @media (min-width: 1025px) {
+    main .carousel {
+      --margin-left: 12rem;
+    }
+  }
+  
+  @media (min-width: 600px) {
+    main .carousel > div {
+      /* --max-width: 18.75rem; */
+      --min-width: 500px;
+      --max-width: 550px;
+    }
+  }
+  
+  main .carousel > div:last-child {
+    margin-right: 100vw;
+  }
+  
+  main .carousel ~ .carousel-buttons {
+    --gap: .5rem;
+    --size: 0.5rem;
+  }
+  
+  main .carousel ~ .carousel-buttons button::after {
+    background-color: transparent;
+    border: 1px solid var(--theme-shade10);
+  }
+  
+  main .carousel ~ .carousel-buttons button.selected::after {
+    background-color: var(--theme-shade10);
+    border-color: var(--theme-shade10);
+  }
+  
+  main .carousel ~ .carousel-controls {
+    --extra-padding: 64px;
+    flex-direction: column;
+    left: 0;
+    position: absolute;
+    top: calc(50% - var(--extra-padding));
+    transform: translateY(calc(-50% - calc(var(--extra-padding) / 2)));
+  }
+  
+  @media (min-width: 600px) {
+    main .carousel .carousel-controls button::after {
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        padding: .5rem;
+        mask-image: url('../../styles/arrow-right.svg');
+      }
+
+    main .carousel ~ .carousel-controls {
+      display: flex;
+    }
+  }
+  
+  main .carousel ~ .carousel-controls button {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: .5rem;
+  }
+  
+  main .carousel ~ .carousel-controls button::after {
+    background-color: var(--theme-shade10);
+    background-color: black;
+    content: '';
+    display: block;
+    height: 1rem;
+    mask-image: url('../../styles/arrow-right.svg');
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask-image: url('../../styles/arrow-right.svg');
+    transition: background-color .25s ease-in-out;
+    width: 1.875rem;
+  }
+  
+  main .carousel ~ .carousel-controls button.disabled {
+    cursor: auto;
+  }
+  
+  main .carousel ~ .carousel-controls button.disabled::after {
+    background-color: var(--color-gray-5);
+  }
+  
+  main .carousel ~ .carousel-controls button.prev {
+    transform: rotate(180deg);
+  }
