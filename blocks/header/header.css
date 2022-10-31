@@ -265,6 +265,7 @@ header nav[aria-expanded='true'] .nav-tools li {
   }
 
   header nav .nav-sections>ul>li[aria-expanded='true'] ul {
+    margin: unset;
     display: block;
     position: absolute;
     width: 300px;
