@@ -2,8 +2,7 @@
 header nav {
   display: grid;
   grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / 50px 1fr 50px;
+    'hamburger brand tools' var(--nav-height) 'sections sections sections' 1fr / 50px 1fr 50px;
   align-items: center;
   padding: 0 2rem;
   position: fixed;
@@ -17,11 +16,12 @@ header nav {
 
 header nav a:any-link {
   color: currentcolor;
+  text-decoration: none;
 }
 
 header nav[aria-expanded='true'] {
   grid-template: 'hamburger brand' 'sections sections' 'tools tools';
-  grid-template-columns:  56px 1fr;
+  grid-template-columns: 56px 1fr;
   overflow-y: scroll;
   min-height: 100vh;
 }
@@ -114,12 +114,12 @@ header nav .nav-sections {
   flex: 1 1 auto;
 }
 
-header nav .nav-sections ul  {
+header nav .nav-sections ul {
   font-size: 16px;
   font-weight: 500;
   list-style: none;
   padding-left: 0;
-} 
+}
 
 header nav .nav-sections li {
   font-size: 20px;
@@ -164,7 +164,7 @@ header nav[aria-expanded='true'] .nav-tools li {
     padding: 16px 2rem;
   }
 
-  header nav .nav-sections > ul > li.nav-drop {
+  header nav .nav-sections>ul>li.nav-drop {
     position: relative;
     padding-right: 32px;
   }
@@ -201,13 +201,13 @@ header nav[aria-expanded='true'] .nav-tools li {
     width: unset;
     margin: 0;
   }
-  
+
   header nav[aria-expanded='true'] .nav-sections ol {
     display: flex;
     min-height: unset;
   }
 
-  header nav .nav-sections > ul > li {
+  header nav .nav-sections>ul>li {
     padding: 0 16px;
     position: relative;
     font-size: 16px;
@@ -216,45 +216,62 @@ header nav[aria-expanded='true'] .nav-tools li {
     padding-top: 0;
   }
 
-  header nav .nav-sections > ul > li > p {
+  header nav .nav-sections>ul>li>a {
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+  header nav .nav-sections>ul>li>a::after {
+    opacity: 40%;
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+  }
+
+  header nav .nav-sections>ul>li>p {
     margin: 0;
   }
 
-  header nav .nav-sections > ul > li > ul {
+  header nav .nav-sections>ul>li>ul {
     margin-top: 20px;
     display: none;
     position: relative;
   }
 
-  header nav .nav-sections > ul > li > ul:any-link {
+  header nav .nav-sections>ul>li>ul:any-link {
     font-size: var(--body-font-size-m);
   }
 
-  header nav .nav-sections > ul > li > ul::before {
-    content: '';
-    width: 0;
-    height: 0;
-    position: absolute;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;    
-    border-bottom: 15px solid var(--highlight-background-color);
-    top: -15px;
-    left: 20px;
-  }
-
-
-  header nav .nav-sections > ul > li > ul > li {
+  header nav .nav-sections>ul>li>ul>li {
     font-size: 18px;
     padding: 8px 16px;
   }
 
-  header nav .nav-sections > ul > li[aria-expanded='true'] ul {
+  header nav .nav-sections>ul>li>ul>li:hover {
+    background-color: var(--link-hover-color);
+  }
+
+  header nav .nav-sections>ul>li>ul>li:first-child {
+    font-family: "Nedbank Sans Bold";
+  }
+
+  header nav .nav-sections>ul>li>ul>li:first-child:hover {
+    background-color: var(--background-color);
+  }
+
+  header nav .nav-sections>ul>li[aria-expanded='true'] ul {
     display: block;
     position: absolute;
-    background-color: var(--highlight-background-color);
     width: 300px;
     left: 0;
-    padding: 16px;
-    box-shadow: 0 0 5px var(text-color);
+    border-radius: 6px;
+    background-color: var(--background-color);
+    box-shadow: 3px 3px 16px 0 rgb(0 0 0 / 12%);
+    border: 0;
   }
 }
