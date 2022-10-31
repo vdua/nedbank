@@ -4,9 +4,7 @@ version: 1
 indices:
   site:
     include:
-      - '/mysite/**'
-    exclude:
-      - '**/Document.*'
+      - '/**'
     target: /query-index.xlsx
     properties:
       author:
