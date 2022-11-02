@@ -27,12 +27,8 @@ indices:
         select: head > meta[name="description"]
         value: |
           attribute(el, 'content')
-      category:
-        select: head > meta[name="category"]
-        value: |
-          attribute(el, 'content')
-      topics:
-        select: head > meta[name="topics"]
+      read-time:
+        select: head > meta[name="read-time"]
         value: |
           attribute(el, 'content')
       lastModified:
