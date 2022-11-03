@@ -4,10 +4,11 @@ import {
 
 function decorateCurrency(block) {
   block.querySelectorAll('input[type=currency]').forEach((item) => {
+    const id = item.getAttribute('id');
     const currencyDiv = document.createElement('div');
     currencyDiv.innerHTML = `
     <span class='currency-symbol class='.currency-symbol'>R</span>
-    <input class='currency' type='text'>
+    <input id='${id}' class='currency' type='text'>
     `;
     item.parentNode.replaceChild(currencyDiv, item);
   });
@@ -27,17 +28,17 @@ function buildRepayCalcTab(config) {
   const calc = document.createElement('div');
 
   calc.innerHTML = `
-  <h4 id='repayment-calculator'>${config['repayment-calculator-title']}</h4>
+  <h4 id='repayment-calculator' role='tab'>${config['repayment-calculator-title']}</h4>
   <p>${config['repayment-calculator-description']}</p>
   <div class='calculator'>
     <div class="left-panel">
       <form>
-        <p>${config['repayment-calculator-amount-field-label']}</p>
+        <label for='loan-amt'>${config['repayment-calculator-amount-field-label']}</label>
         <div>
-          <input type='currency'>
+          <input id='loan-amt' type='currency'/>
           <div class="field-desc text-muted">${config['repayment-calculator-amount-field-description']}</div>
         </div>
-        <p>${config['repayment-calculator-term-field-label']}</p>
+        <label for='repayment-term-range'>${config['repayment-calculator-term-field-label']}</label>
         <div class="range-wrap">
           <output id='repayment-term-val' class='bubble'></output>
           <input id='repayment-term-range' type="range" class="range" min="0" max="6">
@@ -47,11 +48,11 @@ function buildRepayCalcTab(config) {
           </div>
         </div>
         <p>${config['repayment-calculator-insurance-field-label']}</p>
-        <input type="radio" name="personalInsurance" id="personal-insurance-yes">
-        <label for="personal-insurance-yes">${config['repayment-calculator-insurance-field-option-1']}</label>
+        <input type="radio" name="personalInsurance" id="repayment-personal-insurance-yes">
+        <label for="repayment-personal-insurance-yes">${config['repayment-calculator-insurance-field-option-1']}</label>
         <br>
-        <input type="radio" name="personalInsurance" id="personal-insurance-no">
-        <label for="personal-insurance-no">${config['repayment-calculator-insurance-field-option-2']}</label>
+        <input type="radio" name="personalInsurance" id="repayment-personal-insurance-no">
+        <label for="repayment-personal-insurance-no">${config['repayment-calculator-insurance-field-option-2']}</label>
       </form>
     </div>
     <div class="right-panel">
@@ -60,7 +61,7 @@ function buildRepayCalcTab(config) {
         <p class="calulated-value green">R190.18</p>
         <p>How much you’ll pay back in total</p>
         <p class="calulated-value">R4,564.32</p>
-        <p>Example interest rate</p>
+        <label for='repayment-rate-range'>Example interest rate</label>
         <div class="range-wrap">
           <output id='repayment-rate-val' class='bubble'></output>
           <input id='repayment-rate-range' type="range" class="range" min="0" max="35">
@@ -105,7 +106,7 @@ function buildRepayCalcTab(config) {
 function buildLoanCalcTab(config) {
   const calc = document.createElement('div');
   calc.innerHTML = `
-      <h4 id='loan-consolidation-calculator'>${config['loan-consolidation-calculator-title']}</h4>
+      <h4 id='loan-consolidation-calculator' role='tab'>${config['loan-consolidation-calculator-title']}</h4>
       <p>${config['loan-consolidation-calculator-description']}</p>
       <div class='calculator'>
       <div class="left-panel">
@@ -128,11 +129,11 @@ function buildLoanCalcTab(config) {
             </div>
           </div>
           <p>Include insurance in your repayment</p>
-          <input type="radio" name="personalInsurance" id="personal-insurance-yes">
-          <label for="personal-insurance-yes">Add R74.25 to the loan amount for insurance</label>
+          <input type="radio" name="personalInsurance" id="loan-personal-insurance-yes">
+          <label for="loan-personal-insurance-yes">Add R74.25 to the loan amount for insurance</label>
           <br>
-          <input type="radio" name="personalInsurance" id="personal-insurance-no">
-          <label for="personal-insurance-no">I have my own insurance</label>
+          <input type="radio" name="personalInsurance" id="loan-personal-insurance-no">
+          <label for="loan-personal-insurance-no">I have my own insurance</label>
         </form>
       </div>
       <div class="right-panel">

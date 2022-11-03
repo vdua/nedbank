@@ -111,34 +111,10 @@ export default function decorate(block) {
     const open = title.querySelector('strong') !== null; // bold title indicates auto-open tab
     let titleElement;
 
-    // need titles in same element
-    if (block.classList.contains('style-2')) {
-      const subtitle = tab.querySelector('h3');
 
-      if (anchor) {
-        titleElement = anchor;
-      } else {
-        titleElement = document.createElement('div');
-      }
-
-      titleElement.setAttribute('id', title.getAttribute('id'));
-      title.removeAttribute('id');
-      title.innerHTML = title.textContent;
-      title.classList.add('tabs-title-title');
-      titleElement.textContent = '';
-      titleElement.append(title);
-
-      if (subtitle) {
-        subtitle.classList.add('tabs-title-subtitle');
-        titleElement.append(subtitle);
-      }
-
-      titleElement.addEventListener('mouseover', openTab);
-    } else {
-      titleElement = title;
-      titleElement.innerHTML = title.textContent;
-      titleElement.addEventListener('click', openTab);
-    }
+    titleElement = title;
+    titleElement.innerHTML = title.textContent;
+    titleElement.addEventListener('click', openTab);
 
     titleElement.classList.add('tabs-title');
     titleElement.setAttribute('aria-selected', open);
@@ -148,24 +124,13 @@ export default function decorate(block) {
     content.classList.add('tabs-content');
     content.setAttribute('aria-labelledby', titleElement.id);
     content.setAttribute('aria-hidden', !open);
-    if (block.classList.contains('style-3')) {
-      // accordions need content and titles in same element
-      const accordion = document.createElement('div');
+    // move tab and content to block root
+    block.append(titleElement, content);
 
-      accordion.classList.add('accordion');
-      accordion.append(titleElement, content);
-
-      block.append(accordion);
-    } else {
-      // move tab and content to block root
-      block.append(titleElement, content);
-    }
 
     tab.remove();
   });
 
-  // add dots
-  if (block.classList.contains('style-1') || block.classList.contains('style-2')) buildDotNav(block);
 
   // if no tabs are open, open first tab by default
   if (!block.querySelector('.tabs-title[aria-selected="true"]')) {
@@ -173,4 +138,5 @@ export default function decorate(block) {
     block.querySelector('.tabs-title + .tabs-content').setAttribute('aria-hidden', false);
     block.querySelector('.tabs-dots-dot')?.setAttribute('aria-selected', true);
   }
+  block.setAttribute('role', 'tablist');
 }

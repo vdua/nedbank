@@ -701,6 +701,7 @@ export function decorateMain(main) {
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
+  document.documentElement.lang = getMetadata('language');
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
