@@ -370,3 +370,19 @@ main .legal-content p {
   letter-spacing: 0;
   line-height: 24px;
 }
+
+@media only screen and (max-width:600px) {
+  main .section {
+    padding: unset;
+  }
+
+  main .section.disclaimer {
+    padding: unset;
+  }
+}
+
+/*
+* {
+  border: 1px solid black;
+}
+*/
