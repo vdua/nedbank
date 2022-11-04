@@ -1,3 +1,7 @@
+main .hero-container {
+    padding: unset;
+}
+
 main .hero>div {
     display: flex;
     flex-direction: row;

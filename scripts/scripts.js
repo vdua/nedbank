@@ -274,6 +274,7 @@ export function decorateSections($main) {
 
     /* process section metadata */
     const sectionMeta = section.querySelector('div.section-metadata');
+
     if (sectionMeta) {
       const meta = readBlockConfig(sectionMeta);
       const keys = Object.keys(meta);
@@ -673,10 +674,39 @@ function loadFooter(footer) {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    if (['yes','on'].includes(getMetadata('show-banner'))) {
+      buildBannerBlock(main);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
+}
+
+function buildBannerBlock(main) {
+  const placeholder = document.createElement('div');
+  placeholder.classList.add('banner-placeholder');
+  main.prepend(placeholder);
+  fetch(`${window.hlx.codeBasePath}/banner.plain.html`).then((resp) => {
+    if (resp.status === 200) {
+      const section = main.querySelector('.banner-placeholder.section')
+      resp.text().then(async (txt) => {
+        let bannerDiv = document.createElement('div');
+        bannerDiv.innerHTML = txt;
+        bannerDiv = bannerDiv.querySelector('div');
+        const content = [];
+        [...bannerDiv.children].forEach((item) => {
+          content.push([item]);
+        });
+        const block = buildBlock('banner', content);
+        block.style.display = 'none';
+        section.append(block);
+        decorateBlock(block);
+        await loadBlock(block);
+        block.style.display = 'flex';
+      });
+    }
+  });
 }
 
 /**
@@ -716,7 +746,6 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
-
   const { hash } = window.location;
   const element = hash ? main.querySelector(hash) : false;
   if (hash && element) element.scrollIntoView();
