@@ -379,6 +379,7 @@ main .banner-placeholder {
   background-color: #fafafa;
   box-sizing: border-box;
 }
+
 @media only screen and (max-width:600px) {
   main .section {
     padding: unset;
@@ -386,6 +387,10 @@ main .banner-placeholder {
 
   main .section.disclaimer {
     padding: unset;
+  }
+
+  main .banner-placeholder {
+    padding: 16px 2rem;
   }
 }
 

@@ -1,28 +1,28 @@
-.calculator-container {
+main .calculator-container {
     max-width: 1228px;
     margin: auto;
 }
 
-.calculator {
+main .calculator {
     display: flex;
 }
 
 
-.calculator .green {
+main .calculator .green {
     color: #5fa317;
 }
 
-.calculator .left-panel {
+main .calculator .left-panel {
     flex: 1;
     padding: 20px;
 }
 
-.calculator .right-panel {
+main .calculator .right-panel {
     flex: 1;
     padding: 20px;
 }
 
-.calculator input[type=text] {
+main .calculator input[type=text] {
     border-color: var(--link-color);
     padding-left: 23px;
     border-radius: 0;
@@ -37,7 +37,7 @@
     width: 50%;
 }
 
-.calculator .text-muted {
+main .calculator .text-muted {
     font-family: "Open Sans Regular";
     font-size: 14px;
     letter-spacing: 0;
@@ -46,7 +46,7 @@
     color: #565c5d !important;
 }
 
-.calculator .result-panel {
+main .calculator .result-panel {
     padding: 32px 42px 16px 42px;
     margin-bottom: 42px;
     border-radius: 10px;
@@ -54,29 +54,29 @@
     box-shadow: 0 25px 20px -15px rgba(0, 0, 0, 0.1);
 }
 
-.calculator .calulated-value {
+main .calculator .calulated-value {
     font-size: 40px;
     line-height: 48px;
     padding-bottom: 16px;
 }
 
-.calculator .actions {
+main .calculator .actions {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.calculator .range-wrap {
+main .calculator .range-wrap {
     position: relative;
     width: 50%;
     padding: 30px;
 }
 
-.calculator .range {
+main .calculator .range {
     width: 100%;
 }
 
-.calculator .bubble {
+main .calculator .bubble {
     color: #000;
     padding: 4px 12px;
     position: absolute;
@@ -86,24 +86,29 @@
 }
 
 
-.calculator input[type=range] {
+main .calculator input[type=range] {
     accent-color: rgb(120, 190, 32);
 }
 
-.calculator .range-boundary-labels {
+main .calculator .range-boundary-labels {
     display: flex;
     justify-content: space-between;
 }
 
-.calculator .currency-symbol {
+main .calculator .currency-symbol {
     position: relative;
     top: 49px;
     left: 10px;
 }
 
 @media only screen and (max-width:600px) {
-    .calculator {
+    main .calculator-container>div>h2 {
+        padding: 16px;
+    }
+
+    main .calculator {
         display: flex;
         flex-direction: column;
+        padding: 16px;
     }
 }
