@@ -2,8 +2,8 @@ footer {
   font-size: var(--body-font-size-s);
 }
 
-footer .default-content-wrapper {
-  margin-left: 80px;
+footer .section {
+  padding: 64px;
 }
 
 footer .footer-links {
@@ -13,17 +13,14 @@ footer .footer-links {
 
 footer .footer-social-items {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
 }
 
 footer .footer-link-groups {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
-footer .footer-link-group {
-  padding: 0px 30px
-}
 
 footer .footer-link-group h3 {
   color: #17252e;

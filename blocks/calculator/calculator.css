@@ -14,12 +14,10 @@ main .calculator .green {
 
 main .calculator .left-panel {
     flex: 1;
-    padding: 20px;
 }
 
 main .calculator .right-panel {
     flex: 1;
-    padding: 20px;
 }
 
 main .calculator input[type=text] {
