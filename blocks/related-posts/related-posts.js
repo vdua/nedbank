@@ -31,20 +31,23 @@ export default async function decorate(block) {
     const title = document.createElement('h2');
     const desc = document.createElement('p');
     const description = document.createElement('strong');
-    const author = document.createElement('h5');
+    const author = document.createElement('div');
+    author.classList.add('author');
     const pdate = document.createElement("p");
     const publishDate = document.createElement('em');
 
-    const readTime = document.createElement('h6');
-    const readLink = document.createElement('h4');
+    const readTime = document.createElement('div');
+    readTime.classList.add('readtime');
+    const readLink = document.createElement('div');
+    readLink.classList.add('readlink');
     const a = document.createElement('a');
-    
+
     title.textContent = itr.title;
     description.textContent = itr.description;
     author.textContent = "By " + itr.author;
     publishDate.textContent = 'Published ' + formatDate(itr.date) + ' in Loans';
     readTime.textContent = itr.readTime;
-    readLink.textContent = "Read > "
+    readLink.textContent = "Read >"
     a.href = itr.path;
     a.appendChild(readLink);
     carouselCard.push(pic);

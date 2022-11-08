@@ -1,0 +1,19 @@
+main .related-posts .author {
+    padding-top: 20px;
+    font-size: 12px;
+    font-family: var(--heading-font-family);
+    margin-bottom: 0;
+}
+
+main .related-posts .readlink {
+    font-size: 15px;
+    font-weight: normal;
+    font-family: var(--heading-font-family);
+    color: green;
+}
+
+main .related-posts .readtime {
+    font-size: 15px;
+    font-weight: normal;
+    font-family: var(--heading-font-family);
+}
