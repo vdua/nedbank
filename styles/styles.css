@@ -376,7 +376,7 @@ main .banner-placeholder {
   height: var(--banner-height);
   display: block;
   padding: 16px 2rem;
-  background-color: #f7f7f7;
+  background-color: #fafafa;
   box-sizing: border-box;
 }
 @media only screen and (max-width:600px) {
