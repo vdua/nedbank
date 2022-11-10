@@ -21,12 +21,12 @@ npm tst
 npm run lessc
 ```
 
-The above command will run `node less-compile.js` which will compile all `*.less` files to `*.css` files.
+The above command will run `less-watch-compiler --run-once styles styles & less-watch-compiler --run-once blocks block` which will compile all `*.less` files to `*.css` files in `styles` and `blocks` folders.
 
 ## Run less auto-compile and Franklin Pages together
 
 ```sh
-npm run up
+npm run hlx
 ```
 
 The above command will run `less` compiler in watch mode (i.e. watching for any changes in the `*.less` files in the current directory and all its descendents and compiling those changes to `*.css`).
@@ -35,13 +35,13 @@ And in parallel, it will also start up your local Franklin Pages development env
 
 ### Note on LESS usage and Franklin Local Development
 
- The `npm run up` will parse the `styles` and `blocks` directory for any `.less` files. Files that are found will be compiled to css and saved in the same location and name with a `.css` extension. It will then continue to watch for changes to `.less` files and will compile to their associated CSS files on changes.
+ The `npm run hlx` will parse the `styles` and `blocks` directory for any `.less` files. Files that are found will be compiled to css and saved in the same location and name with a `.css` extension. It will then continue to watch for changes to `.less` files and will compile to their associated CSS files on changes.
 
 Examples:
   - `{repo}/blocks/header/header.less` will compile to `{repo}/blocks/header/header.css`
   - `{repo}/styles/style.less` will compile to `{repo}/styles/styles.css`
 
-As both `less-compile.js` and `hlx up` are watching for changes, changes made to your less files while using the `rpm run up` command will be reflected automatically in your localhost.
+As both `less-watch-compile` and `hlx up` are watching for changes, changes made to your less files while using the `npm run hlx` command will be reflected automatically in your localhost.
 
 Note that using only the `hlx up` command will not trigger updates on-change for less files.
 

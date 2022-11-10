@@ -47,7 +47,7 @@ export default async function decorate(block) {
           navSection.setAttribute('aria-expanded', 'true');
         });
 
-        navSection.querySelector('ul').addEventListener('mouseleave', () => {
+        navSection.addEventListener('mouseleave', () => {
           collapseAllNavSections(navSections);
         });
       });
