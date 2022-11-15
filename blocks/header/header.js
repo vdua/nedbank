@@ -1,4 +1,4 @@
-import { readBlockConfig, decorateIcons, makeLinksRelative } from '../../scripts/scripts.js';
+import { readBlockConfig, decorateIcons, makeLinksRelative, getRootPath } from '../../scripts/scripts.js';
 
 /**
  * collapses all open nav sections
@@ -21,7 +21,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const navPath = cfg.nav || '/nav';
+  const navPath = cfg.nav || `${getRootPath()}/nav`;
   const resp = await fetch(`${navPath}.plain.html`);
   if (resp.ok) {
     const html = await resp.text();

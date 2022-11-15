@@ -10,6 +10,59 @@
  * governing permissions and limitations under the License.
  */
 
+const LANG = {
+  EN: 'en',
+  DE: 'de',
+  FR: 'fr',
+  KO: 'ko',
+  ES: 'es',
+  IT: 'it',
+  JP: 'jp',
+  BR: 'br',
+};
+
+const LANG_LOCALE = {
+  en: 'en_US',
+  de: 'de_DE',
+  fr: 'fr_FR',
+  ko: 'ko_KR',
+  es: 'es_ES',
+  it: 'it_IT',
+  jp: 'ja_JP',
+  br: 'pt_BR',
+};
+
+let language;
+
+export function getLanguage() {
+  if (language) return language;
+  language = '';
+  const segs = window.location.pathname.split('/');
+  if (segs && segs.length > 0) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [, value] of Object.entries(LANG)) {
+      if (value === segs[1]) {
+        language = value;
+        break;
+      }
+    }
+  }
+  return language;
+}
+
+/**
+ * Returns the language dependent root path
+ * @returns {string} The computed root path
+ */
+export function getRootPath() {
+  const loc = getLanguage();
+  if (loc) {
+    return `/${loc}`;
+  } else {
+    return '';
+  }
+
+}
 /**
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
@@ -167,7 +220,7 @@ export async function fetchPlaceholders(prefix = 'default') {
   if (!loaded) {
     window.placeholders[`${prefix}-loaded`] = new Promise((resolve, reject) => {
       try {
-        fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
+        fetch(`${prefix === 'default' ? '' : prefix}${getRootPath()}/placeholders.json`)
           .then((resp) => resp.json())
           .then((json) => {
             const placeholders = {};
@@ -674,7 +727,7 @@ function loadFooter(footer) {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
-    if (['yes','on'].includes(getMetadata('show-banner'))) {
+    if (['yes', 'on'].includes(getMetadata('show-banner'))) {
       buildBannerBlock(main);
     }
   } catch (error) {
@@ -687,7 +740,7 @@ function buildBannerBlock(main) {
   const placeholder = document.createElement('div');
   placeholder.classList.add('banner-placeholder');
   main.prepend(placeholder);
-  fetch(`${window.hlx.codeBasePath}/banner.plain.html`).then((resp) => {
+  fetch(`${window.hlx.codeBasePath}${getRootPath()}/banner.plain.html`).then((resp) => {
     if (resp.status === 200) {
       const section = main.querySelector('.banner-placeholder.section')
       resp.text().then(async (txt) => {

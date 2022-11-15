@@ -1,5 +1,5 @@
 import {
-  loadBlock, buildBlock, decorateBlock, readBlockConfig,
+  loadBlock, buildBlock, decorateBlock, readBlockConfig, fetchPlaceholders,
 } from '../../scripts/scripts.js';
 
 function decorateCurrency(block) {
@@ -24,9 +24,8 @@ function setBubble(range, bubble, termVals) {
   //bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
 
-function buildRepayCalcTab(config) {
+function buildRepayCalcTab(config, placeholders) {
   const calc = document.createElement('div');
-
   calc.innerHTML = `
   <h4 id='repayment-calculator' role='tab'>${config['repayment-calculator-title']}</h4>
   <p>${config['repayment-calculator-description']}</p>
@@ -57,11 +56,11 @@ function buildRepayCalcTab(config) {
     </div>
     <div class="right-panel">
       <div class="result-panel">
-        <p>How much you’ll pay back each month?</p>
+        <p>${placeholders["monthlypaybacklabel"]}</p>
         <p class="calulated-value green">R190.18</p>
-        <p>How much you’ll pay back in total</p>
+        <p>${placeholders["totalpaybacklabel"]}</p>
         <p class="calulated-value">R4,564.32</p>
-        <label for='repayment-rate-range'>Example interest rate</label>
+        <label for='repayment-rate-range'>${placeholders["interestratelabel"]}</label>
         <div class="range-wrap">
           <output id='repayment-rate-val' class='bubble'></output>
           <input id='repayment-rate-range' type="range" class="range" min="0" max="35">
@@ -70,11 +69,11 @@ function buildRepayCalcTab(config) {
             <div class='text-muted'>25.75%</div>
           </div>
         </div>
-        <p>On average, South Africans will pay interest of 18.25% to 25.75%. We’ll offer you an interest rate based on your payment history and risk profile.</p>
+        <p>${placeholders["repymentinfomsg"]}</p>
       </div>
       <div class="actions">
-        <a href="#">See loan detail</a>
-        <a class="button primary" href="#">Start loan application</a>
+        <a href="#">${placeholders["seeloandetail"]}</a>
+        <a class="button primary" href="#">${placeholders["startloanapplication"]}</a>
       </div>
     </div>
   </div>
@@ -191,8 +190,9 @@ function buildLoanCalcTab(config) {
 export default async function decorate(block) {
   const blockCfg = readBlockConfig(block);
   block.innerHTML = '';
-  const repayCalc = buildRepayCalcTab(blockCfg);
-  const loanCalc = buildLoanCalcTab(blockCfg);
+  const placeholders = await fetchPlaceholders();
+  const repayCalc = buildRepayCalcTab(blockCfg, placeholders);
+  const loanCalc = buildLoanCalcTab(blockCfg, placeholders);
   const tabs = buildBlock('tabs', [[repayCalc], [loanCalc]]);
   tabs.classList.add('tabs');
   block.appendChild(tabs);
