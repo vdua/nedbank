@@ -697,9 +697,9 @@ function buildHeroBlock(main) {
     [...section.children].forEach((elem) => {
       elems.push(elem);
     });
-    let blockName = 'hero';
-    if (window.location.pathname === '/') {
-      blockName = 'hero-home';
+    let blockName = 'hero-home';
+    if (getMetadata('hero-type') === '2-col') {
+      blockName = 'hero';
     }
     section.append(buildBlock(blockName, { elems }));
     main.prepend(section);
