@@ -13,6 +13,10 @@ main .hero-home {
     min-height: 300px;
 }
 
+main .hero-home h1 {
+    color: #fff;
+}
+
 
 main .hero-home > div > div > * {
     margin-left: 24px;

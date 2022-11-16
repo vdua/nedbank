@@ -267,6 +267,9 @@ main .section[data-section-status='initialized'] {
 main .section {
   padding: 64px;
 }
+main .section.shaded-background {
+  background-color: var(--overlay-background-color);
+}
 main .section.highlight {
   background-color: var(--highlight-background-color);
   color: white;
