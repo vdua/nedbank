@@ -412,8 +412,26 @@ hr {
   }
 }
 @media only screen and (max-width: 600px) {
+  :root {
+    --banner-height: 100px;
+  }
   main .section {
     padding: unset;
+  }
+  main .section.cards-container {
+    padding: unset;
+  }
+  main .section.cards-container li {
+    padding: 20px;
+  }
+  main .section.steps-container {
+    padding: unset;
+  }
+  main .section.steps-container li {
+    padding: 20px;
+  }
+  main .section.calc-example {
+    padding: 10px;
   }
   main .banner-placeholder {
     padding: 16px 2rem;

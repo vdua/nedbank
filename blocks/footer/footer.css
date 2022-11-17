@@ -50,6 +50,10 @@ footer .footer-social>.default-content-wrapper {
 }
 
 @media only screen and (max-width:600px) {
+  footer .section {
+    padding: 10px;
+  }
+
   footer .footer-link-groups {
     display: flex;
     justify-content: center;
