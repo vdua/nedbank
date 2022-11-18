@@ -698,7 +698,7 @@ function buildHeroBlock(main) {
       elems.push(elem);
     });
     let blockName = 'hero-home';
-    if (getMetadata('hero-type') === '2-col') {
+    if (getMetadata('hero-type') === '2-col' && window.location.pathname !== '/') {
       blockName = 'hero';
     }
     section.append(buildBlock(blockName, { elems }));
