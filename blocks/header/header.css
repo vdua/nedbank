@@ -4,7 +4,6 @@ header nav {
   grid-template:
     'hamburger brand tools' var(--nav-height) 'sections sections sections' 1fr / 50px 1fr 50px;
   align-items: center;
-  padding: 0 2rem;
   position: fixed;
   z-index: 1;
   background-color: var(--background-color);
@@ -161,7 +160,8 @@ header nav[aria-expanded='true'] .nav-tools li {
     display: flex;
     justify-content: space-between;
     height: var(--nav-height);
-    padding: 16px 2rem;
+    padding-left: var(--section-padding);
+    padding-right: var(--section-padding);
   }
 
   header nav .nav-sections>ul>li.nav-drop {

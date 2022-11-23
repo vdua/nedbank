@@ -1,5 +1,5 @@
 main .hero-container {
-    padding: unset;
+    padding-right: 0px;
 }
 
 main .hero>div {
@@ -11,8 +11,8 @@ main .hero>div>* {
     flex: 1;
 }
 
-main .hero>div>div {
-    padding: 50px;
+main .hero img {
+    height: 100%;
 }
 
 @media (max-width: 900px) {

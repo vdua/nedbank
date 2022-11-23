@@ -1,5 +1,6 @@
 main .carousel-container {
   padding-left: 20px;
+  padding-bottom: 50px;
   overflow: hidden;
 }
 
@@ -28,7 +29,7 @@ main .carousel-image img {
   flex-flow: column;
 }
 
-main .carousel-text  {
+main .carousel-text {
   width: 288px;
   position: relative;
   border: 1px solid grey;
@@ -69,23 +70,23 @@ main .carousel .carousel-text p em {
   font-style: normal;
 }
 
-main .carousel .carousel-text > div > div > h6 {
+main .carousel .carousel-text>div>div>h6 {
   font-size: 15px;
   font-weight: normal;
 }
 
-main .carousel .carousel-text > div > div {
+main .carousel .carousel-text>div>div {
   display: flex;
   gap: 160px;
 }
 
-main .carousel .carousel-text > div > div > a > h4 {
+main .carousel .carousel-text>div>div>a>h4 {
   font-size: 15px;
   font-weight: normal;
   color: green;
 }
 
-main .carousel .carousel-text > div > div > a:hover {
+main .carousel .carousel-text>div>div>a:hover {
   text-decoration: none;
 }
 
@@ -110,293 +111,293 @@ main .carousel-buttons button.selected {
 }
 
 main .carousel-wrapper .carousel-controls {
-  display: none; 
+  display: none;
 }
 
-  @media (min-width: 1100px) {
-    main .carousel-wrapper .carousel-buttons {
-      text-align: center;
-      margin-top: -48px;
-      position: absolute;
-      display: flex;
-      right: 120px;
-      left: 0;
-      justify-content: center;
-    }
+@media (min-width: 1100px) {
+  main .carousel-wrapper .carousel-buttons {
+    text-align: center;
+    margin-top: -48px;
+    position: absolute;
+    display: flex;
+    right: 120px;
+    left: 0;
+    justify-content: center;
+  }
+}
+
+
+@media (min-width: 700px) {
+  main .carousel {
+    margin: 64px 0;
   }
 
-
-  @media (min-width: 700px) {
-    main .carousel {
-      margin: 64px 0;
-    }
-  
-    main .carousel-image picture:not(:only-child):nth-child(1) {
-      display: none;
-    }
-  
-    main .carousel-image picture:not(:only-child):nth-child(2) {
-      display: block;
-    }
-
-    main .carousel-container .default-content-wrapper h2 {
-      padding-left: 200px;
-    }
+  main .carousel-image picture:not(:only-child):nth-child(1) {
+    display: none;
   }
 
-  @media (min-width: 1025px) {
-    main .carousel .carousel-controls button::after {
-        background: transparent;
-        border: 0;
-        cursor: pointer;
-        padding: .5rem;
-        mask-image: url('../../styles/arrow-right.svg');
-      }
-
-    main .carousel ~ .carousel-controls {
-      bottom: 0;
-      display: block;
-    }
-    
-  }
-  
-  @media (min-width: 600px) {
-    main .carousel > div {
-      /* --max-width: 18.75rem; */
-      --min-width: 500px;
-      --max-width: 550px;
-    }
-
-    main .carousel {
-      margin: 0 auto;
-      display: flex;
-      flex-flow: nowrap;
-      column-gap: 30px;
-      width: unset;
-      padding-left: 100px;
-    }
-
-    main .carousel-container .default-content-wrapper h2 {
-      padding-left: 100px;
-    }
-
-    main .carousel-wrapper .carousel-buttons {
-      text-align: center;
-      margin-top: 0;
-      position: absolute;
-      display: flex;
-      right: 0;
-      left: 0;
-      justify-content: center;
-    }
-    
-    main .carousel-buttons button {
-      display: block;
-      height: 10px;
-      width: 10px;
-      padding: 0;
-      margin: 10px;
-      border-radius: 7px;
-      border: none;
-      background-color: black;
-      cursor: pointer;
-    }
-    
-    main .carousel-buttons button.selected {
-      background-color: green;
-    }
+  main .carousel-image picture:not(:only-child):nth-child(2) {
+    display: block;
   }
 
-  @media (min-width: 1025px) { 
-    main .carousel-container {
-      margin-right: 0;
-    }
+  main .carousel-container .default-content-wrapper h2 {
+    padding-left: 200px;
+  }
+}
 
-    main .carousel-wrapper {
-      position: relative;
-      max-width: unset;
-    }
-
-    main .carousel {
-      display: flex;
-      scroll-snap-type: x mandatory;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      scroll-behavior: smooth;
-      margin: 32px 0;
-      flex-flow: nowrap;
-      width: 1080px;
-      margin-left: unset;
-      margin-left: 200px;
-    }
-
-    main .carousel.block {
-      --max-width: 11.25rem;
-
-      gap: 2.5rem;
-      margin-right: calc(calc(100% / 2) - calc(var(--max-width) / 2));
-    }
-    
-    main .carousel picture {
-      position: relative;
-    }
-    
-    main .carousel img {
-      object-fit: cover;
-      height: 500px;
-      width: 600px;
-    }
-
-    main .carousel > div {
-      /* width: 100%; */
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      position: relative;
-      align-items: flex-end;
-      display: flex;
-      color: var(--color-white);
-      width: 600vw;
-      max-width: var(--max-width);
-    }
-
-    main .carousel > div:last-child {
-      margin-right: 100vw;
-    }
-    
-    main .carousel-image picture:not(:only-child) {
-      display: none;
-    }
-    
-    main .carousel-image picture:not(:only-child):nth-child(1) {
-      display: block;
-    }
-    
-    main .carousel .carousel-text {
-      position: absolute;
-      width: 320px;
-      top: 50px;
-      right: 30px;
-      left: 140px;
-      background-color: white;
-      padding: 25px 30px;
-      border: none;
-    }
-  
-    main .carousel .carousel-text > div > div {
-      display: flex;
-      gap: 220px;
-    }
-  
-    main .carousel::-webkit-scrollbar {
-      display: none;
-    }
-    
-    main .carousel-wrapper .carousel-buttons {
-      text-align: center;
-      margin-top: -18px;
-      position: absolute;
-      display: flex;
-      right: 0;
-      left: 0;
-      justify-content: center;
-      margin-right: 100px;
-      margin-left: 200px;
-    }
-    
-    main .carousel-buttons button {
-      display: block;
-      height: 10px;
-      width: 10px;
-      padding: 0;
-      margin: 10px;
-      border-radius: 7px;
-      border: none;
-      background-color: black;
-      cursor: pointer;
-    }
-    
-    main .carousel-buttons button.selected {
-      background-color: green;
-    }
-    
-    main .carousel-wrapper .carousel-controls .prev {
-      padding-right: 0;
-    }
-
-    main .carousel-wrapper .carousel-controls .next {
-      padding-right: 0;
-    }
-
-    main .carousel-container .default-content-wrapper h2 {
-      margin-left: 100px;
-    }
-
-    main .carousel ~ .carousel-buttons {
-      --gap: .5rem;
-      --size: 0.5rem;
-    }
-    
-    main .carousel ~ .carousel-buttons button::after {
-      background-color: transparent;
-      border: 1px solid var(--theme-shade10);
-    }
-    
-    main .carousel ~ .carousel-buttons button.selected::after {
-      background-color: var(--theme-shade10);
-      border-color: var(--theme-shade10);
-    }
-    
-    main .carousel ~ .carousel-controls {
-      /* --extra-padding: 64px; */
-      flex-direction: column;
-      right: 200px;
-      bottom: -60px;
-      position: absolute;
-  
-      /* top: calc(50% - var(--extra-padding)); */
-      transform: translateY(calc(-50% - calc(var(--extra-padding) / 2)));
-    }
-
-    main .carousel ~ .carousel-controls button {
-      background: transparent;
-      border: 0;
-      cursor: pointer;
-      padding: .5rem;
-    }
-    
-    main .carousel ~ .carousel-controls button::after {
-      background-color: var(--theme-shade10);
-      background-color: black;
-      content: '';
-      display: block;
-      height: 1rem;
-      mask-image: url('../../styles/arrow-right.svg');
-      /* stylelint-disable-next-line property-no-vendor-prefix */
-      -webkit-mask-image: url('../../styles/arrow-right.svg');
-      transition: background-color .25s ease-in-out;
-      width: 1.875rem;
-    }
-    
-    main .carousel ~ .carousel-controls button.disabled {
-      cursor: auto;
-    }
-    
-    main .carousel ~ .carousel-controls button.disabled::after {
-      background-color: var(--color-gray-5);
-    }
-    
-    main .carousel ~ .carousel-controls button.prev {
-      transform: rotate(180deg);
-    }
-    
+@media (min-width: 1025px) {
+  main .carousel .carousel-controls button::after {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: .5rem;
+    mask-image: url('../../styles/arrow-right.svg');
   }
 
-  @media (min-width: 1200px) {
-    main .carousel-wrapper .carousel-buttons {
-      right: 250px;
-    }
-
-    main .carousel-wrapper .carousel-controls {
-      right: 350px;
-    }
+  main .carousel~.carousel-controls {
+    bottom: 0;
+    display: block;
   }
+
+}
+
+@media (min-width: 600px) {
+  main .carousel>div {
+    /* --max-width: 18.75rem; */
+    --min-width: 500px;
+    --max-width: 550px;
+  }
+
+  main .carousel {
+    margin: 0 auto;
+    display: flex;
+    flex-flow: nowrap;
+    column-gap: 30px;
+    width: unset;
+    padding-left: 100px;
+  }
+
+  main .carousel-container .default-content-wrapper h2 {
+    padding-left: 100px;
+  }
+
+  main .carousel-wrapper .carousel-buttons {
+    text-align: center;
+    margin-top: 0;
+    position: absolute;
+    display: flex;
+    right: 0;
+    left: 0;
+    justify-content: center;
+  }
+
+  main .carousel-buttons button {
+    display: block;
+    height: 10px;
+    width: 10px;
+    padding: 0;
+    margin: 10px;
+    border-radius: 7px;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+  }
+
+  main .carousel-buttons button.selected {
+    background-color: green;
+  }
+}
+
+@media (min-width: 1025px) {
+  main .carousel-container {
+    margin-right: 0;
+  }
+
+  main .carousel-wrapper {
+    position: relative;
+    max-width: unset;
+  }
+
+  main .carousel {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    margin: 32px 0;
+    flex-flow: nowrap;
+    width: 1080px;
+    margin-left: unset;
+    margin-left: 200px;
+  }
+
+  main .carousel.block {
+    --max-width: 11.25rem;
+
+    gap: 2.5rem;
+    margin-right: calc(calc(100% / 2) - calc(var(--max-width) / 2));
+  }
+
+  main .carousel picture {
+    position: relative;
+  }
+
+  main .carousel img {
+    object-fit: cover;
+    height: 500px;
+    width: 600px;
+  }
+
+  main .carousel>div {
+    /* width: 100%; */
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    position: relative;
+    align-items: flex-end;
+    display: flex;
+    color: var(--color-white);
+    width: 600vw;
+    max-width: var(--max-width);
+  }
+
+  main .carousel>div:last-child {
+    margin-right: 100vw;
+  }
+
+  main .carousel-image picture:not(:only-child) {
+    display: none;
+  }
+
+  main .carousel-image picture:not(:only-child):nth-child(1) {
+    display: block;
+  }
+
+  main .carousel .carousel-text {
+    position: absolute;
+    width: 320px;
+    top: 50px;
+    right: 30px;
+    left: 140px;
+    background-color: white;
+    padding: 25px 30px;
+    border: none;
+  }
+
+  main .carousel .carousel-text>div>div {
+    display: flex;
+    gap: 220px;
+  }
+
+  main .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  main .carousel-wrapper .carousel-buttons {
+    text-align: center;
+    margin-top: -18px;
+    position: absolute;
+    display: flex;
+    right: 0;
+    left: 0;
+    justify-content: center;
+    margin-right: 100px;
+    margin-left: 200px;
+  }
+
+  main .carousel-buttons button {
+    display: block;
+    height: 10px;
+    width: 10px;
+    padding: 0;
+    margin: 10px;
+    border-radius: 7px;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+  }
+
+  main .carousel-buttons button.selected {
+    background-color: green;
+  }
+
+  main .carousel-wrapper .carousel-controls .prev {
+    padding-right: 0;
+  }
+
+  main .carousel-wrapper .carousel-controls .next {
+    padding-right: 0;
+  }
+
+  main .carousel-container .default-content-wrapper h2 {
+    margin-left: 100px;
+  }
+
+  main .carousel~.carousel-buttons {
+    --gap: .5rem;
+    --size: 0.5rem;
+  }
+
+  main .carousel~.carousel-buttons button::after {
+    background-color: transparent;
+    border: 1px solid var(--theme-shade10);
+  }
+
+  main .carousel~.carousel-buttons button.selected::after {
+    background-color: var(--theme-shade10);
+    border-color: var(--theme-shade10);
+  }
+
+  main .carousel~.carousel-controls {
+    /* --extra-padding: 64px; */
+    flex-direction: column;
+    right: 200px;
+    bottom: -60px;
+    position: absolute;
+
+    /* top: calc(50% - var(--extra-padding)); */
+    transform: translateY(calc(-50% - calc(var(--extra-padding) / 2)));
+  }
+
+  main .carousel~.carousel-controls button {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: .5rem;
+  }
+
+  main .carousel~.carousel-controls button::after {
+    background-color: var(--theme-shade10);
+    background-color: black;
+    content: '';
+    display: block;
+    height: 1rem;
+    mask-image: url('../../styles/arrow-right.svg');
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask-image: url('../../styles/arrow-right.svg');
+    transition: background-color .25s ease-in-out;
+    width: 1.875rem;
+  }
+
+  main .carousel~.carousel-controls button.disabled {
+    cursor: auto;
+  }
+
+  main .carousel~.carousel-controls button.disabled::after {
+    background-color: var(--color-gray-5);
+  }
+
+  main .carousel~.carousel-controls button.prev {
+    transform: rotate(180deg);
+  }
+
+}
+
+@media (min-width: 1200px) {
+  main .carousel-wrapper .carousel-buttons {
+    right: 250px;
+  }
+
+  main .carousel-wrapper .carousel-controls {
+    right: 350px;
+  }
+}

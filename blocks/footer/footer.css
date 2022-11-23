@@ -3,7 +3,8 @@ footer {
 }
 
 footer .section {
-  padding: 64px;
+  padding-left: var(--section-padding);
+  padding-right: var(--section-padding);
 }
 
 footer .footer-links {

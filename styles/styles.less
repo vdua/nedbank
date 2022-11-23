@@ -54,6 +54,7 @@
 	--heading-font-size-xs: 16px;
 	--nav-height: 64px;
 	--banner-height: 64px;
+	--section-padding: 105px;
 }
 
 body {
@@ -340,7 +341,8 @@ main {
 	}
 
 	.section {
-		padding: 64px;
+		padding-left: var(--section-padding);
+		padding-right: var(--section-padding);
 	}
 
 	.section.shaded-background {
@@ -366,12 +368,12 @@ main {
 
 	.section.breadcrumb {
 		box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
-		padding: 1px 20px;
+		height: 75px;
+		display: flex;
 	}
 
 	.section.cards-container {
 		margin: auto;
-		padding: 64px;
 		text-align: center;
 
 		li {
@@ -394,7 +396,6 @@ main {
 		font-size: 12px;
 		letter-spacing: 0;
 		line-height: 24px;
-		padding: 0 33px;
 	}
 
 	.section.readytoapply {
@@ -499,10 +500,14 @@ main {
 
 	.banner-placeholder {
 		height: var(--banner-height);
-		display: block;
-		padding: 16px 2rem;
+		display: flex;
 		background-color: @background_color_10;
 		box-sizing: border-box;
+	}
+
+	.banner {
+		margin-top: auto;
+		margin-bottom: auto;
 	}
 }
 
