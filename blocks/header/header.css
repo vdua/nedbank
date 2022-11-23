@@ -160,8 +160,8 @@ header nav[aria-expanded='true'] .nav-tools li {
     display: flex;
     justify-content: space-between;
     height: var(--nav-height);
-    padding-left: var(--section-padding);
-    padding-right: var(--section-padding);
+    padding-left: var(--section-left-right-padding);
+    padding-right: var(--section-left-right-padding);
   }
 
   header nav .nav-sections>ul>li.nav-drop {

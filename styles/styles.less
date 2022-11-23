@@ -54,7 +54,7 @@
 	--heading-font-size-xs: 16px;
 	--nav-height: 64px;
 	--banner-height: 64px;
-	--section-padding: 105px;
+	--section-left-right-padding: 105px;
 }
 
 body {
@@ -341,8 +341,8 @@ main {
 	}
 
 	.section {
-		padding-left: var(--section-padding);
-		padding-right: var(--section-padding);
+		padding-left: var(--section-left-right-padding);
+		padding-right: var(--section-left-right-padding);
 	}
 
 	.section.shaded-background {
@@ -375,7 +375,7 @@ main {
 	.section.cards-container {
 		margin: auto;
 		text-align: center;
-
+		padding-bottom: 100px;
 		li {
 			padding: 20px;
 		}
@@ -400,6 +400,8 @@ main {
 
 	.section.readytoapply {
 		background-color: @background_color_9;
+		display: flex;
+		justify-content: center;
 
 		h2 {
 			color: @color_5;

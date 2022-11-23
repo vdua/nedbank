@@ -11,8 +11,14 @@ main .hero>div>* {
     flex: 1;
 }
 
+main .hero picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
 main .hero img {
-    height: 100%;
+    flex-shrink: 0;
 }
 
 @media (max-width: 900px) {

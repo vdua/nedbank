@@ -4,7 +4,6 @@
   ascent-override: 105%;
   src: local("Arial");
 }
-
 :root {
   --link-color: #008533;
   --link-hover-color: #008533;
@@ -28,9 +27,8 @@
   --heading-font-size-xs: 16px;
   --nav-height: 64px;
   --banner-height: 64px;
-  --section-padding: 105px;
+  --section-left-right-padding: 105px;
 }
-
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
@@ -40,15 +38,12 @@ body {
   background-color: var(--background-color);
   display: none;
 }
-
 body.appear {
   display: unset;
 }
-
 header {
   height: var(--nav-height);
 }
-
 h1 {
   font-weight: 600;
   line-height: 1.25;
@@ -59,7 +54,6 @@ h1 {
   color: var(--heading-text-color);
   font-size: var(--heading-font-size-xxl);
 }
-
 h2 {
   font-weight: 600;
   line-height: 1.25;
@@ -70,7 +64,6 @@ h2 {
   color: var(--heading-text-color);
   font-size: var(--heading-font-size-xl);
 }
-
 h3 {
   font-weight: 600;
   line-height: 1.25;
@@ -81,7 +74,6 @@ h3 {
   color: var(--heading-text-color);
   font-size: var(--heading-font-size-l);
 }
-
 h4 {
   font-weight: 600;
   line-height: 1.25;
@@ -92,7 +84,6 @@ h4 {
   color: var(--heading-text-color);
   font-size: var(--heading-font-size-m);
 }
-
 h5 {
   font-weight: 600;
   line-height: 1.25;
@@ -103,7 +94,6 @@ h5 {
   color: var(--heading-text-color);
   font-size: var(--heading-font-size-s);
 }
-
 h6 {
   font-weight: 600;
   line-height: 1.25;
@@ -114,27 +104,22 @@ h6 {
   color: var(--heading-text-color);
   font-size: var(--heading-font-size-xs);
 }
-
 p {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
 dl {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
 ol {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
 ul {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
 pre {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -142,51 +127,41 @@ pre {
   font-size: var(--body-font-size-s);
   overflow: scroll;
 }
-
 blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
   color: var(--link-hover-color);
 }
-
 code {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
   padding: 0.125em;
 }
-
 samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
   padding: 0.125em;
 }
-
 label {
   padding: 20px;
 }
-
 input[type=radio] {
   border: 0px;
   transform: scale(1.5);
 }
-
 .grey {
   background-color: var(--background-color-grey);
 }
-
 .black {
   background-color: var(--background-color-black);
 }
-
 a.button:any-link {
   font-family: var(--font-family-body);
   display: inline-block;
@@ -206,17 +181,14 @@ a.button:any-link {
   text-overflow: ellipsis;
   border-radius: 5px;
 }
-
 a.button:hover {
   background-color: var(--link-hover-color);
   cursor: pointer;
 }
-
 a.button:focus {
   background-color: var(--link-hover-color);
   cursor: pointer;
 }
-
 button {
   font-family: var(--font-family-body);
   display: inline-block;
@@ -236,39 +208,32 @@ button {
   text-overflow: ellipsis;
   border-radius: 5px;
 }
-
 button:hover {
   background-color: var(--link-hover-color);
   cursor: pointer;
 }
-
 button:focus {
   background-color: var(--link-hover-color);
   cursor: pointer;
 }
-
 button:disabled {
   background-color: var(--overlay-background-color);
   cursor: unset;
 }
-
 button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
 }
-
 a.button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color);
 }
-
 button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color);
 }
-
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
@@ -276,114 +241,94 @@ main pre {
   overflow-x: auto;
   white-space: pre;
 }
-
 main blockquote {
   font-style: italic;
   margin: 3rem;
   text-indent: -1rem;
   hanging-punctuation: first;
 }
-
 main blockquote p::before {
   content: "“";
   line-height: 0;
 }
-
 main blockquote p::after {
   content: "”";
   line-height: 0;
 }
-
 main img {
   max-width: 100%;
   height: auto;
 }
-
 main .section[data-section-status='loading'] {
   display: none;
 }
-
 main .section[data-section-status='initialized'] {
   display: none;
 }
-
 main .section {
-  padding-left: var(--section-padding);
-  padding-right: var(--section-padding);
+  padding-left: var(--section-left-right-padding);
+  padding-right: var(--section-left-right-padding);
 }
-
 main .section.shaded-background {
   background-color: var(--overlay-background-color);
 }
-
 main .section.highlight {
   background-color: var(--highlight-background-color);
   color: white;
   text-align: center;
 }
-
 main .section.highlight .default-content-wrapper a.button {
   background-color: var(--background-color);
   color: var(--link-color);
 }
-
 main .section.overlay {
   background-color: var(--overlay-background-color);
 }
-
 main .section.breadcrumb {
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
   height: 75px;
   display: flex;
 }
-
 main .section.cards-container {
   margin: auto;
   text-align: center;
+  padding-bottom: 100px;
 }
-
 main .section.cards-container li {
   padding: 20px;
 }
-
 main .section.steps-container {
   margin: auto;
   padding: 64px;
   text-align: center;
 }
-
 main .section.steps-container li {
   padding: 20px;
 }
-
 main .section.disclaimer {
   font-family: "Open Sans Regular";
   font-size: 12px;
   letter-spacing: 0;
   line-height: 24px;
 }
-
 main .section.readytoapply {
   background-color: #17252e;
+  display: flex;
+  justify-content: center;
 }
-
 main .section.readytoapply h2 {
   color: var(--background-color);
 }
-
-main .section.readytoapply>.default-content-wrapper {
+main .section.readytoapply > .default-content-wrapper {
   text-align: center;
 }
-
 main .section.calc-example {
   padding: 20px 106px;
 }
-
-main .section.calc-example .columns.block>div {
+main .section.calc-example .columns.block > div {
   border-bottom: 1px solid #979797;
 }
-
-main .legal-content .columns>div>div:nth-child(1) {
+main .legal-content .columns > div > div:nth-child(1) {
   margin: unset;
   opacity: 0.87;
   color: #494f50;
@@ -396,8 +341,7 @@ main .legal-content .columns>div>div:nth-child(1) {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-
-main .legal-content .columns>div>div:nth-child(3) {
+main .legal-content .columns > div > div:nth-child(3) {
   margin: unset;
   opacity: 0.87;
   color: #494f50;
@@ -410,8 +354,7 @@ main .legal-content .columns>div>div:nth-child(3) {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-
-main .legal-content .columns>div>div:nth-child(2) {
+main .legal-content .columns > div > div:nth-child(2) {
   margin: unset;
   opacity: 0.87;
   color: #494f50;
@@ -423,8 +366,7 @@ main .legal-content .columns>div>div:nth-child(2) {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-
-main .legal-content .columns>div>div:nth-child(4) {
+main .legal-content .columns > div > div:nth-child(4) {
   margin: unset;
   opacity: 0.87;
   color: #494f50;
@@ -436,7 +378,6 @@ main .legal-content .columns>div>div:nth-child(4) {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-
 main .legal-content h2 {
   font-size: 16px;
   line-height: 29px;
@@ -444,7 +385,6 @@ main .legal-content h2 {
   font-family: "Open Sans Bold";
   letter-spacing: 0;
 }
-
 main .legal-content p {
   color: #494f50;
   font-family: "Open Sans Regular";
@@ -452,26 +392,22 @@ main .legal-content p {
   letter-spacing: 0;
   line-height: 24px;
 }
-
 main .banner-placeholder {
   height: var(--banner-height);
   display: flex;
   background-color: #fafafa;
   box-sizing: border-box;
 }
-
 main .banner {
   margin-top: auto;
   margin-bottom: auto;
 }
-
 hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
   border-bottom: 1px solid var(--overlay-background-color);
 }
-
 @media (min-width: 900px) {
   :root {
     --heading-font-size-xxl: 48px;
@@ -482,36 +418,28 @@ hr {
     --heading-font-size-xs: 20px;
   }
 }
-
 @media only screen and (max-width: 600px) {
   :root {
     --banner-height: 100px;
   }
-
   main .section {
     padding: unset;
   }
-
   main .section.cards-container {
     padding: unset;
   }
-
   main .section.cards-container li {
     padding: 20px;
   }
-
   main .section.steps-container {
     padding: unset;
   }
-
   main .section.steps-container li {
     padding: 20px;
   }
-
   main .section.calc-example {
     padding: 10px;
   }
-
   main .banner-placeholder {
     padding: 16px 2rem;
   }

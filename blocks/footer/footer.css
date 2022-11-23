@@ -3,8 +3,8 @@ footer {
 }
 
 footer .section {
-  padding-left: var(--section-padding);
-  padding-right: var(--section-padding);
+  padding-left: var(--section-left-right-padding);
+  padding-right: var(--section-left-right-padding);
 }
 
 footer .footer-links {
@@ -14,7 +14,7 @@ footer .footer-links {
 
 footer .footer-social-items {
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
 }
 
 footer .footer-link-groups {
