@@ -46,10 +46,6 @@ footer .footer-link-group>ul>li>a {
   line-height: 32px;
 }
 
-footer .footer-social>.default-content-wrapper {
-  max-width: 1500px;
-}
-
 @media only screen and (max-width:600px) {
   footer .section {
     padding: 10px;
