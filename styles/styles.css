@@ -29,6 +29,20 @@
   --banner-height: 64px;
   --section-left-right-padding: 105px;
 }
+:root .light {
+  --background-color: #ffffff;
+  --background-color-banner: #fafafa;
+  --highlight-background-color: #008533;
+  --text-color: #17252e;
+  --heading-text-color: #17252e;
+}
+:root .dark {
+  --background-color: #000000;
+  --background-color-banner: #494f50;
+  --highlight-background-color: #008533;
+  --text-color: #ffffff;
+  --heading-text-color: #ffffff;
+}
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
