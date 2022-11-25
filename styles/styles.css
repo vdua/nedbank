@@ -279,6 +279,7 @@ main .section[data-section-status='initialized'] {
 main .section {
   padding-left: var(--section-left-right-padding);
   padding-right: var(--section-left-right-padding);
+  background-color: var(--background-color);
 }
 main .section.shaded-background {
   background-color: var(--overlay-background-color);
