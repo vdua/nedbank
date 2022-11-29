@@ -53,11 +53,12 @@ main .tabs .tabs-content[aria-hidden="true"] {
   margin: 48px 0 30px;
 }
 
-@media (max-width: 599px) {
+/* is this required as cursor should always to pointer */
+/* @media (max-width: 599px) {
   main .tabs .tabs-title {
     cursor: pointer;
   }
-}
+} */
 
 @media (min-width: 600px) {
   main .tabs {

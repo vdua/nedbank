@@ -26,7 +26,7 @@
   --heading-font-size-s: 28px;
   --heading-font-size-xs: 16px;
   --nav-height: 64px;
-  --banner-height: 64px;
+  --banner-height: 100px;
   --section-left-right-padding: 105px;
 }
 body {
@@ -265,10 +265,6 @@ main .section[data-section-status='loading'] {
 main .section[data-section-status='initialized'] {
   display: none;
 }
-main .section {
-  padding-left: var(--section-left-right-padding);
-  padding-right: var(--section-left-right-padding);
-}
 main .section.shaded-background {
   background-color: var(--overlay-background-color);
 }
@@ -289,18 +285,8 @@ main .section.breadcrumb {
   height: 75px;
   display: flex;
 }
-main .section.cards-container {
-  margin: auto;
-  text-align: center;
-  padding-bottom: 100px;
-}
 main .section.cards-container li {
   padding: 20px;
-}
-main .section.steps-container {
-  margin: auto;
-  padding: 64px;
-  text-align: center;
 }
 main .section.steps-container li {
   padding: 20px;
@@ -323,7 +309,7 @@ main .section.readytoapply > .default-content-wrapper {
   text-align: center;
 }
 main .section.calc-example {
-  padding: 20px 106px;
+  padding: 10px;
 }
 main .section.calc-example .columns.block > div {
   border-bottom: 1px solid #979797;
@@ -397,6 +383,7 @@ main .banner-placeholder {
   display: flex;
   background-color: #fafafa;
   box-sizing: border-box;
+  padding: 16px 2rem;
 }
 main .banner {
   margin-top: auto;
@@ -408,7 +395,7 @@ hr {
   border: 0;
   border-bottom: 1px solid var(--overlay-background-color);
 }
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   :root {
     --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 40px;
@@ -416,31 +403,29 @@ hr {
     --heading-font-size-m: 22px;
     --heading-font-size-s: 22px;
     --heading-font-size-xs: 20px;
-  }
-}
-@media only screen and (max-width: 600px) {
-  :root {
-    --banner-height: 100px;
+    --banner-height: 64px;
   }
   main .section {
-    padding: unset;
+    padding-left: var(--section-left-right-padding);
+    padding-right: var(--section-left-right-padding);
   }
   main .section.cards-container {
-    padding: unset;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 100px;
   }
   main .section.cards-container li {
     padding: 20px;
   }
   main .section.steps-container {
-    padding: unset;
+    margin: auto;
+    padding: 64px;
+    text-align: center;
   }
   main .section.steps-container li {
     padding: 20px;
   }
   main .section.calc-example {
-    padding: 10px;
-  }
-  main .banner-placeholder {
-    padding: 16px 2rem;
+    padding: 20px 106px;
   }
 }

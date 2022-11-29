@@ -53,7 +53,7 @@
 	--heading-font-size-s: 28px;
 	--heading-font-size-xs: 16px;
 	--nav-height: 64px;
-	--banner-height: 64px;
+	--banner-height: 100px;
 	--section-left-right-padding: 105px;
 }
 
@@ -340,10 +340,9 @@ main {
 		display: none;
 	}
 
-	.section {
-		padding-left: var(--section-left-right-padding);
-		padding-right: var(--section-left-right-padding);
-	}
+	// .section {
+	// 	padding: unset;
+	// }
 
 	.section.shaded-background {
 		background-color: var(--overlay-background-color);
@@ -373,19 +372,13 @@ main {
 	}
 
 	.section.cards-container {
-		margin: auto;
-		text-align: center;
-		padding-bottom: 100px;
+		// padding: unset;
 		li {
 			padding: 20px;
 		}
 	}
 
 	.section.steps-container {
-		margin: auto;
-		padding: 64px;
-		text-align: center;
-
 		li {
 			padding: 20px;
 		}
@@ -413,8 +406,7 @@ main {
 	}
 
 	.section.calc-example {
-		padding: 20px 106px;
-
+		padding: 10px;
 		.columns.block {
 			>div {
 				border-bottom: 1px solid #979797;
@@ -505,6 +497,7 @@ main {
 		display: flex;
 		background-color: @background_color_10;
 		box-sizing: border-box;
+		padding: 16px 2rem;
 	}
 
 	.banner {
@@ -520,7 +513,7 @@ hr {
 	border-bottom: 1px solid var(--overlay-background-color);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
 	:root {
 		--heading-font-size-xxl: 48px;
 		--heading-font-size-xl: 40px;
@@ -528,41 +521,34 @@ hr {
 		--heading-font-size-m: 22px;
 		--heading-font-size-s: 22px;
 		--heading-font-size-xs: 20px;
+		--banner-height: 64px;
 	}
-}
-
-@media only screen and (max-width: 600px) {
-	:root {
-		--banner-height: 100px;
-	}
-
 	main {
 		.section {
-			padding: unset;
+			padding-left: var(--section-left-right-padding);
+			padding-right: var(--section-left-right-padding);
 		}
 
 		.section.cards-container {
-			padding: unset;
-
+			margin: auto;
+			text-align: center;
+			padding-bottom: 100px;
+			
 			li {
 				padding: 20px;
 			}
 		}
-
 		.section.steps-container {
-			padding: unset;
+			margin: auto;
+			padding: 64px;
+			text-align: center;
 
 			li {
 				padding: 20px;
 			}
 		}
-
 		.section.calc-example {
-			padding: 10px;
-		}
-
-		.banner-placeholder {
-			padding: 16px 2rem;
+			padding: 20px 106px;
 		}
 	}
 }
