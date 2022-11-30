@@ -6,6 +6,8 @@ main .calculator-container {
 
 main .calculator {
     display: flex;
+    flex-direction: column;
+    padding: 16px;
 }
 
 
@@ -100,14 +102,18 @@ main .calculator .currency-symbol {
     left: 10px;
 }
 
-@media only screen and (max-width:600px) {
+main .calculator-container>div>h2 {
+    padding: 16px;
+}
+
+@media only screen and (min-width:768px) {
     main .calculator-container>div>h2 {
-        padding: 16px;
+        padding: unset;
     }
 
     main .calculator {
         display: flex;
-        flex-direction: column;
-        padding: 16px;
+        flex-direction: row;
+        padding: unset;
     }
 }
