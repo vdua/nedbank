@@ -42,7 +42,7 @@ main .hero-home .icon-play {
     margin-left: 8px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
     main .hero-home {
         padding-top: 32px;
         padding-bottom: 32px;
@@ -73,7 +73,7 @@ main .hero-home .icon-play {
 
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
     main .hero-home > div > div > * {
         margin-left: 96px;
         margin-right: 96px;
