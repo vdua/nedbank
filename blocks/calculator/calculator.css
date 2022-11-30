@@ -23,6 +23,15 @@ main .calculator .right-panel {
     flex: 1;
 }
 
+main .calculator label,
+main .calculator form p,
+main .calculator .right-panel p {
+    font-size: 16px;
+    line-height: 24px;
+    font-family: "Nedbank Sans Medium";
+    color: #17252e;
+}
+
 main .calculator input[type=text] {
     border-color: var(--link-color);
     padding-left: 23px;
@@ -55,10 +64,9 @@ main .calculator .result-panel {
     box-shadow: 0 25px 20px -15px rgba(0, 0, 0, 0.1);
 }
 
-main .calculator .calulated-value {
+main .calculator .right-panel .calulated-value {
     font-size: 40px;
     line-height: 48px;
-    padding-bottom: 16px;
 }
 
 main .calculator .actions {

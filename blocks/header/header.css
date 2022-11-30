@@ -190,10 +190,6 @@ header nav[aria-expanded='true'] .nav-tools li {
     display: unset;
   }
 
-  header nav .nav-brand {
-    flex: 0 0 150px;
-  }
-
   header nav .nav-sections ul {
     display: flex;
     flex-direction: row;
