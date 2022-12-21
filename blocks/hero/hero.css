@@ -1,28 +1,100 @@
 main .hero-container {
-    padding-right: 0px;
+    padding: 0;
 }
 
-main .hero>div {
+.hero > div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
+    align-content: stretch;
 }
 
-main .hero>div>* {
-    flex: 1;
+.hero > div > div {
+    padding: 0 22px;
+    margin: 32px 0 0 3px;
 }
 
-main .hero picture {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden
+.hero > div > * {
+    flex-basis: 100%;
 }
+
+.hero > div > div > h1 {
+    margin-bottom: 16px;
+    margin-top: 0;
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.hero > div > div > h1 + p {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 16px;
+    margin-top: 0;
+    font-family: "Open Sans Regular";
+}
+
+.hero > div > div > p.button-container {
+    display: none;
+}
+
 main .hero img {
-    flex-shrink: 0;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 100%;
 }
 
-@media (max-width: 900px) {
-    main .hero>div {
-        flex-direction: column-reverse;
+@media (min-width: 576px) {
+    .hero > div {
+        flex-direction: row;
+    }
+
+    .hero > div > div {
+        padding: 0 15px;
+        margin: 24px 0 24px 9px;
+    }
+
+    .hero > div > picture {
+        padding-left: 15px;
+    }
+
+    .hero > div > div > h1 {
+        font-size: 40px;
+        line-height: 48px;
+    }
+
+    .hero > div > div > h1 + p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .hero > div > * {
+        flex-basis: 50%;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero > div > div {
+        margin-top: 80px;
+    }
+
+    .hero > div > div > * {
+        margin-left: 92px;
+    }
+
+    .hero > div > div > h1 {
+        margin-bottom: 32px;
+        margin-top: 0;
+        font-size: 48px;
+        line-height: 56px;
+    }
+
+    .hero > div > div > h1 + p {
+        font-size: 20px;
+        line-height: 32px;
+        margin-bottom: 32px;
+        margin-top: 0;
+    }
+
+    .hero > div > div > p.button-container {
+        display: unset;
     }
 }

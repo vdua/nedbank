@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>diagonal-arrow-green</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="diagonal-arrow-green" fill="#009639" fill-rule="nonzero">
+            <g id="icon-tailarrow-down" transform="translate(12.000000, 12.000000) rotate(-140.000000) translate(-12.000000, -12.000000) translate(5.000000, 3.000000)">
+                <polygon id="path-1" points="7.75 15.0533009 12.8336309 9.9696699 13.8942911 11.0303301 7.0027925 17.9218287 0.10592374 11.0305449 1.1661542 9.9694551 6.25 15.0491842 6.25 0 7.75 0"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

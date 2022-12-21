@@ -7,10 +7,18 @@ footer .section {
   padding-right: var(--section-left-right-padding);
 }
 
+footer .footer-awareness {
+  padding: 25px 20px 0 20px;
+  border-top: 1px solid #e5edec;
+}
+
+footer .footer-awareness p {
+  margin: 0;
+}
+
 footer .footer-links {
   background-color: #f8fbfa;
 }
-
 
 footer .footer-social-items {
   display: flex;
@@ -55,5 +63,11 @@ footer .footer-link-group>ul>li>a {
     display: flex;
     justify-content: center;
     flex-direction: column;
+  }
+}
+
+@media (min-width: 992px) {
+  footer .footer-awareness {
+    padding: 24px 105px;
   }
 }
