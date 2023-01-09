@@ -1,85 +1,61 @@
-/* block specific CSS goes here */
-
-main .hero-home-container > div {
-    max-width: unset;
-}
-
-main .hero-home-container {
+main .section.hero-home-container {
     padding: 0;
+    box-sizing: border-box;
 }
 
-main .hero-home {
+.hero-home {
     position: relative;
-    min-height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right center;
 }
 
-main .hero-home h1 {
-    color: #fff;
+.hero-home > div> div > p:first-child {
+    margin: 0px;
 }
 
-
-main .hero-home > div > div > * {
-    margin-left: 24px;
-    margin-right: 24px;
-}
-
-main .hero-home > div > div > p {
-    display: flex;
-    align-items: center;
-}
-
-main .hero-home > div > div > p:first-of-type {
+.hero-home > div> div > h1 {
     margin: 0;
+    padding: 24px 18px 40px 18px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.hero-home > div> div > p:last-child {
+    display: none;
+    position: absolute;
 }
 
 main .hero-home img {
-    min-height: 300px;
-    object-fit: cover;
-    object-position: 75%;
-}
-
-main .hero-home .icon-play {
-    margin-left: 8px;
+    width: 100vw;
 }
 
 @media (min-width: 768px) {
-    main .hero-home {
-        padding-top: 32px;
-        padding-bottom: 32px;
-        color: white;
-    }
-
-
-    main .hero-home picture {
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        object-fit: cover;
-        box-sizing: border-box;
-    }
-
     main .hero-home img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
+        height: 346px;
     }
 
-    main .hero-home > div {
-        max-width: 80%;
+    .hero-home > div> div > h1 {
+        color: #fff;
+        font-size: 40px;
+        line-height: 48px;
+        max-width: 50%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        padding: 64px 0 0 22px;
     }
-
 }
 
-@media (min-width: 1024px) {
-    main .hero-home > div > div > * {
-        margin-left: 96px;
-        margin-right: 96px;
+@media (min-width: 1025px) {
+    main .hero-home img {
+        width: 100vw;
+        min-height: 500px;
     }
 
-    main .hero-home > div {
-        max-width: 1000px;
+    .hero-home > div> div > h1 {
+        padding: 98px 0 0 105px;
+        font-size: 64px;
+        line-height: 72px;
     }
 }

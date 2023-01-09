@@ -1,0 +1,27 @@
+.unset() {
+  margin: unset;
+  padding: unset;
+}
+
+.flex(@direction: row) {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: @direction;
+}
+
+.flex(@direction, @wrap) {
+  .flex(@direction);
+  flex-wrap: @wrap;
+}
+
+.width-basis(@items : 1) {
+  flex-basis: calc(~'100%/@{items}');
+  max-width: calc(~'100%/@{items}');
+}
+
+.width-basis(@items, @column-gap) {
+  @gap-width: (@items - 1) * @column-gap;
+
+  flex-basis: calc(~'(100% - @{gap-width})/@{items}');
+  max-width: calc(~'(100% - @{gap-width})/@{items}');
+}
