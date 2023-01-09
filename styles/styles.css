@@ -31,7 +31,7 @@
   --heading-font-size-s: 28px;
   --heading-font-size-xs: 16px;
   --nav-height: 64px;
-  --banner-height: 64px;
+  --banner-height: 100px;
   --section-left-right-padding: 105px;
 }
 :root .light {
@@ -248,8 +248,6 @@ main img {
   height: auto;
 }
 main .section {
-  padding-left: var(--section-left-right-padding);
-  padding-right: var(--section-left-right-padding);
   background-color: var(--background-color);
 }
 main .section[data-section-status='loading'],
@@ -278,7 +276,6 @@ main .section.breadcrumb {
 }
 main .section.steps-container {
   margin: auto;
-  padding: 64px;
   text-align: center;
 }
 main .section.steps-container li {
@@ -320,6 +317,7 @@ main .banner-placeholder {
   display: flex;
   background-color: #fafafa;
   box-sizing: border-box;
+  padding: 16px 2rem;
 }
 main .banner {
   margin-top: auto;
@@ -401,21 +399,16 @@ main .home-banner.section p {
     --heading-font-size-xs: 20px;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 601px) {
   :root {
-    --banner-height: 100px;
+    --banner-height: 64px;
   }
   main .section {
-    padding: unset;
+    padding-left: var(--section-left-right-padding);
+    padding-right: var(--section-left-right-padding);
   }
   main .section.steps-container {
-    padding: unset;
-  }
-  main .section.steps-container li {
-    padding: 20px;
-  }
-  main .banner-placeholder {
-    padding: 16px 2rem;
+    padding: 64px;
   }
 }
 @media (min-width: 1025px) {
