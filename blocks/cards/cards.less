@@ -9,7 +9,7 @@ autocomment();
   padding-left: 22px;
   padding-right: 22px;
   text-align: center;
-  
+
   > div:first-child {
     :where(ul, li, h1, h2, h3, h4, h5, h6, p) {
       .unset();
@@ -19,7 +19,7 @@ autocomment();
   > * {
     .width-basis();
   }
-  
+
   :where(p, a.button) {
     > :where(.icon-arrow, .icon-diagonal-arrow) {
       display: inline-block;
@@ -32,7 +32,7 @@ autocomment();
       }
     }
   }
-  
+
   p {
     &:hover {
       > .icon-diagonal-arrow {
@@ -76,7 +76,7 @@ autocomment();
     height: 62px;
     width: 60px;
     align-self: center;
-    background-image: url(https://personal.nedbank.co.za/etc.clientlibs/nedbank/clientlibs/clientlib-base/resources/img/intercept_bg.svg);
+    background-image: url(/icons/intercept_bg.svg);
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
     transform: rotate(270deg);
     background-size: contain;
@@ -116,7 +116,7 @@ autocomment();
 
       &.button-container {
         line-height: 24px;
-        
+
         > a {
           .unset();
           cursor: pointer;
@@ -210,7 +210,7 @@ autocomment();
   li {
     cursor: pointer;
   }
-} 
+}
 
 /* cards.horizontal -> .cards-image and .cards-body will be horizontally aligned */
 .cards.horizontal {
@@ -220,15 +220,15 @@ autocomment();
   }
 }
 
-/* cards.outlined -> card will have a outline */ 
+/* cards.outlined -> card will have a outline */
 .cards.outlined {
   li {
     transition: .3s !important;
     border: 1px solid #e5edec !important;
-    border-radius: 12px !important; 
+    border-radius: 12px !important;
     box-shadow: 0 25px 20px -15px rgb(0 0 0 / 10%) !important;
   }
-} 
+}
 
 /* cards.muted -> card will not have any border, shadow, transition, etc */
 .cards.muted {
@@ -238,7 +238,7 @@ autocomment();
       background-color: transparent !important;
       box-shadow: unset !important;
       transform: unset !important;
-      border: unset !important; 
+      border: unset !important;
       padding: 0px !important;
     }
   }
@@ -338,7 +338,7 @@ autocomment();
       text-align: left;
     }
   }
-  
+
   .cards.large {
     .cards-body {
       > p {
@@ -368,9 +368,9 @@ autocomment();
       background-color: transparent !important;
       box-shadow: unset !important;
       transform: unset !important;
-      border: unset !important; 
+      border: unset !important;
       padding: 0px !important;
-      
+
       .cards-image {
         display: none;
       }
@@ -412,13 +412,13 @@ autocomment();
             width: 285px;
             font-weight: bold;
           }
-        } 
+        }
       }
     }
   }
 }
 
-/* personal nedbank */ 
+/* personal nedbank */
 .personal-nedbank.cards-container {
   padding-top: 60px;
 
@@ -453,12 +453,12 @@ autocomment();
       height: 82px;
       width: 80px;
       align-self: center;
-      background-image: url(https://personal.nedbank.co.za/etc.clientlibs/nedbank/clientlibs/clientlib-base/resources/img/intercept_bg.svg);
+      background-image: url(/icons/intercept_bg.svg);
       border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
       transform: rotate(270deg);
       background-size: contain;
       background-repeat: no-repeat;
-  
+
       svg {
         height: 40px;
         width: 40px;
@@ -467,7 +467,7 @@ autocomment();
         transform: rotate(90deg);
       }
     }
-  
+
     .cards-body {
       color: #666;
       font-family: "Open Sans Regular";
@@ -502,7 +502,7 @@ autocomment();
       }
     }
   }
-} 
+}
 
 /* personal advantages */
 .personal-advantages.cards-container {
@@ -622,7 +622,7 @@ autocomment();
       }
     }
   }
-  
+
   .personal-advantages.cards-container {
     > div:first-child {
       > h2 {
@@ -726,7 +726,7 @@ autocomment();
         margin-top: 24px;
       }
     }
-  }  
+  }
 }
 
 @media (min-width: 992px) {
@@ -797,13 +797,13 @@ autocomment();
           font-size: 20px;
         }
       }
-    } 
+    }
   }
 
   .home-services.cards-container {
     padding-top: 32px;
     padding-bottom: 80px;
-    
+
     > div:first-child {
       > h1 {
         margin-bottom: 80px;
@@ -904,7 +904,7 @@ autocomment();
         svg {
           height: 32px;
           width: 32px;
-        } 
+        }
       }
     }
   }
@@ -918,7 +918,7 @@ autocomment();
   }
 }
 
-@media (min-width: 1281px) { 
+@media (min-width: 1281px) {
   .cards.large {
     li {
       flex-basis: 0;
