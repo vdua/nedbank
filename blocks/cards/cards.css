@@ -63,7 +63,7 @@
   height: 62px;
   width: 60px;
   align-self: center;
-  background-image: url(https://personal.nedbank.co.za/etc.clientlibs/nedbank/clientlibs/clientlib-base/resources/img/intercept_bg.svg);
+  background-image: url(/icons/intercept_bg.svg);
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
   transform: rotate(270deg);
   background-size: contain;
@@ -357,7 +357,7 @@
   height: 82px;
   width: 80px;
   align-self: center;
-  background-image: url(https://personal.nedbank.co.za/etc.clientlibs/nedbank/clientlibs/clientlib-base/resources/img/intercept_bg.svg);
+  background-image: url(/icons/intercept_bg.svg);
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
   transform: rotate(270deg);
   background-size: contain;
