@@ -2,6 +2,7 @@
 autocomment();
 
 @import (reference) "../../styles/mixin.less";
+@import (reference) "../../styles/variables.less";
 
 .section.columns-container {
   padding-left: 22px;
@@ -133,7 +134,7 @@ autocomment();
   }
 }
 
-@media (min-width: 576px) {
+@media (@width_576) {
   .columns{
     &.columns-4-cols {
       > div {
@@ -160,7 +161,7 @@ autocomment();
   }
 }
 
-@media (min-width: 768px) {
+@media (@width_768) {
   .section.columns-container {
     padding-left: 106px;
     padding-right: 106px;
@@ -223,7 +224,7 @@ autocomment();
   }
 }
 
-@media (min-width: 900px) {
+@media (@width_900) {
 	.columns {
 		>div {
 			flex-direction: unset;
@@ -252,7 +253,7 @@ autocomment();
 	}
 }
 
-@media (min-width: 991px) {
+@media (@width_991) {
   .home-partners.columns-container {
     // margin: 100px 33px 0px 210px;
 
@@ -274,7 +275,7 @@ autocomment();
   }
 }
 
-@media (min-width: 1025px) {
+@media (@width_1025) {
   .home-partners.columns-container {
     .columns.columns.columns-2-cols {
       min-height: 500px;
@@ -298,7 +299,7 @@ autocomment();
   }
 }
 
-@media (min-width: 1400px) {
+@media (@width_1441) {
   .home-partners.columns-container {
     .columns.columns.columns-2-cols {
       > div {

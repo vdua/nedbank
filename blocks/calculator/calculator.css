@@ -1,127 +1,116 @@
 main .calculator-container {
-    max-width: 1228px;
-    padding-top: 100px;
-    margin: auto;
+  max-width: 1228px;
+  padding-top: 100px;
+  margin: auto;
 }
-
+main .calculator-container > div > h2 {
+  padding: 16px;
+}
 main .calculator {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
 }
-
-
 main .calculator .green {
-    color: #5fa317;
+  color: #5fa317;
 }
-
 main .calculator .left-panel {
-    flex: 1;
+  flex: 1;
 }
-
 main .calculator .right-panel {
-    flex: 1;
+  flex: 1;
 }
-
-main .calculator label,
-main .calculator form p,
 main .calculator .right-panel p {
-    font-size: 16px;
-    line-height: 24px;
-    font-family: "Nedbank Sans Medium";
-    color: #17252e;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Nedbank Sans Medium";
+  color: #17252e;
 }
-
-main .calculator input[type=text] {
-    border-color: var(--link-color);
-    padding-left: 23px;
-    border-radius: 0;
-    font-size: unset;
-    line-height: 24px;
-    font-family: "Open Sans Semibold";
-    color: #17252e;
-    border: 2px solid #bbb;
-    background-color: transparent;
-    height: 56px;
-    display: block;
-    width: 50%;
-}
-
-main .calculator .text-muted {
-    font-family: "Open Sans Regular";
-    font-size: 14px;
-    letter-spacing: 0;
-    line-height: 22px;
-    margin-top: 8px;
-    color: #565c5d !important;
-}
-
-main .calculator .result-panel {
-    padding: 32px 42px 16px 42px;
-    margin-bottom: 42px;
-    border-radius: 10px;
-    background-color: #f9fbfb;
-    box-shadow: 0 25px 20px -15px rgba(0, 0, 0, 0.1);
-}
-
 main .calculator .right-panel .calulated-value {
-    font-size: 40px;
-    line-height: 48px;
+  font-size: 40px;
+  line-height: 48px;
 }
-
+main .calculator label {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Nedbank Sans Medium";
+  color: #17252e;
+}
+main .calculator form p {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Nedbank Sans Medium";
+  color: #17252e;
+}
+main .calculator input[type=text] {
+  border-color: var(--link-color);
+  padding-left: 23px;
+  border-radius: 0;
+  font-size: unset;
+  line-height: 24px;
+  font-family: "Open Sans Semibold";
+  color: #17252e;
+  border: 2px solid #bbb;
+  background-color: transparent;
+  height: 56px;
+  display: block;
+  width: 50%;
+}
+main .calculator .text-muted {
+  font-family: "Open Sans Regular";
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 22px;
+  margin-top: 8px;
+  color: #565c5d !important;
+}
+main .calculator .result-panel {
+  padding: 32px 42px 16px 42px;
+  margin-bottom: 42px;
+  border-radius: 10px;
+  background-color: #f9fbfb;
+  box-shadow: 0 25px 20px -15px rgba(0, 0, 0, 0.1);
+}
 main .calculator .actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
-
 main .calculator .range-wrap {
-    position: relative;
-    width: 50%;
-    padding: 30px;
+  position: relative;
+  width: 50%;
+  padding: 30px;
 }
-
 main .calculator .range {
-    width: 100%;
+  width: 100%;
 }
-
 main .calculator .bubble {
-    color: #000;
-    padding: 4px 12px;
-    position: absolute;
-    left: 50%;
-    top: 0px;
-    transform: translateX(-50%);
+  color: #000;
+  padding: 4px 12px;
+  position: absolute;
+  left: 50%;
+  top: 0px;
+  transform: translateX(-50%);
 }
-
-
 main .calculator input[type=range] {
-    accent-color: rgb(120, 190, 32);
+  accent-color: #78be20;
 }
-
 main .calculator .range-boundary-labels {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-
 main .calculator .currency-symbol {
-    position: relative;
-    top: 49px;
-    left: 10px;
+  position: relative;
+  top: 49px;
+  left: 10px;
 }
-
-main .calculator-container>div>h2 {
-    padding: 16px;
-}
-
-@media only screen and (min-width:768px) {
-    main .calculator-container>div>h2 {
-        padding: unset;
-    }
-
-    main .calculator {
-        display: flex;
-        flex-direction: row;
-        padding: unset;
-    }
+@media only screen and (min-width: 768px) {
+  main .calculator-container > div > h2 {
+    padding: unset;
+  }
+  main .calculator {
+    display: flex;
+    flex-direction: row;
+    padding: unset;
+  }
 }

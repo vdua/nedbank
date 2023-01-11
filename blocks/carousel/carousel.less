@@ -1,3 +1,5 @@
+@import (reference) "../../styles/variables.less";
+
 main .carousel-container {
   padding-left: 20px;
   padding-bottom: 50px;
@@ -107,7 +109,7 @@ main .carousel-wrapper .carousel-controls {
     justify-content: center;
   }
 }
-@media (min-width: 700px) {
+@media (@width_700) {
   main .carousel {
     margin: 64px 0;
   }
@@ -121,7 +123,7 @@ main .carousel-wrapper .carousel-controls {
     padding-left: 200px;
   }
 }
-@media (min-width: 1025px) {
+@media (@width_1025) {
   main .carousel .carousel-controls button::after {
     background: transparent;
     border: 0;
@@ -134,7 +136,7 @@ main .carousel-wrapper .carousel-controls {
     display: block;
   }
 }
-@media (min-width: 768px) {
+@media (@width_768) {
   main .carousel > div {
     /* --max-width: 18.75rem; */
     --min-width: 500px;
@@ -175,7 +177,7 @@ main .carousel-wrapper .carousel-controls {
     background-color: green;
   }
 }
-@media (min-width: 1025px) {
+@media (@width_1025) {
   main .carousel-container {
     margin-right: 0;
   }
@@ -328,7 +330,7 @@ main .carousel-wrapper .carousel-controls {
     transform: rotate(180deg);
   }
 }
-@media (min-width: 1024px) {
+@media (@width_1024) {
   main .carousel-wrapper .carousel-buttons {
     right: 250px;
   }

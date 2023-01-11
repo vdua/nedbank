@@ -2,6 +2,7 @@
 autocomment();
 
 @import (reference) "../../styles/mixin.less";
+@import (reference) "./card_variables.less";
 
 /* cards-container */
 .section.cards-container {
@@ -525,7 +526,7 @@ autocomment();
   }
 }
 
-@media (min-width: 576px) {
+@media (@width_576) {
   .cards {
 
   }
@@ -641,7 +642,7 @@ autocomment();
   }
 }
 
-@media (min-width: 768px) {
+@media (@width_768) {
   .section.cards-container {
     padding-left: 106px;
     padding-right: 106px;
@@ -729,7 +730,7 @@ autocomment();
   }  
 }
 
-@media (min-width: 992px) {
+@media (@width_900) {
   .personal-nedbank.cards-container {
     padding-left: 106px;
     padding-right: 106px;
@@ -749,7 +750,7 @@ autocomment();
   }
 }
 
-@media (min-width: 1025px) {
+@media (@width_1025) {
   .cards {
     > ul {
       .flex(row, wrap);
@@ -918,7 +919,7 @@ autocomment();
   }
 }
 
-@media (min-width: 1281px) { 
+@media (@width_1100) { 
   .cards.large {
     li {
       flex-basis: 0;
@@ -959,7 +960,7 @@ autocomment();
   }
 }
 
-@media (min-width: 1441px) {
+@media (@width_1441) {
   .home-services.cards-container {
     padding-left: calc(~'(100% - 1228px)/2');
     padding-right: calc(~'(100% - 1228px)/2');
