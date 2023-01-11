@@ -5,6 +5,7 @@ main .tabs {
 main .tabs .tabs-title {
   position: relative;
   font-family: 'Nedbank Sans Medium';
+  cursor: pointer;
 }
 
 main .tabs .tabs-title::after {
@@ -53,12 +54,6 @@ main .tabs .tabs-content[aria-hidden="true"] {
   margin: 48px 0 30px;
 }
 
-@media (max-width: 599px) {
-  main .tabs .tabs-title {
-    cursor: pointer;
-  }
-}
-
 @media (min-width: 600px) {
   main .tabs {
     display: flex;
@@ -75,6 +70,7 @@ main .tabs .tabs-content[aria-hidden="true"] {
     margin: 0;
     border-bottom: 4px solid transparent;
     padding-bottom: 20px;
+    cursor: auto;
   }
 
   .integrations-listing main .tabs .tabs-title:not(:last-child) {

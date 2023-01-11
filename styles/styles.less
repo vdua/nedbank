@@ -56,7 +56,7 @@ autocomment();
 	--heading-font-size-s: 28px;
 	--heading-font-size-xs: 16px;
 	--nav-height: 64px;
-	--banner-height: 64px;
+	--banner-height: 100px;
 	--section-left-right-padding: 105px;
 }
 
@@ -316,8 +316,6 @@ main {
 	}
 
 	.section {
-		padding-left: var(--section-left-right-padding);
-		padding-right: var(--section-left-right-padding);
 		background-color: var(--background-color);
 
 		&[data-section-status='loading'],
@@ -354,7 +352,6 @@ main {
 
 		&.steps-container {
 			margin: auto;
-			padding: 64px;
 			text-align: center;
 
 			li {
@@ -406,6 +403,7 @@ main {
 		display: flex;
 		background-color: @background_color_10;
 		box-sizing: border-box;
+		padding: 16px 2rem;
 	}
 
 	.banner {
@@ -449,7 +447,7 @@ main .home-banner.section {
 	}
 }
 
-@media (min-width: 768px) {
+@media (@width_768) {
     main .home-banner.section {
         padding: 0;
         display: block;
@@ -492,7 +490,7 @@ main .home-banner.section {
     }
 }
 
-@media (min-width: 900px) {
+@media (@width_900) {
 	:root {
 		--heading-font-size-xxl: 48px;
 		--heading-font-size-xl: 40px;
@@ -503,31 +501,23 @@ main .home-banner.section {
 	}
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (@width_600) {
 	:root {
-		--banner-height: 100px;
+		--banner-height: 64px;
 	}
-
 	main {
 		.section {
-			padding: unset;
-		}
+			padding-left: var(--section-left-right-padding);
+			padding-right: var(--section-left-right-padding);
 
-		.section.steps-container {
-			padding: unset;
-
-			li {
-				padding: 20px;
+			&.steps-container {
+				padding: 64px;
 			}
-		}
-
-		.banner-placeholder {
-			padding: 16px 2rem;
 		}
 	}
 }
 
-@media (min-width: 1025px) {
+@media (@width_1025) {
 	main .home-banner.section {
 		.default-content-wrapper {
 			margin: 0 105px;

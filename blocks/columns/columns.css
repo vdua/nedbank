@@ -231,7 +231,7 @@
     padding: 80px 20px 32px 0;
   }
 }
-@media (min-width: 1400px) {
+@media (min-width: 1441px) {
   .home-partners.columns-container .columns.columns.columns-2-cols > div > div:first-child img {
     max-width: none;
     height: 460px;

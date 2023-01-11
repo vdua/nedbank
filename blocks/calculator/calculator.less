@@ -1,0 +1,130 @@
+@import (reference) "./calculator_variables.less";
+
+main {
+	.calculator-container {
+		max-width: 1228px;
+		padding-top: 100px;
+		margin: auto;
+		>div {
+			>h2 {
+				padding: 16px;
+			}
+		}
+	}
+	.calculator {
+		display: flex;
+		flex-direction: column;
+		padding: 16px;
+		.green {
+			color: @color_1;
+		}
+		.left-panel {
+			flex: 1;
+		}
+		.right-panel {
+			flex: 1;
+			p {
+				font-size: 16px;
+				line-height: 24px;
+				font-family: @font_family_1;
+				color: @color_2;
+			}
+			.calulated-value {
+				font-size: 40px;
+				line-height: 48px;
+			}
+		}
+		label {
+			font-size: 16px;
+			line-height: 24px;
+			font-family: @font_family_1;
+			color: @color_2;
+		}
+		form {
+			p {
+				font-size: 16px;
+				line-height: 24px;
+				font-family: @font_family_1;
+				color: @color_2;
+			}
+		}
+		input[type=text] {
+			border-color: @border_color_1;
+			padding-left: 23px;
+			border-radius: 0;
+			font-size: unset;
+			line-height: 24px;
+			font-family: @font_family_2;
+			color: @color_2;
+			border: 2px solid #bbb;
+			background-color: @background_color_1;
+			height: 56px;
+			display: block;
+			width: 50%;
+		}
+		.text-muted {
+			font-family: @font_family_3;
+			font-size: 14px;
+			letter-spacing: 0;
+			line-height: 22px;
+			margin-top: 8px;
+			color: @color_3 !important;
+		}
+		.result-panel {
+			padding: 32px 42px 16px 42px;
+			margin-bottom: 42px;
+			border-radius: 10px;
+			background-color: @background_color_2;
+			box-shadow: 0 25px 20px -15px rgba(0, 0, 0, 0.1);
+		}
+		.actions {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+		}
+		.range-wrap {
+			position: relative;
+			width: 50%;
+			padding: 30px;
+		}
+		.range {
+			width: 100%;
+		}
+		.bubble {
+			color: @color_4;
+			padding: 4px 12px;
+			position: absolute;
+			left: 50%;
+			top: 0px;
+			transform: translateX(-50%);
+		}
+		input[type=range] {
+			accent-color: rgb(120, 190, 32);
+		}
+		.range-boundary-labels {
+			display: flex;
+			justify-content: space-between;
+		}
+		.currency-symbol {
+			position: relative;
+			top: 49px;
+			left: 10px;
+		}
+	}
+}
+@media only screen and (@width_768) {
+	main {
+		.calculator-container {
+			>div {
+				>h2 {
+					padding: unset;
+				}
+			}
+		}
+		.calculator {
+			display: flex;
+			flex-direction: row;
+			padding: unset;
+		}
+	}
+}
