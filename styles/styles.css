@@ -254,7 +254,7 @@ main .section {
 }
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
-  display: none;
+  display: none !important;
 }
 main .section.shaded-background {
   background-color: var(--overlay-background-color);
