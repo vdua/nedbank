@@ -24,6 +24,7 @@ header nav .nav-hamburger {
   grid-area: hamburger;
   height: 22px;
   padding-top: 3px;
+  padding-left: 15px;
   cursor: pointer;
 }
 header nav .nav-sections {
