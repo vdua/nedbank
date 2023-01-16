@@ -25,9 +25,6 @@ main .hero-home img {
   box-sizing: border-box;
 }
 @media (min-width: 768px) {
-  main .hero-home img {
-    height: 346px;
-  }
   .hero-home > div > div > h1 {
     color: #fff;
     font-size: 40px;
