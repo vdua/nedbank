@@ -1,4 +1,6 @@
-import { readBlockConfig, decorateIcons, decorateSections, getRootPath } from '../../scripts/scripts.js';
+import {
+  readBlockConfig, decorateIcons, decorateSections, getRootPath,
+} from '../../scripts/scripts.js';
 
 function decorateFooterLinks(footer) {
   let footerLinkGroup = [];

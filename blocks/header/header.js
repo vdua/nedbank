@@ -1,4 +1,6 @@
-import { readBlockConfig, decorateIcons, makeLinksRelative, getRootPath } from '../../scripts/scripts.js';
+import {
+  readBlockConfig, decorateIcons, makeLinksRelative, getRootPath,
+} from '../../scripts/scripts.js';
 
 /**
  * collapses all open nav sections

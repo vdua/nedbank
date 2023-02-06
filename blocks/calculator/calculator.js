@@ -15,13 +15,7 @@ function decorateCurrency(block) {
 }
 function setBubble(range, bubble, termVals) {
   const val = range.value;
-  const min = range.min ? range.min : 0;
-  const max = range.max ? range.max : 100;
-  const newVal = Number(((val - min) * 100) / (max - min));
   bubble.innerHTML = termVals[parseInt(val, 10)];
-
-  // Sorta magic numbers based on size of the native UI thumb
-  //bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
 
 function buildRepayCalcTab(config, placeholders) {
@@ -56,11 +50,11 @@ function buildRepayCalcTab(config, placeholders) {
     </div>
     <div class="right-panel">
       <div class="result-panel">
-        <p>${placeholders["monthlypaybacklabel"]}</p>
+        <p>${placeholders.monthlypaybacklabel}</p>
         <p class="calulated-value green">R190.18</p>
-        <p>${placeholders["totalpaybacklabel"]}</p>
+        <p>${placeholders.totalpaybacklabel}</p>
         <p class="calulated-value">R4,564.32</p>
-        <label for='repayment-rate-range'>${placeholders["interestratelabel"]}</label>
+        <label for='repayment-rate-range'>${placeholders.interestratelabel}</label>
         <div class="range-wrap">
           <output id='repayment-rate-val' class='bubble'></output>
           <input id='repayment-rate-range' type="range" class="range" min="0" max="35">
@@ -69,11 +63,11 @@ function buildRepayCalcTab(config, placeholders) {
             <div class='text-muted'>25.75%</div>
           </div>
         </div>
-        <p>${placeholders["repymentinfomsg"]}</p>
+        <p>${placeholders.repymentinfomsg}</p>
       </div>
       <div class="actions">
-        <a href="#">${placeholders["seeloandetail"]}</a>
-        <a class="button primary" href="#">${placeholders["startloanapplication"]}</a>
+        <a href="#">${placeholders.seeloandetail}</a>
+        <a class="button primary" href="#">${placeholders.startloanapplication}</a>
       </div>
     </div>
   </div>
@@ -82,7 +76,7 @@ function buildRepayCalcTab(config, placeholders) {
   const termRange = calc.querySelector('#repayment-term-range');
   const termBubble = calc.querySelector('#repayment-term-val');
   const termVals = ['6 Months', '1 Year', '2 Years', '3 Years', '4 Years', '5 Years', '6 Years'];
-  termRange.addEventListener('input', (evt) => {
+  termRange.addEventListener('input', () => {
     setBubble(termRange, termBubble, termVals);
   });
   setBubble(termRange, termBubble, termVals);
@@ -93,14 +87,13 @@ function buildRepayCalcTab(config, placeholders) {
   for (let r = 0; r <= 35; r += 1) {
     rateVal.push(`${8.25 + 0.5 * r}%`);
   }
-  rateRange.addEventListener('input', (evt) => {
+  rateRange.addEventListener('input', () => {
     setBubble(rateRange, rateBubble, rateVal);
   });
   setBubble(rateRange, rateBubble, rateVal);
 
   return calc;
 }
-
 
 function buildLoanCalcTab(config) {
   const calc = document.createElement('div');
@@ -168,7 +161,7 @@ function buildLoanCalcTab(config) {
   const termRange = calc.querySelector('#loan-term-range');
   const termBubble = calc.querySelector('#loan-term-val');
   const termVals = ['6 Months', '1 Year', '2 Years', '3 Years', '4 Years', '5 Years', '6 Years'];
-  termRange.addEventListener('input', (evt) => {
+  termRange.addEventListener('input', () => {
     setBubble(termRange, termBubble, termVals);
   });
   setBubble(termRange, termBubble, termVals);
@@ -179,7 +172,7 @@ function buildLoanCalcTab(config) {
   for (let r = 0; r <= 35; r += 1) {
     rateVal.push(`${8.25 + 0.5 * r}%`);
   }
-  rateRange.addEventListener('input', (evt) => {
+  rateRange.addEventListener('input', () => {
     setBubble(rateRange, rateBubble, rateVal);
   });
   setBubble(rateRange, rateBubble, rateVal);

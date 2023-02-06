@@ -1,5 +1,5 @@
 import {
-  loadBlock, buildBlock, decorateBlock, readBlockConfig,
+  loadBlock, buildBlock, decorateBlock,
 } from '../../scripts/scripts.js';
 
 const carouselCards = [];
@@ -14,10 +14,10 @@ function formatDate(date) {
 
 export default async function decorate(block) {
   block.innerHTML = '';
-  const response = await fetch('/query-index.json')
+  const response = await fetch('/query-index.json');
   const json = await response.json();
-  var dataArr = json.data;
-  for (const itr of dataArr) {
+  const dataArr = json.data;
+  dataArr.forEach((itr) => {
     const carouselCard = [];
     const pic = document.createElement('picture');
     pic.innerHTML = `
@@ -33,7 +33,7 @@ export default async function decorate(block) {
     const description = document.createElement('strong');
     const author = document.createElement('div');
     author.classList.add('author');
-    const pdate = document.createElement("p");
+    const pdate = document.createElement('p');
     const publishDate = document.createElement('em');
 
     const readTime = document.createElement('div');
@@ -44,16 +44,16 @@ export default async function decorate(block) {
 
     title.textContent = itr.title;
     description.textContent = itr.description;
-    author.textContent = "By " + itr.author;
-    publishDate.textContent = 'Published ' + formatDate(itr.date) + ' in Loans';
+    author.textContent = `By ${itr.author}`;
+    publishDate.textContent = `Published ${formatDate(itr.date)} in Loans`;
     readTime.textContent = itr.readTime;
-    readLink.textContent = "Read >"
+    readLink.textContent = 'Read >';
     a.href = itr.path;
     a.appendChild(readLink);
     carouselCard.push(pic);
 
-    var read = document.createElement("div");
-    var carouselText = document.createElement("div");
+    const read = document.createElement('div');
+    const carouselText = document.createElement('div');
     carouselText.appendChild(author);
     pdate.appendChild(publishDate);
     carouselText.appendChild(pdate);
@@ -67,7 +67,7 @@ export default async function decorate(block) {
 
     carouselCard.push(carouselText);
     carouselCards.push(carouselCard);
-  }
+  });
   const multiImageCarousel = buildBlock('carousel', carouselCards);
   multiImageCarousel.classList.add('multiImageCarousel');
   block.appendChild(multiImageCarousel);

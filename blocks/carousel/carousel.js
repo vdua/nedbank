@@ -1,7 +1,7 @@
 function calculateScrollbarWidth() {
   document.documentElement.style.setProperty(
     '--scrollbar-width',
-    `${window.innerWidth - document.documentElement.clientWidth}px`
+    `${window.innerWidth - document.documentElement.clientWidth}px`,
   );
 }
 
@@ -47,7 +47,7 @@ function getVisibleSlide(event) {
 export default function decorate(block) {
   const buttons = document.createElement('div');
   const autoPlayList = [];
-  let carouselInterval = null;
+  const carouselInterval = null;
 
   // dots
   buttons.className = 'carousel-buttons';
@@ -67,7 +67,7 @@ export default function decorate(block) {
 
     /* buttons */
     const button = document.createElement('button');
-    button.setAttribute('aria-label', `Carousel Button ${i}`)
+    button.setAttribute('aria-label', `Carousel Button ${i}`);
     if (!i) button.classList.add('selected');
     button.addEventListener('click', () => {
       window.clearInterval(carouselInterval);
