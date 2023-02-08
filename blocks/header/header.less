@@ -12,20 +12,24 @@ header {
 		height: var(--nav-height);
 		box-sizing: border-box;
 		font-family: @font_family_1;
+
 		a {
 			&:any-link {
 				color: @color_1;
 				text-decoration: none;
 			}
 		}
+
 		.nav-brand {
 			p {
 				margin: 0;
 			}
+
 			img {
 				width: 128px;
 			}
 		}
+
 		.nav-hamburger {
 			grid-area: hamburger;
 			height: 22px;
@@ -33,37 +37,44 @@ header {
 			padding-left: 15px;
 			cursor: pointer;
 		}
+
 		.nav-sections {
 			grid-area: sections;
 			flex-direction: column;
 			display: none;
 			background-color: @background_color_2;
 			flex: 1 1 auto;
+
 			ul {
 				font-size: 16px;
 				font-weight: 500;
 				list-style: none;
 				padding-left: 0;
 			}
+
 			li {
 				font-size: 20px;
-				font-weight: 500;
+				font-weight: 400;
 			}
 		}
+
 		.nav-tools {
 			grid-area: tools;
 			flex: 0 0 auto;
 			height: 22px;
+
 			p {
 				margin: 0;
 			}
 		}
 	}
+
 	nav[aria-expanded='true'] {
 		grid-template: 'hamburger brand' 'sections sections' 'tools tools';
 		grid-template-columns: 56px 1fr;
 		overflow-y: scroll;
 		min-height: 100vh;
+
 		.nav-hamburger-icon {
 			box-sizing: border-box;
 			position: relative;
@@ -73,6 +84,7 @@ header {
 			border: 2px solid transparent;
 			border-radius: 5px;
 			transform: translate(-3px, -2px);
+
 			&::after {
 				content: '';
 				display: block;
@@ -87,6 +99,7 @@ header {
 				left: 1px;
 				transform: rotate(-45deg);
 			}
+
 			&::before {
 				content: '';
 				display: block;
@@ -101,29 +114,35 @@ header {
 				left: 1px;
 			}
 		}
+
 		.nav-sections {
 			display: block;
 			align-self: flex-start;
 		}
+
 		.nav-tools {
 			img {
 				display: unset;
 			}
+
 			ul {
 				font-size: unset;
 				flex-direction: column;
 			}
+
 			li {
 				padding: 0;
 			}
 		}
 	}
+
 	.nav-brand {
 		grid-area: brand;
 		font-size: 22px;
 		font-weight: 700;
 		line-height: 1em;
 	}
+
 	nav[aria-expanded='false'] {
 		.nav-hamburger-icon {
 			box-sizing: border-box;
@@ -134,6 +153,7 @@ header {
 			height: 2px;
 			border-radius: 3px;
 			background: currentcolor;
+
 			&::after {
 				box-sizing: border-box;
 				position: relative;
@@ -148,6 +168,7 @@ header {
 				top: -6px;
 				top: 6px;
 			}
+
 			&::before {
 				box-sizing: border-box;
 				position: relative;
@@ -172,22 +193,32 @@ header {
 			height: var(--nav-height);
 			padding-left: var(--section-left-right-padding);
 			padding-right: var(--section-left-right-padding);
+
 			.nav-sections {
 				>ul {
 					>li.nav-drop {
 						position: relative;
 						padding-right: 32px;
+
+						&:first-child {
+							font-family: @nav-heading-first-child-font-family;
+							font-size: 14px !important;
+							padding-top: 4px;
+						}
 					}
+
 					>li {
 						padding: 0 16px;
 						position: relative;
-						font-size: 16px;
+						font-size: 18px;
 						margin: 0;
 						cursor: pointer;
 						padding-top: 0;
+
 						>a {
 							pointer-events: none;
 							text-decoration: none;
+
 							&::after {
 								opacity: 40%;
 								display: inline-block;

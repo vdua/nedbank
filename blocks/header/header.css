@@ -42,7 +42,7 @@ header nav .nav-sections ul {
 }
 header nav .nav-sections li {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
 }
 header nav .nav-tools {
   grid-area: tools;
@@ -167,10 +167,15 @@ header nav[aria-expanded='false'] .nav-hamburger-icon::before {
     position: relative;
     padding-right: 32px;
   }
+  header nav .nav-sections > ul > li.nav-drop:first-child {
+    font-family: 'Nedbank Sans Bold';
+    font-size: 14px !important;
+    padding-top: 4px;
+  }
   header nav .nav-sections > ul > li {
     padding: 0 16px;
     position: relative;
-    font-size: 16px;
+    font-size: 18px;
     margin: 0;
     cursor: pointer;
     padding-top: 0;

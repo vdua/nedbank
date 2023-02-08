@@ -2,30 +2,30 @@ main .section.hero-home-container {
   padding: 0;
   box-sizing: border-box;
 }
-main .hero-home img {
-  width: 100vw;
-}
-.hero-home {
+main .hero-home {
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: right center;
 }
-.hero-home > div > div > p:first-child {
+main .hero-home img {
+  width: 100vw;
+}
+main .hero-home > div > div > p:first-child {
   margin: 0px;
 }
-.hero-home > div > div > p:last-child {
+main .hero-home > div > div > p:last-child {
   display: none;
   position: absolute;
 }
-.hero-home > div > div > h1 {
+main .hero-home > div > div > h1 {
   margin: 0;
   padding: 24px 18px 40px 18px;
   height: auto;
   box-sizing: border-box;
 }
 @media (min-width: 768px) {
-  .hero-home > div > div > h1 {
+  main .hero-home > div > div > h1 {
     color: #fff;
     font-size: 40px;
     line-height: 48px;
@@ -37,11 +37,11 @@ main .hero-home img {
   }
 }
 @media (min-width: 1025px) {
-  main .hero-home img {
+  main main .hero-home img {
     width: 100vw;
     min-height: 500px;
   }
-  .hero-home > div > div > h1 {
+  main .hero-home > div > div > h1 {
     padding: 98px 0 0 105px;
     font-size: 64px;
     line-height: 72px;

@@ -1,7 +1,7 @@
 @plugin '../less-scripts/autogen-comment-plugin';
 autocomment();
 
-@import (reference) './variables.less';
+@import (reference) './color_variables.less';
 @color_1: var(--text-color);
 @color_2: var(--heading-text-color);
 @color_3: var(--link-color);
@@ -45,8 +45,10 @@ autocomment();
 	--text-color: #17252e;
 	--heading-text-color: #17252e;
 	--body-font-family: 'Open Sans Regular', 'Open Sans-fallback';
-	--heading-font-family: 'Nedbank Sans Bold', 'Open Sans-fallback';
+	--heading-font-family: 'Nedbank Sans Regular', 'Open Sans-fallback';
 	--fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+	--strong-font-family: 'Nedbank Sans Bold', 'Open Sans-bold';
+	--btn-font-family: 'Open Sans Semibold';
 	--body-font-size-m: 22px;
 	--body-font-size-s: 18px;
 	--heading-font-size-xxl: 32px;
@@ -94,13 +96,18 @@ header {
 	height: var(--nav-height);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-weight: 600;
 	line-height: 1.25;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 	scroll-margin: calc(var(--nav-height) + 1em);
-	font-family: @font_family_2;
+	font-family: var(--strong-font-family);
 	color: @color_2;
 }
 
@@ -156,6 +163,10 @@ pre {
 	overflow: scroll;
 }
 
+strong {
+	font-family: var(--strong-font-family);
+}
+
 blockquote {
 	margin-top: 1em;
 	margin-bottom: 1em;
@@ -163,12 +174,13 @@ blockquote {
 
 a {
 	&:any-link {
+		margin-left: 10px;
+		margin-right: 8px;
 		color: @color_3;
 		text-decoration: none;
 	}
 
 	&:hover {
-		text-decoration: underline;
 		color: @color_4;
 	}
 }
@@ -200,28 +212,25 @@ input[type=radio] {
 
 a.button {
 	&:any-link {
-		font-family: @font_family_4;
+		font-family: var(--btn-font-family);
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		line-height: 24px;
 		display: inline-block;
 		box-sizing: border-box;
 		text-decoration: none;
 		border: 2px solid transparent;
-		padding: 5px 30px;
 		text-align: center;
-		font-style: normal;
-		font-weight: 600;
 		cursor: pointer;
-		color: @color_5;
-		background-color: @background_color_4;
+		color: @btn-default-text-color;
+		background-color: @btn-default-bg;
+		padding: 14px 0;
 		margin: 16px 0;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		border-radius: 5px;
-	}
-
-	&:hover {
-		background-color: @background_color_5;
-		cursor: pointer;
 	}
 
 	&:focus {
@@ -238,6 +247,7 @@ button {
 	border: 2px solid transparent;
 	padding: 5px 30px;
 	text-align: center;
+	vertical-align: middle;
 	font-style: normal;
 	font-weight: 600;
 	cursor: pointer;
@@ -248,6 +258,7 @@ button {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	border-radius: 5px;
+	user-select: none;
 
 	&:hover {
 		background-color: @background_color_5;
@@ -270,16 +281,11 @@ button {
 	}
 }
 
-a.button.secondary {
-	background-color: @background_color_7;
-	border: 2px solid currentcolor;
-	color: @color_1;
-}
-
+a.button.secondary,
 button.secondary {
-	background-color: @background_color_7;
+	background-color: @btn-secondary-default-bg;
 	border: 2px solid currentcolor;
-	color: @color_1;
+	color: @btn-secondary-default-text-color;
 }
 
 main {
@@ -323,6 +329,31 @@ main {
 			display: none !important;
 		}
 
+
+		:where(.icon-arrow, .icon-diagonal-arrow) {
+			display: inline-block;
+
+			&:hover {
+				transition: transform 900ms;
+				transform: translateX(8px);
+			}
+		}
+
+		p {
+			&:hover {
+				>.icon-diagonal-arrow {
+					transition: transform 900ms;
+					transform: translate(6px, -5px)
+				}
+			}
+
+			&:has(.icon-arrow, .icon-diagonal-arrow) {
+				>a {
+					text-decoration: none;
+				}
+			}
+		}
+
 		&.shaded-background {
 			background-color: var(--overlay-background-color);
 		}
@@ -348,6 +379,24 @@ main {
 			box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
 			height: 75px;
 			display: flex;
+
+			p {
+				font-size: 18px;
+				line-height: 20px;
+			}
+
+			a {
+				color: @main-muted-text-color;
+
+				&:hover {
+					color: @main-muted-text-color-hover;
+				}
+			}
+
+			.icon {
+				vertical-align: middle;
+				padding-right: 5px;
+			}
 		}
 
 		&.steps-container {
@@ -364,6 +413,11 @@ main {
 			font-size: 12px;
 			letter-spacing: 0;
 			line-height: 24px;
+			color: #8a9596;
+
+			p {
+				margin: unset;
+			}
 		}
 
 		&.readytoapply {
@@ -396,6 +450,29 @@ main {
 				border: none;
 			}
 		}
+
+		&.switchcard {
+			background-color: var(--highlight-background-color);
+			display: flex;
+			flex-direction: column;
+
+			>.text-wrapper,
+			.default-content-wrapper {
+				padding-bottom: 50px;
+
+				:where(h1, h2, h3, p) {
+					color: @color_6;
+					text-align: center;
+				}
+			}
+
+			.button-container {
+				>a {
+					background-color: @color_6;
+					color: var(--highlight-background-color);
+				}
+			}
+		}
 	}
 
 	.banner-placeholder {
@@ -420,8 +497,8 @@ hr {
 }
 
 main .home-banner.section {
-    background: #f2f9f5;
-    padding: 24px 10px 0 10px;
+	background: #f2f9f5;
+	padding: 24px 10px 0 10px;
 
 	.default-content-wrapper {
 		background-color: #fff;
@@ -447,13 +524,68 @@ main .home-banner.section {
 }
 
 @media (@width_768) {
-    main .home-banner.section {
-        padding: 0;
-        display: block;
+	main {
+		.section {
+
+			&.switchcard {
+				background-color: var(--highlight-background-color);
+				display: grid;
+				grid-template-columns: 1fr 1fr 0.25fr 1fr;
+				grid-template-areas:
+					"a a a a"
+					"b b . d";
+
+				>.cards-wrapper {
+					grid-area: b;
+					position: relative;
+
+					>.cards.block {
+						position: absolute;
+						top: -50px;
+
+						>ul {
+							>li {
+								flex-basis: calc(calc(100% - 35px)/2);
+							}
+						}
+					}
+				}
+
+				>div {
+					&:nth-last-child(2) {
+						//Should be last child once is fixed
+						grid-area: d;
+					}
+				}
+
+				>.text-wrapper,
+				.default-content-wrapper {
+					padding-bottom: 50px;
+
+					:where(h1, h2, h3, p) {
+						color: @color_6;
+						text-align: left;
+					}
+
+				}
+
+				.button-container {
+					>a {
+						background-color: @color_6;
+						color: var(--highlight-background-color);
+					}
+				}
+			}
+		}
+	}
+
+	main .home-banner.section {
+		padding: 0;
+		display: block;
 
 		.default-content-wrapper {
 			margin: 0 22px;
-			top: -48px;
+			top: -97px;
 			position: relative;
 			padding: 64px 22px;
 		}
@@ -468,26 +600,27 @@ main .home-banner.section {
 			font-size: 24px;
 			line-height: 32px;
 		}
-    }
+	}
 
-    .home-banner .banner-wrapper {
-        margin: 0 22px;
-        top: -48px;
-        position: relative;
-        padding: 64px 22px 40px 22px;
-    }
+	.home-banner .banner-wrapper {
+		margin: 0 22px;
+		top: -48px;
+		position: relative;
+		padding: 64px 22px 40px 22px;
+	}
 
-    .home-banner .banner-wrapper .banner h1 {
-        font-size: 40px;
-        line-height: 48px;
-        margin: 0 0 24px 0
-    }
+	.home-banner .banner-wrapper .banner h1 {
+		font-size: 40px;
+		line-height: 48px;
+		margin: 0 0 24px 0
+	}
 
-    .home-banner .banner-wrapper .banner p {
-        font-size: 24px;
-        line-height: 32px
-    }
+	.home-banner .banner-wrapper .banner p {
+		font-size: 24px;
+		line-height: 32px
+	}
 }
+
 
 @media (@width_900) {
 	:root {
@@ -504,6 +637,7 @@ main .home-banner.section {
 	:root {
 		--banner-height: 64px;
 	}
+
 	main {
 		.section {
 			padding-left: var(--section-left-right-padding);
@@ -517,6 +651,14 @@ main .home-banner.section {
 }
 
 @media (@width_1025) {
+
+	a.button {
+		&:any-link {
+			height: 56px;
+			width: 283px;
+		}
+	}
+
 	main .home-banner.section {
 		.default-content-wrapper {
 			margin: 0 105px;

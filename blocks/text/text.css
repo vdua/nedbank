@@ -1,0 +1,9 @@
+main .block.text {
+  padding: 50px 0;
+}
+main .block.text > div {
+  display: flex;
+}
+main .block.text.space-between > div {
+  justify-content: space-between;
+}

@@ -10,26 +10,46 @@ autocomment();
 }
 
 .columns {
-	> div {
+  >div {
     .flex(column);
 
-    :where(ul, li, h1, h2, h3, h4, h5, h6, p) {
-      .unset();
-    }
 
-    > div {
+
+    >div {
       .width-basis(1);
       box-sizing: border-box;
     }
-	}
+  }
 
-	img {
-		width: 100%;
-	}
+  img {
+    width: 100%;
+  }
+
+  &.backdrop {
+    background-color: #f9fbfb;
+
+    h2 {
+      font-size: 32px;
+      line-height: 40px;
+    }
+
+    >div {
+      flex-direction: column;
+      align-items: flex-start;
+
+      >div {
+        >p {
+          margin: 0;
+          font-size: 20px;
+          line-height: 28px;
+        }
+      }
+    }
+  }
 }
 
 .columns.lazy-river {
-  > div {
+  >div {
     &:nth-child(odd) {
       .flex(column-reverse);
     }
@@ -39,47 +59,6 @@ autocomment();
 .columns.featured-article {
   padding: 64px;
   margin: auto;
-}
-
-.home-partners.columns-container {
-  margin-top: 83px;
-
-  .columns.columns-2-cols {
-    background-color: #f9fbfb;
-
-    > div {
-      align-items: unset;
-
-      > div {
-        margin: 0;
-      }
-
-      > div:first-child {
-        z-index: 0;
-
-        img {
-          width: 100%;
-          height: 205px;
-          object-fit: cover;
-        }
-      }
-
-      > div:last-child {
-        padding: 30px 18px 40px 18px;
-        > h1 {
-          font-size: 20px;
-          line-height: 28px;
-          margin-bottom: 20px;
-        }
-
-        > p {
-          font-size: 16px;
-          line-height: 24px;
-          margin-right: 16px;
-        }
-      }
-    }
-  }
 }
 
 .calc-example.columns-container {
@@ -101,14 +80,14 @@ autocomment();
   }
 
   .columns.columns-4-cols {
-    > div {
+    >div {
       .flex(row, wrap);
 
-      > div:empty {
+      >div:empty {
         display: none;
       }
 
-      > div {
+      >div {
         .width-basis(2);
         padding: 15px 15px 15px 0;
         margin: unset;
@@ -118,14 +97,14 @@ autocomment();
         border-bottom: 1px solid #979797;
       }
 
-      > div:nth-child(odd) {
+      >div:nth-child(odd) {
         font-family: "Open Sans Bold";
         font-weight: normal;
         font-size: 13px;
         line-height: 18px;
       }
 
-      > div:nth-child(even) {
+      >div:nth-child(even) {
         font-family: "Open Sans Regular";
         font-size: 14px;
         line-height: 19px;
@@ -135,12 +114,12 @@ autocomment();
 }
 
 @media (@width_576) {
-  .columns{
+  .columns {
     &.columns-4-cols {
-      > div {
+      >div {
         .flex(row, wrap);
 
-        > div {
+        >div {
           .width-basis(2);
         }
       }
@@ -149,10 +128,10 @@ autocomment();
 
   .calc-example.columns-container {
     .columns.columns-4-cols {
-      > div {
+      >div {
         border-bottom: 1px solid #979797;
 
-        > div {
+        >div {
           .width-basis(4);
           border-bottom: none;
         }
@@ -169,54 +148,48 @@ autocomment();
 
   .columns {
     &.columns-2-cols {
-      > div {
+      >div {
         .flex(row, nowrap);
 
-        > div {
+        >div {
           .width-basis(2);
         }
       }
     }
 
     &.columns-4-cols {
-      > div {
+      >div {
         .flex(row, nowrap);
-        > div {
+
+        >div {
           .width-basis(4);
         }
       }
     }
-  }
 
-  .home-partners.columns-container {
-    .columns.columns-2-cols {
-      min-height: 393px;
-      margin-left: 93px;
+    &.backdrop {
+      margin-top: 100px;
+      background-color: #f9fbfb;
 
-      > div {
-        > div:first-child  {
-          top: -32px;
-          left: -93px;
-          position: relative;
+      h2 {
+        font-size: 32px;
+        line-height: 40px;
+      }
 
-          img {
-            width: auto;
-            max-width: calc(~'100% + 85px');
-            height: 271px;
+      >div {
+        align-items: flex-start;
+
+        >div {
+          &:first-child {
+            position: relative;
+            top: -70px;
+            left: -100px;
           }
-        }
 
-        > div:last-child {
-          padding: 20px 25px 0 0;
-
-          > h1 {
+          >p {
+            margin: 0;
             font-size: 20px;
             line-height: 28px;
-            margin-bottom: 24px;
-          }
-
-          > p {
-            margin-bottom: 0;
           }
         }
       }
@@ -225,90 +198,32 @@ autocomment();
 }
 
 @media (@width_900) {
-	.columns {
-		>div {
-			flex-direction: unset;
-			align-items: center;
-			>div {
-				flex: 1;
-				margin: 16px;
-			}
-		}
-	}
-	.columns.lazy-river {
-		>div {
-			flex-direction: unset;
-			&:nth-child(odd) {
-				flex-direction: unset;
-			}
-		}
-	}
-	.columns.featured-article {
-		max-width: 1100px;
-		>div {
-			>div {
-				padding: 20px;
-			}
-		}
-	}
-}
+  .columns {
+    >div {
+      flex-direction: unset;
+      align-items: center;
 
-@media (@width_991) {
-  .home-partners.columns-container {
-    // margin: 100px 33px 0px 210px;
-
-    .columns.columns-2-cols {
-      > div {
-        > div:last-child {
-          > h1 {
-            font-size: 32px;
-            line-height: 40px;
-          }
-
-          > p {
-            font-size: 20px;
-            line-height: 28px;
-          }
-        }
+      >div {
+        flex: 1;
+        margin: 16px;
       }
     }
   }
-}
 
-@media (@width_1025) {
-  .home-partners.columns-container {
-    .columns.columns.columns-2-cols {
-      min-height: 500px;
-      margin-left: 177px;
+  .columns.lazy-river {
+    >div {
+      flex-direction: unset;
 
-      > div {
-        > div:first-child {
-          left: -177px;
-
-          img {
-            max-width: calc(~'100% + 170px');
-            height: 360px;
-          }
-        }
-
-        > div:last-child {
-          padding: 80px 20px 32px 0
-        }
+      &:nth-child(odd) {
+        flex-direction: unset;
       }
     }
   }
-}
 
-@media (@width_1441) {
-  .home-partners.columns-container {
-    .columns.columns.columns-2-cols {
-      > div {
-        > div:first-child {
-          img {
-            max-width: none;
-            height: 460px;
-          }
-        }
+  .columns.featured-article {
+    >div {
+      >div {
+        padding: 60px;
       }
     }
   }

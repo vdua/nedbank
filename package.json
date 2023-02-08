@@ -13,22 +13,26 @@
     "lessc": "less-watch-compiler --run-once styles styles & less-watch-compiler --run-once blocks blocks",
     "hlx": "less-watch-compiler styles styles & less-watch-compiler blocks blocks & hlx up"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adobe/helix-project-boilerplate.git"
   },
-
   "author": "Adobe",
-
   "license": "Apache License 2.0",
-
   "bugs": {
     "url": "https://github.com/adobe/helix-project-boilerplate/issues"
   },
-
   "homepage": "https://github.com/adobe/helix-project-boilerplate#readme",
-
+  "watches": [
+    {
+      "name": "watch:less",
+      "globs": [
+        "styles/*.less",
+        "blocks/**/*.less"
+      ],
+      "command": "less-watch-compiler --run-once styles styles & less-watch-compiler --run-once blocks blocks"
+    }
+  ],
   "devDependencies": {
     "@babel/core": "7.18.0",
     "@babel/eslint-parser": "7.17.0",
