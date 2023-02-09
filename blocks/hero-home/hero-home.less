@@ -22,11 +22,13 @@ main {
 					&:first-child {
 						margin: 0px;
 					}
+
 					&:last-child {
 						display: none;
 						position: absolute;
 					}
 				}
+
 				>h1 {
 					margin: 0;
 					padding: 24px 18px 40px 18px;
@@ -36,7 +38,8 @@ main {
 			}
 		}
 	}
-	@media (@width_768) {
+
+	@media (@width_900) {
 		.hero-home {
 			>div {
 				>div {
@@ -46,14 +49,15 @@ main {
 						line-height: 48px;
 						max-width: 50%;
 						position: absolute;
-						top: 0px;
-						left: 0px;
+						top: 0;
+						left: 0;
 						padding: 64px 0 0 22px;
 					}
 				}
 			}
 		}
 	}
+
 	@media (@width_1025) {
 		main {
 			.hero-home {
@@ -63,6 +67,7 @@ main {
 				}
 			}
 		}
+
 		.hero-home {
 			>div {
 				>div {

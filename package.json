@@ -23,16 +23,6 @@
     "url": "https://github.com/adobe/helix-project-boilerplate/issues"
   },
   "homepage": "https://github.com/adobe/helix-project-boilerplate#readme",
-  "watches": [
-    {
-      "name": "watch:less",
-      "globs": [
-        "styles/*.less",
-        "blocks/**/*.less"
-      ],
-      "command": "less-watch-compiler --run-once styles styles & less-watch-compiler --run-once blocks blocks"
-    }
-  ],
   "devDependencies": {
     "@babel/core": "7.18.0",
     "@babel/eslint-parser": "7.17.0",

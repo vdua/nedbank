@@ -24,15 +24,15 @@ main .hero-home > div > div > h1 {
   height: auto;
   box-sizing: border-box;
 }
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   main .hero-home > div > div > h1 {
     color: #fff;
     font-size: 40px;
     line-height: 48px;
     max-width: 50%;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     padding: 64px 0 0 22px;
   }
 }

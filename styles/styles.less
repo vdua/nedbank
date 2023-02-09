@@ -523,61 +523,7 @@ main .home-banner.section {
 	}
 }
 
-@media (@width_768) {
-	main {
-		.section {
-
-			&.switchcard {
-				background-color: var(--highlight-background-color);
-				display: grid;
-				grid-template-columns: 1fr 1fr 0.25fr 1fr;
-				grid-template-areas:
-					"a a a a"
-					"b b . d";
-
-				>.cards-wrapper {
-					grid-area: b;
-					position: relative;
-
-					>.cards.block {
-						position: absolute;
-						top: -50px;
-
-						>ul {
-							>li {
-								flex-basis: calc(calc(100% - 35px)/2);
-							}
-						}
-					}
-				}
-
-				>div {
-					&:nth-last-child(2) {
-						//Should be last child once is fixed
-						grid-area: d;
-					}
-				}
-
-				>.text-wrapper,
-				.default-content-wrapper {
-					padding-bottom: 50px;
-
-					:where(h1, h2, h3, p) {
-						color: @color_6;
-						text-align: left;
-					}
-
-				}
-
-				.button-container {
-					>a {
-						background-color: @color_6;
-						color: var(--highlight-background-color);
-					}
-				}
-			}
-		}
-	}
+@media (@width_900) {
 
 	main .home-banner.section {
 		padding: 0;
@@ -663,6 +609,63 @@ main .home-banner.section {
 		.default-content-wrapper {
 			margin: 0 105px;
 			padding: 64px 105px;
+		}
+	}
+}
+
+@media (@width_1281) {
+	main {
+		.section {
+
+			&.switchcard {
+				background-color: var(--highlight-background-color);
+				display: grid;
+				grid-template-columns: 1fr 1fr 0.25fr 1fr;
+				grid-template-areas:
+					"a a a a"
+					"b b . d";
+
+				>.cards-wrapper {
+					grid-area: b;
+					position: relative;
+
+					>.cards.block {
+						position: absolute;
+						top: -50px;
+
+						>ul {
+							>li {
+								flex-basis: calc(calc(100% - 35px)/2);
+							}
+						}
+					}
+				}
+
+				>div {
+					&:nth-last-child(2) {
+						//Should be last child once is fixed
+						grid-area: d;
+					}
+				}
+
+				>.text-wrapper,
+				.default-content-wrapper {
+					padding-bottom: 50px;
+
+					:where(h1, h2, h3, p) {
+						color: @color_6;
+						text-align: left;
+					}
+
+				}
+
+				.button-container {
+					>a {
+						background-color: @color_6;
+						color: var(--highlight-background-color);
+					}
+				}
+			}
 		}
 	}
 }

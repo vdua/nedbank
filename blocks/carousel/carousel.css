@@ -328,7 +328,7 @@ main .carousel-wrapper .carousel-controls {
     transform: rotate(180deg);
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   main .carousel-wrapper .carousel-buttons {
     right: 250px;
   }

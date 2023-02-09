@@ -302,7 +302,6 @@
     flex-wrap: wrap;
   }
   .cards.large li {
-    flex-basis: calc(calc(100% - 15px)/2);
     max-width: calc(calc(100% - 15px)/2);
   }
   .cards.large .cards-body {
