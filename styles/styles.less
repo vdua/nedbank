@@ -466,10 +466,12 @@ main {
 				}
 			}
 
-			.button-container {
-				>a {
+			a.button {
+				&:any-link {
+					width: 100%;
 					background-color: @color_6;
 					color: var(--highlight-background-color);
+
 				}
 			}
 		}
@@ -523,7 +525,38 @@ main .home-banner.section {
 	}
 }
 
+@media (@width_576) {
+	main {
+		a.button {
+			&:any-link {
+				height: 56px;
+				width: 283px;
+			}
+		}
+
+		>.section {
+			&.switchcard {
+				a.button {
+					&:any-link {
+						height: 56px;
+						width: 283px;
+					}
+				}
+			}
+		}
+	}
+}
+
 @media (@width_900) {
+
+	:root {
+		--heading-font-size-xxl: 48px;
+		--heading-font-size-xl: 40px;
+		--heading-font-size-l: 32px;
+		--heading-font-size-m: 22px;
+		--heading-font-size-s: 22px;
+		--heading-font-size-xs: 20px;
+	}
 
 	main .home-banner.section {
 		padding: 0;
@@ -568,17 +601,6 @@ main .home-banner.section {
 }
 
 
-@media (@width_900) {
-	:root {
-		--heading-font-size-xxl: 48px;
-		--heading-font-size-xl: 40px;
-		--heading-font-size-l: 32px;
-		--heading-font-size-m: 22px;
-		--heading-font-size-s: 22px;
-		--heading-font-size-xs: 20px;
-	}
-}
-
 @media only screen and (@width_600) {
 	:root {
 		--banner-height: 64px;
@@ -597,14 +619,6 @@ main .home-banner.section {
 }
 
 @media (@width_1025) {
-
-	a.button {
-		&:any-link {
-			height: 56px;
-			width: 283px;
-		}
-	}
-
 	main .home-banner.section {
 		.default-content-wrapper {
 			margin: 0 105px;
@@ -617,13 +631,23 @@ main .home-banner.section {
 	main {
 		.section {
 
+			&.narrow {
+				padding-left: 250px;
+				padding-right: 250px;
+			}
+
+
 			&.switchcard {
 				background-color: var(--highlight-background-color);
 				display: grid;
-				grid-template-columns: 1fr 1fr 0.25fr 1fr;
+				grid-template-columns: 0.25fr 1fr 1fr 0.25fr 1fr 0.25fr;
 				grid-template-areas:
-					"a a a a"
-					"b b . d";
+					". a a a a ."
+					". b b . d .";
+
+				>.text-wrapper {
+					grid-area: a;
+				}
 
 				>.cards-wrapper {
 					grid-area: b;
@@ -657,13 +681,6 @@ main .home-banner.section {
 						text-align: left;
 					}
 
-				}
-
-				.button-container {
-					>a {
-						background-color: @color_6;
-						color: var(--highlight-background-color);
-					}
 				}
 			}
 		}

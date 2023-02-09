@@ -360,7 +360,8 @@ main .section.switchcard .default-content-wrapper :where(h1, h2, h3, p) {
   color: white;
   text-align: center;
 }
-main .section.switchcard .button-container > a {
+main .section.switchcard a.button:any-link {
+  width: 100%;
   background-color: white;
   color: var(--highlight-background-color);
 }
@@ -404,7 +405,25 @@ main .home-banner.section p {
   line-height: 24px;
   margin: unset;
 }
+@media (min-width: 576px) {
+  main a.button:any-link {
+    height: 56px;
+    width: 283px;
+  }
+  main > .section.switchcard a.button:any-link {
+    height: 56px;
+    width: 283px;
+  }
+}
 @media (min-width: 900px) {
+  :root {
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 22px;
+    --heading-font-size-s: 22px;
+    --heading-font-size-xs: 20px;
+  }
   main .home-banner.section {
     padding: 0;
     display: block;
@@ -440,16 +459,6 @@ main .home-banner.section p {
     line-height: 32px;
   }
 }
-@media (min-width: 900px) {
-  :root {
-    --heading-font-size-xxl: 48px;
-    --heading-font-size-xl: 40px;
-    --heading-font-size-l: 32px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 22px;
-    --heading-font-size-xs: 20px;
-  }
-}
 @media only screen and (min-width: 600px) {
   :root {
     --banner-height: 64px;
@@ -463,21 +472,24 @@ main .home-banner.section p {
   }
 }
 @media (min-width: 1025px) {
-  a.button:any-link {
-    height: 56px;
-    width: 283px;
-  }
   main .home-banner.section .default-content-wrapper {
     margin: 0 105px;
     padding: 64px 105px;
   }
 }
 @media (min-width: 1281px) {
+  main .section.narrow {
+    padding-left: 250px;
+    padding-right: 250px;
+  }
   main .section.switchcard {
     background-color: var(--highlight-background-color);
     display: grid;
-    grid-template-columns: 1fr 1fr 0.25fr 1fr;
-    grid-template-areas: "a a a a" "b b . d";
+    grid-template-columns: 0.25fr 1fr 1fr 0.25fr 1fr 0.25fr;
+    grid-template-areas: ". a a a a ." ". b b . d .";
+  }
+  main .section.switchcard > .text-wrapper {
+    grid-area: a;
   }
   main .section.switchcard > .cards-wrapper {
     grid-area: b;
@@ -501,9 +513,5 @@ main .home-banner.section p {
   main .section.switchcard .default-content-wrapper :where(h1, h2, h3, p) {
     color: white;
     text-align: left;
-  }
-  main .section.switchcard .button-container > a {
-    background-color: white;
-    color: var(--highlight-background-color);
   }
 }
