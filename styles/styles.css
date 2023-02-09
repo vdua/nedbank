@@ -123,6 +123,9 @@ pre {
 strong {
   font-family: var(--strong-font-family);
 }
+strong a.button:any-link {
+  font-family: var(--strong-font-family);
+}
 blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
