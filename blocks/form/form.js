@@ -149,6 +149,7 @@ async function createForm(formURL) {
   form.dataset.action = pathname.split('.json')[0];
   const formCreate = measure('form Creation');
   json.data.forEach((fd) => {
+    const fieldCreation = measure(`${fd.Type} - ${fd.Name}`);
     fd.Type = fd.Type || 'text';
     if (fd.Name) {
       fd.Id = fd.Id || getId(fd.Name);
@@ -191,9 +192,10 @@ async function createForm(formURL) {
         }
       }
       form.append(fieldWrapper);
+      fieldCreation.report();
     }
-    formCreate.report();
   });
+  formCreate.report();
 
   return (form);
 }
