@@ -1,8 +1,8 @@
-const appendChild = (parent, element) => {
+function appendChild(parent, element) {
   if (parent && element) {
     parent.appendChild(element);
   }
-};
+}
 
 function setPlaceholder(element, fd) {
   if (fd.Placeholder) {
@@ -65,57 +65,13 @@ function createSelect(fd) {
   return select;
 }
 
-function constructPayload(form) {
-  const payload = {};
-  [...form.elements].forEach((fe) => {
-    if (fe.type === 'checkbox') {
-      if (fe.checked) payload[fe.id] = fe.value;
-    } else if (fe.id) {
-      payload[fe.id] = fe.value;
-    }
-  });
-  return payload;
-}
-
-async function submitForm(form) {
-  const payload = constructPayload(form);
-  const resp = await fetch(form.dataset.action, {
-    method: 'POST',
-    cache: 'no-cache',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ data: payload }),
-  });
-  await resp.text();
-  return payload;
-}
-
 function createButton(fd) {
   const button = document.createElement('button');
   button.textContent = fd.Label;
   button.classList.add('button');
   button.type = fd.Type;
   button.id = fd.Id;
-  if (fd.Type === 'submit') {
-    button.addEventListener('click', async (event) => {
-      const form = button.closest('form');
-      if (form.checkValidity()) {
-        event.preventDefault();
-        button.setAttribute('disabled', '');
-        await submitForm(form);
-        const redirectTo = fd.Extra;
-        window.location.href = redirectTo;
-      }
-    });
-  }
   return button;
-}
-
-function createHeading(fd) {
-  const heading = document.createElement('h3');
-  heading.textContent = fd.Label;
-  return heading;
 }
 
 function createInput(fd) {
@@ -148,31 +104,6 @@ function createLabel(fd) {
   }
 }
 
-// eslint-disable-next-line consistent-return
-function createLegend(fd) {
-  if (fd.Label) {
-    const label = document.createElement('legend');
-    label.textContent = fd.Label;
-    return label;
-  }
-}
-
-function applyRules(form, rules) {
-  const payload = constructPayload(form);
-  rules.forEach((field) => {
-    const { type, condition: { key, operator, value } } = field.rule;
-    if (type === 'visible') {
-      if (operator === 'eq') {
-        if (payload[key] === value) {
-          form.querySelector(`.${field.fieldId}`).classList.remove('hidden');
-        } else {
-          form.querySelector(`.${field.fieldId}`).classList.add('hidden');
-        }
-      }
-    }
-  });
-}
-
 function createWidget(fd) {
   switch (fd.Type) {
     case 'select':
@@ -196,46 +127,38 @@ async function createForm(formURL) {
   const form = document.createElement('form');
   const rules = [];
   const ids = {};
-  const getId = function (name) {
+  function getId(name) {
     ids[name] = ids[name] || 0;
     const idSuffix = ids[name] ? `-${ids[name]}` : '';
     ids[name] += 1;
     return `${name}${idSuffix}`;
-  };
-  const currentRadioGroup = "";
+  }
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
   json.data.forEach((fd) => {
-    fd.Id = fd.Id || getId(fd.Name);
     fd.Type = fd.Type || 'text';
+    if (fd.Name) {
+      fd.Id = fd.Id || getId(fd.Name);
+    }
     if (fd.Type === 'hidden') {
       form.append(createWidget(fd));
     } else {
-      if (fd.Type !== 'radio' && currentRadioGroup != null) {
-        currentRadioGroup = null;
-      }
-      const wrapperTag = fd.Type === 'radio-group' ? 'fieldset' : 'div';
-      const fieldWrapper = document.createElement(wrapperTag);
+      const fieldWrapper = document.createElement('div');
       const style = fd.Style ? ` form-${fd.Style}` : '';
       const nameStyle = fd.Name ? ` form-${fd.Name}` : '';
-      const fieldId = `form-${fd.Type}-wrapper${style}${nameStyle}`;
+      const fieldId = `field-wrapper form-${fd.Type}-wrapper${style}${nameStyle}`;
       fieldWrapper.className = fieldId;
-      fieldWrapper.classList.add('field-wrapper');
       fieldWrapper.dataset.hidden = fd.Hidden || 'false';
       fieldWrapper.dataset.mandatory = fd.Mandatory || 'true';
       fieldWrapper.dataset.tooltip = fd.Tooltip;
       fieldWrapper.title = fd.Tooltip;
       switch (fd.Type) {
-        case 'heading':
-          fieldWrapper.append(createHeading(fd));
+        case 'label':
+          fieldWrapper.append(createLabel(fd));
           break;
         case 'button':
         case 'submit':
           fieldWrapper.append(createButton(fd));
-          break;
-        case 'radio-group':
-          appendChild(fieldWrapper, createLegend(fd));
-          currentRadioGroup = fieldWrapper;
           break;
         case 'checkbox':
         case 'radio':
@@ -246,7 +169,6 @@ async function createForm(formURL) {
           appendChild(fieldWrapper, createLabel(fd));
           fieldWrapper.append(createWidget(fd));
       }
-
       if (fd.Rules) {
         try {
           rules.push({ fieldId, rule: JSON.parse(fd.Rules) });
@@ -255,15 +177,10 @@ async function createForm(formURL) {
           console.warn(`Invalid Rule ${fd.Rules}: ${e}`);
         }
       }
-      if (fd.Type === 'radio' && currentRadioGroup) {
-        currentRadioGroup.append(fieldWrapper);
-      } else {
-        form.append(fieldWrapper);
-      }
+      form.append(fieldWrapper);
     }
   });
 
-  form.addEventListener('change', () => applyRules(form, rules));
   return (form);
 }
 
