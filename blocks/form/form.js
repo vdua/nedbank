@@ -120,10 +120,22 @@ function createWidget(fd) {
   }
 }
 
+const measure = function (name) {
+  const start = new Date().getTime();
+  return {
+    report() {
+      const stop = new Date().getTime();
+      console.error(`${name} `, stop - start);
+    },
+  };
+};
+
 async function createForm(formURL) {
   const { pathname } = new URL(formURL);
+  const fetchJsonPerf = measure('fetch Json');
   const resp = await fetch(pathname);
   const json = await resp.json();
+  fetchJsonPerf.report();
   const form = document.createElement('form');
   const rules = [];
   const ids = {};
@@ -135,6 +147,7 @@ async function createForm(formURL) {
   }
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
+  const formCreate = measure('form Creation');
   json.data.forEach((fd) => {
     fd.Type = fd.Type || 'text';
     if (fd.Name) {
@@ -179,6 +192,7 @@ async function createForm(formURL) {
       }
       form.append(fieldWrapper);
     }
+    formCreate.report();
   });
 
   return (form);
