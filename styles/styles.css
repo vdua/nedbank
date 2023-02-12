@@ -71,8 +71,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 500;
+  line-height: 1.2;
   margin-top: 1em;
   margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
@@ -433,7 +433,7 @@ main .home-banner.section p {
   }
   main .home-banner.section .default-content-wrapper {
     margin: 0 22px;
-    top: -97px;
+    top: -60px;
     position: relative;
     padding: 64px 22px;
   }
@@ -482,13 +482,13 @@ main .home-banner.section p {
 }
 @media (min-width: 1281px) {
   main .section.narrow {
-    padding-left: 250px;
-    padding-right: 250px;
+    max-width: 1228px;
+    margin: auto;
   }
   main .section.switchcard {
     background-color: var(--highlight-background-color);
     display: grid;
-    grid-template-columns: 0.25fr 1fr 1fr 0.25fr 1fr 0.25fr;
+    grid-template-columns: 0.7fr 1fr 1fr 0.25fr 1fr 0.7fr;
     grid-template-areas: ". a a a a ." ". b b . d .";
   }
   main .section.switchcard > .text-wrapper {

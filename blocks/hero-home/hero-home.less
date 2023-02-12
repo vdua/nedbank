@@ -59,16 +59,13 @@ main {
 	}
 
 	@media (@width_1025) {
-		main {
-			.hero-home {
-				img {
-					width: 100vw;
-					min-height: 500px;
-				}
-			}
-		}
-
 		.hero-home {
+			img {
+				width: 100vw;
+				height: 500px;
+				object-fit: cover;
+			}
+
 			>div {
 				>div {
 					>h1 {

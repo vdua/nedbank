@@ -37,9 +37,10 @@ main .hero-home > div > div > h1 {
   }
 }
 @media (min-width: 1025px) {
-  main main .hero-home img {
+  main .hero-home img {
     width: 100vw;
-    min-height: 500px;
+    height: 500px;
+    object-fit: cover;
   }
   main .hero-home > div > div > h1 {
     padding: 98px 0 0 105px;
