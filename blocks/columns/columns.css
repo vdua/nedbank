@@ -41,10 +41,6 @@
   box-sizing: border-box;
   flex-direction: column-reverse;
 }
-.columns.featured-article {
-  padding: 64px;
-  margin: auto;
-}
 .calc-example.columns-container {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -172,8 +168,5 @@
   }
   .columns.lazy-river > div:nth-child(odd) {
     flex-direction: unset;
-  }
-  .columns.featured-article > div > div {
-    padding: 60px;
   }
 }

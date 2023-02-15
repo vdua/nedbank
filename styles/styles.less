@@ -107,7 +107,7 @@ h6 {
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 	scroll-margin: calc(var(--nav-height) + 1em);
-	font-family: var(--strong-font-family);
+	font-family: var(--heading-font-family);
 	color: @color_2;
 }
 
@@ -385,24 +385,32 @@ main {
 			box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
 			height: 75px;
 			display: flex;
+			position: relative;
 
-			p {
-				font-size: 18px;
-				line-height: 20px;
-			}
+			>.default-content-wrapper {
+				display: flex;
+				align-items: center;
 
-			a {
-				color: @main-muted-text-color;
-
-				&:hover {
-					color: @main-muted-text-color-hover;
+				p {
+					font-size: 18px;
+					line-height: 20px;
 				}
+
+				a {
+					color: @main-muted-text-color;
+
+					&:hover {
+						color: @main-muted-text-color-hover;
+					}
+				}
+
+				.icon {
+					vertical-align: middle;
+					padding-right: 5px;
+				}
+
 			}
 
-			.icon {
-				vertical-align: middle;
-				padding-right: 5px;
-			}
 		}
 
 		&.steps-container {
@@ -640,6 +648,7 @@ main .home-banner.section {
 			&.narrow {
 				max-width: 1228px;
 				margin: auto;
+				padding: 0;
 			}
 
 

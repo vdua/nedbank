@@ -76,7 +76,7 @@ h6 {
   margin-top: 1em;
   margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
-  font-family: var(--strong-font-family);
+  font-family: var(--heading-font-family);
   color: var(--heading-text-color);
 }
 h1 {
@@ -292,18 +292,23 @@ main .section.breadcrumb {
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
   height: 75px;
   display: flex;
+  position: relative;
 }
-main .section.breadcrumb p {
+main .section.breadcrumb > .default-content-wrapper {
+  display: flex;
+  align-items: center;
+}
+main .section.breadcrumb > .default-content-wrapper p {
   font-size: 18px;
   line-height: 20px;
 }
-main .section.breadcrumb a {
+main .section.breadcrumb > .default-content-wrapper a {
   color: #bbbbbb;
 }
-main .section.breadcrumb a:hover {
+main .section.breadcrumb > .default-content-wrapper a:hover {
   color: #494f50;
 }
-main .section.breadcrumb .icon {
+main .section.breadcrumb > .default-content-wrapper .icon {
   vertical-align: middle;
   padding-right: 5px;
 }
@@ -484,6 +489,7 @@ main .home-banner.section p {
   main .section.narrow {
     max-width: 1228px;
     margin: auto;
+    padding: 0;
   }
   main .section.switchcard {
     background-color: var(--highlight-background-color);
