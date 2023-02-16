@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>BAEC3800-C500-4356-A003-310579B22600</title>
+    <defs>
+        <polygon id="path-1" points="0 0 56 0 56 56 0 56"></polygon>
+    </defs>
+    <g id="Nav" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Nav,-Footer,-Pushdown---Personal-loans---Mobile" transform="translate(-264.000000, 0.000000)">
+            <g id="Menue" transform="translate(264.000000, 0.000000)">
+                <g id="Rectangle">
+                    <use fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <use fill="#024E36" xlink:href="#path-1"></use>
+                </g>
+                <g id="Burger" transform="translate(11.000000, 19.000000)" stroke="#FFFFFF" stroke-width="1.5">
+                    <line x1="33.6" y1="0.56" x2="0" y2="0.56" id="Shape"></line>
+                    <line x1="33.6" y1="8.4" x2="8.96" y2="8.4" id="Shape"></line>
+                    <line x1="33.6" y1="17.36" x2="20.16" y2="17.36" id="Shape"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -64,7 +64,7 @@ export default async function decorate(block) {
       document.body.style.overflowY = expanded ? '' : 'hidden';
       nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
     });
-    nav.prepend(hamburger);
+    nav.append(hamburger);
     nav.setAttribute('aria-expanded', 'false');
     decorateIcons(nav);
     block.append(nav);
