@@ -176,8 +176,9 @@ function renderField(fd) {
   return field;
 }
 
-async function fetchData(url, getId) {
-  const resp = await fetch(url);
+async function fetchData(formURL, getId) {
+  const { pathname, search } = new URL(formURL);
+  const resp = await fetch(pathname + search);
   const json = await resp.json();
   return json.data.map((fd) => ({
     ...fd,
@@ -185,15 +186,60 @@ async function fetchData(url, getId) {
   }));
 }
 
-async function fetchForm(pathname, getId) {
+export function getRules(fd) {
+  const entries = [
+    ['Value', fd?.['Value Expression']],
+    ['Hidden', fd?.['Hidden Expression']],
+    ['Label', fd?.['Label Expression']],
+  ];
+  return entries.filter((e) => e[1]).map(([prop, expression]) => ({
+    prop,
+    expression,
+  }));
+}
+
+function getFragmentName(r) {
+  const SHEET_NAME_REGEX = /('.{1,31}'|[\w.]{1,31}?)!([$]?[A-Z]+[$]?([0-9]+))/;
+  const sheetName = r.expression.match(SHEET_NAME_REGEX)?.[1]?.replace(/^'|'$/g, '');
+  return sheetName;
+}
+
+function extractFragments(data) {
+  return new Set(data
+    .map((fd) => getRules(fd))
+    .filter((x) => x.length)
+    .flatMap((rules) => rules.map(getFragmentName).filter((x) => x)));
+}
+
+async function fetchForm(formURL, getId) {
   // get the main form
-  const jsonData = await fetchData(pathname, getId);
-  return jsonData;
+  const jsonData = await fetchData(formURL, getId);
+  const fragments = [...extractFragments(jsonData)];
+
+  const fragmentData = (await Promise.all(fragments.map(async (fragName) => {
+    const paramName = fragName.replace(/^helix-/, '');
+    const url = `${formURL}?sheet=${paramName}`;
+    return [fragName, await fetchForm(url, getId)];
+  }))).reduce((finalData, [fragmentName, fragment]) => ({
+    [fragmentName]: fragment.form,
+    ...fragment.fragments,
+    ...finalData,
+  }), {});
+
+  return {
+    form: jsonData,
+    fragments: fragmentData,
+  };
+}
+
+function mergeFormWithFragments(form, fragments) {
+  return [...form, ...(Object.values(fragments).flat())];
 }
 
 async function createForm(formURL) {
   const { pathname } = new URL(formURL);
-  const data = await fetchForm(pathname, idGenerator());
+  const { form, fragments } = await fetchForm(formURL, idGenerator());
+  const data = mergeFormWithFragments(form, fragments);
   const formTag = document.createElement('form');
   const fields = data.map((fd) => renderField(fd));
   formTag.append(...fields);
