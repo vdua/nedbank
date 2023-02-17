@@ -1,11 +1,38 @@
+function setPlaceholder(element, fd) {
+  if (fd.Placeholder) {
+    element.setAttribute('placeholder', fd.Placeholder);
+  }
+}
+
+function setNumberConstraints(element, fd) {
+  if (fd.Max) {
+    element.max = fd.Max;
+  }
+  if (fd.Min) {
+    element.min = fd.Min;
+  }
+  if (fd.Step) {
+    element.step = fd.Step || 1;
+  }
+}
 function createLabel(fd) {
   const label = document.createElement('label');
-  label.setAttribute('for', fd.Field);
-  label.textContent = fd.Label;
-  if (fd.Mandatory === 'x') {
-    label.classList.add('required');
+  label.setAttribute('for', fd.Id);
+  label.className = 'field-label';
+  label.textContent = fd.Label || '';
+  if (fd.Tooltip) {
+    label.title = fd.Tooltip;
   }
   return label;
+}
+
+function createHelpText(fd) {
+  const div = document.createElement('div');
+  div.className = 'field-description';
+  div.setAttribute('aria-live', 'polite');
+  div.innerText = fd.Description;
+  div.id = `${fd.Id}-description`;
+  return div;
 }
 
 function createFieldWrapper(fd, tagName = 'div') {
@@ -24,6 +51,8 @@ function createButton(fd) {
   const button = document.createElement('button');
   button.textContent = fd.Label;
   button.classList.add('button');
+  button.type = fd.Type;
+  button.id = fd.Id;
   wrapper.replaceChildren(button);
   return wrapper;
 }
@@ -31,24 +60,18 @@ function createButton(fd) {
 function createInput(fd) {
   const input = document.createElement('input');
   input.type = fd.Type;
-  input.id = fd.Field;
-  input.setAttribute('placeholder', fd.Placeholder);
-  if (fd.Mandatory === 'x') {
+  input.id = fd.Id;
+  if (fd.Mandatory === 'TRUE') {
     input.setAttribute('required', 'required');
   }
+  input.name = fd.Name;
+  setPlaceholder(input, fd);
+  setNumberConstraints(input, fd);
+  if (fd.Description) {
+    input.setAttribute('aria-describedby', `${fd.Id}-description`);
+  }
+  input.value = fd.Value;
   return input;
-}
-
-function createTextArea(fd) {
-  const wrapper = createFieldWrapper(fd);
-  const input = document.createElement('textarea');
-  input.id = fd.Field;
-  input.setAttribute('placeholder', fd.Placeholder);
-  if (fd.Mandatory === 'x') {
-    input.setAttribute('required', 'required');
-  }
-  wrapper.append(input);
-  return wrapper;
 }
 
 function createRadio(fd) {
@@ -57,11 +80,40 @@ function createRadio(fd) {
   return wrapper;
 }
 
+function createOutput(fd) {
+  const wrapper = createFieldWrapper(fd);
+  const output = document.createElement('output');
+  output.name = fd.Name;
+  output.innerText = fd.Value;
+  wrapper.append(output);
+  return wrapper;
+}
+
+function createHidden(fd) {
+  const element = document.createElement('input');
+  element.type = 'hidden';
+  element.id = fd.Id;
+  element.name = fd.Name;
+  element.value = fd.Value;
+  return element;
+}
+
+function idGenerator() {
+  const ids = {};
+  return (name) => {
+    ids[name] = ids[name] || 0;
+    const idSuffix = ids[name] ? `-${ids[name]}` : '';
+    ids[name] += 1;
+    return `${name}${idSuffix}`;
+  };
+}
+
 const fieldRenderers = {
   radio: createRadio,
   checkbox: createRadio,
-  submit: createButton,
-  'text-area': createTextArea,
+  button: createButton,
+  output: createOutput,
+  hidden: createHidden,
 };
 
 function renderField(fd) {
@@ -73,24 +125,30 @@ function renderField(fd) {
     field = createFieldWrapper(fd);
     field.append(createInput(fd));
   }
+  if (fd.Description) {
+    field.append(createHelpText(fd));
+  }
   return field;
 }
 
-async function fetchData(url) {
+async function fetchData(url, getId) {
   const resp = await fetch(url);
   const json = await resp.json();
-  return json;
+  return json.data.map((fd) => ({
+    ...fd,
+    Id: fd.Id || getId(fd.Name),
+  }));
 }
 
-async function fetchForm(pathname) {
+async function fetchForm(pathname, getId) {
   // get the main form
-  const jsonData = await fetchData(pathname);
-  return jsonData.data;
+  const jsonData = await fetchData(pathname, getId);
+  return jsonData;
 }
 
 async function createForm(formURL) {
   const { pathname } = new URL(formURL);
-  const data = await fetchForm(pathname);
+  const data = await fetchForm(pathname, idGenerator());
   const formTag = document.createElement('form');
   const fields = data.map((fd) => renderField(fd));
   formTag.append(...fields);
