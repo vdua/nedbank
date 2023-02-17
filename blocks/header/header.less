@@ -59,7 +59,6 @@ header {
 
 			p {
 				margin: 0;
-				padding: 0 80px;
 				display: flex;
 				align-items: center;
 			}
@@ -118,8 +117,8 @@ header {
 			height: var(--nav-height);
 
 			.nav-sections {
+				font-size: @font-size-small;
 				flex-grow: 1;
-
 				>ul {
 					>li.nav-drop {
 						position: relative;
@@ -214,6 +213,13 @@ header {
 				}
 			}
 
+			.nav-tools {
+				flex-grow: 1;
+				p {
+					flex-grow: 1;
+				}
+			}
+
 			.nav-drop {
 				&::after {
 					content: ' ';
@@ -238,6 +244,17 @@ header {
 					min-height: unset;
 				}
 			}
+		}
+	}
+}
+
+@media (@width_1441) {
+	header {
+		nav {
+			.nav-sections {
+				font-size: @font-size-medium;
+			}
+
 		}
 	}
 }
