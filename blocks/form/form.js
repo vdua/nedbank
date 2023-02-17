@@ -190,7 +190,6 @@ export function getRules(fd) {
   const entries = [
     ['Value', fd?.['Value Expression']],
     ['Hidden', fd?.['Hidden Expression']],
-    ['Label', fd?.['Label Expression']],
   ];
   return entries.filter((e) => e[1]).map(([prop, expression]) => ({
     prop,
@@ -243,7 +242,7 @@ async function createForm(formURL) {
   const formTag = document.createElement('form');
   const fields = data.map((fd) => renderField(fd));
   formTag.append(...fields);
-  await decorateForm(formTag);
+  await decorateForm(formTag, { form, fragments });
   // eslint-disable-next-line prefer-destructuring
   formTag.dataset.action = pathname.split('.json')[0];
   return formTag;

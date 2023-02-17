@@ -2,6 +2,7 @@ import decorateRange from './range.js';
 import decorateTooltips from './tooltip.js';
 import decorateLayout from './layout.js';
 import decorateFieldsets from './fieldsets.js';
+import { applyRuleEngine } from '../rules/index.js';
 
 function getSelector(fieldName) {
   let selector = fieldName;
@@ -21,15 +22,17 @@ const fieldsets = {
   insuranceOptionFieldSet: ['insuranceOption'].map(getSelector),
 };
 
-export default async function decorateRepaymentsCalculator(form) {
+export default async function decorateRepaymentsCalculator(formTag, { form, fragments }) {
   /** add custom tooltips */
-  decorateTooltips(form);
+  decorateTooltips(formTag);
 
-  form.querySelectorAll('.form-range-wrapper').forEach((block) => {
+  formTag.querySelectorAll('.form-range-wrapper').forEach((block) => {
     decorateRange(block);
   });
 
-  decorateFieldsets(fieldsets, form);
+  decorateFieldsets(fieldsets, formTag);
 
-  decorateLayout(form, groups);
+  decorateLayout(formTag, groups);
+
+  applyRuleEngine(form, fragments, formTag);
 }
