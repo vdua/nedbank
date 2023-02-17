@@ -1,3 +1,5 @@
+import formatFns from './formatting.js';
+
 function setPlaceholder(element, fd) {
   if (fd.Placeholder) {
     element.setAttribute('placeholder', fd.Placeholder);
@@ -84,7 +86,12 @@ function createOutput(fd) {
   const wrapper = createFieldWrapper(fd);
   const output = document.createElement('output');
   output.name = fd.Name;
-  output.innerText = fd.Value;
+  const displayFormat = fd['Display Format'];
+  if (displayFormat) {
+    output.dataset.displayFormat = displayFormat;
+  }
+  const formatFn = formatFns[displayFormat] || formatFns.identity;
+  output.innerText = formatFn(fd.Value);
   wrapper.append(output);
   return wrapper;
 }
