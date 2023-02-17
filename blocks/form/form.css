@@ -127,7 +127,7 @@ input[type="radio"]:checked::after {
   align-items: center;
   border: 2px solid #78be20;
   margin-bottom: 15px;
-  padding: calc(2px * 3) 12px;
+  padding: 0 12px;
   font-size: 16px;
   line-height: 24px;
   font-family: "Open Sans Semibold";
