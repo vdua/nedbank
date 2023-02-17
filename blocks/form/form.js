@@ -1,5 +1,6 @@
 import formatFns from './formatting.js';
-import decorateForm from './decorators/index.js';
+// todo - read this from form id
+import decorateForm from './decorators/repayments-calculator.js';
 
 function setPlaceholder(element, fd) {
   if (fd.Placeholder) {
@@ -18,15 +19,21 @@ function setNumberConstraints(element, fd) {
     element.step = fd.Step || 1;
   }
 }
-function createLabel(fd) {
-  const label = document.createElement('label');
-  label.setAttribute('for', fd.Id);
+function createLabel(fd, tagName = 'label') {
+  const label = document.createElement(tagName);
+  if (tagName === 'label') {
+    label.setAttribute('for', fd.Id);
+  }
   label.className = 'field-label';
   label.textContent = fd.Label || '';
   if (fd.Tooltip) {
     label.title = fd.Tooltip;
   }
   return label;
+}
+
+function createLegend(fd) {
+  return createLabel(fd, 'legend');
 }
 
 function createHelpText(fd) {
@@ -127,6 +134,13 @@ function createHidden(fd) {
   return element;
 }
 
+function createFieldset(fd) {
+  const wrapper = createFieldWrapper(fd, 'fieldset');
+  wrapper.name = fd.Name;
+  wrapper.replaceChildren(createLegend(fd));
+  return wrapper;
+}
+
 function idGenerator() {
   const ids = {};
   return (name) => {
@@ -144,6 +158,7 @@ const fieldRenderers = {
   output: createOutput,
   hidden: createHidden,
   currency: createCurrency,
+  fieldset: createFieldset,
 };
 
 function renderField(fd) {

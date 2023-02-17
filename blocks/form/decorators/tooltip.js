@@ -41,7 +41,7 @@ function showTooltip(target, title) {
   tooltip.dataset.hidden = false;
 }
 
-export default function createQuestionMark(title) {
+function createQuestionMark(title) {
   const button = document.createElement('button');
   button.dataset.text = title;
   button.setAttribute('aria-label', title);
@@ -61,4 +61,11 @@ export default function createQuestionMark(title) {
   });
 
   return button;
+}
+
+export default function decorateTooltips(form) {
+  form.querySelectorAll('.field-label[title]').forEach((label) => {
+    label.append(createQuestionMark(label.title));
+    label.removeAttribute('title');
+  });
 }
