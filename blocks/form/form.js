@@ -1,4 +1,5 @@
 import formatFns from './formatting.js';
+import decorateForm from './decorators/index.js';
 
 function setPlaceholder(element, fd) {
   if (fd.Placeholder) {
@@ -62,6 +63,10 @@ function createButton(fd) {
 function createInput(fd) {
   const input = document.createElement('input');
   input.type = fd.Type;
+  const displayFormat = fd['Display Format'];
+  if (displayFormat) {
+    input.dataset.displayFormat = displayFormat;
+  }
   input.id = fd.Id;
   if (fd.Mandatory === 'TRUE') {
     input.setAttribute('required', 'required');
@@ -96,6 +101,23 @@ function createOutput(fd) {
   return wrapper;
 }
 
+const currencySymbol = 'R';
+function createCurrency(fd) {
+  const wrapper = createFieldWrapper(fd);
+  const widgetWrapper = document.createElement('div');
+  widgetWrapper.className = 'currency-input-wrapper';
+  const currencyEl = document.createElement('div');
+  currencyEl.className = 'currency-symbol';
+  currencyEl.innerText = currencySymbol; // todo :read from css
+  widgetWrapper.append(currencyEl);
+  widgetWrapper.append(createInput({
+    ...fd,
+    Type: 'number',
+  }));
+  wrapper.append(widgetWrapper);
+  return wrapper;
+}
+
 function createHidden(fd) {
   const element = document.createElement('input');
   element.type = 'hidden';
@@ -121,6 +143,7 @@ const fieldRenderers = {
   button: createButton,
   output: createOutput,
   hidden: createHidden,
+  currency: createCurrency,
 };
 
 function renderField(fd) {
@@ -159,6 +182,7 @@ async function createForm(formURL) {
   const formTag = document.createElement('form');
   const fields = data.map((fd) => renderField(fd));
   formTag.append(...fields);
+  await decorateForm(formTag);
   // eslint-disable-next-line prefer-destructuring
   formTag.dataset.action = pathname.split('.json')[0];
   return formTag;
