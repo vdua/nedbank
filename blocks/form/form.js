@@ -98,6 +98,7 @@ function createOutput(fd) {
   const wrapper = createFieldWrapper(fd);
   const output = document.createElement('output');
   output.name = fd.Name;
+  output.id = fd.Id;
   const displayFormat = fd['Display Format'];
   if (displayFormat) {
     output.dataset.displayFormat = displayFormat;

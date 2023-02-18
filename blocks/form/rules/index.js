@@ -12,39 +12,40 @@ export function getRules(fd) {
 
 function extractRules(data) {
   return data
-    .reduce(({ fieldNameMap, rules }, fd, index) => {
+    .reduce(({ fieldIdMap, rules }, fd, index) => {
       const currentRules = getRules(fd);
       return {
-        fieldNameMap: {
-          ...fieldNameMap,
-          [index + 2]: fd.Name,
+        fieldIdMap: {
+          ...fieldIdMap,
+          [index + 2]: fd.Id,
         },
-        rules: currentRules.length ? rules.concat([[fd.Name, currentRules]]) : rules,
+        rules: currentRules.length ? rules.concat([[fd.Id, currentRules]]) : rules,
       };
-    }, { fieldNameMap: {}, rules: [] });
+    }, { fieldIdMap: {}, rules: [] });
 }
 
 export async function applyRuleEngine(form, fragments, formTag) {
   try {
     const RuleEngine = (await import('./RuleEngine.js')).default;
     const fragmentData = Object.entries(fragments).reduce((finalData, [fragmentName, data]) => {
-      const { fieldNameMap, rules: fragmentRules } = extractRules(data);
-      finalData.fieldNameMap[fragmentName] = fieldNameMap;
+      const { fieldIdMap, rules: fragmentRules } = extractRules(data);
+      finalData.fieldIdMap[fragmentName] = fieldIdMap;
       finalData.rules[fragmentName] = fragmentRules;
       return finalData;
-    }, { fieldNameMap: {}, rules: {} });
+    }, { fieldIdMap: {}, rules: {} });
 
     const formData = extractRules(form);
-    const fieldNameMap = {
-      'helix-default': formData.fieldNameMap,
-      ...fragmentData.fieldNameMap,
+    const fieldIdMap = {
+      'helix-default': formData.fieldIdMap,
+      ...fragmentData.fieldIdMap,
     };
     const rules = {
       'helix-default': formData.rules,
       ...fragmentData.rules,
     };
 
-    new RuleEngine(rules, fieldNameMap, formTag).enable();
+    const ruleEngine = new RuleEngine(rules, fieldIdMap, formTag);
+    ruleEngine.enable();
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('unable to apply rules ', e);
