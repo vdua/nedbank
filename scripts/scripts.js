@@ -324,7 +324,8 @@ export function decorateSections($main) {
           styles.forEach((style) => section.classList.add(style));
         } else section.dataset[key] = meta[key];
       });
-      sectionMeta.remove();
+
+      sectionMeta.parentNode.remove();
     }
   });
 }

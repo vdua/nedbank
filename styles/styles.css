@@ -515,7 +515,7 @@ main .home-banner.section p {
   main .section.switchcard > .cards-wrapper > .cards.block > ul > li {
     flex-basis: calc(calc(100% - 35px)/2);
   }
-  main .section.switchcard > div:nth-last-child(2) {
+  main .section.switchcard > div:nth-last-child(1) {
     grid-area: d;
   }
   main .section.switchcard > .text-wrapper,
