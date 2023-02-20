@@ -35,6 +35,7 @@
   --nav-height: 64px;
   --banner-height: 100px;
   --section-left-right-padding: 105px;
+  scroll-behavior: smooth;
 }
 :root .light {
   --background-color: #ffffff;
