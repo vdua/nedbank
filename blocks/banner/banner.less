@@ -1,11 +1,15 @@
 @import (reference) "./banner_variables.less";
 
 main {
+	.banner-placeholder {
+		padding-right: 21px;
+	}
 	.banner {
-		display: flex;
 		align-items: center;
 
 		p {
+			display: grid;
+			grid-template-columns: 1fr 0.3fr 1fr 1fr 1fr 2fr;
 			margin: unset;
 			font-size: 16px;
 			line-height: 24px;
@@ -19,6 +23,14 @@ main {
 				line-height: 24px;
 				color: @color_2;
 				font-family: @font_family_2;
+			}
+
+			.icon-close {
+				letter-spacing: 75em;
+				height: 14px;
+				width: 14px;
+				cursor: pointer;
+				grid-column-start: 7;
 			}
 		}
 	}

@@ -1,8 +1,12 @@
+main .banner-placeholder {
+  padding-right: 21px;
+}
 main .banner {
-  display: flex;
   align-items: center;
 }
 main .banner p {
+  display: grid;
+  grid-template-columns: 1fr 0.3fr 1fr 1fr 1fr 2fr;
   margin: unset;
   font-size: 16px;
   line-height: 24px;
@@ -16,4 +20,11 @@ main .banner p > a {
   line-height: 24px;
   color: #008533;
   font-family: "Open Sans Semibold";
+}
+main .banner p .icon-close {
+  letter-spacing: 75em;
+  height: 14px;
+  width: 14px;
+  cursor: pointer;
+  grid-column-start: 7;
 }

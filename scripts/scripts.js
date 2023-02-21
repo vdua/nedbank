@@ -709,6 +709,9 @@ function loadFooter(footer) {
 function buildBannerBlock(main) {
   const placeholder = document.createElement('div');
   placeholder.classList.add('banner-placeholder');
+  if(getCookieValue('oldSitePopUpCookies')) {
+    placeholder.style.display = 'none';
+  }
   main.prepend(placeholder);
   fetch(`${window.hlx.codeBasePath}${getRootPath()}/banner.plain.html`).then((resp) => {
     if (resp.status === 200) {
@@ -805,4 +808,18 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
+}
+
+/**
+ * 
+ * retrieve cookie by name
+ * @returns cookie value
+ */
+
+function getCookieValue(name) {
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  if (match) {
+    return match[2];
+  }
+  return null;
 }
