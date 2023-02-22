@@ -1,12 +1,20 @@
 main .banner-placeholder {
-  padding-right: 21px;
+  padding-right: 35px;
+}
+main .appear {
+  display: flex !important;
 }
 main .banner {
   align-items: center;
+  width: 100%;
+}
+main .banner div {
+  width: 100%;
+}
+main .banner div div {
+  width: 100%;
 }
 main .banner p {
-  display: grid;
-  grid-template-columns: 1fr 0.3fr 1fr 1fr 1fr 2fr;
   margin: unset;
   font-size: 16px;
   line-height: 24px;
@@ -21,10 +29,9 @@ main .banner p > a {
   color: #008533;
   font-family: "Open Sans Semibold";
 }
-main .banner p .icon-close {
-  letter-spacing: 75em;
+main .banner p > span:last-child {
+  float: right;
   height: 14px;
   width: 14px;
   cursor: pointer;
-  grid-column-start: 7;
 }
