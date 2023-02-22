@@ -1,17 +1,15 @@
 main .banner-placeholder {
   padding-right: 35px;
-}
-main .banner-placeholder:not(.appear) {
   display: none;
+}
+main .banner-placeholder.appear {
+  display: flex;
 }
 main .banner {
   align-items: center;
   width: 100%;
 }
 main .banner div {
-  width: 100%;
-}
-main .banner div div {
   width: 100%;
 }
 main .banner p {

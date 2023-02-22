@@ -3,8 +3,9 @@
 main {
 	.banner-placeholder {
 		padding-right: 35px;
-		&:not(.appear) {
-			display: none;
+		display: none;
+		&.appear {
+			display: flex;
 		}
 	}
 	.banner {
@@ -13,9 +14,6 @@ main {
 
 		div {
 			width: 100%;
-			div {
-				width: 100%;
-			}
 		}
 		p {
 			margin: unset;
