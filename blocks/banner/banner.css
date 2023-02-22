@@ -31,7 +31,5 @@ main .banner p > a {
 }
 main .banner p > span:last-child {
   float: right;
-  height: 14px;
-  width: 14px;
   cursor: pointer;
 }
