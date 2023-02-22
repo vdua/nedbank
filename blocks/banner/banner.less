@@ -3,9 +3,9 @@
 main {
 	.banner-placeholder {
 		padding-right: 35px;
-	}
-	.appear {
-		display: flex !important;
+		&:not(.appear) {
+			display: none;
+		}
 	}
 	.banner {
 		align-items: center;

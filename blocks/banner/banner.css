@@ -1,8 +1,8 @@
 main .banner-placeholder {
   padding-right: 35px;
 }
-main .appear {
-  display: flex !important;
+main .banner-placeholder:not(.appear) {
+  display: none;
 }
 main .banner {
   align-items: center;

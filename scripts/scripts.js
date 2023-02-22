@@ -724,7 +724,6 @@ function loadFooter(footer) {
 function buildBannerBlock(main) {
   const placeholder = document.createElement('div');
   placeholder.classList.add('banner-placeholder');
-  placeholder.style.display = 'none';
   if (!getCookieValue('oldSitePopUpCookies')) {
     placeholder.classList.add('appear');
   }
