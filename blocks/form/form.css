@@ -33,9 +33,35 @@ fieldset .form-radio-wrapper label,
 fieldset .form-checkbox-wrapper label {
   margin-bottom: 12px;
 }
+fieldset[repeatable] button:not(.field-tooltip-icon) {
+  margin: unset;
+  padding: unset;
+  text-align: left;
+  background-color: unset;
+  color: unset;
+  display: inline-flex;
+  width: fit-content;
+  height: fit-content;
+  column-gap: 16px;
+  align-items: flex-start;
+}
+fieldset[repeatable] legend {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: baseline;
+}
+fieldset[repeatable] legend .fieldset-Remove::after {
+  content: url(/icons/minus.svg);
+}
+fieldset[repeatable] .fieldset-Add::before {
+  content: url(/icons/plus.svg);
+}
+fieldset[repeatable][maxxed] .fieldset-Add {
+  display: none;
+}
 input,
-textarea,
-select {
+textarea {
   display: block;
   font-size: 16px;
   line-height: 24px;
@@ -50,8 +76,7 @@ select {
   margin-bottom: 16px;
 }
 input:focus,
-textarea:focus,
-select:focus {
+textarea:focus {
   border-color: #006341;
 }
 output {
@@ -386,6 +411,28 @@ input[type="range"]:focus::-webkit-slider-thumb {
 }
 .repayments-calculator-section .Input .form-radio-wrapper {
   margin-bottom: 0;
+}
+.repayments-calculator-section .Input .fieldset-Add.loanFieldSet-Add::after {
+  content: 'Add another loan';
+}
+.repayments-calculator-section .Input .fieldset-Add.extraCashFieldSet-Add::after {
+  content: 'Get extra cash';
+}
+.repayments-calculator-section .Input .fieldset-Add span {
+  display: none;
+}
+.repayments-calculator-section .Input .form-extraCashDetails legend {
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+.repayments-calculator-section .Input .form-extraCashDetails p {
+  margin: unset;
+  padding: unset;
+  color: #494f50;
+  font-family: 'Open Sans Regular', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  padding-bottom: 24px;
 }
 .repayments-calculator-section .Output {
   margin-bottom: 24px;

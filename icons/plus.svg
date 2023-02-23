@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>E6776200-BB07-4F40-B29A-C31D0A7D2ABD</title>
+    <g id="plus" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="plus-1" transform="translate(-18.000000, -747.000000)">
+            <g id="thin-0151_plus_add_new" transform="translate(18.000000, 747.000000)">
+                <polygon id="Rectangle-path" points="0 2.72702913e-15 21.8273684 2.72702913e-15 21.8273684 21.8273684 0 21.8273684"></polygon>
+                <g id="Group" transform="translate(0.519699, 0.519699)">
+                    <circle id="Oval" stroke="#78BE20" fill="#78BE20" cx="10.9136842" cy="10.9136842" r="10.9136842"></circle>
+                    <g id="Group-8" transform="translate(4.547368, 4.547368)" stroke="#FFFFFF" stroke-width="1.5">
+                        <line x1="6.63157895" y1="0" x2="6.63157895" y2="12.7326316" id="Shape"></line>
+                        <line x1="0" y1="6.63157895" x2="12.7326316" y2="6.63157895" id="Shape"></line>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

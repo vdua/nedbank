@@ -36,11 +36,49 @@ fieldset {
       margin-bottom: @spacing-04;
     }
   }
+
+  &[repeatable] {
+    button:not(.field-tooltip-icon) {
+      .unset();
+      text-align: left;
+      background-color: unset;
+      color: unset;
+      display: inline-flex;
+      width: fit-content;
+      height: fit-content;
+      column-gap: 16px;
+      align-items: flex-start;
+    }
+
+    legend {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: baseline;
+
+      .fieldset-Remove {
+        &::after {
+          content: @minus-icon;
+        }
+      }
+    }
+
+    .fieldset-Add {
+      &::before {
+        content: @plus-icon;
+      }
+    }
+
+    &[maxxed] {
+      .fieldset-Add {
+        display: none;
+      }
+    }
+  }
 }
 
 input,
-textarea,
-select {
+textarea {
   display: block;
   font-size: @font-size-base;
   line-height: @font-lineheight-base;
@@ -446,6 +484,36 @@ input[type="range"] {
 
     .form-radio-wrapper {
       margin-bottom: 0;
+    }
+
+    .fieldset-Add {
+      &.loanFieldSet-Add::after {
+        content: 'Add another loan'; 
+      }
+
+      &.extraCashFieldSet-Add::after {
+        content: 'Get extra cash'; 
+      }
+
+      span {
+        display: none;
+      }
+    }
+
+    .form-extraCashDetails {
+      legend {
+        font-family: @font-family-primary;
+        font-weight: @font-weight-bold;
+      }
+
+      p {
+        .unset();
+        color: @field-description-color;
+        font-family: @font-family-secondary;
+        font-size: @font-paragraph-small;
+        line-height: @font-lineheight-small;
+        padding-bottom: 24px;
+      }
     }
   }
 
