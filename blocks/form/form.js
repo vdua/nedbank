@@ -36,7 +36,6 @@ async function submitForm(form) {
   const payload = constructPayload(form);
   const resp = await fetch(form.dataset.action, {
     method: 'POST',
-    cache: 'no-cache',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -46,22 +45,20 @@ async function submitForm(form) {
   return payload;
 }
 
+async function handleSubmit(form, redirectTo) {
+  if (form.getAttribute('data-submitting') !== 'true') {
+    form.setAttribute('data-submitting', 'true');
+    await submitForm(form);
+    const redirectLocation = redirectTo || form.getAttribute('data-redirect');
+    window.location.href = redirectLocation;
+  }
+}
+
 function createButton(fd) {
   const button = document.createElement('button');
   button.textContent = fd.Label;
   button.classList.add('button');
-  if (fd.Type === 'submit') {
-    button.addEventListener('click', async (event) => {
-      const form = button.closest('form');
-      if (form.checkValidity()) {
-        event.preventDefault();
-        button.setAttribute('disabled', '');
-        await submitForm(form);
-        const redirectTo = fd.Extra;
-        window.location.href = redirectTo;
-      }
-    });
-  }
+  button.setAttribute('data-redirect', fd.Extra);
   return button;
 }
 
@@ -129,8 +126,7 @@ async function createForm(formURL) {
   json.data.forEach((fd) => {
     fd.Type = fd.Type || 'text';
     const fieldWrapper = document.createElement('div');
-    const style = fd.Style ? ` form-${fd.Style}` : '';
-    const fieldId = `form-${fd.Type}-wrapper${style}`;
+    const fieldId = `form-${fd.Type}-wrapper`;
     fieldWrapper.className = fieldId;
     fieldWrapper.classList.add('field-wrapper');
     switch (fd.Type) {
@@ -151,6 +147,7 @@ async function createForm(formURL) {
         break;
       case 'submit':
         fieldWrapper.append(createButton(fd));
+        form.setAttribute('data-redirect', fd.Extra);
         break;
       default:
         fieldWrapper.append(createLabel(fd));
@@ -171,6 +168,20 @@ async function createForm(formURL) {
   form.addEventListener('change', () => applyRules(form, rules));
   applyRules(form, rules);
 
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const valid = form.checkValidity();
+    const isSubmitButton = (element) => {
+      const { tagName, type } = element;
+      return (tagName === 'BUTTON' || tagName === 'INPUT') && type === 'submit';
+    };
+    if (valid) {
+      if (isSubmitButton(e.submitter)) {
+        e.submitter.setAttribute('disabled', '');
+      }
+      handleSubmit(form, e.submitter.getAttribute('data-redirect'));
+    }
+  });
   return (form);
 }
 
