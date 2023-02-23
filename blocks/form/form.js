@@ -60,8 +60,8 @@ function createFieldWrapper(fd, tagName = 'div') {
   const style = fd.Style ? ` form-${fd.Style}` : '';
   const nameStyle = fd.Name ? ` form-${fd.Name}` : '';
   const fieldId = `form-${fd.Type}-wrapper${style}${nameStyle}`;
-  fieldWrapper.className = fieldId;
-  fieldWrapper.classList.add('field-wrapper');
+  fieldWrapper.className = `${fieldId} field-wrapper`;
+  if (fd.Hidden) fieldWrapper.dataset.hidden = fd.Hidden === 'true';
   fieldWrapper.append(createLabel(fd));
   return fieldWrapper;
 }
@@ -100,7 +100,9 @@ function createInput(fd) {
 
 function createRadio(fd) {
   const wrapper = createFieldWrapper(fd);
-  wrapper.insertAdjacentElement('afterbegin', createInput(fd));
+  const input = createInput(fd);
+  input.checked = fd.Selected === 'true';
+  wrapper.insertAdjacentElement('afterbegin', input);
   return wrapper;
 }
 

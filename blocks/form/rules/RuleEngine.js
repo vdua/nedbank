@@ -14,8 +14,8 @@ function constructPayload(form) {
   [...form.elements].forEach((fe) => {
     if (fe.type === 'checkbox' || fe.type === 'radio') {
       if (fe.checked) payload[fe.name] = coerceValue(fe.value);
-    } else if (fe.id) {
-      payload[fe.id] = coerceValue(fe.value);
+    } else {
+      payload[fe.name] = coerceValue(fe.value);
     }
   });
   return payload;
@@ -55,14 +55,15 @@ export default class RuleEngine {
       const el = stack.pop();
       arr[el] = index;
       index += 1;
-      if (this.dependencyTree[el].deps.Value) {
+      if (this.dependencyTree[el]?.deps.Value) {
         stack.push(...this.dependencyTree[el].deps.Value);
       }
       // eslint-disable-next-line no-loop-func
-      this.dependencyTree[el].deps.Hidden?.forEach((field) => {
+      this.dependencyTree[el]?.deps.Hidden?.forEach((field) => {
         arr[field] = index;
         index += 1;
       });
+      // @todo add label deps as well.
     } while (stack.length > 0);
     return Object.entries(arr).sort((a, b) => a[1] - b[1]).map((_) => _[0]).slice(1);
   }
@@ -73,7 +74,8 @@ export default class RuleEngine {
       this.data[fieldName] = coerceValue(value);
       const { displayFormat } = element.dataset;
       const formatFn = formatFns[displayFormat] || formatFns.identity;
-      element.value = formatFn(value);
+      element.value = ['range', 'number'].includes(element.type) ? value : formatFn(value);
+      element.dispatchEvent(new Event('input')); // no bubbling
     }
   }
 

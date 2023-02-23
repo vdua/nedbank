@@ -44,6 +44,21 @@ function addListeners(formTag) {
   formTag.addEventListener('form-fieldset-item:added', (event) => {
     decorateComponents(event.detail.item);
   });
+  if (formTag.name === 'loanConsolidate') { // @todo implement rules for repeatable using excel formulas
+    formTag.querySelectorAll('fieldset[repeatable]').forEach((element) => {
+      ['form-fieldset-item:added', 'form-fieldset-item:removed', 'input'].forEach((eventName) => {
+        element.addEventListener(eventName, () => {
+          const total = formTag.querySelector('input[name=totalLoanAmount]');
+          const deps = Array.from(formTag.querySelectorAll('[data-name=loanAmount], [data-name=extraCash]'));
+          const newValue = deps.reduce((a, c) => a + Number(c.value || 0), 0);
+          if (total.value !== newValue) {
+            total.value = newValue;
+            total.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        });
+      });
+    });
+  }
 }
 
 export default async function decorateForm(formTag, { form, fragments }) {
