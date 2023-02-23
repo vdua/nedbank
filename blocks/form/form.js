@@ -1,4 +1,13 @@
-import formatFns from './formatting.js';
+const formatFns = (async function imports() {
+  try {
+    const formatters = await import('./formatting.js');
+    return formatters.default;
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log('Formatting library not found. Formatting will not be supported');
+  }
+  return {};
+}());
 
 function constructPayload(form) {
   const payload = {};
@@ -215,22 +224,22 @@ async function createForm(formURL) {
   const data = await fetchForm(pathname);
   const form = document.createElement('form');
   const fields = data
-    .map((fd) => ({ fd, el: renderField(fd) }))
-    .forEach(({ fd, el }) => {
-      const input = el.querySelector('input,text-area,select');
-      if (fd.Mandatory && fd.Mandatory.toLowerCase() === 'true') {
-        input.setAttribute('required', 'required');
+    .map((fd) => ({ fd, el: renderField(fd) }));
+  fields.forEach(({ fd, el }) => {
+    const input = el.querySelector('input,text-area,select');
+    if (fd.Mandatory && fd.Mandatory.toLowerCase() === 'true') {
+      input.setAttribute('required', 'required');
+    }
+    if (input) {
+      input.id = fd.Id;
+      input.name = fd.Name;
+      input.value = fd.Value;
+      if (fd.Description) {
+        input.setAttribute('aria-describedby', `${fd.Id}-description`);
       }
-      if (input) {
-        input.id = fd.Id;
-        input.name = fd.Name;
-        input.value = fd.Value;
-        if (fd.Description) {
-          input.setAttribute('aria-describedby', `${fd.Id}-description`);
-        }
-      }
-    });
-  form.append([...fields.map((el) => el)]);
+    }
+  });
+  form.append(...fields.map(({ el }) => el));
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
   form.addEventListener('submit', (e) => {
