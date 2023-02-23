@@ -50,6 +50,21 @@ export function getRootPath() {
   }
   return '';
 }
+
+/**
+ *
+ * retrieve cookie by name
+ * @returns cookie value
+ */
+
+function getCookieValue(name) {
+  const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
+  if (match) {
+    return match[2];
+  }
+  return null;
+}
+
 /**
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
@@ -710,6 +725,9 @@ function loadFooter(footer) {
 function buildBannerBlock(main) {
   const placeholder = document.createElement('div');
   placeholder.classList.add('banner-placeholder');
+  if (!getCookieValue('oldSitePopUpCookies')) {
+    placeholder.classList.add('appear');
+  }
   main.prepend(placeholder);
   fetch(`${window.hlx.codeBasePath}${getRootPath()}/banner.plain.html`).then((resp) => {
     if (resp.status === 200) {

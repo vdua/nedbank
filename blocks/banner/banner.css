@@ -1,6 +1,16 @@
-main .banner {
+main .banner-placeholder {
+  padding-right: 35px;
+  display: none;
+}
+main .banner-placeholder.appear {
   display: flex;
+}
+main .banner {
   align-items: center;
+  width: 100%;
+}
+main .banner div {
+  width: 100%;
 }
 main .banner p {
   margin: unset;
@@ -16,4 +26,8 @@ main .banner p > a {
   line-height: 24px;
   color: #008533;
   font-family: "Open Sans Semibold";
+}
+main .banner p > span:last-child {
+  float: right;
+  cursor: pointer;
 }
