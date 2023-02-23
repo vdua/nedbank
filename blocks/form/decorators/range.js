@@ -17,31 +17,33 @@ async function updateBubble(input, element) {
   bubble.innerText = formatFn(value);
 }
 
-export default function decorateRange(block) {
-  const input = block.querySelector('input');
-  const clonedInput = input.cloneNode();
-  const div = document.createElement('div');
-  div.className = 'range-widget-wrapper';
+export default function decorateRange(formTag) {
+  formTag.querySelectorAll('.form-range-wrapper').forEach((block) => {
+    const input = block.querySelector('input');
+    const clonedInput = input.cloneNode();
+    const div = document.createElement('div');
+    div.className = 'range-widget-wrapper';
 
-  clonedInput.addEventListener('input', (e) => {
-    updateBubble(e.target, div);
+    clonedInput.addEventListener('input', (e) => {
+      updateBubble(e.target, div);
+    });
+    const format = clonedInput.dataset.displayFormat;
+    const max = clonedInput.max || 0;
+    const min = clonedInput.min || 0;
+    const hover = document.createElement('span');
+    hover.className = 'range-bubble';
+    const rangeMinEl = document.createElement('span');
+    rangeMinEl.className = 'range-min';
+    const rangeMaxEl = document.createElement('span');
+    rangeMaxEl.className = 'range-max';
+    div.appendChild(hover);
+    div.appendChild(clonedInput);
+    div.appendChild(rangeMinEl);
+    div.appendChild(rangeMaxEl);
+    const formatFn = formatFns[format] || formatFns.identity;
+    rangeMinEl.innerText = formatFn(min);
+    rangeMaxEl.innerText = formatFn(max);
+    updateBubble(input, div);
+    block.replaceChild(div, input);
   });
-  const format = clonedInput.dataset.displayFormat;
-  const max = clonedInput.max || 0;
-  const min = clonedInput.min || 0;
-  const hover = document.createElement('span');
-  hover.className = 'range-bubble';
-  const rangeMinEl = document.createElement('span');
-  rangeMinEl.className = 'range-min';
-  const rangeMaxEl = document.createElement('span');
-  rangeMaxEl.className = 'range-max';
-  div.appendChild(hover);
-  div.appendChild(clonedInput);
-  div.appendChild(rangeMinEl);
-  div.appendChild(rangeMaxEl);
-  const formatFn = formatFns[format] || formatFns.identity;
-  rangeMinEl.innerText = formatFn(min);
-  rangeMaxEl.innerText = formatFn(max);
-  updateBubble(input, div);
-  block.replaceChild(div, input);
 }

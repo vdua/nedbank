@@ -524,11 +524,23 @@ input[type="range"] {
     box-shadow: 0 25px 20px -15px rgb(0 0 0 / 10%);
     padding: @spacing-07 @spacing-08 @spacing-05 @spacing-08;
     display: grid;
-    grid-template-areas:
-      "emi emi"
-      "total total"
-      "rate explore"
-      "range range";
+
+    &.repayments-Output {
+      grid-template-areas:
+        "emi emi"
+        "total total"
+        "rate explore"
+        "range range";
+    }
+
+    &.loanConsolidate-Output {
+      grid-template-areas:
+        "total total"
+        "emi emi"
+        "saving saving"
+        "rate explore"
+        "range range";
+    }
 
     .field-wrapper {
       padding-bottom: @spacing-05;
@@ -603,6 +615,9 @@ input[type="range"] {
       grid-area: range;
     }
 
+    .form-saving {
+      grid-area: saving;
+    }
   }
 
 

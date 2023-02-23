@@ -441,7 +441,12 @@ input[type="range"]:focus::-webkit-slider-thumb {
   box-shadow: 0 25px 20px -15px rgba(0, 0, 0, 0.1);
   padding: 32px 40px 16px 40px;
   display: grid;
+}
+.repayments-calculator-section .Output.repayments-Output {
   grid-template-areas: "emi emi" "total total" "rate explore" "range range";
+}
+.repayments-calculator-section .Output.loanConsolidate-Output {
+  grid-template-areas: "total total" "emi emi" "saving saving" "rate explore" "range range";
 }
 .repayments-calculator-section .Output .field-wrapper {
   padding-bottom: 16px;
@@ -503,6 +508,9 @@ input[type="range"]:focus::-webkit-slider-thumb {
 }
 .repayments-calculator-section .Output .form-rate {
   grid-area: range;
+}
+.repayments-calculator-section .Output .form-saving {
+  grid-area: saving;
 }
 .repayments-calculator-section .buttons {
   display: flex;

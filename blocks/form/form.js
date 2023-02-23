@@ -1,6 +1,16 @@
 import formatFns from './formatting.js';
-// todo - read this from form id
-import decorateForm from './decorators/repayments-calculator.js';
+import decorateForm from './decorators/calculator.js'; // todo - read this from form id
+import { readBlockConfig } from '../../scripts/scripts.js';
+
+const getId = (function () {
+  const ids = {};
+  return (name) => {
+    ids[name] = ids[name] || 0;
+    const idSuffix = ids[name] ? `-${ids[name]}` : '';
+    ids[name] += 1;
+    return `${name}${idSuffix}`;
+  };
+}());
 
 function setPlaceholder(element, fd) {
   if (fd.Placeholder) {
@@ -145,16 +155,6 @@ function createFieldset(fd) {
   return wrapper;
 }
 
-function idGenerator() {
-  const ids = {};
-  return (name) => {
-    ids[name] = ids[name] || 0;
-    const idSuffix = ids[name] ? `-${ids[name]}` : '';
-    ids[name] += 1;
-    return `${name}${idSuffix}`;
-  };
-}
-
 function createSelect(fd) {
   const wrapper = createFieldWrapper(fd);
   const select = document.createElement('select');
@@ -180,6 +180,12 @@ function createParagraph(fd) {
   p.className = `form-paragraph${fd.Name ? ` form-${fd.Name}` : ''}`;
   p.textContent = fd.Value;
   return p;
+}
+
+function createFormTag(config) {
+  const form = document.createElement('form');
+  Object.entries(config).forEach(([n, v]) => form.setAttribute(n, v || ''));
+  return form;
 }
 
 const fieldRenderers = {
@@ -209,7 +215,7 @@ function renderField(fd) {
   return field;
 }
 
-async function fetchData(formURL, getId) {
+async function fetchData(formURL) {
   const { pathname, search } = new URL(formURL);
   const resp = await fetch(pathname + search);
   const json = await resp.json();
@@ -243,15 +249,15 @@ function extractFragments(data) {
     .flatMap((rules) => rules.map(getFragmentName).filter((x) => x)));
 }
 
-async function fetchForm(formURL, getId) {
+async function fetchForm(formURL) {
   const { origin, pathname } = new URL(formURL);
-  const jsonData = await fetchData(formURL, getId); // get the main form
+  const jsonData = await fetchData(formURL); // get the main form
   const fragments = [...extractFragments(jsonData)];
 
   const fragmentData = (await Promise.all(fragments.map(async (fragName) => {
     const paramName = fragName.replace(/^helix-/, '');
     const url = `${origin}${pathname}?sheet=${paramName}`;
-    return [fragName, await fetchForm(url, getId)];
+    return [fragName, await fetchForm(url)];
   }))).reduce((finalData, [fragmentName, fragment]) => ({
     [fragmentName]: fragment.form,
     ...fragment.fragments,
@@ -268,11 +274,11 @@ function mergeFormWithFragments(form, fragments) {
   return [...form, ...(Object.values(fragments).flat())];
 }
 
-async function createForm(formURL) {
+async function createForm(formURL, config) {
   const { pathname } = new URL(formURL);
-  const { form, fragments } = await fetchForm(formURL, idGenerator());
+  const { form, fragments } = await fetchForm(formURL);
   const data = mergeFormWithFragments(form, fragments);
-  const formTag = document.createElement('form');
+  const formTag = createFormTag(config);
   const fields = data.map((fd) => renderField(fd));
   formTag.append(...fields);
   await decorateForm(formTag, { form, fragments });
@@ -282,8 +288,10 @@ async function createForm(formURL) {
 }
 
 export default async function decorate(block) {
+  const config = readBlockConfig(block);
   const form = block.querySelector('a[href*=".json"]');
+  while (block.children.length > 1) block.removeChild(block.lastElementChild); // remove config
   if (form) {
-    form.replaceWith(await createForm(form.href));
+    block.firstElementChild.replaceWith(await createForm(form.href, config));
   }
 }
