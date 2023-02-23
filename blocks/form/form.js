@@ -216,7 +216,7 @@ async function createForm(formURL) {
   const form = document.createElement('form');
   const fields = data
     .map((fd) => ({ fd, el: renderField(fd) }))
-    .map(({ fd, el }) => {
+    .forEach(({ fd, el }) => {
       const input = el.querySelector('input,text-area,select');
       if (fd.Mandatory && fd.Mandatory.toLowerCase() === 'true') {
         input.setAttribute('required', 'required');
@@ -229,9 +229,8 @@ async function createForm(formURL) {
           input.setAttribute('aria-describedby', `${fd.Id}-description`);
         }
       }
-      return el;
     });
-  form.append(...fields);
+  form.append([...fields.map((el) => el)]);
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
   form.addEventListener('submit', (e) => {
