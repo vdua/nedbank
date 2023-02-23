@@ -1,4 +1,4 @@
-const formatFns = (async function imports() {
+const formatFns = await (async function imports() {
   try {
     const formatters = await import('./formatting.js');
     return formatters.default;
@@ -168,7 +168,7 @@ function createHidden(fd) {
   return input;
 }
 
-const getId = (function () {
+const getId = (function getId() {
   const ids = {};
   return (name) => {
     ids[name] = ids[name] || 0;
