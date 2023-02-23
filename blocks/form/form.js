@@ -1,23 +1,11 @@
-function createSelect(fd) {
-  const select = document.createElement('select');
-  select.id = fd.Field;
-  if (fd.Placeholder) {
-    const ph = document.createElement('option');
-    ph.textContent = fd.Placeholder;
-    ph.setAttribute('selected', '');
-    ph.setAttribute('disabled', '');
-    select.append(ph);
-  }
-  fd.Options.split(',').forEach((o) => {
-    const option = document.createElement('option');
-    option.textContent = o.trim();
-    option.value = o.trim();
-    select.append(option);
-  });
+function createLabel(fd) {
+  const label = document.createElement('label');
+  label.setAttribute('for', fd.Field);
+  label.textContent = fd.Label;
   if (fd.Mandatory === 'x') {
-    select.setAttribute('required', 'required');
+    label.classList.add('required');
   }
-  return select;
+  return label;
 }
 
 function constructPayload(form) {
@@ -45,6 +33,17 @@ async function submitForm(form) {
   return payload;
 }
 
+function createFieldWrapper(fd, tagName = 'div') {
+  const fieldWrapper = document.createElement(tagName);
+  const style = fd.Style ? ` form-${fd.Style}` : '';
+  const nameStyle = fd.Name ? ` form-${fd.Name}` : '';
+  const fieldId = `form-${fd.Type}-wrapper${style}${nameStyle}`;
+  fieldWrapper.className = fieldId;
+  fieldWrapper.classList.add('field-wrapper');
+  fieldWrapper.append(createLabel(fd));
+  return fieldWrapper;
+}
+
 async function handleSubmit(form, redirectTo) {
   if (form.getAttribute('data-submitting') !== 'true') {
     form.setAttribute('data-submitting', 'true');
@@ -55,17 +54,14 @@ async function handleSubmit(form, redirectTo) {
 }
 
 function createButton(fd) {
+  const wrapper = createFieldWrapper(fd);
   const button = document.createElement('button');
   button.textContent = fd.Label;
+  button.type = fd.Type;
   button.classList.add('button');
   button.setAttribute('data-redirect', fd.Extra);
-  return button;
-}
-
-function createHeading(fd) {
-  const heading = document.createElement('h3');
-  heading.textContent = fd.Label;
-  return heading;
+  wrapper.replaceChildren(button);
+  return wrapper;
 }
 
 function createInput(fd) {
@@ -80,94 +76,87 @@ function createInput(fd) {
 }
 
 function createTextArea(fd) {
+  const wrapper = createFieldWrapper(fd);
   const input = document.createElement('textarea');
   input.id = fd.Field;
   input.setAttribute('placeholder', fd.Placeholder);
   if (fd.Mandatory === 'x') {
     input.setAttribute('required', 'required');
   }
-  return input;
+  wrapper.append(input);
+  return wrapper;
 }
 
-function createLabel(fd) {
-  const label = document.createElement('label');
-  label.setAttribute('for', fd.Field);
-  label.textContent = fd.Label;
-  if (fd.Mandatory === 'x') {
-    label.classList.add('required');
+function createSelect(fd) {
+  const wrapper = createFieldWrapper(fd);
+  const select = document.createElement('select');
+  select.id = fd.Field;
+  if (fd.Placeholder) {
+    const ph = document.createElement('option');
+    ph.textContent = fd.Placeholder;
+    ph.setAttribute('selected', '');
+    ph.setAttribute('disabled', '');
+    select.append(ph);
   }
-  return label;
+  fd.Options.split(',').forEach((o) => {
+    const option = document.createElement('option');
+    option.textContent = o.trim();
+    option.value = o.trim();
+    select.append(option);
+  });
+  if (fd.Mandatory === 'x') {
+    select.classList.add('required');
+  }
+  wrapper.append(select);
+  return wrapper;
 }
 
-function applyRules(form, rules) {
-  const payload = constructPayload(form);
-  rules.forEach((field) => {
-    const { type, condition: { key, operator, value } } = field.rule;
-    if (type === 'visible') {
-      if (operator === 'eq') {
-        if (payload[key] === value) {
-          form.querySelector(`.${field.fieldId}`).classList.remove('hidden');
-        } else {
-          form.querySelector(`.${field.fieldId}`).classList.add('hidden');
-        }
-      }
-    }
-  });
+function createRadio(fd) {
+  const wrapper = createFieldWrapper(fd);
+  wrapper.insertAdjacentElement('afterbegin', createInput(fd));
+  return wrapper;
+}
+
+const fieldRenderers = {
+  radio: createRadio,
+  checkbox: createRadio,
+  submit: createButton,
+  'text-area': createTextArea,
+  select: createSelect,
+};
+
+function renderField(fd) {
+  const renderer = fieldRenderers[fd.Type];
+  let field;
+  if (typeof renderer === 'function') {
+    field = renderer(fd);
+  } else {
+    field = createFieldWrapper(fd);
+    field.append(createInput(fd));
+  }
+  return field;
+}
+
+async function fetchData(url) {
+  const resp = await fetch(url);
+  const json = await resp.json();
+  return json;
+}
+
+async function fetchForm(pathname) {
+  // get the main form
+  const jsonData = await fetchData(pathname);
+  return jsonData.data;
 }
 
 async function createForm(formURL) {
   const { pathname } = new URL(formURL);
-  const resp = await fetch(pathname);
-  const json = await resp.json();
+  const data = await fetchForm(pathname);
   const form = document.createElement('form');
-  const rules = [];
+  const fields = data.map((fd) => renderField(fd));
+  form.append(...fields);
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
-  json.data.forEach((fd) => {
-    fd.Type = fd.Type || 'text';
-    const fieldWrapper = document.createElement('div');
-    const fieldId = `form-${fd.Type}-wrapper`;
-    fieldWrapper.className = fieldId;
-    fieldWrapper.classList.add('field-wrapper');
-    switch (fd.Type) {
-      case 'select':
-        fieldWrapper.append(createLabel(fd));
-        fieldWrapper.append(createSelect(fd));
-        break;
-      case 'heading':
-        fieldWrapper.append(createHeading(fd));
-        break;
-      case 'checkbox':
-        fieldWrapper.append(createInput(fd));
-        fieldWrapper.append(createLabel(fd));
-        break;
-      case 'text-area':
-        fieldWrapper.append(createLabel(fd));
-        fieldWrapper.append(createTextArea(fd));
-        break;
-      case 'submit':
-        fieldWrapper.append(createButton(fd));
-        form.setAttribute('data-redirect', fd.Extra);
-        break;
-      default:
-        fieldWrapper.append(createLabel(fd));
-        fieldWrapper.append(createInput(fd));
-    }
-
-    if (fd.Rules) {
-      try {
-        rules.push({ fieldId, rule: JSON.parse(fd.Rules) });
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.warn(`Invalid Rule ${fd.Rules}: ${e}`);
-      }
-    }
-    form.append(fieldWrapper);
-  });
-
-  form.addEventListener('change', () => applyRules(form, rules));
-  applyRules(form, rules);
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const valid = form.checkValidity();
@@ -182,7 +171,7 @@ async function createForm(formURL) {
       handleSubmit(form, e.submitter.getAttribute('data-redirect'));
     }
   });
-  return (form);
+  return form;
 }
 
 export default async function decorate(block) {
