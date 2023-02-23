@@ -3,6 +3,7 @@ import decorateTooltips from './tooltip.js';
 import decorateLayout from './layout.js';
 import decorateFieldsets from './fieldsets.js';
 import { applyRuleEngine } from '../rules/index.js';
+import decorateSelect from './select.js';
 
 function getSelector(fieldName) {
   let selector = fieldName;
@@ -33,6 +34,8 @@ export default async function decorateRepaymentsCalculator(formTag, { form, frag
   decorateFieldsets(fieldsets, formTag);
 
   decorateLayout(formTag, groups);
+
+  decorateSelect(formTag);
 
   applyRuleEngine(form, fragments, formTag);
 }

@@ -151,6 +151,33 @@ function idGenerator() {
   };
 }
 
+function createSelect(fd) {
+  const wrapper = createFieldWrapper(fd);
+  const select = document.createElement('select');
+  select.name = fd.Name;
+  const options = fd.Options.split(',');
+  if (fd.Placeholder) {
+    options.unshift(fd.Placeholder);
+  }
+  options.forEach((o) => {
+    const option = document.createElement('option');
+    const optionText = o.trim();
+    option.textContent = optionText;
+    option.value = optionText;
+    option.selected = fd.Value.trim() === optionText;
+    select.append(option);
+  });
+  wrapper.append(select);
+  return wrapper;
+}
+
+function createParagraph(fd) {
+  const p = document.createElement('p');
+  p.className = `form-paragraph${fd.Name ? ` form-${fd.Name}` : ''}`;
+  p.textContent = fd.Value;
+  return p;
+}
+
 const fieldRenderers = {
   radio: createRadio,
   checkbox: createRadio,
@@ -159,6 +186,8 @@ const fieldRenderers = {
   hidden: createHidden,
   currency: createCurrency,
   fieldset: createFieldset,
+  select: createSelect,
+  paragraph: createParagraph,
 };
 
 function renderField(fd) {
@@ -211,13 +240,13 @@ function extractFragments(data) {
 }
 
 async function fetchForm(formURL, getId) {
-  // get the main form
-  const jsonData = await fetchData(formURL, getId);
+  const { origin, pathname } = new URL(formURL);
+  const jsonData = await fetchData(formURL, getId); // get the main form
   const fragments = [...extractFragments(jsonData)];
 
   const fragmentData = (await Promise.all(fragments.map(async (fragName) => {
     const paramName = fragName.replace(/^helix-/, '');
-    const url = `${formURL}?sheet=${paramName}`;
+    const url = `${origin}${pathname}?sheet=${paramName}`;
     return [fragName, await fetchForm(url, getId)];
   }))).reduce((finalData, [fragmentName, fragment]) => ({
     [fragmentName]: fragment.form,
@@ -249,7 +278,7 @@ async function createForm(formURL) {
 }
 
 export default async function decorate(block) {
-  const form = block.querySelector('a[href$=".json"]');
+  const form = block.querySelector('a[href*=".json"]');
   if (form) {
     form.replaceWith(await createForm(form.href));
   }
