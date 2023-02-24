@@ -21,7 +21,7 @@
   width: 100%;
 }
 .columns.backdrop {
-  background-color: #f9fbfb;
+  background-color: #F9FBFB;
 }
 .columns.backdrop h2 {
   font-size: 32px;
@@ -33,8 +33,10 @@
 }
 .columns.backdrop > div > div > p {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 28px;
+  font-family: 'Open Sans Regular', Arial, Helvetica, sans-serif;
+  color: #494f50;
 }
 .columns.lazy-river > div:nth-child(odd) {
   display: flex;
@@ -134,7 +136,7 @@
   }
   .columns.backdrop {
     margin-top: 100px;
-    background-color: #f9fbfb;
+    background-color: #F9FBFB;
   }
   .columns.backdrop h2 {
     font-size: 32px;
@@ -150,8 +152,10 @@
   }
   .columns.backdrop > div > div > p {
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 28px;
+    font-family: 'Open Sans Regular', Arial, Helvetica, sans-serif;
+    color: #494f50;
   }
 }
 @media (min-width: 900px) {

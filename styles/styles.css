@@ -75,13 +75,20 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500;
   line-height: 1.2;
   margin-top: 1em;
   margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
-  font-family: var(--heading-font-family);
   color: var(--heading-text-color);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
 }
 h1 {
   font-size: var(--heading-font-size-xxl);
@@ -125,7 +132,8 @@ pre {
   overflow: scroll;
 }
 strong {
-  font-family: var(--strong-font-family);
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+  font-weight: 700;
 }
 strong a.button:any-link {
   font-family: var(--strong-font-family);
@@ -405,7 +413,6 @@ main .home-banner.section .default-content-wrapper {
 }
 main .home-banner.section h1 {
   color: #17252e;
-  font-family: "Nedbank Sans Bold";
   font-size: 24px;
   line-height: 28px;
   margin: 0 0 16px 0;
