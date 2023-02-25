@@ -111,16 +111,19 @@ function createInput(fd) {
   return input;
 }
 
-function createTextArea(fd) {
+const withFieldWrapper = (element) => (fd) => {
   const wrapper = createFieldWrapper(fd);
+  wrapper.append(element(fd));
+  return wrapper;
+};
+
+const createTextArea = withFieldWrapper((fd) => {
   const input = document.createElement('textarea');
   setPlaceholder(input, fd);
-  wrapper.append(input);
-  return wrapper;
-}
+  return input;
+});
 
-function createSelect(fd) {
-  const wrapper = createFieldWrapper(fd);
+const createSelect = withFieldWrapper((fd) => {
   const select = document.createElement('select');
   if (fd.Placeholder) {
     const ph = document.createElement('option');
@@ -135,9 +138,8 @@ function createSelect(fd) {
     option.value = o.trim();
     select.append(option);
   });
-  wrapper.append(select);
-  return wrapper;
-}
+  return select;
+});
 
 function createRadio(fd) {
   const wrapper = createFieldWrapper(fd);
@@ -145,8 +147,7 @@ function createRadio(fd) {
   return wrapper;
 }
 
-function createOutput(fd) {
-  const wrapper = createFieldWrapper(fd);
+const createOutput = withFieldWrapper((fd) => {
   const output = document.createElement('output');
   output.name = fd.Name;
   const displayFormat = fd['Display Format'];
@@ -155,9 +156,8 @@ function createOutput(fd) {
   }
   const formatFn = formatFns[displayFormat] || ((x) => x);
   output.innerText = formatFn(fd.Value);
-  wrapper.append(output);
-  return wrapper;
-}
+  return output;
+});
 
 function createHidden(fd) {
   const input = document.createElement('input');
@@ -244,17 +244,8 @@ async function createForm(formURL) {
   form.dataset.action = pathname.split('.json')[0];
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const valid = form.checkValidity();
-    const isSubmitButton = (element) => {
-      const { tagName, type } = element;
-      return (tagName === 'BUTTON' || tagName === 'INPUT') && type === 'submit';
-    };
-    if (valid) {
-      if (isSubmitButton(e.submitter)) {
-        e.submitter.setAttribute('disabled', '');
-      }
-      handleSubmit(form, e.submitter.getAttribute('data-redirect'));
-    }
+    e.submitter.setAttribute('disabled', '');
+    handleSubmit(form, e.submitter.getAttribute('data-redirect'));
   });
   return form;
 }
