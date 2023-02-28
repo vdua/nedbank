@@ -100,29 +100,32 @@ export default class RuleEngine {
 
   enable() {
     this.formTag.addEventListener('input', (e) => {
-      const fieldName = e.target.name;
-      let fieldId = e.target.id;
-      if (e.target.type === 'radio') {
-        fieldId = e.target.name;
-      }
-      if (e.target.type === 'checkbox') {
-        this.data[fieldName] = e.target.checked ? coerceValue(e.target.value) : undefined;
-      } else {
-        this.data[fieldName] = coerceValue(e.target.value);
-      }
-      if (!this.rulesOrder[fieldId]) {
-        this.rulesOrder[fieldId] = this.listRules(fieldId);
-      }
-      const rules = this.rulesOrder[fieldId];
-      rules.forEach((fId) => {
-        this.formRules[fId]?.forEach((rule) => {
-          const newValue = this.formula.evaluate(rule.ast, this.data);
-          const handler = this[`update${rule.prop}`];
-          if (handler instanceof Function) {
-            handler.apply(this, [fId, newValue]);
-          }
+      const valid = e.target.checkValidity();
+      if (valid) {
+        const fieldName = e.target.name;
+        let fieldId = e.target.id;
+        if (e.target.type === 'radio') {
+          fieldId = e.target.name;
+        }
+        if (e.target.type === 'checkbox') {
+          this.data[fieldName] = e.target.checked ? coerceValue(e.target.value) : undefined;
+        } else {
+          this.data[fieldName] = coerceValue(e.target.value);
+        }
+        if (!this.rulesOrder[fieldId]) {
+          this.rulesOrder[fieldId] = this.listRules(fieldId);
+        }
+        const rules = this.rulesOrder[fieldId];
+        rules.forEach((fId) => {
+          this.formRules[fId]?.forEach((rule) => {
+            const newValue = this.formula.evaluate(rule.ast, this.data);
+            const handler = this[`update${rule.prop}`];
+            if (handler instanceof Function) {
+              handler.apply(this, [fId, newValue]);
+            }
+          });
         });
-      });
+      }
     });
   }
 }
