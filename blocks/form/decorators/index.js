@@ -1,8 +1,8 @@
 import decorateSummary from './summary.js';
 
 export default async function decorateForm(form, config) {
-  const { id } = form;
-  if (id.toLowerCase() === 'repayments-calculator') {
+  const id = form.id.toLowerCase();
+  if (id === 'repayments-calculator') {
     const decorateRepaymentsCalculator = (await import(`./${id}.js`)).default;
     decorateRepaymentsCalculator(form);
   }
