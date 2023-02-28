@@ -81,7 +81,7 @@ function createLegend(fd) {
   return createLabel(fd, 'legend');
 }
 
-function createHelpText(fd) {
+export function createHelpText(fd) {
   const div = document.createElement('div');
   div.className = 'field-description';
   div.setAttribute('aria-live', 'polite');
@@ -284,6 +284,7 @@ async function createForm(formURL, id) {
       input.value = fd.Value;
       if (fd.Description) {
         input.setAttribute('aria-describedby', `${fd.Id}-description`);
+        input.dataset.description = fd.Description;
       }
     }
   });

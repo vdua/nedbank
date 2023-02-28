@@ -3,6 +3,7 @@ import formatFns from '../formatting.js';
 import decorateTooltips from './tooltip.js';
 import decorateLayout from './layout.js';
 import decorateFieldsets from './fieldsets.js';
+import decorateValidations from './validations.js';
 
 function getSelector(fieldName) {
   let selector = fieldName;
@@ -60,4 +61,6 @@ export default async function decorateRepaymentsCalculator(form) {
   decorateFieldsets(fieldsets, form);
 
   decorateLayout(form, groups);
+
+  decorateValidations(form);
 }
