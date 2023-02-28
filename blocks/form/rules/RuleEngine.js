@@ -89,7 +89,7 @@ export default class RuleEngine {
     if (!(element instanceof NodeList)) {
       this.data[element.name] = coerceValue(value);
       const { displayFormat } = element.dataset;
-      const formatFn = formatFns[displayFormat] || formatFns.identity;
+      const formatFn = formatFns[displayFormat] || ((x) => x);
       element.value = formatFn(value);
     }
   }
@@ -111,7 +111,10 @@ export default class RuleEngine {
   enable() {
     this.formTag.addEventListener('input', (e) => {
       const fieldName = e.target.name;
-      const fieldId = e.target.id;
+      let fieldId = e.target.id;
+      if (e.target.type === 'radio') {
+        fieldId = e.target.name;
+      }
       if (e.target.type === 'checkbox') {
         this.data[fieldName] = e.target.checked ? coerceValue(e.target.value) : undefined;
       } else {
