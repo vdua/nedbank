@@ -1,5 +1,3 @@
-import decorateForm from './decorators/index.js';
-
 const formatFns = await (async function imports() {
   try {
     const formatters = await import('./formatting.js');
@@ -264,7 +262,13 @@ async function createForm(formURL) {
     }
   });
   form.append(...fields.map(({ el }) => el));
-  await decorateForm(form);
+  try {
+    const formDecorator = await import('./decorators/index.js');
+    formDecorator.default(form);
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log('no custom decorator found. default renditions will be used.');
+  }
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
   form.addEventListener('submit', (e) => {
