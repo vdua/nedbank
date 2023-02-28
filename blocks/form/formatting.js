@@ -34,5 +34,4 @@ export default {
   currency,
   year,
   '%': percent,
-  identity: (x) => x,
 };
