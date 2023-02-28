@@ -97,6 +97,9 @@ function createFieldWrapper(fd, tagName = 'div') {
   fieldWrapper.className = fieldId;
   fieldWrapper.classList.add('field-wrapper');
   fieldWrapper.append(createLabel(fd));
+  if (fd.Hidden?.toLowerCase() === 'true') {
+    fieldWrapper.dataset.hidden = 'true';
+  }
   return fieldWrapper;
 }
 
