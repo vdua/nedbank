@@ -110,9 +110,48 @@
   }
 }
 @media (min-width: 768px) {
-  .section.columns-container {
-    padding-left: 106px;
-    padding-right: 106px;
+  .section.narrow.columns-container {
+    padding-left: unset;
+    padding-right: unset;
+    margin-top: 100px;
+    margin-right: calc(21px + ((100% - 768px)/2));
+    margin-left: calc(113px + ((100% - 768px)/2));
+  }
+  .columns img {
+    height: auto;
+    min-width: 396px;
+    object-fit: cover;
+  }
+  .columns.columns-2-cols > div {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .columns.columns-2-cols > div > div {
+    flex-basis: calc(100%/2);
+    max-width: calc(100%/2);
+  }
+  .columns.backdrop h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .columns.backdrop > div > div:first-child {
+    top: -42px;
+    left: -90px;
+    position: relative;
+  }
+  .columns.backdrop > div > div:last-child {
+    margin: 16px;
+  }
+}
+@media (min-width: 1025px) {
+  .section.narrow.columns-container {
+    margin-right: 33px;
+    margin-left: 110px;
+  }
+  .columns img {
+    min-width: 526px;
   }
   .columns.columns-2-cols > div {
     display: flex;
@@ -135,8 +174,9 @@
     max-width: calc(100%/4);
   }
   .columns.backdrop {
-    margin-top: 100px;
     background-color: #F9FBFB;
+    max-width: 1197px;
+    max-height: 460px;
   }
   .columns.backdrop h2 {
     font-size: 32px;
@@ -144,11 +184,6 @@
   }
   .columns.backdrop > div {
     align-items: flex-start;
-  }
-  .columns.backdrop > div > div:first-child {
-    position: relative;
-    top: -70px;
-    left: -100px;
   }
   .columns.backdrop > div > div > p {
     margin: 0;
@@ -167,10 +202,35 @@
     flex: 1;
     margin: 16px;
   }
+  .columns.backdrop > div > div:first-child {
+    top: -58px;
+    left: -93px;
+  }
   .columns.lazy-river > div {
     flex-direction: unset;
   }
   .columns.lazy-river > div:nth-child(odd) {
     flex-direction: unset;
+  }
+}
+@media (min-width: 1440px) {
+  .section.narrow.columns-container {
+    margin-top: 170px;
+    margin-right: calc(33px + ((100% - 1440px)/2));
+    margin-left: calc(210px + ((100% - 1440px)/2));
+  }
+  .columns img {
+    min-width: 672px;
+  }
+  .columns.backdrop > div > div:first-child {
+    left: -193px;
+  }
+  .columns.backdrop > div > div:last-child {
+    left: -76px;
+    position: relative;
+  }
+  .columns.backdrop > div > div > p {
+    left: -12px;
+    position: relative;
   }
 }

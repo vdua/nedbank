@@ -147,7 +147,7 @@ header .nav-brand {
     right: 14px;
   }
 }
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
   header nav .nav-brand {
     margin-left: 90px;
   }

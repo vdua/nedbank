@@ -508,6 +508,7 @@ main .home-banner.section p {
     display: grid;
     grid-template-columns: 0.7fr 1fr 1fr 0.25fr 1fr 0.7fr;
     grid-template-areas: ". a a a a ." ". b b . d .";
+    margin-top: 104px;
   }
   main .section.switchcard > .text-wrapper {
     grid-area: a;
