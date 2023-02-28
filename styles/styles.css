@@ -75,7 +75,10 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.2;
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0;
   margin-top: 1em;
   margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
@@ -103,7 +106,7 @@ h4 {
   font-size: var(--heading-font-size-m);
 }
 h5 {
-  font-size: var(--heading-font-size-s);
+  font-size: 18px;
 }
 h6 {
   font-size: var(--heading-font-size-xs);
@@ -365,6 +368,7 @@ main .section.back-to-top a.button {
   padding: 0;
   background-color: transparent;
   border: none;
+  width: unset;
 }
 main .section.switchcard {
   background-color: var(--highlight-background-color);

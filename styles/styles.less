@@ -87,6 +87,7 @@ body {
 	color: @color_1;
 	background-color: @background_color_1;
 	display: none;
+
 	svg {
 		pointer-events: none;
 	}
@@ -106,7 +107,11 @@ h3,
 h4,
 h5,
 h6 {
-	line-height: 1.2;
+
+	font-family: @font-family-primary;
+	font-weight: @font-weight-bold;
+	line-height: @font-lineheight-medium;
+	letter-spacing: @letter-spacing-base;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 	scroll-margin: calc(var(--nav-height) + 1em);
@@ -140,7 +145,7 @@ h4 {
 }
 
 h5 {
-	font-size: var(--heading-font-size-s);
+	font-size: @font-size-medium;
 }
 
 h6 {
@@ -475,6 +480,7 @@ main {
 				padding: 0;
 				background-color: transparent;
 				border: none;
+				width: unset;
 			}
 		}
 
