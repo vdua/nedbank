@@ -4,6 +4,7 @@ import decorateTooltips from './tooltip.js';
 import decorateLayout from './layout.js';
 import decorateFieldsets from './fieldsets.js';
 import { applyRuleEngine } from '../rules/index.js';
+import decorateValidations from './validations.js';
 
 function getSelector(fieldName) {
   let selector = fieldName;
@@ -71,10 +72,7 @@ export default async function decorateRepaymentsCalculator(formTag, { form, frag
 
   decorateFieldsets(fieldsets, formTag);
 
+  decorateValidations(formTag);
   decorateLayout(formTag, groups);
-
-  const label = formTag.querySelector('#insuranceOption').nextElementSibling;
-  label.innerHTML = stripTags(label.innerText, '<a>');
-
   applyRuleEngine(form, fragments, formTag);
 }

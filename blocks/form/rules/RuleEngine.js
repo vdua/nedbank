@@ -2,6 +2,7 @@
 import Formula from './parser/Formula.js';
 import formatFns from '../formatting.js';
 import transformRule from './RuleCompiler.js';
+import { sanitizeHTML } from '../form.js';
 
 function coerceValue(val) {
   if (val === 'true') return true;
@@ -19,17 +20,6 @@ function constructPayload(form) {
     }
   });
   return payload;
-}
-
-function stripTags(input, allowd) {
-  const allowed = ((`${allowd || ''}`)
-    .toLowerCase()
-    .match(/<[a-z][a-z0-9]*>/g) || [])
-    .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
-  const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
-  const commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
-  return input.replace(commentsAndPhpTags, '')
-    .replace(tags, ($0, $1) => (allowed.indexOf(`<${$1.toLowerCase()}>`) > -1 ? $0 : ''));
 }
 
 export default class RuleEngine {
@@ -105,7 +95,7 @@ export default class RuleEngine {
   updateLabel(fieldId, value) {
     const element = document.getElementById(fieldId);
     const label = element.closest('.field-wrapper').querySelector('.field-label');
-    label.innerHTML = stripTags(value, '<a>');
+    label.innerHTML = sanitizeHTML(value);
   }
 
   enable() {
