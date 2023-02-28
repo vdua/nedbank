@@ -15,6 +15,8 @@ function constructPayload(form) {
   [...form.elements].forEach((fe) => {
     if (fe.type === 'checkbox' || fe.type === 'radio') {
       if (fe.checked) payload[fe.name] = coerceValue(fe.value);
+    } else if (fe.tagName === 'OUTPUT') {
+      payload[fe.id] = fe.dataset.value;
     } else if (fe.id) {
       payload[fe.id] = coerceValue(fe.value);
     }
@@ -57,16 +59,16 @@ export default class RuleEngine {
       const el = stack.pop();
       arr[el] = index;
       index += 1;
-      if (this.dependencyTree[el].deps.Value) {
+      if (this.dependencyTree[el]?.deps.Value) {
         stack.push(...this.dependencyTree[el].deps.Value);
       }
       // eslint-disable-next-line no-loop-func
-      this.dependencyTree[el].deps.Hidden?.forEach((field) => {
+      this.dependencyTree[el]?.deps.Hidden?.forEach((field) => {
         arr[field] = index;
         index += 1;
       });
       // eslint-disable-next-line no-loop-func
-      this.dependencyTree[el].deps.Label?.forEach((field) => {
+      this.dependencyTree[el]?.deps.Label?.forEach((field) => {
         arr[field] = index;
         index += 1;
       });
@@ -79,8 +81,13 @@ export default class RuleEngine {
     if (!(element instanceof NodeList)) {
       this.data[element.name] = coerceValue(value);
       const { displayFormat } = element.dataset;
-      const formatFn = formatFns[displayFormat] || ((x) => x);
-      element.value = formatFn(value);
+      if (element.tagName === 'OUTPUT') {
+        const formatFn = formatFns[displayFormat] || ((x) => x);
+        element.value = formatFn(value);
+        element.dataset.value = value;
+      } else {
+        element.value = value;
+      }
     }
   }
 
