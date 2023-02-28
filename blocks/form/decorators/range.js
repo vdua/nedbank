@@ -1,6 +1,6 @@
 import formatFns from '../formatting.js';
 
-async function updateBubble(input, element) {
+async function updateBubble(input, element, values) {
   const step = input.step || 1;
   const max = input.max || 0;
   const min = input.min || 0;
@@ -12,23 +12,30 @@ async function updateBubble(input, element) {
   const style = Object.entries(steps).map(([varName, varValue]) => `${varName}:${varValue}`).join(';');
   element.setAttribute('style', style);
   const bubble = element.querySelector('.range-bubble');
-  const format = input.dataset.displayFormat;
-  const formatFn = formatFns[format] || formatFns.identity;
-  bubble.innerText = formatFn(value);
+  if (values) {
+    bubble.innerText = values[input.value];
+  } else {
+    const format = input.dataset.displayFormat;
+    const formatFn = formatFns[format] || ((x) => x);
+    bubble.innerText = formatFn(value);
+  }
 }
 
-export default function decorateRange(block) {
-  const input = block.querySelector('input');
+export function createRange(input, values) {
   const clonedInput = input.cloneNode();
+  clonedInput.type = 'range';
+  if (values) {
+    clonedInput.min = 0;
+    clonedInput.max = values.length - 1;
+    clonedInput.step = 1;
+  }
   const div = document.createElement('div');
   div.className = 'range-widget-wrapper';
 
   clonedInput.addEventListener('input', (e) => {
-    updateBubble(e.target, div);
+    updateBubble(e.target, div, values);
   });
   const format = clonedInput.dataset.displayFormat;
-  const max = clonedInput.max || 0;
-  const min = clonedInput.min || 0;
   const hover = document.createElement('span');
   hover.className = 'range-bubble';
   const rangeMinEl = document.createElement('span');
@@ -39,9 +46,20 @@ export default function decorateRange(block) {
   div.appendChild(clonedInput);
   div.appendChild(rangeMinEl);
   div.appendChild(rangeMaxEl);
-  const formatFn = formatFns[format] || formatFns.identity;
-  rangeMinEl.innerText = formatFn(min);
-  rangeMaxEl.innerText = formatFn(max);
-  updateBubble(input, div);
-  block.replaceChild(div, input);
+  if (values) {
+    rangeMinEl.innerText = values[clonedInput.min];
+    rangeMaxEl.innerText = values[clonedInput.max];
+  } else {
+    const formatFn = formatFns[format] || ((x) => x);
+    rangeMinEl.innerText = formatFn(clonedInput.min);
+    rangeMaxEl.innerText = formatFn(clonedInput.max);
+  }
+  updateBubble(input, div, values);
+  return div;
+}
+
+export default function decorateRange(block) {
+  const input = block.querySelector('input');
+  const rangeDiv = createRange(input);
+  block.replaceChild(rangeDiv, input);
 }
