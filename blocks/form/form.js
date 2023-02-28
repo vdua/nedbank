@@ -157,7 +157,11 @@ const createSelect = withFieldWrapper((fd) => {
 
 function createRadio(fd) {
   const wrapper = createFieldWrapper(fd);
-  wrapper.insertAdjacentElement('afterbegin', createInput(fd));
+  const radio = createInput(fd);
+  if (fd.Selected?.toLowerCase() === 'true') {
+    radio.checked = true;
+  }
+  wrapper.insertAdjacentElement('afterbegin', radio);
   return wrapper;
 }
 
