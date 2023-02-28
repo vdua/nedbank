@@ -2,6 +2,21 @@ import {
   readBlockConfig,
 } from '../../scripts/scripts.js';
 
+function stripTags(input, allowd) {
+  const allowed = ((`${allowd || ''}`)
+    .toLowerCase()
+    .match(/<[a-z][a-z0-9]*>/g) || [])
+    .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+  const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
+  const comments = /<!--[\s\S]*?-->/gi;
+  return input.replace(comments, '')
+    .replace(tags, ($0, $1) => (allowed.indexOf(`<${$1.toLowerCase()}>`) > -1 ? $0 : ''));
+}
+
+export function sanitizeHTML(input) {
+  return stripTags(input, '<a>');
+}
+
 const formatFns = await (async function imports() {
   try {
     const formatters = await import('./formatting.js');
@@ -70,7 +85,7 @@ function createLabel(fd, tagName = 'label') {
     label.setAttribute('for', fd.Id);
   }
   label.className = 'field-label';
-  label.textContent = fd.Label || '';
+  label.innerHTML = sanitizeHTML(fd.Label) || '';
   if (fd.Tooltip) {
     label.title = fd.Tooltip;
   }
