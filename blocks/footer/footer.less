@@ -2,19 +2,18 @@
 
 footer {
 	font-size: var(--body-font-size-s);
+
 	.section {
-		padding: 15px;
-	}
-	.footer-awareness {
-		padding: 25px 20px 0 20px;
 		border-top: 1px solid #e5edec;
-		p {
-			margin: 0;
+
+		p,
+		ul,
+		h2,
+		h5 {
+			padding-left: 20px;
 		}
 	}
-	.footer-links {
-		background-color: @background_color_1;
-	}
+
 	.footer-social-items {
 		display: flex;
 		justify-content: space-between;
@@ -24,31 +23,61 @@ footer {
 			margin-right: 24px;
 		}
 	}
+
 	.footer-link-groups {
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
 	}
+
 	.footer-link-group {
-		h3 {
-			color: @color_1;
-			font-family: @font_family_1;
-			font-size: 18px;
-			font-weight: 500;
-			letter-spacing: 0;
-			line-height: 26px;
-			margin: 60px 0 0 0;
+		h5 {
+			border: 1px solid #e5edec;
+			margin: unset;
+			padding: 20px 0 20px 20px;
+
+			>span.icon {
+				float: right;
+				padding-right: 20px;
+
+				&.icon {
+					display: none;
+
+					&.appear {
+						display: block;
+					}
+				}
+			}
 		}
+
 		>ul {
+			margin: unset;
 			list-style: none;
-			padding-inline-start: unset;
+			max-height: 0;
+			background-color: @dotcoza-color-neutrals-grey-background;
+			transition: all ease-in-out .5s;
+			overflow: hidden;
+
+			&.appear {
+				max-height: 300px;
+			}
+
 			>li {
+				&:first-child {
+					padding-top: 40px;
+				}
+
+				&:last-child {
+					padding-bottom: 20px;
+				}
+
 				>a {
 					color: @color_2;
 					font-family: @font_family_2;
 					font-size: 16px;
 					letter-spacing: 0;
 					line-height: 32px;
+					margin: unset;
 				}
 			}
 		}
@@ -57,8 +86,10 @@ footer {
 
 @media (@width_991) {
 	footer {
-		.footer-awareness {
-			padding: 24px 105px;
+		.section {
+			.default-content-wrapper {
+				padding: 0 90px;
+			}
 		}
 
 		.footer-social-items {
@@ -73,14 +104,46 @@ footer {
 			}
 		}
 
-		.section {
-			padding-left: var(--section-left-right-padding);
-			padding-right: var(--section-left-right-padding);
+		.footer-links {
+			background-color: @dotcoza-color-neutrals-grey-background;
+
+			.footer-link-groups {
+				display: flex;
+				justify-content: space-between;
+				flex-direction: row;
+
+				.footer-link-group {
+					h5 {
+						border: none;
+						padding: 40px 0 0;
+						//Do not display up and down arrow icons at all for wide screens
+						>span.icon {
+							display: none;
+
+							&.appear {
+								display: none;
+							}
+						}
+					}
+
+					>ul {
+						max-height: unset;
+						display: block;
+						background-color: unset;
+						padding: 40px 0 20px;
+						transition: none;
+
+						>li {
+							padding: unset;
+						}
+					}
+				}
+
+			}
+
+
 		}
-		.footer-link-groups {
-			display: flex;
-			justify-content: space-between;
-			flex-direction: row;
-		}
+
+
 	}
 }

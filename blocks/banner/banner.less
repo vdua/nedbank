@@ -1,10 +1,20 @@
 @import (reference) "./banner_variables.less";
 
 main {
+	.banner-placeholder {
+		padding-right: 35px;
+		display: none;
+		&.appear {
+			display: flex;
+		}
+	}
 	.banner {
-		display: flex;
 		align-items: center;
+		width: 100%;
 
+		div {
+			width: 100%;
+		}
 		p {
 			margin: unset;
 			font-size: 16px;
@@ -19,6 +29,13 @@ main {
 				line-height: 24px;
 				color: @color_2;
 				font-family: @font_family_2;
+			}
+
+			&>span { 
+				&:last-child { 
+					float:right;
+					cursor: pointer;
+				}
 			}
 		}
 	}
