@@ -335,7 +335,7 @@ input[type="range"]:focus::-webkit-slider-thumb {
   letter-spacing: 0;
   line-height: 24px;
   display: block;
-  margin-top: 48px;
+  margin-top: 12px;
 }
 .repayments-calculator-section .Input .field-wrapper {
   margin-bottom: 42px;

@@ -1,0 +1,31 @@
+@plugin '../../less-scripts/autogen-comment-plugin';
+autocomment();
+
+@import (reference) "../../styles/variables.less";
+@import (reference) "../../styles/mixin.less";
+
+ol[role="tablist"] {
+  .unset();
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+
+  li {
+    font-size: @font-size-h3;
+    line-height: @font-lineheight-h3;
+    margin: 0 @spacing-08;
+    padding: 0 0 @spacing-06 0;
+    font-family: @font-family-primary;
+    font-weight: @font-weight-bold;
+    cursor: pointer;
+
+    &[aria-selected="true"] {
+      border-bottom: @spacing-02 solid @dotcoza-color-greens-default;
+    }
+
+    &:focus-visible {
+      border-color: @dotcoza-color-greens-darkgreen;
+      outline: none;
+    }
+  }
+}
