@@ -719,3 +719,43 @@ main .home-banner.section {
 		}
 	}
 }
+
+
+/** personal loans page styling */
+
+@media(@width_1440) {
+
+	.featured-article,
+	.personal-calculator-heading {
+		max-width: 1228px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.featured-article.columns>div>div:first-child {
+		padding-right: 135px;
+	}
+
+	.featured-article.columns a:any-link {
+		margin-left: 0;
+	}
+}
+
+@media(@width_991) {
+
+	.personal-calculator-heading h2 {
+		margin: @spacing-11 0;
+	}
+
+	.featured-article,
+	.personal-calculator-heading {
+		margin-top: @spacing-11;
+	}
+
+	.featured-article.columns img {
+		height: 380px;
+		object-fit: cover;
+		width: 100%;
+		min-width: unset;
+	}
+}
