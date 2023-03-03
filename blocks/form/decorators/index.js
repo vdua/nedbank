@@ -1,7 +1,7 @@
 import decorateSummary from './summary.js';
 
 export default async function decorateForm(formTag, { form, fragments }, config) {
-  const id = form.id.toLowerCase();
+  const id = formTag.id.toLowerCase();
   if (id === 'repayments-calculator') {
     const decorateRepaymentsCalculator = (await import(`./${id}.js`)).default;
     decorateRepaymentsCalculator(formTag, { form, fragments });
