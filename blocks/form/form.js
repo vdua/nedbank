@@ -150,8 +150,8 @@ function createFieldset(fd) {
   const wrapper = createFieldWrapper(fd, 'fieldset');
   wrapper.name = fd.Name;
   wrapper.replaceChildren(createLegend(fd));
-  if (fd.Repeatable === 'true') {
-    wrapper.setAttribute('repeatable', '');
+  if (fd.Repeatable && fd.Repeatable.toLowerCase() === 'true') {
+    wrapper.dataset.repeatable = true;
     setNumberConstraints(wrapper, fd);
   }
   return wrapper;
@@ -177,13 +177,6 @@ function createSelect(fd) {
   return wrapper;
 }
 
-function createParagraph(fd) {
-  const p = document.createElement('p');
-  p.className = `form-paragraph${fd.Name ? ` form-${fd.Name}` : ''}`;
-  p.textContent = fd.Value;
-  return p;
-}
-
 function createFormTag(config) {
   const form = document.createElement('form');
   Object.entries(config).forEach(([n, v]) => form.setAttribute(n, v || ''));
@@ -198,8 +191,7 @@ const fieldRenderers = {
   hidden: createHidden,
   currency: createCurrency,
   fieldset: createFieldset,
-  select: createSelect,
-  paragraph: createParagraph,
+  select: createSelect
 };
 
 function renderField(fd) {

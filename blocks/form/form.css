@@ -33,7 +33,7 @@ fieldset .form-radio-wrapper label,
 fieldset .form-checkbox-wrapper label {
   margin-bottom: 12px;
 }
-fieldset[repeatable] button:not(.field-tooltip-icon) {
+fieldset[data-repeatable="true"] button:not(.field-tooltip-icon) {
   margin: unset;
   padding: unset;
   text-align: left;
@@ -45,19 +45,25 @@ fieldset[repeatable] button:not(.field-tooltip-icon) {
   column-gap: 16px;
   align-items: flex-start;
 }
-fieldset[repeatable] legend {
+fieldset[data-repeatable="true"] legend {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: baseline;
 }
-fieldset[repeatable] legend .fieldset-Remove::after {
+fieldset[data-repeatable="true"] legend .fieldset-Remove::after {
   content: url(/icons/minus.svg);
 }
-fieldset[repeatable] .fieldset-Add::before {
+fieldset[data-repeatable="true"] legend .fieldset-Remove::before {
+  content: 'Remove';
+}
+fieldset[data-repeatable="true"] .fieldset-Add::before {
   content: url(/icons/plus.svg);
 }
-fieldset[repeatable][maxxed] .fieldset-Add {
+fieldset[data-repeatable="true"] .fieldset-Add::after {
+  content: 'Add';
+}
+fieldset[data-repeatable="true"][data-maxxed="true"] .fieldset-Add {
   display: none;
 }
 input,

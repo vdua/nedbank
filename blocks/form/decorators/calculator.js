@@ -62,7 +62,7 @@ function addListeners(formTag) {
 }
 
 export default async function decorateForm(formTag, { form, fragments }) {
-  decorateFieldsets(fieldsets, formTag);
+  decorateFieldsets(formTag, fieldsets);
   decorateLayout(formTag, groups[formTag.name] || {});
   decorateComponents(formTag);
   addListeners(formTag);

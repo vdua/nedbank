@@ -37,7 +37,9 @@ fieldset {
     }
   }
 
-  &[repeatable] {
+  &[data-repeatable="true"] {
+    counter-reset: fieldset-counter;
+
     button:not(.field-tooltip-icon) {
       .unset();
       text-align: left;
@@ -60,6 +62,9 @@ fieldset {
         &::after {
           content: @minus-icon;
         }
+        &::before {
+          content: 'Remove';
+        }
       }
     }
 
@@ -67,9 +72,12 @@ fieldset {
       &::before {
         content: @plus-icon;
       }
+      &::after {
+        content: 'Add';
+      }
     }
 
-    &[maxxed] {
+    &[data-maxxed="true"] {
       .fieldset-Add {
         display: none;
       }
