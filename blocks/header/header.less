@@ -72,6 +72,7 @@ header {
 			font-size: @font-size-small;
 			position: relative;
 			left: -70px;
+			cursor: pointer;
 			
 			p {
 				width: 100%;
@@ -83,6 +84,14 @@ header {
 					flex-basis: 50%;
 					display: flex;
 					justify-content: center;
+
+					&:hover {
+						color: @dotcoza-color-title-grey;
+					}
+				}
+
+				&:hover {
+					color: @dotcoza-color-greens-default;
 				}
 			}
 		}
@@ -221,6 +230,7 @@ header {
 		.nav-tools {
 			display: flex;
 			font-size: @font-size-small;
+			cursor: pointer;
 
 			p {
 				margin: 0;
@@ -255,6 +265,7 @@ header {
 
 		secondary-nav {
 			padding-left: 160px;
+			padding-right: 50px;
 			display: flex;
 			position: relative;
 
@@ -269,13 +280,12 @@ header {
 
 				p:nth-child(1) {
 					justify-content: right;
-					padding-right: 0;
+					padding: 0;
 				}
 
 				p:nth-child(2) {
 					justify-content: center;
-					margin-right: 40px;
-					padding-left: 0;
+					padding: 0;
 				}
 
 				&.display-none {
@@ -288,6 +298,8 @@ header {
 			}
 
 			.nav-sections {
+				flex-basis: 70%;
+
 				>ul {
 					padding-inline-start: unset;
 					>li {

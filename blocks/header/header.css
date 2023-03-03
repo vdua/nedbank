@@ -57,6 +57,7 @@ header primary-nav .nav-tools {
   font-size: 14px;
   position: relative;
   left: -70px;
+  cursor: pointer;
 }
 header primary-nav .nav-tools p {
   width: 100%;
@@ -68,6 +69,12 @@ header primary-nav .nav-tools p span {
   flex-basis: 50%;
   display: flex;
   justify-content: center;
+}
+header primary-nav .nav-tools p span:hover {
+  color: #17252e;
+}
+header primary-nav .nav-tools p:hover {
+  color: #008533;
 }
 header primary-nav .nav-hamburger {
   position: fixed;
@@ -176,6 +183,7 @@ header secondary-nav .nav-sections ul {
 header secondary-nav .nav-tools {
   display: flex;
   font-size: 14px;
+  cursor: pointer;
 }
 header secondary-nav .nav-tools p {
   margin: 0;
@@ -201,6 +209,7 @@ header .sticky {
   }
   header secondary-nav {
     padding-left: 160px;
+    padding-right: 50px;
     display: flex;
     position: relative;
   }
@@ -214,18 +223,20 @@ header .sticky {
   }
   header secondary-nav .nav-tools p:nth-child(1) {
     justify-content: right;
-    padding-right: 0;
+    padding: 0;
   }
   header secondary-nav .nav-tools p:nth-child(2) {
     justify-content: center;
-    margin-right: 40px;
-    padding-left: 0;
+    padding: 0;
   }
   header secondary-nav .nav-tools.display-none {
     display: none;
   }
   header secondary-nav .nav-tools.display-flex {
     display: flex;
+  }
+  header secondary-nav .nav-sections {
+    flex-basis: 70%;
   }
   header secondary-nav .nav-sections > ul {
     padding-inline-start: unset;
