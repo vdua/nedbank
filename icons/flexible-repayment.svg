@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>flexible-repayment</title>
+    <title>icon-image</title>
     <g id="flexible-repayment" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M21.5745464,13.3892 C22.4766797,14.0217333 24.0601464,15.6057333 24.6750797,17.1005333 C25.6581464,19.4902667 25.5169464,22.0905333 22.654013,20.8585333 C22.4141464,20.7553333 22.2230797,20.5596 22.138013,20.3126667 L20.3838797,15.2192 C19.654413,13.0122667 16.3465464,14.1081333 17.105213,16.4033333 L19.6097464,23.9812 C20.0077464,25.1854667 22.0178797,28.5261333 24.7213464,31.3594667" id="Shape" stroke="#5FA317" stroke-width="1.5"></path>
         <polyline id="Shape" stroke="#5FA317" stroke-width="1.5" points="21.71 27.5754667 21.71 29.0394667 7.0096 29.06 7 5.0204 21.7632 5 21.7345333 20.0154667"></polyline>

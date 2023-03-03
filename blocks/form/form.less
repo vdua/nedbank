@@ -44,8 +44,8 @@ select {
   display: block;
   font-size: @font-size-base;
   line-height: @font-lineheight-base;
-  font-family: @font-family-opensans-bold;
-  font-weight: @font-weight-regular;
+  font-family: @font-family-secondary;
+  font-weight: @font-weight-bold;
 
   color: @dotcoza-color-title-grey;
 
@@ -63,9 +63,9 @@ select {
 }
 
 output {
-  font-family: @font-family-nedbank-bold;
+  font-family: @font-family-primary;
   font-size: @font-size-h1;
-  font-weight: @font-weight-regular;
+  font-weight: @font-weight-bold;
   line-height: @font-lineheight-h1;
   letter-spacing: @letter-spacing-base;
 
@@ -76,11 +76,16 @@ output {
 
 label,
 legend {
-  font-family: @font-family-nedbank-medium;
+  font-family: @font-family-primary;
   font-size: @font-size-base;
   line-height: @font-lineheight-base;
   color: @dotcoza-color-title-grey;
   margin-bottom: @label-margin-bottom;
+  font-weight: @font-weight-bold;
+
+  a:any-link {
+    margin-left: unset;
+  }
 }
 
 .field-description {
@@ -102,9 +107,10 @@ legend {
 .form-radio-wrapper label,
 .form-checkbox-wrapper label {
   font-family: @font-family-secondary;
-  line-height: @font-lineheight-medium;
+  line-height: @font-lineheight-base;
   color: @dotcoza-color-body-grey;
   padding-left: 20px;
+  font-weight: @font-weight-regular;
 }
 
 input[type="checkbox"] {
@@ -151,8 +157,8 @@ input[type="radio"] {
   padding: 0 @spacing-04;
   font-size: @font-size-base;
   line-height: @font-lineheight-base;
-  font-family: @font-family-opensans-bold;
-  font-weight: @font-weight-regular;
+  font-family: @font-family-secondary;
+  font-weight: @font-weight-bold;
 
   .currency-symbol {
     margin-right: @spacing-02;
@@ -184,7 +190,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /** form button */
 form button {
-  font-family: @font-family-opensans-bold;
+  font-family: @font-family-secondary;
   font-size: @font-size-medium;
   line-height: @font-lineheight-base;
 
@@ -217,11 +223,11 @@ input[type="range"] {
 }
 
 .range-bubble {
-  font-family: @font-family-nedbank-medium;
+  font-family: @font-family-primary;
   color: @dotcoza-color-title-grey;
   font-size: @font-size-large;
   line-height: @font-lineheight-large;
-
+  font-weight: @font-weight-bold;
   position: relative;
   left: calc(var(--current-steps)*100% / (var(--total-steps) + 1));
   display: inline-block;
@@ -230,7 +236,7 @@ input[type="range"] {
 
 .range-min,
 .range-max {
-  font-family: @font-family-opensans-regular;
+  font-family: @font-family-secondary;
   font-size: @font-size-small;
   line-height: @font-lineheight-small;
 
@@ -262,10 +268,15 @@ input[type="range"] {
   position: absolute;
   box-sizing: content-box;
   background-repeat: no-repeat;
-  margin-top: 5px;
+  margin-top: @spacing-02;
   align-self: flex-end;
+  margin-left: @spacing-03;
 
   &:hover {
+    background-color: unset;
+  }
+
+  &:focus {
     background-color: unset;
   }
 }
@@ -336,7 +347,7 @@ input[type="range"] {
 
 /** form specific style */
 
-@media (@width_1441) {
+@media (@width_1440) {
   .repayments-calculator-section {
     form {
       .calculatorLayout();
@@ -352,24 +363,24 @@ input[type="range"] {
   padding: @spacing-09 0;
   margin: 0 auto @spacing-09;
 
-  h3 {
+  > :first-child {
     font-size: @font-size-large;
     line-height: @font-lineheight-large;
     padding-bottom: @spacing-09;
     margin-bottom: 0;
-    font-family: @font-family-opensans-regular;
+    font-family: @font-family-secondary;
     color: @dotcoza-color-body-grey;
   }
 
-  .default-content-wrapper p {
+  > :last-child p {
     width: 100%;
     color: @dotcoza-color-body-grey;
-    font-family: @font-family-opensans-regular;
+    font-family: @font-family-secondary;
     font-size: @font-size-xsmall;
     letter-spacing: 0;
     line-height: @font-lineheight-base;
     display: block;
-    margin-top: @spacing-09;
+    margin-top: @spacing-04;
   }
 
   .Input {
@@ -409,12 +420,13 @@ input[type="range"] {
       justify-content: flex-end;
       grid-area: explore;
       align-self: end;
+      font-weight: @font-weight-bold;
 
       label {
         .unset();
         cursor: pointer;
         color: @dotcoza-color-greens-default;
-        font-family: @font-family-opensans-bold;
+        font-family: @font-family-secondary;
       }
 
       input[type="checkbox"] {
@@ -428,7 +440,6 @@ input[type="range"] {
         font-size: @font-size-base;
         cursor: pointer;
         color: @dotcoza-color-greens-default;
-        font-family: @font-family-opensans-bold;
         margin-left: @spacing-05;
         width: 24px;
         height: 24px;
