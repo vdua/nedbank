@@ -172,9 +172,7 @@ const createSelect = withFieldWrapper((fd) => {
 function createRadio(fd) {
   const wrapper = createFieldWrapper(fd);
   const radio = createInput(fd);
-  if (fd.Selected?.toLowerCase() === 'true') {
-    radio.checked = true;
-  }
+  radio.checked = fd.Selected?.toLowerCase() === 'true';
   wrapper.insertAdjacentElement('afterbegin', radio);
   return wrapper;
 }
@@ -223,6 +221,10 @@ function createFieldset(fd) {
   const wrapper = createFieldWrapper(fd, 'fieldset');
   wrapper.name = fd.Name;
   wrapper.replaceChildren(createLegend(fd));
+  if (fd.Repeatable && fd.Repeatable.toLowerCase() === 'true') {
+    wrapper.dataset.repeatable = true;
+    setNumberConstraints(wrapper, fd);
+  }
   return wrapper;
 }
 
@@ -297,15 +299,14 @@ function extractFragments(data) {
     .flatMap((rules) => rules.map(getFragmentName).filter((x) => x)));
 }
 
-async function fetchForm(formURL) {
+async function fetchForm(formURL, searchParam) {
   // get the main form
-  const jsonData = await fetchData(formURL);
+  const jsonData = await fetchData(formURL + searchParam);
   const fragments = [...extractFragments(jsonData)];
 
   const fragmentData = (await Promise.all(fragments.map(async (fragName) => {
     const paramName = fragName.replace(/^helix-/, '');
-    const url = `${formURL}?sheet=${paramName}`;
-    return [fragName, await fetchForm(url)];
+    return [fragName, await fetchForm(formURL, `?sheet=${paramName}`)];
   }))).reduce((finalData, [fragmentName, fragment]) => ({
     [fragmentName]: fragment.formData,
     ...fragment.fragmentsData,
@@ -324,7 +325,7 @@ function mergeFormWithFragments(form, fragments) {
 
 async function createForm(formURL, config) {
   const { pathname, search } = new URL(formURL);
-  const { formData, fragmentsData } = await fetchForm(pathname + search);
+  const { formData, fragmentsData } = await fetchForm(pathname, search || '');
   const data = mergeFormWithFragments(formData, fragmentsData);
   const form = document.createElement('form');
   const id = config?.id?.trim();

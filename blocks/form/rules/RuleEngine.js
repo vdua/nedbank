@@ -72,6 +72,7 @@ export default class RuleEngine {
         arr[field] = index;
         index += 1;
       });
+      // @todo add label deps as well.
     } while (stack.length > 0);
     return Object.entries(arr).sort((a, b) => a[1] - b[1]).map((_) => _[0]).slice(1);
   }

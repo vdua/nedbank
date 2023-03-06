@@ -36,11 +36,59 @@ fieldset {
       margin-bottom: @spacing-04;
     }
   }
+
+  &[data-repeatable="true"] {
+    counter-reset: fieldset-counter;
+
+    button:not(.field-tooltip-icon) {
+      .unset();
+      text-align: left;
+      background-color: unset;
+      color: unset;
+      display: inline-flex;
+      width: fit-content;
+      height: fit-content;
+      column-gap: 16px;
+      align-items: flex-start;
+    }
+
+    legend {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: baseline;
+
+      .fieldset-Remove {
+        &::after {
+          content: @minus-icon;
+        }
+
+        &::before {
+          content: 'Remove';
+        }
+      }
+    }
+
+    .fieldset-Add {
+      &::before {
+        content: @plus-icon;
+      }
+
+      &::after {
+        content: 'Add';
+      }
+    }
+
+    &[data-maxxed="true"] {
+      .fieldset-Add {
+        display: none;
+      }
+    }
+  }
 }
 
 input,
-textarea,
-select {
+textarea {
   display: block;
   font-size: @font-size-base;
   line-height: @font-lineheight-base;
@@ -343,19 +391,86 @@ input[type="range"] {
   }
 }
 
+.form-select-wrapper {
+  font-size: @font-size-base;
+  font-family: @font-family-secondary;
+  font-weight: @font-weight-regular;
+  color: @dotcoza-color-title-grey;
+  position: relative;
+  display: block;
 
+  select {
+    display: none;
+  }
 
-/** form specific style */
+  .form-select-display {
+    border: 2px solid @dotcoza-color-greens-bright;
+    padding: @input-padding;
+    line-height: @font-lineheight-base;
 
-@media (@width_1440) {
-  .repayments-calculator-section {
-    form {
-      .calculatorLayout();
+    &:focus {
+      border-color: @dotcoza-color-greens-darkgreen;
+    }
+
+    &::after {
+      content: @down-arrow-icon;
+      float: right;
+      height: @font-lineheight-base;
+    }
+  }
+
+  .form-select-dialog {
+    display: none;
+    position: absolute;
+    border: 2px solid @dotcoza-color-greens-darkgreen;
+    z-index: 1000;
+    background-color: #fff;
+    width: 100%;
+    line-height: 0;
+    box-sizing: border-box;
+    border-top: 2px solid #eeeeee;
+
+    >div {
+      padding: 23px 8px 23px 16px;
+
+      &:focus,
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      &[selected] {
+        display: none;
+      }
+    }
+  }
+
+  &[expanded] {
+    .form-select-dialog {
+      display: block;
+    }
+
+    .form-select-display {
+      border: 2px solid @dotcoza-color-greens-darkgreen;
+      border-bottom: unset;
+
+      &::after {
+        content: @up-arrow-icon;
+      }
     }
   }
 }
 
-.repayments-calculator-section {
+/** calculator specific style */
+
+// @media (@width_1440) {
+//   .calculator-section {
+//     form {
+//       .calculatorLayout();
+//     }
+//   }
+// }
+
+.calculator {
   box-sizing: border-box;
   max-width: 1228px;
   border: 1px solid @calculator-outline-color;
@@ -391,6 +506,36 @@ input[type="range"] {
     .form-radio-wrapper {
       margin-bottom: 0;
     }
+
+    .fieldset-Add {
+      &.loanFieldSet-Add::after {
+        content: 'Add another loan';
+      }
+
+      &.extraCashFieldSet-Add::after {
+        content: 'Get extra cash';
+      }
+
+      span {
+        display: none;
+      }
+    }
+
+    .form-extraCashDetails {
+      legend {
+        font-family: @font-family-primary;
+        font-weight: @font-weight-bold;
+      }
+
+      p {
+        .unset();
+        color: @field-description-color;
+        font-family: @font-family-secondary;
+        font-size: @font-paragraph-small;
+        line-height: @font-lineheight-small;
+        padding-bottom: 24px;
+      }
+    }
   }
 
   .Output {
@@ -400,11 +545,6 @@ input[type="range"] {
     box-shadow: 0 25px 20px -15px rgb(0 0 0 / 10%);
     padding: @spacing-07 @spacing-08 @spacing-05 @spacing-08;
     display: grid;
-    grid-template-areas:
-      "emi emi"
-      "total total"
-      "rate explore"
-      "range range";
 
     .field-wrapper {
       padding-bottom: @spacing-05;
@@ -479,6 +619,9 @@ input[type="range"] {
       grid-area: range;
     }
 
+    .form-saving {
+      grid-area: saving;
+    }
   }
 
 
@@ -524,8 +667,25 @@ input[type="range"] {
   }
 }
 
+.repayments-calculator .Output {
+  grid-template-areas:
+    "emi emi"
+    "total total"
+    "rate explore"
+    "range range";
+}
+
+.loan-consolidation-calculator .Output {
+  grid-template-areas:
+    "total total"
+    "emi emi"
+    "saving saving"
+    "rate explore"
+    "range range";
+}
+
 @media (@width_768) {
-  .repayments-calculator-section {
+  .calculator {
     form {
       .calculatorLayout();
     }
@@ -541,7 +701,7 @@ input[type="range"] {
 }
 
 @media(@width_991) {
-  .repayments-calculator-section {
+  .calculator {
     form {
       column-gap: 134px;
     }
@@ -561,6 +721,7 @@ input[type="range"] {
   }
 }
 
+/** summary specific styling */
 .summary-section .default-content-wrapper {
   display: flex;
   flex-direction: row;
