@@ -134,10 +134,6 @@ function createButton(fd) {
 function createInput(fd) {
   const input = document.createElement('input');
   input.type = fd.Type;
-  const displayFormat = fd['Display Format'];
-  if (displayFormat) {
-    input.dataset.displayFormat = displayFormat;
-  }
   setPlaceholder(input, fd);
   setNumberConstraints(input, fd);
   return input;
@@ -204,20 +200,20 @@ function createCurrency(fd) {
   currencyEl.className = 'currency-symbol';
   currencyEl.innerText = currencySymbol; // todo :read from css
   widgetWrapper.append(currencyEl);
-  widgetWrapper.append(createInput({
+  const input = createInput({
     ...fd,
     Type: 'number',
-  }));
+  });
+  input.dataset.displayFormat = 'currency';
+  input.dataset.type = 'currency';
+  widgetWrapper.append(input);
   wrapper.append(widgetWrapper);
   return wrapper;
 }
 
-function createHidden(fd) {
+function createHidden() {
   const input = document.createElement('input');
   input.type = 'hidden';
-  input.id = fd.Id;
-  input.name = fd.Name;
-  input.value = fd.Value;
   return input;
 }
 
@@ -228,7 +224,7 @@ function createFieldset(fd) {
   return wrapper;
 }
 
-const getId = (function getId() {
+export const nameToId = (function getId() {
   const ids = {};
   return (name) => {
     ids[name] = ids[name] || 0;
@@ -271,7 +267,7 @@ async function fetchData(url) {
   const json = await resp.json();
   return json.data.map((fd) => ({
     ...fd,
-    Id: fd.Id || getId(fd.Name),
+    Id: fd.Id || nameToId(fd.Name),
   }));
 }
 
@@ -281,15 +277,16 @@ async function fetchForm(pathname) {
   return jsonData;
 }
 
-async function createForm(formURL, id) {
+async function createForm(formURL, config) {
   const { pathname } = new URL(formURL);
+  const id = config?.id?.trim();
   const data = await fetchForm(pathname);
   const form = document.createElement('form');
   form.id = id;
   const fields = data
     .map((fd) => ({ fd, el: renderField(fd) }));
   fields.forEach(({ fd, el }) => {
-    const input = el.querySelector('input,text-area,select');
+    const input = el.tagName === 'INPUT' ? el : el.querySelector('input,text-area,select');
     if (fd.Mandatory && fd.Mandatory.toLowerCase() === 'true') {
       input.setAttribute('required', 'required');
     }
@@ -301,12 +298,16 @@ async function createForm(formURL, id) {
         input.setAttribute('aria-describedby', `${fd.Id}-description`);
         input.dataset.description = fd.Description;
       }
+      const displayFormat = fd['Display Format'];
+      if (displayFormat) {
+        input.dataset.displayFormat = displayFormat;
+      }
     }
   });
   form.append(...fields.map(({ el }) => el));
   try {
     const formDecorator = await import('./decorators/index.js');
-    formDecorator.default(form);
+    formDecorator.default(form, config);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('no custom decorator found. default renditions will be used.');
@@ -324,8 +325,7 @@ async function createForm(formURL, id) {
 export default async function decorate(block) {
   const form = block.querySelector('a[href$=".json"]');
   const config = readBlockConfig(block);
-  const id = config?.id?.trim();
   if (form) {
-    block.replaceChildren(await createForm(form.href, id));
+    block.replaceChildren(await createForm(form.href, config));
   }
 }

@@ -35,6 +35,7 @@
   --nav-height: 64px;
   --banner-height: 100px;
   --section-left-right-padding: 105px;
+  scroll-behavior: smooth;
 }
 :root .light {
   --background-color: #ffffff;
@@ -59,6 +60,9 @@ body {
   background-color: var(--background-color);
   display: none;
 }
+body svg {
+  pointer-events: none;
+}
 body.appear {
   display: unset;
 }
@@ -71,13 +75,23 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500;
-  line-height: 1.2;
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0;
   margin-top: 1em;
   margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
-  font-family: var(--heading-font-family);
   color: var(--heading-text-color);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
 }
 h1 {
   font-size: var(--heading-font-size-xxl);
@@ -92,7 +106,7 @@ h4 {
   font-size: var(--heading-font-size-m);
 }
 h5 {
-  font-size: var(--heading-font-size-s);
+  font-size: 18px;
 }
 h6 {
   font-size: var(--heading-font-size-xs);
@@ -121,7 +135,8 @@ pre {
   overflow: scroll;
 }
 strong {
-  font-family: var(--strong-font-family);
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+  font-weight: 700;
 }
 strong a.button:any-link {
   font-family: var(--strong-font-family);
@@ -353,6 +368,7 @@ main .section.back-to-top a.button {
   padding: 0;
   background-color: transparent;
   border: none;
+  width: unset;
 }
 main .section.switchcard {
   background-color: var(--highlight-background-color);
@@ -401,7 +417,6 @@ main .home-banner.section .default-content-wrapper {
 }
 main .home-banner.section h1 {
   color: #17252e;
-  font-family: "Nedbank Sans Bold";
   font-size: 24px;
   line-height: 28px;
   margin: 0 0 16px 0;
@@ -497,6 +512,7 @@ main .home-banner.section p {
     display: grid;
     grid-template-columns: 0.7fr 1fr 1fr 0.25fr 1fr 0.7fr;
     grid-template-areas: ". a a a a ." ". b b . d .";
+    margin-top: 104px;
   }
   main .section.switchcard > .text-wrapper {
     grid-area: a;
@@ -511,7 +527,7 @@ main .home-banner.section p {
   main .section.switchcard > .cards-wrapper > .cards.block > ul > li {
     flex-basis: calc(calc(100% - 35px)/2);
   }
-  main .section.switchcard > div:nth-last-child(2) {
+  main .section.switchcard > div:nth-last-child(1) {
     grid-area: d;
   }
   main .section.switchcard > .text-wrapper,
