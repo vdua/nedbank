@@ -4,8 +4,8 @@
  * After changing .less file, run 'npm run lessc' from terminal to autogenerate .css file.
  */
 /** base styling **/
-.field-wrapper[data-hidden="true"] {
-  display: none;
+form [data-hidden="true"] {
+  display: none !important;
 }
 .field-wrapper {
   display: flex;
@@ -33,41 +33,43 @@ fieldset .form-radio-wrapper label,
 fieldset .form-checkbox-wrapper label {
   margin-bottom: 12px;
 }
-fieldset[data-repeatable="true"] {
-  counter-reset: fieldset-counter;
-}
-fieldset[data-repeatable="true"] button:not(.field-tooltip-icon) {
+/** repeatable fieldset */
+.form-repeat-wrapper button:not(.field-tooltip-icon) {
   margin: unset;
   padding: unset;
   text-align: left;
   background-color: unset;
   color: unset;
-  display: inline-flex;
+  display: flex;
   width: fit-content;
   height: fit-content;
   column-gap: 16px;
   align-items: flex-start;
 }
-fieldset[data-repeatable="true"] legend {
+.form-repeat-wrapper legend {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: baseline;
 }
-fieldset[data-repeatable="true"] legend .fieldset-Remove::after {
-  content: url(/icons/minus.svg);
+.form-repeat-wrapper legend .item-remove {
+  display: flex;
+  flex-direction: row-reverse;
 }
-fieldset[data-repeatable="true"] legend .fieldset-Remove::before {
-  content: 'Remove';
+.form-repeat-wrapper legend .item-remove i {
+  background-image: url(/icons/minus.svg);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 24px;
+  height: 24px;
 }
-fieldset[data-repeatable="true"] .fieldset-Add::before {
-  content: url(/icons/plus.svg);
+.form-repeat-wrapper .item-add {
+  display: flex;
 }
-fieldset[data-repeatable="true"] .fieldset-Add::after {
-  content: 'Add';
-}
-fieldset[data-repeatable="true"][data-maxxed="true"] .fieldset-Add {
-  display: none;
+.form-repeat-wrapper .item-add i {
+  background-image: url(/icons/plus.svg);
+  width: 24px;
+  height: 24px;
 }
 input,
 textarea {
@@ -411,6 +413,9 @@ input[type="range"]:focus::-webkit-slider-thumb {
 .calculator .Input .field-wrapper {
   margin-bottom: 42px;
 }
+.calculator .Input .form-fieldset-wrapper {
+  margin: 0;
+}
 .calculator .Input .form-radio-wrapper {
   margin-bottom: 0;
 }
@@ -542,11 +547,16 @@ input[type="range"]:focus::-webkit-slider-thumb {
   color: #ffffff;
   border: 2px solid #17252e;
 }
+/** repayments calculator */
 .repayments-calculator .Output {
   grid-template-areas: "emi emi" "total total" "rate explore" "range range";
 }
+/** loan consolidation */
 .loan-consolidation-calculator .Output {
   grid-template-areas: "total total" "emi emi" "saving saving" "rate explore" "range range";
+}
+.loan-consolidation-calculator .Output .form-totalLoanAmount {
+  grid-area: total;
 }
 @media (min-width: 768px) {
   .calculator form {

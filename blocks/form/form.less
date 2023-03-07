@@ -6,8 +6,8 @@ autocomment();
 
 /** base styling **/
 
-.field-wrapper[data-hidden="true"] {
-  display: none;
+form [data-hidden="true"] {
+  display: none !important;
 }
 
 .field-wrapper {
@@ -37,52 +37,50 @@ fieldset {
     }
   }
 
-  &[data-repeatable="true"] {
-    counter-reset: fieldset-counter;
+}
 
-    button:not(.field-tooltip-icon) {
-      .unset();
-      text-align: left;
-      background-color: unset;
-      color: unset;
-      display: inline-flex;
-      width: fit-content;
-      height: fit-content;
-      column-gap: 16px;
-      align-items: flex-start;
-    }
+/** repeatable fieldset */
+.form-repeat-wrapper {
 
-    legend {
+  button:not(.field-tooltip-icon) {
+    .unset();
+    text-align: left;
+    background-color: unset;
+    color: unset;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    column-gap: 16px;
+    align-items: flex-start;
+  }
+
+  legend {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+
+    .item-remove {
       display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: baseline;
+      flex-direction: row-reverse;
 
-      .fieldset-Remove {
-        &::after {
-          content: @minus-icon;
-        }
-
-        &::before {
-          content: 'Remove';
-        }
+      i {
+        background-image: @minus-icon;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        width: 24px;
+        height: 24px;
       }
     }
+  }
 
-    .fieldset-Add {
-      &::before {
-        content: @plus-icon;
-      }
+  .item-add {
+    display: flex;
 
-      &::after {
-        content: 'Add';
-      }
-    }
-
-    &[data-maxxed="true"] {
-      .fieldset-Add {
-        display: none;
-      }
+    i {
+      background-image: @plus-icon;
+      width: 24px;
+      height: 24px;
     }
   }
 }
@@ -503,6 +501,10 @@ input[type="range"] {
       margin-bottom: 42px;
     }
 
+    .form-fieldset-wrapper {
+      margin: 0;
+    }
+
     .form-radio-wrapper {
       margin-bottom: 0;
     }
@@ -667,6 +669,7 @@ input[type="range"] {
   }
 }
 
+/** repayments calculator */
 .repayments-calculator .Output {
   grid-template-areas:
     "emi emi"
@@ -675,13 +678,21 @@ input[type="range"] {
     "range range";
 }
 
-.loan-consolidation-calculator .Output {
-  grid-template-areas:
-    "total total"
-    "emi emi"
-    "saving saving"
-    "rate explore"
-    "range range";
+
+/** loan consolidation */
+.loan-consolidation-calculator {
+  .Output {
+    grid-template-areas:
+      "total total"
+      "emi emi"
+      "saving saving"
+      "rate explore"
+      "range range";
+
+    .form-totalLoanAmount {
+      grid-area: total;
+    }
+  }
 }
 
 @media (@width_768) {

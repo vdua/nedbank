@@ -16,9 +16,9 @@ function constructPayload(form) {
     if (fe.type === 'checkbox' || fe.type === 'radio') {
       if (fe.checked) payload[fe.name] = coerceValue(fe.value);
     } else if (fe.tagName === 'OUTPUT') {
-      payload[fe.id] = fe.dataset.value;
-    } else if (fe.id) {
-      payload[fe.id] = coerceValue(fe.value);
+      payload[fe.name] = fe.dataset.value;
+    } else if (fe.name) {
+      payload[fe.name] = coerceValue(fe.value);
     }
   });
   return payload;

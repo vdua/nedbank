@@ -5,6 +5,8 @@ import decorateFieldsets from './fieldsets.js';
 import { applyRuleEngine } from '../rules/index.js';
 import decorateValidations from './validations.js';
 import decorateTermField from './term.js';
+import decorateSelect from './select.js';
+import decorateRepeatable from './repeat.js';
 
 function getSelector(fieldName) {
   let selector = fieldName;
@@ -15,12 +17,13 @@ function getSelector(fieldName) {
 }
 
 const groups = {
-  Input: ['loanFieldSet', 'extraCashFieldSet', 'term', 'insuranceOptionFieldSet'].map(getSelector).join(','),
-  Output: ['total, .form-output-wrapper', 'exploreRate', 'rate'].map(getSelector).join(','),
-  buttons: ['seeLoanDetails', 'startLoanApplication'].map(getSelector),
+  Input: ['loanFieldSet', 'getExtraCash', 'extraCashFieldSet', 'term', 'insuranceOptionFieldSet'].map(getSelector).join(','),
+  Output: ['totalLoanAmount, .form-output-wrapper', 'exploreRate', 'rate'].map(getSelector).join(','),
+  buttons: ['summary', 'startLoanApplication'].map(getSelector),
 };
 
 const fieldsets = {
+  insuranceOptionFieldSet: ['insuranceOption'].map(getSelector),
   loanFieldSet: ['loanType', 'loanAmount'].map(getSelector),
   extraCashFieldSet: ['extraCashHeading', 'extraCash'].map(getSelector),
 };
@@ -48,7 +51,7 @@ function addListeners(formTag) {
 
 export default async function decorateRepaymentsCalculator(formTag, { form, fragments }) {
   decorateTooltips(formTag);
-
+  decorateSelect(formTag);
   formTag.querySelectorAll('.form-range-wrapper').forEach((block) => {
     decorateRange(block);
   });
@@ -56,10 +59,10 @@ export default async function decorateRepaymentsCalculator(formTag, { form, frag
   const termField = formTag.querySelector('.form-term');
   decorateTermField(termField);
 
-  decorateFieldsets(formTag, fieldsets);
-
-  decorateValidations(formTag);
   decorateLayout(formTag, groups);
+  decorateFieldsets(formTag, fieldsets);
+  decorateRepeatable(formTag);
+  decorateValidations(formTag);
   addListeners(formTag);
   applyRuleEngine(form, fragments, formTag);
 }

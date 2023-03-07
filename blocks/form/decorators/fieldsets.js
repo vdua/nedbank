@@ -1,5 +1,48 @@
+function createButton(label, icon) {
+  const button = document.createElement('button');
+  button.className = `fieldset-${icon}`;
+  button.type = 'button';
+  const text = document.createElement('span');
+  text.textContent = label;
+  button.append(document.createElement('i'), text);
+  return button;
+}
+
+function add(fieldset) {
+  const newFieldset = fieldset.elements['#template'].cloneNode();
+  // eslint-disable-next-line no-use-before-define
+  insertControls(newFieldset, true, true);
+  fieldset.insertAdjacentElement('afterEnd', newFieldset);
+}
+
+function insertControls(fieldset, bAdd, bRemove) {
+  if (bAdd) {
+    const addButton = createButton('Add another loan', 'add');
+    addButton.addEventListener('click', (e) => {
+      const fieldset = e.currentTarget.closest('fieldset');
+      add(fieldset);
+    });
+    fieldset.append(addButton);
+  }
+  if (bRemove) {
+    const removeButton = createButton('Remove', 'remove');
+    removeButton.addEventListener('click', (e) => {
+      const fieldset = e.currentTarget.closest('fieldset');
+      fieldset.remove();
+    });
+    const legend = fieldset.querySelector('.field-label');
+    legend.append(removeButton);
+  }
+}
+
+function remove(fieldset) {
+
+}
+
 function update(fieldset) {
   const queue = [fieldset];
+  fieldset.querySelectorAll('.field-wrapper');
+
   for (let i = 0; i < queue.length; i += 1) {
     [...queue[i].children].filter((c) => c.tagName === 'FIELDSET').forEach((item, index) => {
       const legend = item.querySelector('legend');
@@ -25,9 +68,9 @@ function update(fieldset) {
   }
 }
 
-function createButton(fd) {
+function createButton1(fd) {
   const button = document.createElement('button');
-  button.className = `${fd.Name}-${fd.Label} fieldset-${fd.Label}`;
+  button.className = `${fd.Name} -${fd.Label} fieldset - ${fd.Label} `;
   button.type = 'button';
   button.onclick = (event) => {
     let item; let fieldset;
@@ -43,7 +86,7 @@ function createButton(fd) {
     }
     fieldset.count += eventName === 'added' ? 1 : -1;
     update(fieldset);
-    fieldset.dispatchEvent(new CustomEvent(`form-fieldset-item:${eventName}`, { detail: { item }, bubbles: true }));
+    fieldset.dispatchEvent(new CustomEvent(`form - fieldset - item:${eventName} `, { detail: { item }, bubbles: true }));
   };
   return button;
 }
@@ -59,22 +102,9 @@ export default function decorateFieldsets(form, fieldsets) {
   form.querySelectorAll('fieldset').forEach((fieldsetEl) => {
     const fields = form.querySelectorAll(fieldsets[fieldsetEl.name]);
     if (fields.length) {
-      if (fieldsetEl.dataset.repeatable === 'true') {
-        const legend = fieldsetEl.querySelector('legend');
-        legend.dataset.textTemplate = legend.textContent;
-        fieldsetEl.elements['#template'] = [...fields].reduce((html, field) => html + field.outerHTML, legend.outerHTML);
-        fieldsetEl.elements['#add'] = createButton({ Label: 'Add', Name: fieldsetEl.name });
-        legend.replaceWith(fieldsetEl.elements['#add']);
-        for (let i = 1; i <= Number(fieldsetEl.min || 0) || 0; i += 1) {
-          fieldsetEl.insertBefore(createItem(fieldsetEl, false), fieldsetEl.elements['#add']);
-        }
-        update(fieldsetEl);
-      } else {
-        fields[0].insertAdjacentElement('beforebegin', fieldsetEl);
-        fieldsetEl.append(...fields);
-      }
+      fieldsetEl.append(...fields);
     } else {
-      console.log(`unable to decorate fieldset. No field ${fieldsets[fieldsetEl.name]} found`); // eslint-disable-line no-console
+      console.log(`unable to decorate fieldset.No field ${fieldsets[fieldsetEl.name]} found`); // eslint-disable-line no-console
     }
   });
 }

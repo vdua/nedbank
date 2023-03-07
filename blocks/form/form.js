@@ -370,9 +370,11 @@ async function createForm(formURL, config) {
 }
 
 export default async function decorate(block) {
-  const form = block.querySelector('a[href$=".json"]');
-  const config = readBlockConfig(block);
-  if (form) {
-    block.replaceChildren(await createForm(form.href, config));
+  const anchor = block.querySelector('a');
+  const url = anchor.href;
+  const isForm = /\.json(?:\?sheet=.+)?$/.test(url);
+  if (isForm) {
+    const config = readBlockConfig(block);
+    block.replaceChildren(await createForm(url, config));
   }
 }
