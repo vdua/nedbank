@@ -17,7 +17,7 @@ function extractRules(data) {
       return {
         fieldIdMap: {
           ...fieldIdMap,
-          [index + 2]: fd.Id,
+          [index + 2]: { name: fd.Name, id: fd.Id },
         },
         rules: currentRules.length ? rules.concat([[fd.Id, currentRules]]) : rules,
       };

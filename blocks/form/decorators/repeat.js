@@ -4,6 +4,7 @@ function update(fieldset, index, labelTemplate) {
   const legend = fieldset.querySelector(':scope>.field-label').firstChild;
   const text = labelTemplate.replace('#', index + 1);
   legend.textContent = text;
+  fieldset.id = nameToId(fieldset.name);
   fieldset.setAttribute('data-index', index);
   if (index > 0) {
     fieldset.querySelectorAll('.field-wrapper').forEach((f) => {
@@ -31,7 +32,7 @@ function createButton(label, icon) {
   return button;
 }
 
-function insertRemoveButton(fieldset, wrapper) {
+function insertRemoveButton(fieldset, wrapper, form) {
   const removeButton = createButton('Remove', 'remove');
   removeButton.addEventListener('click', () => {
     fieldset.remove();
@@ -39,12 +40,17 @@ function insertRemoveButton(fieldset, wrapper) {
     wrapper.querySelectorAll('[data-repeatable="true"]').forEach((el, index) => {
       update(el, index, wrapper['#repeat-template-label']);
     });
+    const event = new CustomEvent('item:remove', {
+      detail: { item: { name: fieldset.name, id: fieldset.id } },
+      bubbles: false,
+    });
+    form.dispatchEvent(event);
   });
   const legend = fieldset.querySelector(':scope>.field-label');
   legend.append(removeButton);
 }
 
-const add = (wrapper) => (e) => {
+const add = (wrapper, form) => (e) => {
   const { currentTarget } = e;
   const { parentElement } = currentTarget;
   const fieldset = parentElement['#repeat-template'];
@@ -55,12 +61,17 @@ const add = (wrapper) => (e) => {
   newFieldset.setAttribute('data-index', childCount);
   update(newFieldset, childCount, parentElement['#repeat-template-label']);
   if (childCount >= +min) {
-    insertRemoveButton(newFieldset, wrapper);
+    insertRemoveButton(newFieldset, wrapper, form);
   }
   if (+max <= childCount + 1) {
     e.currentTarget.setAttribute('data-hidden', 'true');
   }
   currentTarget.insertAdjacentElement('beforebegin', newFieldset);
+  const event = new CustomEvent('item:add', {
+    detail: { item: { name: newFieldset.name, id: newFieldset.id } },
+    bubbles: false,
+  });
+  form.dispatchEvent(event);
 };
 
 export default function decorateRepeatable(form) {
@@ -71,7 +82,7 @@ export default function decorateRepeatable(form) {
     el.insertAdjacentElement('beforebegin', div);
     div.append(el);
     const addButton = createButton('Add another loan', 'add');
-    addButton.addEventListener('click', add(div));
+    addButton.addEventListener('click', add(div, form));
     div['#repeat-template'] = el.cloneNode(true);
     div['#repeat-template-label'] = el.querySelector(':scope>.field-label').textContent;
     if (+el.min === 0) {

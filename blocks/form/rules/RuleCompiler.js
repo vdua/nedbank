@@ -12,9 +12,10 @@ function visitor(nameMap, fields) {
       if (!field) {
         // eslint-disable-next-line no-console
         console.log(`Unknown column used in excel formula ${n.name}`);
+      } else {
+        n.name = field.name;
+        fields.add(field.id);
       }
-      n.name = field;
-      fields.add(field);
     } if (n.type === 'Function') {
       n.name = n.name.toLowerCase();
     } else if (n.type === 'Subexpression') {

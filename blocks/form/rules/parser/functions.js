@@ -93,6 +93,13 @@ export default function functions(debug) {
         return array.reduce(compare, isNumber ? toNumber(first) : toString(first));
       },
     },
+
+    sum: {
+      func: (args) => args.reduce((sum, x) => {
+        if (Array.isArray(x)) return sum + fnMap.sum.func(x);
+        return sum + toNumber(x);
+      }, 0),
+    },
   };
   return fnMap;
 }

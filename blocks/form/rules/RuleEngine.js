@@ -10,18 +10,62 @@ function coerceValue(val) {
   return val;
 }
 
-function constructPayload(form) {
+const isFieldset = (e) => e.tagName === 'FIELDSET';
+
+const isRepeatableFieldset = (e) => isFieldset(e) && e.getAttribute('data-repeatable') === 'true';
+
+const isDataElement = (element) => element.tagName !== 'BUTTON' && !isFieldset(element) && element.name;
+
+function getValue(fe) {
+  if (fe.type === 'checkbox' || fe.type === 'radio') {
+    if (fe.checked) return coerceValue(fe.value);
+  } else if (fe.tagName === 'OUTPUT') {
+    return fe.dataset.value;
+  } else if (fe.name) {
+    return coerceValue(fe.value);
+  }
+  return undefined;
+}
+
+function constructData(elements) {
   const payload = {};
-  [...form.elements].forEach((fe) => {
-    if (fe.type === 'checkbox' || fe.type === 'radio') {
-      if (fe.checked) payload[fe.name] = coerceValue(fe.value);
-    } else if (fe.tagName === 'OUTPUT') {
-      payload[fe.name] = fe.dataset.value;
-    } else if (fe.name) {
-      payload[fe.name] = coerceValue(fe.value);
-    }
+  elements.filter(isDataElement)
+    .forEach((fe) => {
+      payload[fe.name] = getValue(fe);
+    });
+  return payload;
+}
+
+function getFieldsetPayload(form, fieldsetName) {
+  let fieldsets = form.elements[fieldsetName];
+  if (!(fieldsets instanceof RadioNodeList)) {
+    fieldsets = [fieldsets];
+  }
+  const payload = {};
+  fieldsets.forEach((fe, i) => {
+    [...fe.elements].filter(isDataElement).forEach((e) => {
+      payload[e.name] = payload[e.name] || [];
+      payload[e.name][i] = getValue(e);
+    });
   });
   return payload;
+}
+
+function constructPayload(form) {
+  const elements = [...form.elements];
+  const payload = constructData(elements);
+  const fieldsetNames = [...elements.filter(isRepeatableFieldset)
+    .reduce((names, x) => {
+      names.add(x.name);
+      return names;
+    }, new Set())];
+  return fieldsetNames.reduce((currPayload, x) => {
+    const fieldsetPayload = getFieldsetPayload(form, x);
+    return {
+      ...currPayload,
+      ...fieldsetPayload,
+    };
+  }, payload);
 }
 
 export default class RuleEngine {
@@ -89,6 +133,9 @@ export default class RuleEngine {
       } else {
         element.value = value;
       }
+      if (element.type === 'range') {
+        element.dispatchEvent(new CustomEvent('input', { bubbles: false }));
+      }
     }
   }
 
@@ -106,34 +153,84 @@ export default class RuleEngine {
     label.innerHTML = sanitizeHTML(value);
   }
 
+  setData(field) {
+    const fieldName = field.name;
+    if (field.type === 'checkbox') {
+      this.data[fieldName] = field.checked ? coerceValue(field.value) : undefined;
+    } else {
+      this.data[fieldName] = coerceValue(field.value);
+    }
+  }
+
+  applyRules(rules) {
+    rules.forEach((fId) => {
+      this.formRules[fId]?.forEach((rule) => {
+        const newValue = this.formula.evaluate(rule.ast, this.data);
+        const handler = this[`update${rule.prop}`];
+        if (handler instanceof Function) {
+          handler.apply(this, [fId, newValue]);
+        }
+      });
+    });
+  }
+
+  getRules(id) {
+    if (!this.rulesOrder[id]) {
+      this.rulesOrder[id] = this.listRules(id);
+    }
+    return this.rulesOrder[id];
+  }
+
   enable() {
     this.formTag.addEventListener('input', (e) => {
+      const field = e.target;
       const valid = e.target.checkValidity();
       if (valid) {
-        const fieldName = e.target.name;
-        let fieldId = e.target.id;
-        if (e.target.type === 'radio') {
-          fieldId = e.target.name;
+        let fieldId = field.id;
+        if (field.type === 'radio') {
+          fieldId = field.name;
         }
-        if (e.target.type === 'checkbox') {
-          this.data[fieldName] = e.target.checked ? coerceValue(e.target.value) : undefined;
+        const fieldset = field.closest('fieldset');
+        if (fieldset && fieldset.getAttribute('data-repeatable') === 'true') {
+          this.data = {
+            ...this.data,
+            ...getFieldsetPayload(this.formTag, fieldset.name),
+          };
+          fieldId = field.name;
         } else {
-          this.data[fieldName] = coerceValue(e.target.value);
+          this.setData(field);
         }
-        if (!this.rulesOrder[fieldId]) {
-          this.rulesOrder[fieldId] = this.listRules(fieldId);
-        }
-        const rules = this.rulesOrder[fieldId];
-        rules.forEach((fId) => {
-          this.formRules[fId]?.forEach((rule) => {
-            const newValue = this.formula.evaluate(rule.ast, this.data);
-            const handler = this[`update${rule.prop}`];
-            if (handler instanceof Function) {
-              handler.apply(this, [fId, newValue]);
-            }
-          });
-        });
+        const rules = this.getRules(fieldId);
+        this.applyRules(rules);
       }
+    });
+
+    this.formTag.addEventListener('item:add', (e) => {
+      const fieldsetName = e.detail.item.name;
+      let fieldset = this.formTag.elements[fieldsetName];
+      if (fieldset instanceof RadioNodeList) {
+        fieldset = fieldset.item(0);
+      }
+      this.data = {
+        ...this.data,
+        ...getFieldsetPayload(this.formTag, fieldsetName),
+      };
+      const rules = [...fieldset.elements].map((fd) => this.getRules(fd.name)).flat();
+      this.applyRules(rules);
+    });
+
+    this.formTag.addEventListener('item:remove', (e) => {
+      const fieldsetName = e.detail.item.name;
+      let fieldset = this.formTag.elements[fieldsetName];
+      if (fieldset instanceof RadioNodeList) {
+        fieldset = fieldset.item(0);
+      }
+      this.data = {
+        ...this.data,
+        ...getFieldsetPayload(this.formTag, fieldsetName),
+      };
+      const rules = [...fieldset.elements].map((fd) => this.getRules(fd.name)).flat();
+      this.applyRules(rules);
     });
   }
 }

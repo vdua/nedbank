@@ -28,28 +28,7 @@ const fieldsets = {
   extraCashFieldSet: ['extraCashHeading', 'extraCash'].map(getSelector),
 };
 
-function addListeners(formTag) {
-  // formTag.addEventListener('form-fieldset-item:added', (event) => {
-  //   decorateComponents(event.detail.item);
-  // });
-  if (formTag.name === 'loanConsolidate') { // @todo implement rules for repeatable using excel formulas
-    formTag.querySelectorAll('fieldset[repeatable]').forEach((element) => {
-      ['form-fieldset-item:added', 'form-fieldset-item:removed', 'input'].forEach((eventName) => {
-        element.addEventListener(eventName, () => {
-          const total = formTag.querySelector('input[name=totalLoanAmount]');
-          const deps = Array.from(formTag.querySelectorAll('[data-name=loanAmount], [data-name=extraCash]'));
-          const newValue = deps.reduce((a, c) => a + Number(c.value || 0), 0);
-          if (total.value !== newValue) {
-            total.value = newValue;
-            total.dispatchEvent(new Event('input', { bubbles: true }));
-          }
-        });
-      });
-    });
-  }
-}
-
-export default async function decorateRepaymentsCalculator(formTag, { form, fragments }) {
+function decorateComponents(formTag) {
   decorateTooltips(formTag);
   decorateSelect(formTag);
   formTag.querySelectorAll('.form-range-wrapper').forEach((block) => {
@@ -58,11 +37,20 @@ export default async function decorateRepaymentsCalculator(formTag, { form, frag
 
   const termField = formTag.querySelector('.form-term');
   decorateTermField(termField);
+}
 
+export default async function decorateRepaymentsCalculator(formTag, { form, fragments }) {
   decorateLayout(formTag, groups);
   decorateFieldsets(formTag, fieldsets);
   decorateRepeatable(formTag);
+  decorateComponents(formTag);
+
   decorateValidations(formTag);
-  addListeners(formTag);
+  formTag.addEventListener('item:add', (event) => {
+    const { id } = event.detail.item;
+    const fieldset = document.getElementById(id);
+    decorateSelect(fieldset);
+    decorateTooltips(fieldset);
+  });
   applyRuleEngine(form, fragments, formTag);
 }

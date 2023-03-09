@@ -24,10 +24,9 @@ const insertAfterLoading = (content, tabPanel) => {
   });
 };
 
-function createTabPanel(initCount, id) {
-  const tabPanelContent = document.querySelector(`[data-tab="${id}"]`);
+function createTabPanel(tab) {
+  const tabPanelContent = document.querySelector(`[data-tab="${tab}" i]`);
   const tabPanel = document.createElement('div');
-  tabPanel.id = `tabpanel-${initCount}-${id}`;
   tabPanel.className = 'tabpanel';
   tabPanel.role = 'tabpanel';
   if (tabPanelContent) {
@@ -40,18 +39,26 @@ let initCount = 0;
 export default function decorate(block) {
   const tabList = block.querySelector('ol');
   const config = readBlockConfig(block);
+  let activeTab = config['active-tab'];
+  const tabs = tabList.querySelectorAll('li');
+  if (!activeTab) {
+    activeTab = tabs.item(0).innerText.trim().toLowerCase();
+  }
+  activeTab = activeTab.replaceAll(' ', '-');
   tabList.setAttribute('role', 'tablist');
   const tabPanelContainer = document.createElement('div');
   tabPanelContainer.className = 'tab-panel-container';
   tabList.querySelectorAll('li').forEach((li, i) => {
-    const text = li.textContent.trim();
-    const selected = i === 0;
+    const text = li.textContent.trim().toLowerCase();
+    const tabId = text.replaceAll(' ', '-');
+    const selected = tabId === activeTab;
     li.setAttribute('role', 'tab');
-    li.id = `tabs-${initCount}-${text}`;
+    li.id = `tabs-${initCount}-${tabId}`;
     li.setAttribute('data-index', i);
     li.setAttribute('aria-selected', selected ? 'true' : 'false');
 
-    const tabPanel = createTabPanel(initCount, text);
+    const tabPanel = createTabPanel(text);
+    tabPanel.id = `tabpanel-${initCount}-${tabId}`;
     if (!selected) {
       tabPanel.setAttribute('hidden', '');
     }

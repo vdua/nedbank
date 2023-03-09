@@ -220,6 +220,7 @@ function createHidden() {
 function createFieldset(fd) {
   const wrapper = createFieldWrapper(fd, 'fieldset');
   wrapper.name = fd.Name;
+  wrapper.id = fd.Id;
   wrapper.replaceChildren(createLegend(fd));
   if (fd.Repeatable && fd.Repeatable.toLowerCase() === 'true') {
     wrapper.dataset.repeatable = true;

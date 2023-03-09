@@ -30,8 +30,12 @@ export default function decorateSelect(el) {
       if (option.selected) select(divOption, option);
       dialog.append(divOption);
     });
-    document.addEventListener('click', (ev) => toggle(false, ev, wrapper.hasAttribute('expanded')));
-    display.addEventListener('click', (ev) => toggle(!wrapper.hasAttribute('expanded'), ev, true));
+    document.addEventListener('click', (ev) => {
+      toggle(false, ev, wrapper.hasAttribute('expanded'));
+    });
+    display.addEventListener('click', (ev) => {
+      toggle(!wrapper.hasAttribute('expanded'), ev, true);
+    });
     wrapper.replaceChildren(selectTag, display, dialog);
   });
 }
