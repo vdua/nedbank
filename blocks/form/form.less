@@ -28,12 +28,26 @@ fieldset {
   border: none;
   .unset();
 
+  .field-wrapper {
+    label {
+      margin-bottom: @spacing-03;
+      font-family: @font-family-secondary;
+      line-height: @font-lineheight-small;
+      color: @dotcoza-color-title-grey;
+      font-weight: @font-weight-bold;
+      font-size: @font-paragraph-small
+    }
+  }
+
   .form-radio-wrapper,
   .form-checkbox-wrapper {
     margin-top: 0;
 
     label {
       margin-bottom: @spacing-04;
+      font-size: @font-size-base;
+      line-height: @font-lineheight-base;
+      font-weight: @font-weight-regular;
     }
   }
 
@@ -60,9 +74,12 @@ fieldset {
     justify-content: space-between;
     align-items: baseline;
 
-    .item-remove {
+    button.item-remove {
       display: flex;
       flex-direction: row-reverse;
+      font-size: @font-size-base;
+      line-height: @font-lineheight-base;
+      font-family: @font-family-primary;
 
       i {
         background-image: @minus-icon;
@@ -74,8 +91,11 @@ fieldset {
     }
   }
 
-  .item-add {
+  button.item-add {
     display: flex;
+    font-size: @font-size-base;
+    line-height: @font-lineheight-base;
+    padding-bottom: @spacing-06;
 
     i {
       background-image: @plus-icon;
@@ -389,6 +409,7 @@ input[type="range"] {
   }
 }
 
+/** dropdown styling **/
 .form-select-wrapper {
   font-size: @font-size-base;
   font-family: @font-family-secondary;
@@ -396,6 +417,11 @@ input[type="range"] {
   color: @dotcoza-color-title-grey;
   position: relative;
   display: block;
+
+  label {
+    display: block;
+    margin-bottom: @spacing-06;
+  }
 
   select {
     display: none;
@@ -459,15 +485,6 @@ input[type="range"] {
 }
 
 /** calculator specific style */
-
-// @media (@width_1440) {
-//   .calculator-section {
-//     form {
-//       .calculatorLayout();
-//     }
-//   }
-// }
-
 .calculator {
   box-sizing: border-box;
   max-width: 1228px;
@@ -693,6 +710,48 @@ input[type="range"] {
       grid-area: total;
     }
   }
+
+  .default-content-wrapper:first-child {
+    font-size: @font-size-base;
+    line-height: @font-lineheight-base;
+  }
+
+  .Input {
+    fieldset {
+      padding-bottom: @spacing-09;
+
+      .field-wrapper {
+        margin-bottom: @spacing-06;
+      }
+
+      .form-radio-wrapper {
+        margin-bottom: 0;
+      }
+
+      .field-wrapper:last-child {
+        margin-bottom: 0;
+      }
+
+      >.field-description {
+        margin-bottom: @spacing-06;
+      }
+    }
+  }
+
+  .Input .form-repeat-wrapper:nth-child(2) {
+    padding-bottom: 42px;
+
+    fieldset {
+      margin-top: @spacing-09;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+}
+
+#totalLoanAmount-1::-webkit-slider-thumb {
+  display: none;
 }
 
 @media (@width_768) {

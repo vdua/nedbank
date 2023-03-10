@@ -25,6 +25,14 @@ fieldset {
   margin: unset;
   padding: unset;
 }
+fieldset .field-wrapper label {
+  margin-bottom: 8px;
+  font-family: 'Open Sans Regular', Arial, Helvetica, sans-serif;
+  line-height: 22px;
+  color: #17252e;
+  font-weight: 700;
+  font-size: 14px;
+}
 fieldset .form-radio-wrapper,
 fieldset .form-checkbox-wrapper {
   margin-top: 0;
@@ -32,6 +40,9 @@ fieldset .form-checkbox-wrapper {
 fieldset .form-radio-wrapper label,
 fieldset .form-checkbox-wrapper label {
   margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
 }
 /** repeatable fieldset */
 .form-repeat-wrapper button:not(.field-tooltip-icon) {
@@ -52,21 +63,27 @@ fieldset .form-checkbox-wrapper label {
   justify-content: space-between;
   align-items: baseline;
 }
-.form-repeat-wrapper legend .item-remove {
+.form-repeat-wrapper legend button.item-remove {
   display: flex;
   flex-direction: row-reverse;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
 }
-.form-repeat-wrapper legend .item-remove i {
+.form-repeat-wrapper legend button.item-remove i {
   background-image: url(/icons/minus.svg);
   background-repeat: no-repeat;
   overflow: hidden;
   width: 24px;
   height: 24px;
 }
-.form-repeat-wrapper .item-add {
+.form-repeat-wrapper button.item-add {
   display: flex;
+  font-size: 16px;
+  line-height: 24px;
+  padding-bottom: 24px;
 }
-.form-repeat-wrapper .item-add i {
+.form-repeat-wrapper button.item-add i {
   background-image: url(/icons/plus.svg);
   width: 24px;
   height: 24px;
@@ -328,6 +345,7 @@ input[type="range"]:focus::-webkit-slider-thumb {
   left: calc(50% - 7px);
   transform: rotate(180deg);
 }
+/** dropdown styling **/
 .form-select-wrapper {
   font-size: 16px;
   font-family: 'Open Sans Regular', Arial, Helvetica, sans-serif;
@@ -335,6 +353,10 @@ input[type="range"]:focus::-webkit-slider-thumb {
   color: #17252e;
   position: relative;
   display: block;
+}
+.form-select-wrapper label {
+  display: block;
+  margin-bottom: 24px;
 }
 .form-select-wrapper select {
   display: none;
@@ -557,6 +579,36 @@ input[type="range"]:focus::-webkit-slider-thumb {
 }
 .loan-consolidation-calculator .Output .form-totalLoanAmount {
   grid-area: total;
+}
+.loan-consolidation-calculator .default-content-wrapper:first-child {
+  font-size: 16px;
+  line-height: 24px;
+}
+.loan-consolidation-calculator .Input fieldset {
+  padding-bottom: 48px;
+}
+.loan-consolidation-calculator .Input fieldset .field-wrapper {
+  margin-bottom: 24px;
+}
+.loan-consolidation-calculator .Input fieldset .form-radio-wrapper {
+  margin-bottom: 0;
+}
+.loan-consolidation-calculator .Input fieldset .field-wrapper:last-child {
+  margin-bottom: 0;
+}
+.loan-consolidation-calculator .Input fieldset > .field-description {
+  margin-bottom: 24px;
+}
+.loan-consolidation-calculator .Input .form-repeat-wrapper:nth-child(2) {
+  padding-bottom: 42px;
+}
+.loan-consolidation-calculator .Input .form-repeat-wrapper:nth-child(2) fieldset {
+  margin-top: 48px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+#totalLoanAmount-1::-webkit-slider-thumb {
+  display: none;
 }
 @media (min-width: 768px) {
   .calculator form {

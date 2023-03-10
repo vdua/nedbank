@@ -74,14 +74,15 @@ const add = (wrapper, form) => (e) => {
   form.dispatchEvent(event);
 };
 
-export default function decorateRepeatable(form) {
+export default function decorateRepeatable(form, repeatConfig) {
   form.querySelectorAll('[data-repeatable="true"]').forEach((el) => {
     const div = document.createElement('div');
     div.setAttribute('data-min', el.min);
     div.setAttribute('data-max', el.max);
     el.insertAdjacentElement('beforebegin', div);
     div.append(el);
-    const addButton = createButton('Add another loan', 'add');
+    const addLabel = repeatConfig[el.name]?.add || 'Add another loan';
+    const addButton = createButton(addLabel, 'add');
     addButton.addEventListener('click', add(div, form));
     div['#repeat-template'] = el.cloneNode(true);
     div['#repeat-template-label'] = el.querySelector(':scope>.field-label').textContent;

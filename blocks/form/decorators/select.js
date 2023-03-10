@@ -36,6 +36,7 @@ export default function decorateSelect(el) {
     display.addEventListener('click', (ev) => {
       toggle(!wrapper.hasAttribute('expanded'), ev, true);
     });
-    wrapper.replaceChildren(selectTag, display, dialog);
+    selectTag.insertAdjacentElement('afterend', display);
+    display.insertAdjacentElement('afterend', dialog);
   });
 }

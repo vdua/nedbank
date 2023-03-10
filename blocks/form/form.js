@@ -346,6 +346,9 @@ async function createForm(formURL, config) {
         input.setAttribute('aria-describedby', `${fd.Id}-description`);
         input.dataset.description = fd.Description;
       }
+      if (fd.Disabled === 'true') {
+        input.setAttribute('disabled', 'disabled');
+      }
       const displayFormat = fd['Display Format'];
       if (displayFormat) {
         input.dataset.displayFormat = displayFormat;

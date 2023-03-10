@@ -42,7 +42,11 @@ function decorateComponents(formTag) {
 export default async function decorateRepaymentsCalculator(formTag, { form, fragments }) {
   decorateLayout(formTag, groups);
   decorateFieldsets(formTag, fieldsets);
-  decorateRepeatable(formTag);
+  decorateRepeatable(formTag, {
+    extraCashFieldSet: {
+      add: 'Get extra cash',
+    },
+  });
   decorateComponents(formTag);
 
   decorateValidations(formTag);
