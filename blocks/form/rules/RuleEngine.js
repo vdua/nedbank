@@ -187,9 +187,7 @@ export default class RuleEngine {
       const valid = e.target.checkValidity();
       if (valid) {
         let fieldId = field.id;
-        if (field.type === 'radio') {
-          fieldId = field.name;
-        }
+        let rules = [];
         const fieldset = field.closest('fieldset');
         if (fieldset && fieldset.getAttribute('data-repeatable') === 'true') {
           this.data = {
@@ -200,7 +198,14 @@ export default class RuleEngine {
         } else {
           this.setData(field);
         }
-        const rules = this.getRules(fieldId);
+        if (field.type === 'radio') {
+          const radios = this.formTag.elements[field.name];
+          if (radios instanceof RadioNodeList) {
+            rules = [...radios].flatMap((f) => this.getRules(f.id));
+          }
+        } else {
+          rules = this.getRules(fieldId);
+        }
         this.applyRules(rules);
       }
     });
