@@ -2,6 +2,21 @@ import {
   readBlockConfig,
 } from '../../scripts/scripts.js';
 
+function stripTags(input, allowd) {
+  const allowed = ((`${allowd || ''}`)
+    .toLowerCase()
+    .match(/<[a-z][a-z0-9]*>/g) || [])
+    .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+  const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
+  const comments = /<!--[\s\S]*?-->/gi;
+  return input.replace(comments, '')
+    .replace(tags, ($0, $1) => (allowed.indexOf(`<${$1.toLowerCase()}>`) > -1 ? $0 : ''));
+}
+
+export function sanitizeHTML(input) {
+  return stripTags(input, '<a>');
+}
+
 const formatFns = await (async function imports() {
   try {
     const formatters = await import('./formatting.js');
@@ -70,7 +85,7 @@ function createLabel(fd, tagName = 'label') {
     label.setAttribute('for', fd.Id);
   }
   label.className = 'field-label';
-  label.textContent = fd.Label || '';
+  label.innerHTML = sanitizeHTML(fd.Label) || '';
   if (fd.Tooltip) {
     label.title = fd.Tooltip;
   }
@@ -81,7 +96,7 @@ function createLegend(fd) {
   return createLabel(fd, 'legend');
 }
 
-function createHelpText(fd) {
+export function createHelpText(fd) {
   const div = document.createElement('div');
   div.className = 'field-description';
   div.setAttribute('aria-live', 'polite');
@@ -97,6 +112,9 @@ function createFieldWrapper(fd, tagName = 'div') {
   fieldWrapper.className = fieldId;
   fieldWrapper.classList.add('field-wrapper');
   fieldWrapper.append(createLabel(fd));
+  if (fd.Hidden?.toLowerCase() === 'true') {
+    fieldWrapper.dataset.hidden = 'true';
+  }
   return fieldWrapper;
 }
 
@@ -157,13 +175,18 @@ const createSelect = withFieldWrapper((fd) => {
 
 function createRadio(fd) {
   const wrapper = createFieldWrapper(fd);
-  wrapper.insertAdjacentElement('afterbegin', createInput(fd));
+  const radio = createInput(fd);
+  if (fd.Selected?.toLowerCase() === 'true') {
+    radio.checked = true;
+  }
+  wrapper.insertAdjacentElement('afterbegin', radio);
   return wrapper;
 }
 
 const createOutput = withFieldWrapper((fd) => {
   const output = document.createElement('output');
   output.name = fd.Name;
+  output.id = fd.Id;
   const displayFormat = fd['Display Format'];
   if (displayFormat) {
     output.dataset.displayFormat = displayFormat;
@@ -257,7 +280,6 @@ export function getRules(fd) {
   const entries = [
     ['Value', fd?.['Value Expression']],
     ['Hidden', fd?.['Hidden Expression']],
-    ['Label', fd?.['Label Expression']],
   ];
   return entries.filter((e) => e[1]).map(([prop, expression]) => ({
     prop,
@@ -322,13 +344,14 @@ async function createForm(formURL, id) {
       input.value = fd.Value;
       if (fd.Description) {
         input.setAttribute('aria-describedby', `${fd.Id}-description`);
+        input.dataset.description = fd.Description;
       }
     }
   });
   form.append(...fields.map(({ el }) => el));
   try {
     const formDecorator = await import('./decorators/index.js');
-    formDecorator.default(form);
+    formDecorator.default(form, { form: formData, fragments: fragmentsData });
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('no custom decorator found. default renditions will be used.');

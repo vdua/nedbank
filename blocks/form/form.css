@@ -368,7 +368,7 @@ input[type="range"]:focus::-webkit-slider-thumb {
   appearance: none;
 }
 .repayments-calculator-section .Output .form-exploreRate input[type="checkbox"]::after {
-  content: url(/icons/up-arrow.svg);
+  content: url(/icons/down-arrow.svg);
   font-size: 16px;
   cursor: pointer;
   color: #008533;
@@ -381,7 +381,7 @@ input[type="range"]:focus::-webkit-slider-thumb {
   box-shadow: 0 0 0 1px #78be20;
 }
 .repayments-calculator-section .Output .form-exploreRate input[type="checkbox"]:checked::after {
-  content: url(/icons/down-arrow.svg);
+  content: url(/icons/up-arrow.svg);
   background: transparent;
 }
 .repayments-calculator-section .Output .form-emi {

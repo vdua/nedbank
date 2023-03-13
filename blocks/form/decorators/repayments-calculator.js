@@ -3,6 +3,8 @@ import formatFns from '../formatting.js';
 import decorateTooltips from './tooltip.js';
 import decorateLayout from './layout.js';
 import decorateFieldsets from './fieldsets.js';
+import { applyRuleEngine } from '../rules/index.js';
+import decorateValidations from './validations.js';
 
 function getSelector(fieldName) {
   let selector = fieldName;
@@ -46,18 +48,31 @@ const fieldsets = {
   insuranceOptionFieldSet: ['insuranceOption'].map(getSelector),
 };
 
-export default async function decorateRepaymentsCalculator(form) {
-  /** add custom tooltips */
-  decorateTooltips(form);
+function stripTags(input, allowd) {
+  const allowed = ((`${allowd || ''}`)
+    .toLowerCase()
+    .match(/<[a-z][a-z0-9]*>/g) || [])
+    .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+  const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
+  const commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
+  return input.replace(commentsAndPhpTags, '')
+    .replace(tags, ($0, $1) => (allowed.indexOf(`<${$1.toLowerCase()}>`) > -1 ? $0 : ''));
+}
 
-  form.querySelectorAll('.form-range-wrapper').forEach((block) => {
+export default async function decorateRepaymentsCalculator(formTag, { form, fragments }) {
+  /** add custom tooltips */
+  decorateTooltips(formTag);
+
+  formTag.querySelectorAll('.form-range-wrapper').forEach((block) => {
     decorateRange(block);
   });
 
-  const termField = form.querySelector('.form-term input');
+  const termField = formTag.querySelector('.form-term input');
   decorateTermField(termField);
 
-  decorateFieldsets(fieldsets, form);
+  decorateFieldsets(fieldsets, formTag);
 
-  decorateLayout(form, groups);
+  decorateValidations(formTag);
+  decorateLayout(formTag, groups);
+  applyRuleEngine(form, fragments, formTag);
 }
