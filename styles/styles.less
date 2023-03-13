@@ -60,6 +60,7 @@ autocomment();
 	--nav-height: 64px;
 	--banner-height: 100px;
 	--section-left-right-padding: 105px;
+	scroll-behavior: smooth;
 }
 
 :root .light {
@@ -87,6 +88,10 @@ body {
 	background-color: @background_color_1;
 	display: none;
 
+	svg {
+		pointer-events: none;
+	}
+
 	&.appear {
 		display: unset;
 	}
@@ -102,13 +107,25 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 500;
-	line-height: 1.2;
+
+	font-family: @font-family-primary;
+	font-weight: @font-weight-bold;
+	line-height: @font-lineheight-medium;
+	letter-spacing: @letter-spacing-base;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 	scroll-margin: calc(var(--nav-height) + 1em);
-	font-family: var(--heading-font-family);
 	color: @color_2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: @font-weight-bold;
+	font-family: @font-family-primary;
 }
 
 h1 {
@@ -128,7 +145,7 @@ h4 {
 }
 
 h5 {
-	font-size: var(--heading-font-size-s);
+	font-size: @font-size-medium;
 }
 
 h6 {
@@ -164,7 +181,8 @@ pre {
 }
 
 strong {
-	font-family: var(--strong-font-family);
+	font-family: @font-family-primary;
+	font-weight: @font-weight-bold;
 
 	a.button {
 		&:any-link {
@@ -462,6 +480,7 @@ main {
 				padding: 0;
 				background-color: transparent;
 				border: none;
+				width: unset;
 			}
 		}
 
@@ -524,7 +543,6 @@ main .home-banner.section {
 
 	h1 {
 		color: #17252e;
-		font-family: "Nedbank Sans Bold";
 		font-size: 24px;
 		line-height: 28px;
 		margin: 0 0 16px 0;
@@ -639,6 +657,10 @@ main .home-banner.section {
 			padding: 64px 105px;
 		}
 	}
+
+	header {
+		height: 128px;
+	}
 }
 
 @media (@width_1281) {
@@ -660,6 +682,7 @@ main .home-banner.section {
 				grid-template-areas:
 					". a a a a ."
 					". b b . d .";
+				margin-top: 104px;
 
 				>.text-wrapper {
 					grid-area: a;
@@ -681,7 +704,7 @@ main .home-banner.section {
 				}
 
 				>div {
-					&:nth-last-child(2) {
+					&:nth-last-child(1) {
 						//Should be last child once is fixed
 						grid-area: d;
 					}

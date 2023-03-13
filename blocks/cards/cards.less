@@ -50,7 +50,6 @@ autocomment();
     height: 62px;
     width: 60px;
     align-self: center;
-    background-image: url(/icons/intercept_bg.svg);
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
     transform: rotate(270deg);
     background-size: contain;
@@ -177,7 +176,7 @@ autocomment();
       font-size: 24px;
       line-height: 32px;
       margin-top: 24px;
-      margin-bottom: 14px;
+      margin-bottom: @spacing-03;
       margin-left: 0px;
       margin-right: 0px;
     }
@@ -398,7 +397,7 @@ autocomment();
       > :where(h2, h3)+p {
         font-size: 18px;
         line-height: 28px;
-        margin-top: 14px;
+        margin-top: @spacing-03;
       }
     }
   }
@@ -642,6 +641,7 @@ autocomment();
       >h2 {
         +p {
           font-size: 20px;
+          margin-bottom: @spacing-07;
         }
       }
     }
@@ -769,6 +769,21 @@ autocomment();
     li {
       flex-basis: 0;
     }
+
+    .cards-body {
+      >h2 {
+        +p {
+          flex-basis: 50%;
+        }
+      }
+    }
+
+    .cards-image {
+      img {
+        height: 220px;
+        width: 374px;
+      }
+    }
   }
 
   .home-help.cards-container {
@@ -803,9 +818,44 @@ autocomment();
       }
     }
   }
+
+  .section {
+    &.narrow {
+      &.cards-container {
+        >div {
+          &.text-wrapper {
+            >div {
+              &.text {
+                padding-top: @spacing-13;
+                padding-bottom: @spacing-10;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .home-services.cards-container {
+    .cards {
+      >ul {
+        >li {
+          .cards-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            >span {
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-@media (@width_1441) {
+@media (@width_1440) {
   .home-services.cards-container {
     padding-left: calc(~'(100% - 1228px)/2');
     padding-right: calc(~'(100% - 1228px)/2');

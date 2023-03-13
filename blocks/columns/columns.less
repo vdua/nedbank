@@ -26,7 +26,7 @@ autocomment();
   }
 
   &.backdrop {
-    background-color: #f9fbfb;
+    background-color: #F9FBFB;
 
     h2 {
       font-size: 32px;
@@ -40,8 +40,10 @@ autocomment();
       >div {
         >p {
           margin: 0;
-          font-size: 20px;
+          font-size: @font-size-medium;
           line-height: 28px;
+          font-family: @font-family-secondary;
+          color: #494f50;
         }
       }
     }
@@ -136,12 +138,75 @@ autocomment();
 }
 
 @media (@width_768) {
-  .section.columns-container {
-    padding-left: 106px;
-    padding-right: 106px;
+  .section {
+    &.narrow {
+      &.columns-container {
+        padding-left: unset;
+        padding-right: unset;
+        margin-top: 100px;
+        margin-right: calc(21px + ((100% - 768px)/2));
+        margin-left: calc(113px + ((100% - 768px)/2));
+      }
+    }
   }
 
   .columns {
+    img {
+      height: auto;
+      min-width: 396px;
+      object-fit: cover;
+    }
+
+    &.columns-2-cols {
+      >div {
+        .flex(row, nowrap);
+
+        >div {
+          .width-basis(2);
+        }
+      }
+    }
+
+
+    &.backdrop {
+      h2 {
+        font-size: @font-size-h3;
+        line-height: @font-lineheight-h3;
+      }
+
+      >div {
+        >div {
+          &:first-child {
+            top: -42px;
+            left: -90px;
+            position: relative;
+          }
+
+          &:last-child {
+            margin: @spacing-05;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (@width_1025) {
+
+  .section {
+    &.narrow {
+      &.columns-container {
+        margin-right: 33px;
+        margin-left: 110px;
+      }
+    }
+  }
+
+  .columns {
+    img {
+      min-width: 526px;
+    }
+
     &.columns-2-cols {
       >div {
         .flex(row, nowrap);
@@ -163,8 +228,9 @@ autocomment();
     }
 
     &.backdrop {
-      margin-top: 100px;
-      background-color: #f9fbfb;
+      background-color: #F9FBFB;
+      max-width: 1197px;
+      max-height: 460px;
 
       h2 {
         font-size: 32px;
@@ -175,16 +241,12 @@ autocomment();
         align-items: flex-start;
 
         >div {
-          &:first-child {
-            position: relative;
-            top: -70px;
-            left: -100px;
-          }
-
           >p {
             margin: 0;
-            font-size: 20px;
+            font-size: @font-size-medium;
             line-height: 28px;
+            font-family: @font-family-secondary;
+            color: #494f50;
           }
         }
       }
@@ -203,6 +265,17 @@ autocomment();
         margin: 16px;
       }
     }
+
+    &.backdrop {
+      >div {
+        >div {
+          &:first-child {
+            top: -58px;
+            left: -93px;
+          }
+        }
+      }
+    }
   }
 
   .columns.lazy-river {
@@ -215,4 +288,44 @@ autocomment();
     }
   }
 
+}
+
+@media (@width_1440) {
+  .section {
+    &.narrow {
+      &.columns-container {
+        margin-top: 170px;
+        margin-right: calc(33px + ((100% - 1440px)/2));
+        margin-left: calc(210px + ((100% - 1440px)/2));
+      }
+    }
+  }
+
+  .columns {
+    img {
+      min-width: 672px;
+    }
+  }
+
+  .columns {
+    &.backdrop {
+      >div {
+        >div {
+          &:first-child {
+            left: -193px;
+          }
+
+          &:last-child {
+            left: -76px;
+            position: relative;
+          }
+
+          >p {
+            left: -12px;
+            position: relative;
+          }
+        }
+      }
+    }
+  }
 }

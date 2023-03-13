@@ -49,7 +49,6 @@
   height: 62px;
   width: 60px;
   align-self: center;
-  background-image: url(/icons/intercept_bg.svg);
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
   transform: rotate(270deg);
   background-size: contain;
@@ -160,7 +159,7 @@
   font-size: 24px;
   line-height: 32px;
   margin-top: 24px;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
   margin-left: 0px;
   margin-right: 0px;
 }
@@ -311,7 +310,7 @@
   .cards.large .cards-body > :where(h2, h3) + p {
     font-size: 18px;
     line-height: 28px;
-    margin-top: 14px;
+    margin-top: 8px;
   }
   .home-promotions.cards-container > div:first-child {
     font-size: 32px;
@@ -479,6 +478,7 @@
   }
   .cards.large .cards-body > h2 + p {
     font-size: 20px;
+    margin-bottom: 32px;
   }
   .home-services.cards-container {
     padding-bottom: 80px;
@@ -556,6 +556,13 @@
   .cards.large li {
     flex-basis: 0;
   }
+  .cards.large .cards-body > h2 + p {
+    flex-basis: 50%;
+  }
+  .cards.large .cards-image img {
+    height: 220px;
+    width: 374px;
+  }
   .home-help.cards-container {
     height: 640px;
   }
@@ -576,8 +583,20 @@
     padding: 0;
     text-align: left;
   }
+  .section.narrow.cards-container > div.text-wrapper > div.text {
+    padding-top: 128px;
+    padding-bottom: 64px;
+  }
+  .home-services.cards-container .cards > ul > li .cards-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .home-services.cards-container .cards > ul > li .cards-image > span {
+    display: flex;
+  }
 }
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
   .home-services.cards-container {
     padding-left: calc((100% - 1228px)/2);
     padding-right: calc((100% - 1228px)/2);
