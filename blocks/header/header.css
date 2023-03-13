@@ -1,4 +1,87 @@
-header nav {
+header .nav-hamburger {
+  cursor: pointer;
+  background: url('/icons/green-hamburger.svg');
+  width: 64px;
+  height: 64px;
+}
+header * > li {
+  list-style: none;
+}
+header primary-nav {
+  display: none;
+  background-color: #f2f9f5;
+  height: var(--nav-height);
+}
+header primary-nav .nav-sections {
+  flex-grow: 1;
+  font-size: 14px;
+  display: flex;
+  margin-left: 40px;
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+header primary-nav .nav-sections > ul {
+  display: flex;
+  width: 100%;
+  padding-inline-start: unset;
+}
+header primary-nav .nav-sections > ul > li {
+  cursor: pointer;
+  padding-right: 11px;
+  display: flex;
+  align-items: center;
+}
+header primary-nav .nav-sections > ul > li a {
+  color: #17252e;
+}
+header primary-nav .nav-sections > ul > li a:hover {
+  color: #008533;
+}
+header primary-nav .nav-sections > ul > li:first-child a {
+  color: #008533;
+}
+header primary-nav .nav-brand {
+  margin: 3px 20px 3px 91px;
+}
+header primary-nav .nav-brand span {
+  position: fixed;
+  top: 10px;
+  z-index: 99;
+}
+header primary-nav .nav-tools {
+  display: flex;
+  flex-grow: 1;
+  max-width: 195px;
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+  left: -70px;
+  cursor: pointer;
+}
+header primary-nav .nav-tools p {
+  width: 100%;
+  display: flex;
+  color: #17252e;
+  align-items: center;
+}
+header primary-nav .nav-tools p span {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+}
+header primary-nav .nav-tools p span:hover {
+  color: #17252e;
+}
+header primary-nav .nav-tools p:hover {
+  color: #008533;
+}
+header primary-nav .nav-hamburger {
+  position: fixed;
+  z-index: 99;
+  right: 0;
+}
+header secondary-nav {
   display: flex;
   justify-content: space-between;
   height: var(--nav-height);
@@ -10,37 +93,27 @@ header nav {
   box-sizing: border-box;
   font-family: var(--body-font-family);
 }
-header nav * > li {
-  list-style: none;
-}
-header nav a:any-link {
+header secondary-nav a:any-link {
   color: currentcolor;
   text-decoration: none;
   margin: 0;
 }
-header nav .nav-brand {
+header secondary-nav .nav-brand {
   margin-left: 20px;
 }
-header nav .nav-hamburger {
-  cursor: pointer;
-  background: url('/icons/green-hamburger.svg');
-  width: 56px;
-  height: 56px;
-  background-repeat: no-repeat;
-}
-header nav .nav-sections {
+header secondary-nav .nav-sections {
   flex-grow: 1;
   font-size: 14px;
 }
-header nav .nav-sections > ul > li.nav-drop {
+header secondary-nav .nav-sections > ul > li.nav-drop {
   position: relative;
 }
-header nav .nav-sections > ul > li.nav-drop:first-child {
+header secondary-nav .nav-sections > ul > li.nav-drop:first-child {
   font-family: 'Nedbank Sans Bold';
   font-size: 14px !important;
   padding-top: 4px;
 }
-header nav .nav-sections > ul > li {
+header secondary-nav .nav-sections > ul > li {
   position: relative;
   font-size: 18px;
   margin: 0;
@@ -49,14 +122,14 @@ header nav .nav-sections > ul > li {
   padding-left: 12px;
   padding-right: 12px;
 }
-header nav .nav-sections > ul > li:not(:first-child) {
+header secondary-nav .nav-sections > ul > li:not(:first-child) {
   display: none;
 }
-header nav .nav-sections > ul > li > a {
+header secondary-nav .nav-sections > ul > li > a {
   pointer-events: none;
   text-decoration: none;
 }
-header nav .nav-sections > ul > li > a::after {
+header secondary-nav .nav-sections > ul > li > a::after {
   opacity: 40%;
   display: inline-block;
   margin-left: 0.255em;
@@ -67,30 +140,30 @@ header nav .nav-sections > ul > li > a::after {
   border-bottom: 0;
   border-left: 0.3em solid transparent;
 }
-header nav .nav-sections > ul > li > p {
+header secondary-nav .nav-sections > ul > li > p {
   margin: 0;
 }
-header nav .nav-sections > ul > li > ul {
+header secondary-nav .nav-sections > ul > li > ul {
   display: none;
   position: relative;
 }
-header nav .nav-sections > ul > li > ul:any-link {
+header secondary-nav .nav-sections > ul > li > ul:any-link {
   font-size: var(--body-font-size-m);
 }
-header nav .nav-sections > ul > li > ul > li {
+header secondary-nav .nav-sections > ul > li > ul > li {
   font-size: 18px;
   padding: 20px 0;
 }
-header nav .nav-sections > ul > li > ul > li:hover {
+header secondary-nav .nav-sections > ul > li > ul > li:hover {
   background-color: #f1f6f5;
 }
-header nav .nav-sections > ul > li > ul > li:first-child {
+header secondary-nav .nav-sections > ul > li > ul > li:first-child {
   font-family: "Nedbank Sans Bold";
 }
-header nav .nav-sections > ul > li > ul > li:first-child:hover {
+header secondary-nav .nav-sections > ul > li > ul > li:first-child:hover {
   background-color: var(--background-color);
 }
-header nav .nav-sections > ul > li[aria-expanded='true'] ul {
+header secondary-nav .nav-sections > ul > li[aria-expanded='true'] ul {
   margin: unset;
   display: block;
   position: absolute;
@@ -101,17 +174,18 @@ header nav .nav-sections > ul > li[aria-expanded='true'] ul {
   box-shadow: 3px 3px 16px 0 rgba(0, 0, 0, 0.12);
   border: 0;
 }
-header nav .nav-sections ul {
+header secondary-nav .nav-sections ul {
   display: flex;
   flex-direction: row;
   background-color: unset;
   margin: 0;
 }
-header nav .nav-tools {
+header secondary-nav .nav-tools {
   display: flex;
   font-size: 14px;
+  cursor: pointer;
 }
-header nav .nav-tools p {
+header secondary-nav .nav-tools p {
   margin: 0;
   padding: 0 20px;
   display: flex;
@@ -124,17 +198,70 @@ header .nav-brand {
   font-weight: 700;
   line-height: 1em;
 }
+header .sticky {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+}
 @media (min-width: 1025px) {
-  header nav .nav-brand {
+  header primary-nav {
+    display: flex;
+  }
+  header secondary-nav {
+    padding-left: 160px;
+    padding-right: 50px;
+    display: flex;
+    position: relative;
+  }
+  header secondary-nav .nav-brand {
+    display: none;
     flex-grow: 0;
   }
-  header nav .nav-tools {
+  header secondary-nav .nav-tools {
+    display: none;
     flex-grow: 1;
   }
-  header nav .nav-sections > ul > li:not(:first-child) {
+  header secondary-nav .nav-tools p:nth-child(1) {
+    justify-content: right;
+    padding: 0;
+  }
+  header secondary-nav .nav-tools p:nth-child(2) {
+    justify-content: center;
+    padding: 0;
+  }
+  header secondary-nav .nav-tools.display-none {
+    display: none;
+  }
+  header secondary-nav .nav-tools.display-flex {
+    display: flex;
+  }
+  header secondary-nav .nav-sections {
+    flex-basis: 70%;
+  }
+  header secondary-nav .nav-sections > ul {
+    padding-inline-start: unset;
+  }
+  header secondary-nav .nav-sections > ul > li {
+    font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    padding-left: unset;
+    padding-right: unset;
+    margin-right: 24px;
+    font-size: 16px;
+  }
+  header secondary-nav .nav-sections > ul > li:first-child {
+    display: none;
+  }
+  header secondary-nav .nav-sections > ul > li:not(:first-child) {
     display: unset;
   }
-  header nav .nav-drop::after {
+  header secondary-nav .nav-sections > ul > li > a::after {
+    margin-left: 0.5em;
+  }
+  header secondary-nav .nav-hamburger {
+    display: none;
+  }
+  header secondary-nav .nav-drop::after {
     content: ' ';
     border: 1px solid currentolor;
     transform: rotate(135deg);
@@ -145,17 +272,5 @@ header .nav-brand {
     position: absolute;
     top: 8px;
     right: 14px;
-  }
-}
-@media (min-width: 1440px) {
-  header nav .nav-brand {
-    margin-left: 90px;
-  }
-  header nav .nav-sections {
-    font-size: 18px;
-  }
-  header nav .nav-sections > ul > li {
-    padding-left: 20px;
-    padding-right: 20px;
   }
 }

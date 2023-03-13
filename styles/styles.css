@@ -499,6 +499,9 @@ main .home-banner.section p {
     margin: 0 105px;
     padding: 64px 105px;
   }
+  header {
+    height: 128px;
+  }
 }
 @media (min-width: 1281px) {
   main .section.narrow {
