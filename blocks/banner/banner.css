@@ -31,3 +31,8 @@ main .banner p > span:last-child {
   float: right;
   cursor: pointer;
 }
+@media (min-width: 1025px) {
+  main .banner-placeholder {
+    padding-left: 150px;
+  }
+}
