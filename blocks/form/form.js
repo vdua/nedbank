@@ -2,6 +2,21 @@ import {
   readBlockConfig,
 } from '../../scripts/scripts.js';
 
+function stripTags(input, allowd) {
+  const allowed = ((`${allowd || ''}`)
+    .toLowerCase()
+    .match(/<[a-z][a-z0-9]*>/g) || [])
+    .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+  const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
+  const comments = /<!--[\s\S]*?-->/gi;
+  return input.replace(comments, '')
+    .replace(tags, ($0, $1) => (allowed.indexOf(`<${$1.toLowerCase()}>`) > -1 ? $0 : ''));
+}
+
+export function sanitizeHTML(input) {
+  return stripTags(input, '<a>');
+}
+
 const formatFns = await (async function imports() {
   try {
     const formatters = await import('./formatting.js');
@@ -70,7 +85,7 @@ function createLabel(fd, tagName = 'label') {
     label.setAttribute('for', fd.Id);
   }
   label.className = 'field-label';
-  label.textContent = fd.Label || '';
+  label.innerHTML = sanitizeHTML(fd.Label) || '';
   if (fd.Tooltip) {
     label.title = fd.Tooltip;
   }
@@ -81,7 +96,7 @@ function createLegend(fd) {
   return createLabel(fd, 'legend');
 }
 
-function createHelpText(fd) {
+export function createHelpText(fd) {
   const div = document.createElement('div');
   div.className = 'field-description';
   div.setAttribute('aria-live', 'polite');
@@ -97,6 +112,9 @@ function createFieldWrapper(fd, tagName = 'div') {
   fieldWrapper.className = fieldId;
   fieldWrapper.classList.add('field-wrapper');
   fieldWrapper.append(createLabel(fd));
+  if (fd.Hidden?.toLowerCase() === 'true') {
+    fieldWrapper.dataset.hidden = 'true';
+  }
   return fieldWrapper;
 }
 
@@ -116,10 +134,6 @@ function createButton(fd) {
 function createInput(fd) {
   const input = document.createElement('input');
   input.type = fd.Type;
-  const displayFormat = fd['Display Format'];
-  if (displayFormat) {
-    input.dataset.displayFormat = displayFormat;
-  }
   setPlaceholder(input, fd);
   setNumberConstraints(input, fd);
   return input;
@@ -157,19 +171,25 @@ const createSelect = withFieldWrapper((fd) => {
 
 function createRadio(fd) {
   const wrapper = createFieldWrapper(fd);
-  wrapper.insertAdjacentElement('afterbegin', createInput(fd));
+  const radio = createInput(fd);
+  if (fd.Selected?.toLowerCase() === 'true') {
+    radio.checked = true;
+  }
+  wrapper.insertAdjacentElement('afterbegin', radio);
   return wrapper;
 }
 
 const createOutput = withFieldWrapper((fd) => {
   const output = document.createElement('output');
   output.name = fd.Name;
+  output.id = fd.Id;
   const displayFormat = fd['Display Format'];
   if (displayFormat) {
     output.dataset.displayFormat = displayFormat;
   }
   const formatFn = formatFns[displayFormat] || ((x) => x);
   output.innerText = formatFn(fd.Value);
+  output.dataset.value = fd.Value;
   return output;
 });
 
@@ -182,20 +202,20 @@ function createCurrency(fd) {
   currencyEl.className = 'currency-symbol';
   currencyEl.innerText = currencySymbol; // todo :read from css
   widgetWrapper.append(currencyEl);
-  widgetWrapper.append(createInput({
+  const input = createInput({
     ...fd,
     Type: 'number',
-  }));
+  });
+  input.dataset.displayFormat = 'currency';
+  input.dataset.type = 'currency';
+  widgetWrapper.append(input);
   wrapper.append(widgetWrapper);
   return wrapper;
 }
 
-function createHidden(fd) {
+function createHidden() {
   const input = document.createElement('input');
   input.type = 'hidden';
-  input.id = fd.Id;
-  input.name = fd.Name;
-  input.value = fd.Value;
   return input;
 }
 
@@ -206,7 +226,7 @@ function createFieldset(fd) {
   return wrapper;
 }
 
-const getId = (function getId() {
+export const nameToId = (function getId() {
   const ids = {};
   return (name) => {
     ids[name] = ids[name] || 0;
@@ -249,7 +269,7 @@ async function fetchData(url) {
   const json = await resp.json();
   return json.data.map((fd) => ({
     ...fd,
-    Id: fd.Id || getId(fd.Name),
+    Id: fd.Id || nameToId(fd.Name),
   }));
 }
 
@@ -257,7 +277,6 @@ export function getRules(fd) {
   const entries = [
     ['Value', fd?.['Value Expression']],
     ['Hidden', fd?.['Hidden Expression']],
-    ['Label', fd?.['Label Expression']],
   ];
   return entries.filter((e) => e[1]).map(([prop, expression]) => ({
     prop,
@@ -303,16 +322,17 @@ function mergeFormWithFragments(form, fragments) {
   return [...form, ...(Object.values(fragments).flat())];
 }
 
-async function createForm(formURL, id) {
+async function createForm(formURL, config) {
   const { pathname, search } = new URL(formURL);
   const { formData, fragmentsData } = await fetchForm(pathname + search);
   const data = mergeFormWithFragments(formData, fragmentsData);
   const form = document.createElement('form');
+  const id = config?.id?.trim();
   form.id = id;
   const fields = data
     .map((fd) => ({ fd, el: renderField(fd) }));
   fields.forEach(({ fd, el }) => {
-    const input = el.querySelector('input,text-area,select');
+    const input = el.tagName === 'INPUT' ? el : el.querySelector('input,text-area,select');
     if (fd.Mandatory && fd.Mandatory.toLowerCase() === 'true') {
       input.setAttribute('required', 'required');
     }
@@ -322,13 +342,18 @@ async function createForm(formURL, id) {
       input.value = fd.Value;
       if (fd.Description) {
         input.setAttribute('aria-describedby', `${fd.Id}-description`);
+        input.dataset.description = fd.Description;
+      }
+      const displayFormat = fd['Display Format'];
+      if (displayFormat) {
+        input.dataset.displayFormat = displayFormat;
       }
     }
   });
   form.append(...fields.map(({ el }) => el));
   try {
     const formDecorator = await import('./decorators/index.js');
-    formDecorator.default(form);
+    formDecorator.default(form, { form: formData, fragments: fragmentsData }, config);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('no custom decorator found. default renditions will be used.');
@@ -346,8 +371,7 @@ async function createForm(formURL, id) {
 export default async function decorate(block) {
   const form = block.querySelector('a[href$=".json"]');
   const config = readBlockConfig(block);
-  const id = config?.id?.trim();
   if (form) {
-    block.replaceChildren(await createForm(form.href, id));
+    block.replaceChildren(await createForm(form.href, config));
   }
 }

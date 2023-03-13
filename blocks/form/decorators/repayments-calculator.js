@@ -3,6 +3,9 @@ import formatFns from '../formatting.js';
 import decorateTooltips from './tooltip.js';
 import decorateLayout from './layout.js';
 import decorateFieldsets from './fieldsets.js';
+import { applyRuleEngine } from '../rules/index.js';
+import decorateValidations from './validations.js';
+import { nameToId } from '../form.js';
 
 function getSelector(fieldName) {
   let selector = fieldName;
@@ -12,26 +15,30 @@ function getSelector(fieldName) {
   return selector;
 }
 
-function decorateTermField(input) {
+function decorateTermField(termField) {
+  const input = termField.querySelector('input');
+  const label = termField.querySelector('.field-label');
   const values = Array(6).fill(1).map((x, i) => formatFns.year(i + 1));
   if (input) {
-    const clonedInput = input.cloneNode();
-    clonedInput.type = 'hidden';
+    const hiddenInput = input.cloneNode();
+    hiddenInput.type = 'hidden';
+    input.id = nameToId(input.name);
+    label.for = input.id;
     input.min = 0;
     input.max = 6;
     input.step = 1;
     input.name += '-proxy';
     const rangeDiv = createRange(input, ['6 Months'].concat(values));
     rangeDiv.querySelector('input').addEventListener('input', (e) => {
-      if (e.target.value === '0') clonedInput.value = 0.5;
-      else clonedInput.value = e.target.value;
+      if (e.target.value === '0') hiddenInput.value = 0.5;
+      else hiddenInput.value = e.target.value;
       const event = new Event('input', {
         bubbles: true,
         cancelable: true,
       });
-      clonedInput.dispatchEvent(event);
+      hiddenInput.dispatchEvent(event);
     });
-    rangeDiv.append(clonedInput);
+    rangeDiv.append(hiddenInput);
     input.replaceWith(rangeDiv);
   }
 }
@@ -46,18 +53,20 @@ const fieldsets = {
   insuranceOptionFieldSet: ['insuranceOption'].map(getSelector),
 };
 
-export default async function decorateRepaymentsCalculator(form) {
+export default async function decorateRepaymentsCalculator(formTag, { form, fragments }) {
   /** add custom tooltips */
-  decorateTooltips(form);
+  decorateTooltips(formTag);
 
-  form.querySelectorAll('.form-range-wrapper').forEach((block) => {
+  formTag.querySelectorAll('.form-range-wrapper').forEach((block) => {
     decorateRange(block);
   });
 
-  const termField = form.querySelector('.form-term input');
+  const termField = formTag.querySelector('.form-term');
   decorateTermField(termField);
 
-  decorateFieldsets(fieldsets, form);
+  decorateFieldsets(fieldsets, formTag);
 
-  decorateLayout(form, groups);
+  decorateValidations(formTag);
+  decorateLayout(formTag, groups);
+  applyRuleEngine(form, fragments, formTag);
 }
