@@ -9,6 +9,7 @@
     "test:watch": "npm test -- --watch",
     "lint:js": "eslint .",
     "lint:css": "stylelint 'blocks/**/*.css' 'styles/*.css'",
+    "lint:less": "stylelint 'blocks/**/*.less' 'styles/*.less'",
     "lint": "npm run lint:js",
     "lessc": "less-watch-compiler --run-once styles styles & less-watch-compiler --run-once blocks blocks",
     "hlx": "less-watch-compiler styles styles & less-watch-compiler blocks blocks & hlx up"
@@ -35,9 +36,12 @@
     "eslint-plugin-import": "2.26.0",
     "less": "^4.1.3",
     "less-watch-compiler": "^1.16.3",
+    "postcss-less": "^6.0.0",
     "sinon": "14.0.0",
-    "stylelint": "14.8.3",
+    "stylelint": "^14.16.1",
     "stylelint-config-prettier": "9.0.3",
-    "stylelint-config-standard": "25.0.0"
+    "stylelint-config-recommended-less": "^1.0.4",
+    "stylelint-config-standard": "25.0.0",
+    "stylelint-less": "^1.0.6"
   }
 }
