@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-const LANG = {
+export const LANG = {
   EN: 'en',
   DE: 'de',
   FR: 'fr',
@@ -700,7 +700,7 @@ function buildHeroBlock(main) {
       elems.push(elem);
     });
     let blockName = 'hero-home';
-    if (getMetadata('hero-type') === '2-col' && window.location.pathname !== '/') {
+    if (getMetadata('hero-type') === '2-col') {
       blockName = 'hero';
     }
     section.append(buildBlock(blockName, { elems }));
