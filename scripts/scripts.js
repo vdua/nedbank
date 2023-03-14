@@ -23,20 +23,22 @@ export const LANG = {
 
 let language;
 
-export function getLanguage() {
+export function getLanguageFromPath(pathname) {
   if (language) return language;
+
   language = '';
-  const segs = window.location.pathname.split('/');
-  if (segs && segs.length > 0) {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const [, value] of Object.entries(LANG)) {
-      if (value === segs[1]) {
-        language = value;
-        break;
-      }
+  const segs = pathname.split('/');
+  if (segs.length > 0) {
+    const l = LANG[segs[1].toUpperCase()];
+    if (l) {
+      language = l;
     }
   }
   return language;
+}
+
+export function getLanguage() {
+  return getLanguageFromPath(window.location.pathname);
 }
 
 /**
