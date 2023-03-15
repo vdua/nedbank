@@ -45,8 +45,10 @@ function decorateFooterLinks(footer) {
     });
   });
   const parent = footer.querySelector(':scope > .footer-links > div');
-  parent.innerHTML = '';
-  parent.appendChild(footerLinkGroupsDiv);
+  if (parent) {
+    parent.innerHTML = '';
+    parent.appendChild(footerLinkGroupsDiv);
+  }
 }
 
 function decorateFooterSocial(footer) {
@@ -59,7 +61,9 @@ function decorateFooterSocial(footer) {
     }
   });
   const parent = footer.querySelector(':scope > .footer-social > div');
-  parent.appendChild(footerSocialDiv);
+  if (parent) {
+    parent.appendChild(footerSocialDiv);
+  }
 }
 /**
  * loads and decorates the footer
