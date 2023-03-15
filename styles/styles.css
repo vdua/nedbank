@@ -8,6 +8,7 @@
   size-adjust: 105.41%;
   ascent-override: 105%;
   src: local("Arial");
+  font-display: swap;
 }
 :root {
   --link-color: #008533;
