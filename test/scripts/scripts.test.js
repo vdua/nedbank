@@ -135,8 +135,9 @@ describe('Core Helix features', () => {
   });
 
   it('Gets the right language', async () => {
-    expect(scripts.getLanguageFromPath('home/org/foo/blah.html')).to.equal('');
-    expect(scripts.getLanguageFromPath('home/de/org/foo/blah.html')).to.equal('de');
+    expect(scripts.getLanguageFromPath('home/org/foo/blah.html', true)).to.equal('');
+
+    expect(scripts.getLanguageFromPath('home/de/org/foo/blah.html', true)).to.equal('de');
 
     // The language should now be known, so even though the path doesn't have it we
     // should still get the value

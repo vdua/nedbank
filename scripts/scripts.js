@@ -10,27 +10,22 @@
  * governing permissions and limitations under the License.
  */
 
-export const LANG = {
-  EN: 'en',
-  DE: 'de',
-  FR: 'fr',
-  KO: 'ko',
-  ES: 'es',
-  IT: 'it',
-  JP: 'jp',
-  BR: 'br',
-};
+const LANGUAGES = new Set(['en', 'de', 'fr', 'ko', 'es', 'it', 'jp', 'br']);
 
 let language;
 
-export function getLanguageFromPath(pathname) {
-  if (language) return language;
+export function getLanguageFromPath(pathname, resetCache = false) {
+  if (resetCache) {
+    language = undefined;
+  }
+
+  if (language !== undefined) return language;
 
   language = '';
   const segs = pathname.split('/');
-  if (segs.length > 0) {
-    const l = LANG[segs[1].toUpperCase()];
-    if (l) {
+  if (segs.length > 1) {
+    const l = segs[1];
+    if (LANGUAGES.has(l)) {
       language = l;
     }
   }

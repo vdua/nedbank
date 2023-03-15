@@ -3,7 +3,6 @@ import {
   getLanguage,
   getMetadata,
   sampleRUM,
-  LANG,
 } from './scripts.js';
 
 // Core Web Vitals RUM collection
@@ -14,7 +13,7 @@ const LANG_DISPLAY_MAP = {
   de: 'German',
   fr: 'French',
   ko: 'Korean',
-  ES: 'Spanish',
+  es: 'Spanish',
   it: 'Italian',
   jp: 'Japanese',
   br: 'Breton',
@@ -79,7 +78,7 @@ function createDigitalData() {
   const pagePath = window.location.pathname || '';
   const pagePathSplit = pagePath.split('/');
 
-  const language = getLanguage() || LANG.EN;
+  const language = getLanguage() || 'en';
   const languagePageIndex = pagePathSplit.indexOf(language);
   const pageName = pagePathSplit[pagePathSplit.length - 1];
   const websiteEnvironment = getWebsiteEnv();
