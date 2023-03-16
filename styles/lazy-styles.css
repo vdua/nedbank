@@ -1,24 +1,139 @@
 /* below the fold CSS goes here */
 
-@font-face{font-family:"Nedbank Sans Regular";font-display:swap;src:url("/styles/fonts/NedbankSans-Regular.otf"),url("/styles/fonts/NedbankSans-Regular.woff")}
-@font-face{font-family:"Nedbank Sans RegularItalic";font-display:swap;src:url("/styles/fonts/NedbankSans-RegularItalic.otf")}
-@font-face{font-family:"Nedbank Sans Black";font-display:swap;src:url("/styles/fonts/NedbankSans-Black.otf")}
-@font-face{font-family:"Nedbank Sans BlackItalic";font-display:swap;src:url("/styles/fonts/NedbankSans-BlackItalic.otf")}
-@font-face{font-family:"Nedbank Sans Bold";font-display:swap;src:url("/styles/fonts/NedbankSans-Bold.otf"),url("/styles/fonts/NedbankSans-Bold.woff")}
-@font-face{font-family:"Nedbank Sans BoldItalic";font-display:swap;src:url("/styles/fonts/NedbankSans-BoldItalic.otf")}
-@font-face{font-family:"Nedbank Sans Heavy";font-display:swap;src:url("/styles/fonts/NedbankSans-Heavy.otf")}
-@font-face{font-family:"Nedbank Sans HeavyItalic";font-display:swap;src:url("/styles/fonts/NedbankSans-HeavyItalic.otf")}
-@font-face{font-family:"Nedbank Sans Light";font-display:swap;src:url("/styles/fonts/NedbankSans-Light.otf")}
-@font-face{font-family:"Nedbank Sans LightItalic";font-display:swap;src:url("/styles/fonts/NedbankSans-LightItalic.otf")}
-@font-face{font-family:"Nedbank Sans Medium";font-display:swap;src:url("/styles/fonts/NedbankSans-Medium.otf"),url("/styles/fonts/NedbankSans-Medium.woff")}
-@font-face{font-family:"Nedbank Sans MediumItalic";font-display:swap;src:url("/styles/fonts/NedbankSans-MediumItalic.otf")}
-@font-face{font-family:"Open Sans Light";font-display:swap;src:url("/styles/fonts/OpenSans-Light.ttf")}
-@font-face{font-family:"Open Sans LightItalic";font-display:swap;src:url("/styles/fonts/OpenSans-LightItalic.ttf")}
-@font-face{font-family:"Open Sans Bold";font-display:swap;src:url("/styles/fonts/OpenSans-Bold.ttf")}
-@font-face{font-family:"Open Sans BoldItalic";font-display:swap;src:url("/styles/fonts/OpenSans-BoldItalic.ttf")}
-@font-face{font-family:"Open Sans ExtraBold";font-display:swap;src:url("/styles/fonts/OpenSans-ExtraBold.ttf")}
-@font-face{font-family:"Open Sans ExtraBoldItalic";font-display:swap;src:url("/styles/fonts/OpenSans-ExtraBoldItalic.ttf")}
-@font-face{font-family:"Open Sans Italic";font-display:swap;src:url("/styles/fonts/OpenSans-Italic.ttf")}
-@font-face{font-family:"Open Sans Regular";font-display:swap;src:url("/styles/fonts/OpenSans-Regular.ttf")}
-@font-face{font-family:"Open Sans SemiBold";font-display:swap;src:url("/styles/fonts/OpenSans-SemiBold.ttf")}
-@font-face{font-family:"Open Sans SemiBoldItalic";font-display:swap;src:url("/styles/fonts/OpenSans-SemiBoldItalic.ttf")}
+@font-face {
+    font-family: "Nedbank Sans Regular";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-Regular.otf"), url("/styles/fonts/NedbankSans-Regular.woff")
+}
+
+@font-face {
+    font-family: "Nedbank Sans RegularItalic";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-RegularItalic.otf")
+}
+
+@font-face {
+    font-family: "Nedbank Sans Black";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-Black.otf")
+}
+
+@font-face {
+    font-family: "Nedbank Sans BlackItalic";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-BlackItalic.otf")
+}
+
+@font-face {
+    font-family: "Nedbank Sans Bold";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-Bold.otf"), url("/styles/fonts/NedbankSans-Bold.woff")
+}
+
+@font-face {
+    font-family: "Nedbank Sans BoldItalic";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-BoldItalic.otf")
+}
+
+@font-face {
+    font-family: "Nedbank Sans Heavy";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-Heavy.otf")
+}
+
+@font-face {
+    font-family: "Nedbank Sans HeavyItalic";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-HeavyItalic.otf")
+}
+
+@font-face {
+    font-family: "Nedbank Sans Light";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-Light.otf")
+}
+
+@font-face {
+    font-family: "Nedbank Sans LightItalic";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-LightItalic.otf")
+}
+
+@font-face {
+    font-family: "Nedbank Sans Medium";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-Medium.otf"), url("/styles/fonts/NedbankSans-Medium.woff")
+}
+
+@font-face {
+    font-family: "Nedbank Sans MediumItalic";
+    font-display: swap;
+    src: url("/styles/fonts/NedbankSans-MediumItalic.otf")
+}
+
+@font-face {
+    font-family: "Open Sans Light";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-Light.ttf")
+}
+
+@font-face {
+    font-family: "Open Sans LightItalic";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-LightItalic.ttf")
+}
+
+@font-face {
+    font-family: "Open Sans Bold";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-Bold.ttf")
+}
+
+@font-face {
+    font-family: "Open Sans BoldItalic";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-BoldItalic.ttf")
+}
+
+@font-face {
+    font-family: "Open Sans ExtraBold";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-ExtraBold.ttf")
+}
+
+@font-face {
+    font-family: "Open Sans ExtraBoldItalic";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-ExtraBoldItalic.ttf")
+}
+
+@font-face {
+    font-family: "Open Sans Italic";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-Italic.ttf")
+}
+
+@font-face {
+    font-family: "Open Sans Regular";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-Regular.ttf")
+}
+
+@font-face {
+    font-family: "Open Sans SemiBold";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-SemiBold.ttf")
+}
+
+@font-face {
+    font-family: "Open Sans SemiBoldItalic";
+    font-display: swap;
+    src: url("/styles/fonts/OpenSans-SemiBoldItalic.ttf")
+}
+
+@font-face {
+    font-family: "Libre Franklin";
+    font-display: swap;
+    src: url("/styles/fonts/LibreFranklin.woff2");
+}
