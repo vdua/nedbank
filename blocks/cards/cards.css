@@ -608,6 +608,12 @@
   font-size: 16px;
   line-height: 24px;
 }
+#promotions {
+  margin-left: -25px;
+}
+.icon-arrow {
+  padding-right: 140px;
+}
 @media (min-width: 1025px) {
   #switch-to-nedbank-hassle-free {
     line-height: 40px;
