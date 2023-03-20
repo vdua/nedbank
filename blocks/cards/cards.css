@@ -599,27 +599,29 @@
     display: flex;
   }
 }
-#switch-to-nedbank-hassle-free {
+div.switchcard h3 {
   font-weight: 400;
   line-height: 32px;
   font-size: 24px;
 }
-#switch-to-nedbank-hassle-free + p {
+div.switchcard h3 + p {
   font-size: 16px;
   line-height: 24px;
 }
-#promotions {
-  margin-left: -25px;
+div.promotion-banner h2 strong {
+  margin-left: -24px;
+  font-size: 32px;
 }
-.icon-arrow {
-  padding-right: 140px;
+div.promotion-banner a {
+  font-size: 18px;
+  font-weight: 700;
 }
 @media (min-width: 1025px) {
-  #switch-to-nedbank-hassle-free {
+  div.switchcard h3 {
     line-height: 40px;
     font-size: 32px;
   }
-  #switch-to-nedbank-hassle-free + p {
+  div.switchcard h3 + p {
     font-size: 20px;
     line-height: 28px;
   }

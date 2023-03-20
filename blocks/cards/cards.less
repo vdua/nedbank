@@ -859,33 +859,41 @@ autocomment();
   }
 }
 
-#switch-to-nedbank-hassle-free {
-  font-weight: 400;
-  line-height: 32px;
-  font-size: 24px;
+div.switchcard h3 {
+  font-weight: @font-weight-regular;
+  line-height: @font-lineheight-h3;
+  font-size: @font-size-h3;
 
   + p {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: @font-paragraph-base;
+    line-height: @font-lineheight-base;
   }
 }
 
-#promotions {
-  margin-left: -25px;
-}
+div.promotion-banner {
+  h2 {
+    strong {
+      margin-left: -@spacing-06;
+      font-size: @font-size-h2;
+    }
 
-.icon-arrow {
-  padding-right: 140px;
+  }
+
+  // This is part of the 'See all' link to the right of 'Promotions'
+  a {
+    font-size: @font-size-medium;
+    font-weight: @font-weight-bold;
+  }
 }
 
 @media(@width_1025) {
-  #switch-to-nedbank-hassle-free {
-    line-height: 40px;
-    font-size: 32px;
+  div.switchcard h3 {
+    line-height: @font-lineheight-h2;
+    font-size: @font-size-h2;
 
     + p {
-      font-size: 20px;
-      line-height: 28px;
+      font-size: @font-size-large;
+      line-height: @font-lineheight-large;
     }
   }
 }
