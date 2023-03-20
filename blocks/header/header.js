@@ -13,6 +13,32 @@ function collapseAllNavSections(sections) {
   });
 }
 
+function injectNavTool(tools, name, icon, type) {
+  let tool;
+  if (type === 'primary-nav') {
+    tool = `
+    <span>${name}</span>
+    <img src='/icons/${icon}.svg'></img>
+`;
+  } else {
+    tool = `
+    <img src='/icons/${icon}.svg'></img>
+`;
+  }
+
+  const div = document.createElement('div');
+  div.classList.add(`nav-tools-${name}`);
+  div.innerHTML = tool;
+  tools.append(div);
+}
+
+function injectNavTools(nav, type) {
+  const tools = nav.querySelector(':scope > .nav-tools');
+  tools.innerHTML = '';
+  injectNavTool(tools, 'Search', 'search', type);
+  injectNavTool(tools, 'Login', 'lock', type);
+}
+
 // Method to decorate nav and primaryNav
 function decorateNav(respTxt, type) {
   const html = respTxt;
@@ -28,6 +54,8 @@ function decorateNav(respTxt, type) {
     const section = nav.children[j];
     if (section) section.classList.add(`nav-${e}`);
   });
+
+  injectNavTools(nav, type);
 
   const navSections = [...nav.children][1];
   if (navSections) {

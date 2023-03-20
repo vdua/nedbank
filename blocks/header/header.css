@@ -59,21 +59,22 @@ header primary-nav .nav-tools {
   left: -70px;
   cursor: pointer;
 }
-header primary-nav .nav-tools p {
+header primary-nav .nav-tools > div {
   width: 100%;
   display: flex;
   color: #17252e;
   align-items: center;
 }
-header primary-nav .nav-tools p span {
-  flex-basis: 50%;
+header primary-nav .nav-tools > div > span {
   display: flex;
   justify-content: center;
+  padding-left: 20px;
+  padding-right: 5px;
 }
-header primary-nav .nav-tools p span:hover {
+header primary-nav .nav-tools > div > span:hover {
   color: #17252e;
 }
-header primary-nav .nav-tools p:hover {
+header primary-nav .nav-tools > div:hover {
   color: #008533;
 }
 header primary-nav .nav-hamburger {
@@ -185,12 +186,8 @@ header secondary-nav .nav-tools {
   font-size: 14px;
   cursor: pointer;
 }
-header secondary-nav .nav-tools p {
-  margin: 0;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
+header secondary-nav .nav-tools img {
+  padding: 0 10px;
 }
 header .nav-brand {
   grid-area: brand;
@@ -221,22 +218,18 @@ header .sticky {
     display: none;
     flex-grow: 1;
   }
-  header secondary-nav .nav-tools p:nth-child(1) {
-    justify-content: right;
-    padding: 0;
-  }
-  header secondary-nav .nav-tools p:nth-child(2) {
-    justify-content: center;
-    padding: 0;
-  }
   header secondary-nav .nav-tools.display-none {
     display: none;
   }
   header secondary-nav .nav-tools.display-flex {
     display: flex;
+    justify-content: space-evenly;
+  }
+  header secondary-nav .nav-tools img {
+    padding: unset;
   }
   header secondary-nav .nav-sections {
-    flex-basis: 70%;
+    flex-basis: 80%;
   }
   header secondary-nav .nav-sections > ul {
     padding-inline-start: unset;
