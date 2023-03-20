@@ -206,7 +206,10 @@
   font-size: 24px;
   margin: 0px auto 32px auto;
 }
-.home-services.cards-container .cards li:hover :where(p, a.button) > .icon-arrow {
+.home-services.cards-container a .icon {
+  margin-left: 0;
+}
+.home-services.cards-container .cards li:hover :where(p, a.button) .icon-arrow {
   transition: transform 900ms;
   transform: translateX(8px);
 }

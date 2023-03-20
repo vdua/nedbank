@@ -570,6 +570,98 @@ function decorateTemplateAndTheme() {
 }
 
 /**
+ * Recursively finding l1 and l2 for Analytics purpose
+ * l1 is first child(h1, h2 or h3) of any ancestor.
+ * while l2 is specific to first child(h1, h2 or h3) of .section element
+ * @param {*} ele
+ * @param {*} result
+ * @returns
+ */
+function recurAnchor(ele, result) {
+  if (ele === null || result.l2) {
+    return result;
+  }
+
+  if (result.l1) {
+    const sectionEle = ele.closest('.section');
+    const l2 = sectionEle ? sectionEle.querySelector('h1, h2, h3') : null;
+    result.l2 = l2;
+    return result;
+  }
+  const l1 = ele.querySelector('h1, h2, h3');
+  result.l1 = l1;
+
+  if (ele.classList.contains('section')) {
+    return result;
+  }
+
+  return recurAnchor(ele.parentElement, result);
+}
+
+/**
+ * Adding attributes in Anhor tag for main section
+ * @param {*} a
+ */
+function setAnchorAttributes(a) {
+  const linkType = a.closest('.cards') ? 'card' : 'link';
+  a.setAttribute('data-pagequicklinktype', linkType);
+  const result = {};
+  recurAnchor(a.parentElement, result);
+
+  const l1Txt = result.l1 ? result.l1.innerText : '';
+  const l2Txt = result.l2 ? result.l2.innerText : '';
+
+  a.setAttribute('data-pagequicklinkname', (a.title || l1Txt));
+  const mainContent = 'main content';
+
+  if (linkType === 'link') {
+    a.setAttribute('data-pagequicklinklocation', `${l1Txt} | ${mainContent}`);
+  } else if (!a.title) {
+    a.setAttribute('data-pagequicklinklocation', `${l2Txt} | ${mainContent}`);
+  } else {
+    a.setAttribute('data-pagequicklinklocation', `${l1Txt} | ${l2Txt} | ${mainContent}`);
+  }
+}
+
+/**
+ * This function fetches data attributes which were overrided in doc and then setting those.
+ * @param {*} a
+ */
+export function fetchDataAttributesAnchor(a) {
+  const HASH_SEPARATOR = '#';
+  const EQUAL_SEPARATOR = '=';
+
+  if (a.href && a.href.includes(HASH_SEPARATOR) && a.href.includes('data-')) {
+    const splitEle = a.href.split(HASH_SEPARATOR);
+    let url = splitEle[0];
+
+    for (let index = 1; index < splitEle.length; index += 1) {
+      if (splitEle[index].startsWith('data-')) {
+        a.setAttribute(
+          splitEle[index].split(EQUAL_SEPARATOR)[0],
+          decodeURIComponent(splitEle[index].split(EQUAL_SEPARATOR)[1]),
+        );
+      } else {
+        url += `${HASH_SEPARATOR}${splitEle[index]}`;
+      }
+    }
+
+    a.href = url;
+  }
+}
+
+/**
+ * Decorate anchor tag after all other decorations in order to add data analytics attributes
+ * @param {*} element
+ */
+function decorateAnchor(element) {
+  element.querySelectorAll('a').forEach((a) => {
+    setAnchorAttributes(a);
+    fetchDataAttributesAnchor(a);
+  });
+}
+
+/**
  * decorates paragraphs containing a single link as buttons.
  * @param {Element} element container element
  */
@@ -580,7 +672,13 @@ export function decorateButtons(element) {
     if (a.href !== a.textContent) {
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
-      if (!a.querySelector('img')) {
+
+      // Special handling for icon-arrow and icon-diagonal-arrow because we have added
+      // these icons as an anchor tag in document and don't want to add any button class to them.
+      const isArrowEle = (a.firstElementChild) ? ['icon-arrow', 'icon-diagonal-arrow']
+        .some((elem) => a.firstElementChild.classList.contains(elem)) : false;
+
+      if (!a.querySelector('img') && !isArrowEle) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
           a.className = 'button primary'; // default
           up.classList.add('button-container');
@@ -781,6 +879,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateAnchor(main);
 }
 
 /**

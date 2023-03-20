@@ -166,6 +166,9 @@ a:any-link {
 a:hover {
   color: var(--link-hover-color);
 }
+a .icon {
+  margin-left: 10px;
+}
 code {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
@@ -293,7 +296,7 @@ main .section :where(.icon-arrow, .icon-diagonal-arrow):hover {
   transition: transform 900ms;
   transform: translateX(8px);
 }
-main .section p:hover > .icon-diagonal-arrow {
+main .section p:hover .icon-diagonal-arrow {
   transition: transform 900ms;
   transform: translate(6px, -5px);
 }

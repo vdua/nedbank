@@ -105,7 +105,7 @@ autocomment();
         }
       }
 
-      >a+.icon {
+      >a + .icon {
         margin-left: 10px;
       }
     }
@@ -190,8 +190,6 @@ autocomment();
         margin-left: 0;
         margin-right: 0;
       }
-
-      ;
     }
   }
 }
@@ -248,11 +246,17 @@ autocomment();
     }
   }
 
+  a {
+    .icon {
+      margin-left: 0;
+    }
+  }
+
   .cards {
     li {
       &:hover {
         :where(p, a.button) {
-          >.icon-arrow {
+          .icon-arrow {
             transition: transform 900ms;
             transform: translateX(8px);
           }
