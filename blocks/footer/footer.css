@@ -18,6 +18,11 @@ footer .footer-social-items {
 footer .footer-social-items .icon {
   margin-right: 24px;
 }
+footer .footer-social-items p {
+  margin-block-start: 0px;
+  font-size: 16px;
+  color: #494f50;
+}
 footer .footer-link-groups {
   display: flex;
   justify-content: center;
@@ -62,6 +67,9 @@ footer .footer-link-group > ul > li > a {
   letter-spacing: 0;
   line-height: 32px;
   margin: unset;
+}
+footer .icon-nedbank-caps svg {
+  width: 100px;
 }
 @media (min-width: 991px) {
   footer .section .default-content-wrapper {
