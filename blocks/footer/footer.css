@@ -21,6 +21,7 @@ footer .footer-social-items {
 }
 footer .footer-social-items .icon {
   margin-right: 24px;
+  opacity: 0.5;
 }
 footer .footer-social-items p {
   margin-block-start: 0px;
