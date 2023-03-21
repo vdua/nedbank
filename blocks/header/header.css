@@ -245,7 +245,7 @@ header .sticky {
   }
   header secondary-nav .nav-sections > ul > li[aria-expanded='false']::before {
     content: ' ';
-    border: 2px solid #ffffff;
+    border: 2px solid transparent;
     display: block;
     transform: translateY(43px);
   }
