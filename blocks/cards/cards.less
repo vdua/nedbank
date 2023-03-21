@@ -859,6 +859,45 @@ autocomment();
   }
 }
 
+div.switchcard h3 {
+  font-weight: @font-weight-regular;
+  line-height: @font-lineheight-h3;
+  font-size: @font-size-h3;
+
+  + p {
+    font-size: @font-paragraph-base;
+    line-height: @font-lineheight-base;
+  }
+}
+
+div.promotion-banner {
+  h2 {
+    strong {
+      margin-left: -@spacing-06;
+      font-size: @font-size-h2;
+    }
+
+  }
+
+  // This is part of the 'See all' link to the right of 'Promotions'
+  a {
+    font-size: @font-size-medium;
+    font-weight: @font-weight-bold;
+  }
+}
+
+@media(@width_1025) {
+  div.switchcard h3 {
+    line-height: @font-lineheight-h2;
+    font-size: @font-size-h2;
+
+    + p {
+      font-size: @font-size-large;
+      line-height: @font-lineheight-large;
+    }
+  }
+}
+
 @media (@width_1440) {
   .home-services.cards-container {
     padding-left: calc(~'(100% - 1228px)/2');

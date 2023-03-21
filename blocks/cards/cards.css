@@ -599,6 +599,33 @@
     display: flex;
   }
 }
+div.switchcard h3 {
+  font-weight: 400;
+  line-height: 32px;
+  font-size: 24px;
+}
+div.switchcard h3 + p {
+  font-size: 16px;
+  line-height: 24px;
+}
+div.promotion-banner h2 strong {
+  margin-left: -24px;
+  font-size: 32px;
+}
+div.promotion-banner a {
+  font-size: 18px;
+  font-weight: 700;
+}
+@media (min-width: 1025px) {
+  div.switchcard h3 {
+    line-height: 40px;
+    font-size: 32px;
+  }
+  div.switchcard h3 + p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
 @media (min-width: 1440px) {
   .home-services.cards-container {
     padding-left: calc((100% - 1228px)/2);

@@ -1,5 +1,6 @@
 main .banner-placeholder {
   padding-right: 35px;
+  background-color: #eeeeee;
   display: none;
 }
 main .banner-placeholder.appear {
