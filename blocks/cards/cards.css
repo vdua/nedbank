@@ -20,6 +20,12 @@
   flex-basis: calc(100%/1);
   max-width: calc(100%/1);
 }
+.section.cards-container.switchcard h2 {
+  font-size: 32px;
+  margin-top: 20px;
+  margin-left: 32px;
+  margin-bottom: -30px;
+}
 /* cards -> when space is less, items will shift accordingly and content of items will be placed horizontal */
 .cards :where(ul, li, h1, h2, h3, h4, h5, h6, p) {
   margin: unset;
@@ -598,9 +604,6 @@
   .home-services.cards-container .cards > ul > li .cards-image > span {
     display: flex;
   }
-}
-div.switchcard h2 {
-  font-size: 32px;
 }
 div.switchcard h3 {
   font-weight: 400;
