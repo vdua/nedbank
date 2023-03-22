@@ -15,14 +15,13 @@ footer {
 	}
 
 	.footer-social h2 {
-		padding-left: 0px;
+		padding-left: 20px;
 	}
 
 	.footer-social-items {
 		display: flex;
 		justify-content: space-between;
 		flex-direction: column;
-		margin-left: -20px;
 
 		.icon {
 			margin-right: 24px;
@@ -43,6 +42,9 @@ footer {
 	}
 
 	.footer-link-group {
+		padding-left: 20px;
+		padding-right: 200px;
+
 		h5 {
 			border: 1px solid #e5edec;
 			margin: unset;
@@ -75,6 +77,8 @@ footer {
 			}
 
 			>li {
+				line-height: @font-lineheight-base;
+
 				&:first-child {
 					padding-top: 40px;
 				}
@@ -88,7 +92,7 @@ footer {
 					font-family: @font_family_2;
 					font-size: 16px;
 					letter-spacing: 0;
-					line-height: 32px;
+					line-height: @font-lineheight-base;
 					margin: unset;
 				}
 			}
@@ -127,13 +131,14 @@ footer {
 
 			.footer-link-groups {
 				display: flex;
-				justify-content: space-between;
+				justify-content: flex-start;
 				flex-direction: row;
 
 				.footer-link-group {
+
 					h5 {
 						border: none;
-						padding: 40px 0 0;
+						padding: 56px 0 0;
 						//Do not display up and down arrow icons at all for wide screens
 						>span.icon {
 							display: none;
