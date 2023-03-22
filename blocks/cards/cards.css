@@ -136,8 +136,6 @@
   margin-top: 0;
   margin-bottom: 0;
   transform: none;
-  width: 48px;
-  height: 48px;
 }
 .cards.large .cards-image .cards-body > p {
   margin-top: 0;
@@ -170,8 +168,8 @@
   margin-right: 0px;
 }
 .cards.large .cards-body > p {
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 18px;
+  line-height: 26px;
   margin-bottom: 24px;
 }
 .cards.large .cards-body > p > a {
@@ -317,8 +315,9 @@
   }
   .cards.large .cards-body > p:first-child,
   .cards.large .cards-body > :where(h2, h3) + p {
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 16px;
+    color: #494f50;
+    line-height: 24px;
     margin-top: 8px;
   }
   .home-promotions.cards-container > div:first-child {
@@ -483,7 +482,8 @@
     gap: 15px 35px;
   }
   .cards.large li {
-    padding: 48px 32px 48px 32px;
+    padding: 48px 30px 24px 32px;
+    margin-right: -10px;
   }
   .cards.large .cards-body > h2 + p {
     font-size: 20px;
