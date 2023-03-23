@@ -110,7 +110,7 @@ header secondary-nav .nav-sections > ul > li.nav-drop {
   position: relative;
 }
 header secondary-nav .nav-sections > ul > li.nav-drop:first-child {
-  font-family: 'Nedbank Sans Bold';
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
   font-size: 14px !important;
   padding-top: 4px;
 }
@@ -147,19 +147,26 @@ header secondary-nav .nav-sections > ul > li > p {
 header secondary-nav .nav-sections > ul > li > ul {
   display: none;
   position: relative;
+  padding-inline-start: 0;
+  min-width: 14em;
 }
 header secondary-nav .nav-sections > ul > li > ul:any-link {
   font-size: var(--body-font-size-m);
 }
 header secondary-nav .nav-sections > ul > li > ul > li {
-  font-size: 18px;
-  padding: 20px 0;
+  color: #494f50;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 16px 20px 16px 32px;
 }
 header secondary-nav .nav-sections > ul > li > ul > li:hover {
-  background-color: #f1f6f5;
+  color: #17252e;
+  background-color: #fafafa;
 }
 header secondary-nav .nav-sections > ul > li > ul > li:first-child {
-  font-family: "Nedbank Sans Bold";
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  padding-top: 24px;
 }
 header secondary-nav .nav-sections > ul > li > ul > li:first-child:hover {
   background-color: var(--background-color);
