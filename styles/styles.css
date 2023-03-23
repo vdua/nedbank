@@ -38,6 +38,7 @@
   --section-left-right-padding: 105px;
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 :root .light {
   --background-color: #ffffff;
@@ -75,9 +76,9 @@ body .modal {
   width: 100%;
   height: 100%;
   z-index: 1050;
-  top: 64px;
+  top: 0px;
   position: fixed;
-  display: flex;
+  display: block;
 }
 header {
   height: var(--nav-height);
@@ -511,6 +512,9 @@ main .home-banner.section p {
   }
 }
 @media (min-width: 1025px) {
+  body .modal {
+    top: 64px;
+  }
   main .home-banner.section .default-content-wrapper {
     margin: 0 105px;
     padding: 64px 105px;

@@ -63,6 +63,7 @@ autocomment();
 	--section-left-right-padding: 105px;
 	-webkit-font-smoothing: antialiased;
 	scroll-behavior: smooth;
+	-webkit-font-smoothing: antialiased;
 }
 
 :root .light {
@@ -103,12 +104,12 @@ body {
 	}
 
 	.modal {
-        width: 100%;
-        height: 100%;
-        z-index: 1050;
-        top: 64px;
-        position: fixed;
-        display: flex;
+		width: 100%;
+		height: 100%;
+		z-index: 1050;
+		top: 0px;
+		position: fixed;
+		display: block;
     }
 }
 
@@ -670,6 +671,12 @@ main .home-banner.section {
 }
 
 @media (@width_1025) {
+	body {
+		.modal {
+			top: @spacing-10;
+		}
+	}
+
 	main .home-banner.section {
 		.default-content-wrapper {
 			margin: 0 105px;
