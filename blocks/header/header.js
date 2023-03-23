@@ -45,7 +45,7 @@ function injectNavTools(nav, type) {
 }
 
 function addLoginEventListener(nav) {
-  const loginButton = nav.querySelector('.nav-tools-Login');
+  const loginButton = nav.querySelector('.nav-tools-login');
 
   if (loginButton) {
     loginButton.addEventListener('click', () => {
