@@ -14,6 +14,10 @@ footer {
 		}
 	}
 
+	.footer-social h2 {
+		padding-left: 20px;
+	}
+
 	.footer-social-items {
 		display: flex;
 		justify-content: space-between;
@@ -24,8 +28,15 @@ footer {
 		}
 
 		.icon {
-			margin-right: 24px;
 			margin-left: 0;
+			margin-right: 24px;
+			opacity: 0.5;
+		}
+
+		p {
+			margin-block-start: 0px;
+			font-size: @font-size-small;
+			color: @color_2;
 		}
 	}
 
@@ -68,6 +79,8 @@ footer {
 			}
 
 			>li {
+				line-height: @font-lineheight-small;
+
 				&:first-child {
 					padding-top: 40px;
 				}
@@ -79,12 +92,17 @@ footer {
 				>a {
 					color: @color_2;
 					font-family: @font_family_2;
-					font-size: 16px;
+					font-size: @font-size-small;
 					letter-spacing: 0;
-					line-height: 32px;
 					margin: unset;
 				}
 			}
+		}
+	}
+
+	.icon-nedbank-caps {
+		svg {
+			width: 100px;
 		}
 	}
 }
@@ -102,6 +120,7 @@ footer {
 
 			>p {
 				max-width: 75%;
+				font-size: @font-size-base;
 			}
 
 			.icon {
@@ -114,13 +133,16 @@ footer {
 
 			.footer-link-groups {
 				display: flex;
-				justify-content: space-between;
+				justify-content: flex-start;
 				flex-direction: row;
+				column-gap: 11%;
 
 				.footer-link-group {
+					padding-left: 20px;
+
 					h5 {
 						border: none;
-						padding: 40px 0 0;
+						padding: 56px 0 0;
 						//Do not display up and down arrow icons at all for wide screens
 						>span.icon {
 							display: none;
@@ -139,16 +161,16 @@ footer {
 						transition: none;
 
 						>li {
+							line-height: @font-lineheight-base;
 							padding: unset;
+
+							>a {
+								font-size: @font-size-base;
+							}
 						}
 					}
 				}
-
 			}
-
-
 		}
-
-
 	}
 }
