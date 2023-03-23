@@ -98,10 +98,10 @@ footer .icon-nedbank-caps svg {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
+    column-gap: 11%;
   }
   footer .footer-links .footer-link-groups .footer-link-group {
     padding-left: 20px;
-    padding-right: 200px;
   }
   footer .footer-links .footer-link-groups .footer-link-group h5 {
     border: none;
