@@ -30,7 +30,7 @@ footer {
 
 		p {
 			margin-block-start: 0px;
-			font-size: @font-size-base;
+			font-size: @font-size-small;
 			color: @color_2
 		}
 	}
@@ -42,9 +42,6 @@ footer {
 	}
 
 	.footer-link-group {
-		padding-left: 20px;
-		padding-right: 200px;
-
 		h5 {
 			border: 1px solid #e5edec;
 			margin: unset;
@@ -77,7 +74,7 @@ footer {
 			}
 
 			>li {
-				line-height: @font-lineheight-base;
+				line-height: @font-lineheight-small;
 
 				&:first-child {
 					padding-top: 40px;
@@ -90,9 +87,8 @@ footer {
 				>a {
 					color: @color_2;
 					font-family: @font_family_2;
-					font-size: 16px;
+					font-size: @font-size-small;
 					letter-spacing: 0;
-					line-height: @font-lineheight-base;
 					margin: unset;
 				}
 			}
@@ -119,6 +115,7 @@ footer {
 
 			>p {
 				max-width: 75%;
+				font-size: @font-size-base;
 			}
 
 			.icon {
@@ -135,6 +132,8 @@ footer {
 				flex-direction: row;
 
 				.footer-link-group {
+					padding-left: 20px;
+					padding-right: 200px;
 
 					h5 {
 						border: none;
@@ -157,16 +156,16 @@ footer {
 						transition: none;
 
 						>li {
+							line-height: @font-lineheight-base;
 							padding: unset;
+
+							>a {
+								font-size: @font-size-base;
+							}
 						}
 					}
 				}
-
 			}
-
-
 		}
-
-
 	}
 }
