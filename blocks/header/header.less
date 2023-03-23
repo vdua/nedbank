@@ -310,7 +310,7 @@ header {
 						margin-right: @spacing-06;
 						font-size: @font-size-base;
 
-						&[aria-expanded='false'] {
+						& {
 							&::before {
 								content: ' ';
 								border: @spacing-01 solid @nav-lines-menu;
@@ -325,6 +325,11 @@ header {
 								border: @spacing-01 solid @dotcoza-color-greens-default;
 								display: block;
 								transform: translateY(43px);
+							}
+							>a {
+								&::after {
+									transform: rotate(180deg);
+								}
 							}
 						}
 
