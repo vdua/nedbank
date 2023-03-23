@@ -1,3 +1,22 @@
+import {
+  readBlockConfig,
+} from '../../scripts/scripts.js';
+
+function stripTags(input, allowd) {
+  const allowed = ((`${allowd || ''}`)
+    .toLowerCase()
+    .match(/<[a-z][a-z0-9]*>/g) || [])
+    .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+  const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
+  const comments = /<!--[\s\S]*?-->/gi;
+  return input.replace(comments, '')
+    .replace(tags, ($0, $1) => (allowed.indexOf(`<${$1.toLowerCase()}>`) > -1 ? $0 : ''));
+}
+
+export function sanitizeHTML(input) {
+  return stripTags(input, '<a>');
+}
+
 const formatFns = await (async function imports() {
   try {
     const formatters = await import('./formatting.js');
@@ -60,18 +79,24 @@ function setNumberConstraints(element, fd) {
     element.step = fd.Step || 1;
   }
 }
-function createLabel(fd) {
-  const label = document.createElement('label');
-  label.setAttribute('for', fd.Id);
+function createLabel(fd, tagName = 'label') {
+  const label = document.createElement(tagName);
+  if (tagName === 'label') {
+    label.setAttribute('for', fd.Id);
+  }
   label.className = 'field-label';
-  label.textContent = fd.Label || '';
+  label.innerHTML = sanitizeHTML(fd.Label) || '';
   if (fd.Tooltip) {
     label.title = fd.Tooltip;
   }
   return label;
 }
 
-function createHelpText(fd) {
+function createLegend(fd) {
+  return createLabel(fd, 'legend');
+}
+
+export function createHelpText(fd) {
   const div = document.createElement('div');
   div.className = 'field-description';
   div.setAttribute('aria-live', 'polite');
@@ -87,6 +112,9 @@ function createFieldWrapper(fd, tagName = 'div') {
   fieldWrapper.className = fieldId;
   fieldWrapper.classList.add('field-wrapper');
   fieldWrapper.append(createLabel(fd));
+  if (fd.Hidden?.toLowerCase() === 'true') {
+    fieldWrapper.dataset.hidden = 'true';
+  }
   return fieldWrapper;
 }
 
@@ -106,6 +134,10 @@ function createButton(fd) {
 function createInput(fd) {
   const input = document.createElement('input');
   input.type = fd.Type;
+  const displayFormat = fd['Display Format'];
+  if (displayFormat) {
+    input.dataset.displayFormat = displayFormat;
+  }
   setPlaceholder(input, fd);
   setNumberConstraints(input, fd);
   return input;
@@ -143,7 +175,11 @@ const createSelect = withFieldWrapper((fd) => {
 
 function createRadio(fd) {
   const wrapper = createFieldWrapper(fd);
-  wrapper.insertAdjacentElement('afterbegin', createInput(fd));
+  const radio = createInput(fd);
+  if (fd.Selected?.toLowerCase() === 'true') {
+    radio.checked = true;
+  }
+  wrapper.insertAdjacentElement('afterbegin', radio);
   return wrapper;
 }
 
@@ -159,6 +195,23 @@ const createOutput = withFieldWrapper((fd) => {
   return output;
 });
 
+const currencySymbol = 'R';
+function createCurrency(fd) {
+  const wrapper = createFieldWrapper(fd);
+  const widgetWrapper = document.createElement('div');
+  widgetWrapper.className = 'currency-input-wrapper';
+  const currencyEl = document.createElement('div');
+  currencyEl.className = 'currency-symbol';
+  currencyEl.innerText = currencySymbol; // todo :read from css
+  widgetWrapper.append(currencyEl);
+  widgetWrapper.append(createInput({
+    ...fd,
+    Type: 'number',
+  }));
+  wrapper.append(widgetWrapper);
+  return wrapper;
+}
+
 function createHidden(fd) {
   const input = document.createElement('input');
   input.type = 'hidden';
@@ -166,6 +219,13 @@ function createHidden(fd) {
   input.name = fd.Name;
   input.value = fd.Value;
   return input;
+}
+
+function createFieldset(fd) {
+  const wrapper = createFieldWrapper(fd, 'fieldset');
+  wrapper.name = fd.Name;
+  wrapper.replaceChildren(createLegend(fd));
+  return wrapper;
 }
 
 const getId = (function getId() {
@@ -187,6 +247,8 @@ const fieldRenderers = {
   button: createButton,
   output: createOutput,
   hidden: createHidden,
+  currency: createCurrency,
+  fieldset: createFieldset,
 };
 
 function renderField(fd) {
@@ -224,10 +286,11 @@ async function fetchForm(pathname) {
   return jsonData;
 }
 
-async function createForm(formURL) {
+async function createForm(formURL, id) {
   const { pathname } = new URL(formURL);
   const data = await fetchForm(pathname);
   const form = document.createElement('form');
+  form.id = id;
   const fields = data
     .map((fd) => ({ fd, el: renderField(fd) }));
   fields.forEach(({ fd, el }) => {
@@ -241,10 +304,18 @@ async function createForm(formURL) {
       input.value = fd.Value;
       if (fd.Description) {
         input.setAttribute('aria-describedby', `${fd.Id}-description`);
+        input.dataset.description = fd.Description;
       }
     }
   });
   form.append(...fields.map(({ el }) => el));
+  try {
+    const formDecorator = await import('./decorators/index.js');
+    formDecorator.default(form);
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log('no custom decorator found. default renditions will be used.');
+  }
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
   form.addEventListener('submit', (e) => {
@@ -257,7 +328,9 @@ async function createForm(formURL) {
 
 export default async function decorate(block) {
   const form = block.querySelector('a[href$=".json"]');
+  const config = readBlockConfig(block);
+  const id = config?.id?.trim();
   if (form) {
-    form.replaceWith(await createForm(form.href));
+    block.replaceChildren(await createForm(form.href, id));
   }
 }
