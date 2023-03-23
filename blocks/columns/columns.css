@@ -230,7 +230,6 @@
     position: relative;
   }
   .columns.backdrop > div > div > p {
-    left: -12px;
     position: relative;
   }
 }

@@ -21,7 +21,16 @@ autocomment();
     .width-basis();
   }
 
+  &.switchcard {
+    h2  {
+      font-size: @font-size-h2;
+      margin-top: 20px;
+      margin-left: @spacing-07;
+      margin-bottom: -30px;
+    }
+  }
 }
+
 
 /* cards -> when space is less, items will shift accordingly and content of items will be placed horizontal */
 .cards {
@@ -140,8 +149,6 @@ autocomment();
       margin-top: 0;
       margin-bottom: 0;
       transform: none;
-      width: 48px;
-      height: 48px;
     }
 
     .cards-body {
@@ -182,8 +189,8 @@ autocomment();
     }
 
     >p {
-      font-size: 20px;
-      line-height: 28px;
+      font-size: @font-size-medium;
+      line-height: @font-lineheight-medium;
       margin-bottom: 24px;
 
       >a {
@@ -399,8 +406,9 @@ autocomment();
 
       >p:first-child,
       > :where(h2, h3)+p {
-        font-size: 18px;
-        line-height: 28px;
+        font-size: @font-size-base;
+        color: @dotcoza-color-body-grey;
+        line-height: @font-lineheight-base;
         margin-top: @spacing-03;
       }
     }
@@ -638,7 +646,8 @@ autocomment();
     }
 
     li {
-      padding: 48px 32px 48px 32px;
+      padding: 48px 30px 24px 32px;
+      margin-right: -10px;
     }
 
     .cards-body {
@@ -858,6 +867,7 @@ autocomment();
     }
   }
 }
+
 
 div.switchcard h3 {
   font-weight: @font-weight-regular;

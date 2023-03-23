@@ -65,13 +65,18 @@ header primary-nav .nav-tools > div {
   color: #17252e;
   align-items: center;
 }
-header primary-nav .nav-tools > div > span {
+header primary-nav .nav-tools > div a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header primary-nav .nav-tools > div span {
   display: flex;
   justify-content: center;
   padding-left: 20px;
   padding-right: 5px;
 }
-header primary-nav .nav-tools > div > span:hover {
+header primary-nav .nav-tools > div span:hover {
   color: #17252e;
 }
 header primary-nav .nav-tools > div:hover {
@@ -243,7 +248,7 @@ header .sticky {
     margin-right: 24px;
     font-size: 16px;
   }
-  header secondary-nav .nav-sections > ul > li[aria-expanded='false']::before {
+  header secondary-nav .nav-sections > ul > li::before {
     content: ' ';
     border: 2px solid transparent;
     display: block;
@@ -254,6 +259,9 @@ header .sticky {
     border: 2px solid #008533;
     display: block;
     transform: translateY(43px);
+  }
+  header secondary-nav .nav-sections > ul > li[aria-expanded='true'] > a::after {
+    transform: rotate(180deg);
   }
   header secondary-nav .nav-sections > ul > li:first-child {
     display: none;
