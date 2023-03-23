@@ -37,7 +37,6 @@
   --banner-height: 100px;
   --section-left-right-padding: 105px;
   scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
 }
 :root .light {
   --background-color: #ffffff;

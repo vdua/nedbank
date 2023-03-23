@@ -1,6 +1,12 @@
 import {
-  readBlockConfig, decorateIcons, decorateSections, getRootPath,
+  readBlockConfig, decorateIcons, decorateSections, getRootPath, fetchDataAttributesAnchor,
 } from '../../scripts/scripts.js';
+
+export function decorateAnchor(element) {
+  element.querySelectorAll('a').forEach((a) => {
+    fetchDataAttributesAnchor(a);
+  });
+}
 
 function decorateFooterLinks(footer) {
   let footerLinkGroup = [];
@@ -64,6 +70,8 @@ function decorateFooterSocial(footer) {
   if (parent) {
     parent.appendChild(footerSocialDiv);
   }
+
+  decorateAnchor(footerSocialDiv);
 }
 /**
  * loads and decorates the footer

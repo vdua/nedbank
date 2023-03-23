@@ -599,10 +599,10 @@ function recurAnchor(ele, result) {
 }
 
 /**
- * Adding attributes in Anhor tag for main section
+ * Adding attributes in Anchor tag
  * @param {*} a
  */
-function setAnchorAttributes(a) {
+function setAnchorAttributes(a, type) {
   const linkType = a.closest('.cards') ? 'card' : 'link';
   a.setAttribute('data-pagequicklinktype', linkType);
   const result = {};
@@ -612,14 +612,15 @@ function setAnchorAttributes(a) {
   const l2Txt = result.l2 ? result.l2.innerText : '';
 
   a.setAttribute('data-pagequicklinkname', (a.title || l1Txt));
-  const mainContent = 'main content';
 
-  if (linkType === 'link') {
-    a.setAttribute('data-pagequicklinklocation', `${l1Txt} | ${mainContent}`);
-  } else if (!a.title) {
-    a.setAttribute('data-pagequicklinklocation', `${l2Txt} | ${mainContent}`);
+  if (linkType === 'link' && l1Txt) {
+    a.setAttribute('data-pagequicklinklocation', `${l1Txt} | ${type}`);
+  } else if (!a.title && l2Txt) {
+    a.setAttribute('data-pagequicklinklocation', `${l2Txt} | ${type}`);
+  } else if (l1Txt && l2Txt) {
+    a.setAttribute('data-pagequicklinklocation', `${l1Txt} | ${l2Txt} | ${type}`);
   } else {
-    a.setAttribute('data-pagequicklinklocation', `${l1Txt} | ${l2Txt} | ${mainContent}`);
+    a.setAttribute('data-pagequicklinklocation', `${type}`);
   }
 }
 
@@ -654,9 +655,9 @@ export function fetchDataAttributesAnchor(a) {
  * Decorate anchor tag after all other decorations in order to add data analytics attributes
  * @param {*} element
  */
-function decorateAnchor(element) {
+export function decorateAnchor(element, type) {
   element.querySelectorAll('a').forEach((a) => {
-    setAnchorAttributes(a);
+    setAnchorAttributes(a, type);
     fetchDataAttributesAnchor(a);
   });
 }
@@ -889,7 +890,7 @@ export function decorateMain(main) {
 
   decorateSections(main);
   decorateBlocks(main);
-  decorateAnchor(main);
+  decorateAnchor(main, 'main content');
 }
 
 /**

@@ -65,13 +65,18 @@ header primary-nav .nav-tools > div {
   color: #17252e;
   align-items: center;
 }
-header primary-nav .nav-tools > div > span {
+header primary-nav .nav-tools > div a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header primary-nav .nav-tools > div span {
   display: flex;
   justify-content: center;
   padding-left: 20px;
   padding-right: 5px;
 }
-header primary-nav .nav-tools > div > span:hover {
+header primary-nav .nav-tools > div span:hover {
   color: #17252e;
 }
 header primary-nav .nav-tools > div:hover {

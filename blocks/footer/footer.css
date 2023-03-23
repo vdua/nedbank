@@ -15,8 +15,12 @@ footer .footer-social-items {
   justify-content: space-between;
   flex-direction: column;
 }
+footer .footer-social-items a {
+  margin: 0;
+}
 footer .footer-social-items .icon {
   margin-right: 24px;
+  margin-left: 0;
 }
 footer .footer-link-groups {
   display: flex;
