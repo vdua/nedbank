@@ -1,5 +1,5 @@
 import {
-  readBlockConfig, decorateIcons, makeLinksRelative, getRootPath,
+  readBlockConfig, decorateIcons, makeLinksRelative, getRootPath, decorateAnchor,
 } from '../../scripts/scripts.js';
 
 import {
@@ -21,14 +21,15 @@ function collapseAllNavSections(sections) {
 function injectNavTool(tools, name, icon, type) {
   let tool;
   if (type === 'primary-nav') {
-    tool = `
+    tool = `<a title=${name}>
     <span>${name}</span>
     <img src='/icons/${icon}.svg'></img>
-`;
+    </a>`;
   } else {
-    tool = `
+    tool = `<a title=${name}>
+    <span style='display:none'>${name}</span>
     <img src='/icons/${icon}.svg'></img>
-`;
+    </a>`;
   }
 
   const div = document.createElement('div');
@@ -82,6 +83,7 @@ function decorateNav(respTxt, type) {
   });
 
   injectNavTools(nav, type);
+  decorateAnchor(nav, 'header');
 
   const navSections = [...nav.children][1];
   if (navSections) {

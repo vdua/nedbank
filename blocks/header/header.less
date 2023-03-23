@@ -80,7 +80,13 @@ header {
 				color: @dotcoza-color-commit-grey;
 				align-items: center;
 
-				>span {
+				a {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+
+				span {
 					display: flex;
 					justify-content: center;
 					padding-left: 20px;
@@ -310,10 +316,10 @@ header {
 						margin-right: @spacing-06;
 						font-size: @font-size-base;
 
-						&[aria-expanded='false'] {
+						& {
 							&::before {
 								content: ' ';
-								border: @spacing-01 solid @nav-lines-menu;
+								border: @spacing-01 solid transparent;
 								display: block;
 								transform: translateY(43px);
 							}
@@ -325,6 +331,11 @@ header {
 								border: @spacing-01 solid @dotcoza-color-greens-default;
 								display: block;
 								transform: translateY(43px);
+							}
+							>a {
+								&::after {
+									transform: rotate(180deg);
+								}
 							}
 						}
 
