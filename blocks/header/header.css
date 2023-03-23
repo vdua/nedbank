@@ -255,6 +255,9 @@ header .sticky {
     display: block;
     transform: translateY(43px);
   }
+  header secondary-nav .nav-sections > ul > li[aria-expanded='true'] > a::after {
+    transform: rotate(180deg);
+  }
   header secondary-nav .nav-sections > ul > li:first-child {
     display: none;
   }
