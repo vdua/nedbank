@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>B5861C5E-04B6-47F5-8848-54435F06FC02</title>
+    <defs>
+        <polyline id="path-1" points="3.93090409e-15 3.93090409e-15 10.5 10.4997787 3.93090409e-15 20.9997787"></polyline>
+    </defs>
+    <g id="FullScreen-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Main-Navigation---Fullscreen-Hamburger---Expand-04" transform="translate(-349.000000, -183.000000)">
+            <g id="Right-arrow" transform="translate(349.000000, 183.000000)">
+                <polygon id="Rectangle-path" points="0 -2.71903449e-15 28 -2.71903449e-15 28 28 0 28"></polygon>
+                <g id="Crumb-arrow" transform="translate(9.100000, 3.500000)" stroke-width="1.5">
+                    <g id="Shape">
+                        <use stroke="#FFFFFF" xlink:href="#path-1"></use>
+                        <use stroke="#B3CAC3" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

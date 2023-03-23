@@ -781,7 +781,6 @@ const PRODUCTION_DOMAINS = [];
 sampleRUM('top');
 window.addEventListener('load', () => sampleRUM('load'));
 document.addEventListener('click', () => sampleRUM('click'));
-
 loadPage(document);
 
 function buildHeroBlock(main) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>36411A1C-B49D-412D-97F6-71299F3926FB</title>
+    <defs>
+        <filter color-interpolation-filters="auto" id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="FullScreen-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Main-Navigation---Fullscreen-Hamburger---Expand-04" transform="translate(-972.000000, -270.000000)">
+            <g id="exit_arrow_01" transform="translate(735.000000, 244.000000)" filter="url(#filter-1)">
+                <g transform="translate(237.000000, 26.000000)">
+                    <g id="Group-2" transform="translate(3.750000, 7.586496)" stroke="#009639" stroke-width="1.5">
+                        <polyline id="Rectangle-7" transform="translate(11.562500, 4.826004) rotate(-315.000000) translate(-11.562500, -4.826004) " points="8.15 1.41350378 14.975 1.41350378 14.975 8.23850378"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
