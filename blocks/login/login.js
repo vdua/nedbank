@@ -1,5 +1,5 @@
 import {
-  decorateIcons, makeLinksRelative, decorateButtons, getRootPath,
+  decorateIcons, makeLinksRelative, decorateButtons, getRootPath, decorateAnchor,
 } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
@@ -29,5 +29,6 @@ export default async function decorate(block) {
     makeLinksRelative(block);
     decorateIcons(block);
     decorateButtons(block);
+    decorateAnchor(block, 'header'); // Sending header as type to remain in sync with actual site
   }
 }
