@@ -1,22 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>BAEC3800-C500-4356-A003-310579B22600</title>
-    <defs>
-        <polygon id="path-1" points="0 0 56 0 56 56 0 56"></polygon>
-    </defs>
-    <g id="Nav" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Nav,-Footer,-Pushdown---Personal-loans---Mobile" transform="translate(-264.000000, 0.000000)">
-            <g id="Menue" transform="translate(264.000000, 0.000000)">
-                <g id="Rectangle">
-                    <use fill="#FFFFFF" xlink:href="#path-1"></use>
-                    <use fill="#024E36" xlink:href="#path-1"></use>
-                </g>
-                <g id="Burger" transform="translate(11.000000, 19.000000)" stroke="#FFFFFF" stroke-width="1.5">
-                    <line x1="33.6" y1="0.56" x2="0" y2="0.56" id="Shape"></line>
-                    <line x1="33.6" y1="8.4" x2="8.96" y2="8.4" id="Shape"></line>
-                    <line x1="33.6" y1="17.36" x2="20.16" y2="17.36" id="Shape"></line>
-                </g>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 56 56" style="enable-background:new 0 0 56 56;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#024E36;}
+	.st2{fill:none;stroke:#FFFFFF;stroke-width:2;}
+</style>
+<g id="Nav">
+	<g id="Nav_x2C_-Footer_x2C_-Pushdown---Personal-loans---Mobile" transform="translate(-264.000000, 0.000000)">
+		<g id="Menue" transform="translate(264.000000, 0.000000)">
+			<g id="Rectangle">
+				<g>
+					<polygon id="path-1" class="st0" points="0,0 56,0 56,56 0,56 					"/>
+				</g>
+				<g>
+					<polygon id="path-1_00000150079494196624718850000001818129831375150525_" class="st1" points="0,0 56,0 56,56 0,56 					"/>
+				</g>
+			</g>
+			<g id="Burger" transform="translate(11.000000, 19.000000)">
+				<line id="Shape" class="st2" x1="36.6" y1="-2.4" x2="3" y2="-2.4"/>
+				<line id="Shape_00000005262041418740965080000014090250223697098685_" class="st2" x1="36.6" y1="6.4" x2="10.1" y2="6.4"/>
+				<line id="Shape_00000162324190923693892070000017497914435967818896_" class="st2" x1="36.6" y1="15.4" x2="17" y2="15.4"/>
+			</g>
+		</g>
+	</g>
+</g>
 </svg>
