@@ -36,6 +36,9 @@ footer .footer-link-groups {
   justify-content: center;
   flex-direction: column;
 }
+footer .footer-link-group {
+  margin-bottom: 48px;
+}
 footer .footer-link-group h5 {
   border: 1px solid #e5edec;
   margin: unset;
