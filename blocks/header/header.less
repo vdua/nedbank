@@ -186,22 +186,28 @@ header {
 					>ul {
 						display: none;
 						position: relative;
-
+						padding-inline-start: 0;
+						min-width: 14em;
 
 						&:any-link {
 							font-size: var(--body-font-size-m);
 						}
 
 						>li {
-							font-size: 18px;
-							padding: 20px 0;
+							color: @dotcoza-color-body-grey;
+							font-size: @font-size-base;
+							line-height: @font-lineheight-base;
+							padding: 16px 20px 16px 32px;
 
 							&:hover {
-								background-color: #f1f6f5;
+								color: @dotcoza-color-title-grey;
+								background-color: @dotcoza-color-neutrals-grey-background;
 							}
 
 							&:first-child {
-								font-family: @font_family_2;
+								font-family: @font-family-primary;
+								font-weight: @font-weight-bold;
+								padding-top: @spacing-06;
 
 								&:hover {
 									background-color: @background_color_1;
