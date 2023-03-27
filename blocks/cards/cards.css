@@ -84,6 +84,7 @@
 .cards .cards-body > p {
   font-size: 14px;
   line-height: 20px;
+  color: #494f50;
 }
 .cards .cards-body > p:has(.icon) {
   font-size: 18px;
