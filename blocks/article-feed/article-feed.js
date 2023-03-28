@@ -171,6 +171,18 @@ function slideTo(targetBullet, articleFeedEl) {
   const newPosition = accBounds.l - shift;
   const style = `--current-x: ${newPosition}px`;
   articleCardsContainer.setAttribute('style', style);
+  const prev = articleFeedEl.querySelector('.pagination-prev');
+  const next = articleFeedEl.querySelector('.pagination-next');
+  if (targetBullet.previousElementSibling === null) {
+    prev.classList.add('disabled');
+  } else {
+    prev.classList.remove('disabled');
+  }
+  if (targetBullet.nextElementSibling === null) {
+    next.classList.add('disabled');
+  } else {
+    next.classList.remove('disabled');
+  }
 }
 
 function createPaginationBullets(articleFeedEl) {
@@ -217,16 +229,7 @@ function createNextPrevToolbar(articleFeedEl) {
       } else {
         nextBullet = current.nextElementSibling;
       }
-      if (nextBullet.previousElementSibling === null) {
-        prev.classList.add('disabled');
-      } else {
-        prev.classList.remove('disabled');
-      }
-      if (nextBullet.nextElementSibling === null) {
-        next.classList.add('disabled');
-      } else {
-        next.classList.remove('disabled');
-      }
+
       slideTo(nextBullet, articleFeedEl);
     }
   });
