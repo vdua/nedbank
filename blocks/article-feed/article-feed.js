@@ -59,8 +59,6 @@ export async function fetchBlogArticleIndex() {
 }
 
 async function filterArticles(config, feed, limit, offset) {
-  const result = [];
-
   /* filter posts by tags */
   let { tags } = config;
   if (tags) {
