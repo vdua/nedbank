@@ -3,6 +3,35 @@
  * To change the css, change the same named .less file.
  * After changing .less file, run 'npm run lessc' from terminal to autogenerate .css file.
  */
+main .fixed-center-section,
+main .article-feed-container {
+  max-width: 748px;
+  margin: 0 22px;
+  padding: 0;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  main .fixed-center-section,
+  main .article-feed-container {
+    max-width: 1260px;
+    padding: 0;
+  }
+}
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  main .fixed-center-section,
+  main .article-feed-container {
+    max-width: 1260px;
+    margin: 0 106px;
+    padding: 0;
+  }
+}
+@media (min-width: 1440px) {
+  main .fixed-center-section,
+  main .article-feed-container {
+    max-width: 1228px;
+    margin: auto;
+    padding: 0;
+  }
+}
 .article-feed-container > div {
   max-width: unset;
 }
@@ -26,51 +55,61 @@
   margin-left: 0;
 }
 .article-card-image {
-  height: 500px;
-  min-width: 562px;
+  min-width: 284px;
+  height: 180px;
 }
 .article-card-image img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
+.article-card {
+  display: flex;
+  flex-direction: column;
+}
 .article-card-body {
-  position: absolute;
-  padding: 40px 32px 40px 32px;
-  margin: 50px 24px 50px 0px;
-  top: 0;
-  right: 0;
-  height: 400px;
-  width: 390px;
   border: 1.5px solid #e5edec;
   background-color: #ffffff;
   text-align: left;
-  box-sizing: border-box;
+  padding: 16px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
 }
 .article-card-body h3 {
   font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
   font-weight: 700;
-  margin-bottom: 20px;
-  font-size: 24px;
-  line-height: 32px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 20px;
+  line-height: 28px;
 }
 .article-card-body p {
   font-family: 'Open Sans Regular', Arial, Helvetica, sans-serif;
   margin: 0;
 }
 .article-card-body .article-card-description {
-  margin-bottom: 50px;
-  font-size: 20px;
-  line-height: 28px;
   color: #494f50;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-bottom: 25px;
+  font-size: 14px;
+  line-height: 22px;
 }
 .article-card-body .article-card-date {
-  margin: 0px 0px 24px 0px;
+  margin-bottom: 24px;
   color: #94999c;
+}
+.article-feed .pagination-toolbar {
+  display: none;
+}
+.article-feed .pagination-toolbar span {
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 .article-card-author,
 .article-card-date {
@@ -80,19 +119,45 @@
 }
 .article-card-author {
   color: #494f50;
+  padding-bottom: 8px;
 }
 .article-card-footer {
   display: flex;
   justify-content: space-between;
+  flex: 1 1 auto;
+  align-items: flex-end;
 }
 .article-card-read {
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  font-family: 'Open Sans Regular', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+.article-card-read::after {
+  height: 14px;
+  width: 24px;
+  margin: 5px 0px 0px 10px;
+  content: url(/icons/arrow.svg);
+  transition: transform 900ms;
+  display: inline-block;
+}
+.article-card:hover .article-card-read::after {
+  transform: translateX(10px);
+  width: 34px;
 }
 .article-card-time {
   color: #94999c;
   font-size: 14px;
   line-height: 22px;
+  display: flex;
+}
+.article-card-time::before {
+  content: url(/icons/time_watch_clock.svg);
+  height: 14px;
+  width: 14px;
+  margin-right: 5px;
+  margin-top: 2px;
 }
 .article-feed {
   width: 100%;
@@ -104,16 +169,6 @@
 }
 .article-feed .pagination-bullets {
   flex-grow: 2;
-}
-.article-feed .pagination-toolbar {
-  display: flex;
-  gap: 10px;
-}
-.article-feed .pagination-toolbar span {
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  cursor: pointer;
 }
 .article-feed .pagination-prev {
   background-image: url(/icons/arrow-left-pagination.svg);
@@ -142,6 +197,69 @@
   width: 26px;
   border-radius: 35px;
   opacity: 1;
+}
+@media (min-width: 1025px) {
+  .article-card-image {
+    height: 500px;
+    min-width: 562px;
+  }
+  .article-card-footer {
+    align-items: center;
+  }
+  .article-card-body {
+    box-sizing: border-box;
+    position: absolute;
+    padding: 40px 32px 40px 32px;
+    margin: 50px 24px 50px 0px;
+    top: 0;
+    right: 0;
+    height: 400px;
+    width: 390px;
+    border: 1.5px solid #e5edec;
+    background-color: #ffffff;
+    text-align: left;
+  }
+  .article-card-body h3 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .article-card-body p.article-card-author {
+    padding: 0;
+  }
+  .article-card-body .article-card-description {
+    margin-bottom: 50px;
+    font-size: 20px;
+    line-height: 28px;
+    -webkit-line-clamp: 3;
+  }
+  .article-feed .pagination-toolbar {
+    display: flex;
+    gap: 10px;
+  }
+}
+@media (min-width: 576px) and (max-width: 1024px) {
+  .article-card-image {
+    width: 350px;
+    height: 226px;
+  }
+  .article-card-body h3 {
+    margin-bottom: 20px;
+  }
+  .article-card-body .article-card-description {
+    -webkit-line-clamp: 2;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .article-card-body .article-card-read {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+@media (min-width: 576px) {
+  .article-card-body .article-card-read {
+    font-size: 18px;
+    line-height: 26px;
+  }
 }
 /* SPINNER */
 .spinner {
