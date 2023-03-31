@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="15px" viewBox="0 0 25 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>67968CD7-53F9-42E3-8306-718E7F06FC58</title>
+    <g id="FullScreen-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Main-Navigation---Fullscreen-Hamburger---Item-Hover-02" transform="translate(-656.000000, -222.000000)" stroke="#FFFFFF" stroke-width="1.5">
+            <g id="LinkBlock-/-Active" transform="translate(420.000000, 188.000000)">
+                <g id="RightArrow" transform="translate(237.000000, 35.000000)">
+                    <polyline id="Rectangle-7" transform="translate(15.550000, 6.434672) rotate(-315.000000) translate(-15.550000, -6.434672) " points="11 1.88467171 20.1 1.88467171 20.1 10.9846717"></polyline>
+                    <line x1="21" y1="6.38467171" x2="0" y2="6.38467171" id="Line-2" stroke-linecap="square"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

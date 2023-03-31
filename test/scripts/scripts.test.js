@@ -133,6 +133,16 @@ describe('Core Helix features', () => {
     expect(document.querySelectorAll('h1, h2, h3, h4, h5, h6').length).to.equal(numHeadings);
     expect(document.querySelectorAll('h4, h5, h6').length).to.equal(0);
   });
+
+  it('Gets the right language', async () => {
+    expect(scripts.getLanguageFromPath('home/org/foo/blah.html', true)).to.equal('');
+
+    expect(scripts.getLanguageFromPath('home/de/org/foo/blah.html', true)).to.equal('de');
+
+    // The language should now be known, so even though the path doesn't have it we
+    // should still get the value
+    expect(scripts.getLanguageFromPath('home/org/foo/blah.html')).to.equal('de');
+  });
 });
 
 describe('Sections and blocks', () => {

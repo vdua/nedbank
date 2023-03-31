@@ -1,0 +1,250 @@
+@plugin '../../less-scripts/autogen-comment-plugin';
+autocomment();
+
+@import (reference) '../../styles/variables.less';
+
+.login-overlay {
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+
+    *>h1 {
+        margin-bottom: 0.5rem;
+        font-family: @font-family-primary;
+        font-size: @font-size-h2;
+        line-height: 36px;
+    }
+
+    *>li {
+        list-style: none;
+        padding: 18px 0;
+        font-weight: @font-weight-medium;
+        border-bottom: 1px solid @dotcoza-color-neutrals-grey-disabled;
+        font-size: @font-size-base;
+        
+        a {
+            &:hover {
+                color: @dotcoza-color-greens-default;
+            }
+
+            span:hover {
+                transition: transform 900ms;
+                transform: translate(6px, -5px);
+            }
+        }
+    }
+
+    *>span {
+        display: flex;
+        align-self: flex-end;
+        margin-left: 8px;
+    }
+
+    *>ul {
+        display: block;
+        flex-direction: column;
+        margin-bottom: 0;
+        margin-top: 0;
+        padding-inline-start: unset;
+    }
+
+    &.section {
+        padding: 0;
+    }
+
+    *>a {
+        font-family: @font-family-primary;
+        margin: 0;
+        width: 100%;
+        color: @dotcoza-color-title-grey;
+        align-items: center;
+        font-size: @font-size-base;
+        line-height: @font-lineheight-base;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    *>p {
+        font-size: @font-size-small;
+        line-height: @font-lineheight-small;
+        font-family: @font-family-secondary;
+        margin: @spacing-05 0 @spacing-07 0;
+        align-items: center;
+        display: flex;
+    }
+
+    .login {
+        &.block {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+            .login-header {
+                display: flex;
+                padding: 9px 20px @spacing-07 20px;
+                justify-content: right;
+                font-size: @font-size-base;
+                line-height: @font-lineheight-base;
+                height: 50px;
+
+                p {
+                    cursor: pointer;
+                    margin: 0;
+                }
+            }
+
+            .login-main {
+                margin: 0 22px;
+                
+                .button-container {
+                    margin-bottom: 0;
+                    a {
+                        max-width: 300px;
+                        background-color: @dotcoza-color-title-grey;
+                        border: 0px solid @dotcoza-color-title-grey !important;
+                        font-weight: @font-weight-medium;
+                        width: 100%;
+                        margin: 0;
+                        font-family: @font-family-primary;
+                        font-size: @font-size-base;
+                        line-height: @font-lineheight-base;
+                        height: 56px;
+                    }
+                }
+
+                > div {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    flex-wrap: wrap;
+
+                    > div:first-child {
+                        margin: @spacing-07 0 @spacing-10 0;
+
+                        h1 {
+                            margin-top: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (@width_576) {
+    .login-overlay {
+        *>p {
+            font-size: @font-size-base;
+            line-height: @font-lineheight-base;
+            font-family: @font-family-secondary;
+            margin-bottom: @spacing-07;
+        }
+
+        *>a {
+            font-size: @font-size-medium;
+            line-height: @font-lineheight-medium;
+        }
+
+        .login {
+            &.block {
+                .login-main {
+                    .button-container {
+                        a {
+                            font-size: @font-size-medium;
+                            line-height: @font-lineheight-medium;
+                        }
+                    }
+
+                    > div {
+                        > div:first-child {
+                            margin-bottom: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (@width_768) {
+    .login-overlay {
+        *>h1 {
+            margin-top: 0;
+            font-size: @font-size-h1;
+            line-height: @font-lineheight-h1;
+        }    
+    }
+}
+
+@media (@width_1025) {
+    .login-overlay {
+        *>h1 {
+            margin-bottom: 36px;
+        }
+
+        *>p {
+            font-size: @font-size-base;
+            line-height: @font-lineheight-base;
+        }
+
+        *> ul {
+            display: flex;
+            height: 250px;
+            flex-wrap: wrap;
+            margin-top: @spacing-10;
+        }
+
+        *>li {
+            padding: @spacing-05 0;
+            margin: 0 30px 0 0;
+            font-size: @font-size-medium;
+        }
+
+        .login {
+            &.block {
+                .login-header {
+                    padding: 40px 89px 15px;
+                    height: 42px;
+                }
+    
+                .login-main {
+                    margin: 8px 7.37% @spacing-07 7.37% !important;
+
+                    .button-container {
+                        margin-top: 48px;
+                    }
+    
+                    > div {
+                        flex-direction: row;
+                        flex-wrap: unset;
+
+                        > div:first-child {
+                            width: 41.666667%;;
+                            border-right: 1px solid @dotcoza-color-neutrals-grey-disabled;
+                            padding-right: 56px;
+                            margin: 0;
+                        }
+
+                        > div:last-child {
+                            flex: 0 0 58.333333%;
+                            padding-left: 65px;
+                            padding-right: 15px;
+                            flex-grow: 1;
+                            flex-shrink: 1;
+                            margin: 0;
+
+                            h1 {
+                                margin-bottom: 28px;
+                            }
+
+                            p {
+                                margin-top: 0;
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

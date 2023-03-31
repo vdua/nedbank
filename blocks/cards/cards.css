@@ -20,6 +20,12 @@
   flex-basis: calc(100%/1);
   max-width: calc(100%/1);
 }
+.section.cards-container.switchcard h2 {
+  font-size: 32px;
+  margin-top: 20px;
+  margin-left: 32px;
+  margin-bottom: -30px;
+}
 /* cards -> when space is less, items will shift accordingly and content of items will be placed horizontal */
 .cards :where(ul, li, h1, h2, h3, h4, h5, h6, p) {
   margin: unset;
@@ -78,6 +84,7 @@
 .cards .cards-body > p {
   font-size: 14px;
   line-height: 20px;
+  color: #494f50;
 }
 .cards .cards-body > p:has(.icon) {
   font-size: 18px;
@@ -130,8 +137,6 @@
   margin-top: 0;
   margin-bottom: 0;
   transform: none;
-  width: 48px;
-  height: 48px;
 }
 .cards.large .cards-image .cards-body > p {
   margin-top: 0;
@@ -164,8 +169,8 @@
   margin-right: 0px;
 }
 .cards.large .cards-body > p {
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 18px;
+  line-height: 26px;
   margin-bottom: 24px;
 }
 .cards.large .cards-body > p > a {
@@ -206,7 +211,10 @@
   font-size: 24px;
   margin: 0px auto 32px auto;
 }
-.home-services.cards-container .cards li:hover :where(p, a.button) > .icon-arrow {
+.home-services.cards-container a .icon {
+  margin-left: 0;
+}
+.home-services.cards-container .cards li:hover :where(p, a.button) .icon-arrow {
   transition: transform 900ms;
   transform: translateX(8px);
 }
@@ -308,8 +316,9 @@
   }
   .cards.large .cards-body > p:first-child,
   .cards.large .cards-body > :where(h2, h3) + p {
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 16px;
+    color: #494f50;
+    line-height: 24px;
     margin-top: 8px;
   }
   .home-promotions.cards-container > div:first-child {
@@ -474,7 +483,8 @@
     gap: 15px 35px;
   }
   .cards.large li {
-    padding: 48px 32px 48px 32px;
+    padding: 48px 30px 24px 32px;
+    margin-right: -10px;
   }
   .cards.large .cards-body > h2 + p {
     font-size: 20px;
@@ -594,6 +604,33 @@
   }
   .home-services.cards-container .cards > ul > li .cards-image > span {
     display: flex;
+  }
+}
+div.switchcard h3 {
+  font-weight: 400;
+  line-height: 32px;
+  font-size: 24px;
+}
+div.switchcard h3 + p {
+  font-size: 16px;
+  line-height: 24px;
+}
+div.promotion-banner h2 strong {
+  margin-left: -24px;
+  font-size: 32px;
+}
+div.promotion-banner a {
+  font-size: 18px;
+  font-weight: 700;
+}
+@media (min-width: 1025px) {
+  div.switchcard h3 {
+    line-height: 40px;
+    font-size: 32px;
+  }
+  div.switchcard h3 + p {
+    font-size: 20px;
+    line-height: 28px;
   }
 }
 @media (min-width: 1440px) {

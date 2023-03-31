@@ -1,6 +1,12 @@
 import {
-  readBlockConfig, decorateIcons, decorateSections, getRootPath,
+  readBlockConfig, decorateIcons, decorateSections, getRootPath, fetchDataAttributesAnchor,
 } from '../../scripts/scripts.js';
+
+export function decorateAnchor(element) {
+  element.querySelectorAll('a').forEach((a) => {
+    fetchDataAttributesAnchor(a);
+  });
+}
 
 function decorateFooterLinks(footer) {
   let footerLinkGroup = [];
@@ -45,8 +51,10 @@ function decorateFooterLinks(footer) {
     });
   });
   const parent = footer.querySelector(':scope > .footer-links > div');
-  parent.innerHTML = '';
-  parent.appendChild(footerLinkGroupsDiv);
+  if (parent) {
+    parent.innerHTML = '';
+    parent.appendChild(footerLinkGroupsDiv);
+  }
 }
 
 function decorateFooterSocial(footer) {
@@ -59,7 +67,11 @@ function decorateFooterSocial(footer) {
     }
   });
   const parent = footer.querySelector(':scope > .footer-social > div');
-  parent.appendChild(footerSocialDiv);
+  if (parent) {
+    parent.appendChild(footerSocialDiv);
+  }
+
+  decorateAnchor(footerSocialDiv);
 }
 /**
  * loads and decorates the footer

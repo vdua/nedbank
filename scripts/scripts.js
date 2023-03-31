@@ -10,33 +10,30 @@
  * governing permissions and limitations under the License.
  */
 
-const LANG = {
-  EN: 'en',
-  DE: 'de',
-  FR: 'fr',
-  KO: 'ko',
-  ES: 'es',
-  IT: 'it',
-  JP: 'jp',
-  BR: 'br',
-};
+const LANGUAGES = new Set(['en', 'de', 'fr', 'ko', 'es', 'it', 'jp', 'br']);
 
 let language;
 
-export function getLanguage() {
-  if (language) return language;
+export function getLanguageFromPath(pathname, resetCache = false) {
+  if (resetCache) {
+    language = undefined;
+  }
+
+  if (language !== undefined) return language;
+
   language = '';
-  const segs = window.location.pathname.split('/');
-  if (segs && segs.length > 0) {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const [, value] of Object.entries(LANG)) {
-      if (value === segs[1]) {
-        language = value;
-        break;
-      }
+  const segs = pathname.split('/');
+  if (segs.length > 1) {
+    const l = segs[1];
+    if (LANGUAGES.has(l)) {
+      language = l;
     }
   }
   return language;
+}
+
+export function getLanguage() {
+  return getLanguageFromPath(window.location.pathname);
 }
 
 /**
@@ -573,6 +570,99 @@ function decorateTemplateAndTheme() {
 }
 
 /**
+ * Recursively finding l1 and l2 for Analytics purpose
+ * l1 is first child(h1, h2 or h3) of any ancestor.
+ * while l2 is specific to first child(h1, h2 or h3) of .section element
+ * @param {*} ele
+ * @param {*} result
+ * @returns
+ */
+function recurAnchor(ele, result) {
+  if (ele === null || result.l2) {
+    return result;
+  }
+
+  if (result.l1) {
+    const sectionEle = ele.closest('.section');
+    const l2 = sectionEle ? sectionEle.querySelector('h1, h2, h3') : null;
+    result.l2 = l2;
+    return result;
+  }
+  const l1 = ele.querySelector('h1, h2, h3');
+  result.l1 = l1;
+
+  if (ele.classList.contains('section')) {
+    return result;
+  }
+
+  return recurAnchor(ele.parentElement, result);
+}
+
+/**
+ * Adding attributes in Anchor tag
+ * @param {*} a
+ */
+function setAnchorAttributes(a, type) {
+  const linkType = a.closest('.cards') ? 'card' : 'link';
+  a.setAttribute('data-pagequicklinktype', linkType);
+  const result = {};
+  recurAnchor(a.parentElement, result);
+
+  const l1Txt = result.l1 ? result.l1.innerText : '';
+  const l2Txt = result.l2 ? result.l2.innerText : '';
+
+  a.setAttribute('data-pagequicklinkname', (a.title || l1Txt));
+
+  if (linkType === 'link' && l1Txt) {
+    a.setAttribute('data-pagequicklinklocation', `${l1Txt} | ${type}`);
+  } else if (!a.title && l2Txt) {
+    a.setAttribute('data-pagequicklinklocation', `${l2Txt} | ${type}`);
+  } else if (l1Txt && l2Txt) {
+    a.setAttribute('data-pagequicklinklocation', `${l1Txt} | ${l2Txt} | ${type}`);
+  } else {
+    a.setAttribute('data-pagequicklinklocation', `${type}`);
+  }
+}
+
+/**
+ * This function fetches data attributes which were overrided in doc and then setting those.
+ * @param {*} a
+ */
+export function fetchDataAttributesAnchor(a) {
+  const HASH_SEPARATOR = '#';
+  const EQUAL_SEPARATOR = '=';
+
+  if (a.href && a.href.includes(HASH_SEPARATOR) && a.href.includes('data-')) {
+    const splitEle = a.href.split(HASH_SEPARATOR);
+    let url = splitEle[0];
+
+    for (let index = 1; index < splitEle.length; index += 1) {
+      if (splitEle[index].startsWith('data-')) {
+        a.setAttribute(
+          splitEle[index].split(EQUAL_SEPARATOR)[0],
+          decodeURIComponent(splitEle[index].split(EQUAL_SEPARATOR)[1]),
+        );
+      } else {
+        url += `${HASH_SEPARATOR}${splitEle[index]}`;
+      }
+    }
+
+    a.href = url;
+  }
+}
+
+/**
+ * Decorate anchor tag after all other decorations in order to add data analytics attributes
+ * @param {*} element
+ */
+export function decorateAnchor(element, type) {
+  element.querySelectorAll('a').forEach((a) => {
+    setAnchorAttributes(a, type);
+    fetchDataAttributesAnchor(a);
+  });
+}
+
+/**
  * decorates paragraphs containing a single link as buttons.
  * @param {Element} element container element
  */
@@ -583,7 +673,13 @@ export function decorateButtons(element) {
     if (a.href !== a.textContent) {
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
-      if (!a.querySelector('img')) {
+
+      // Special handling for icon-arrow and icon-diagonal-arrow because we have added
+      // these icons as an anchor tag in document and don't want to add any button class to them.
+      const isArrowEle = (a.firstElementChild) ? ['icon-arrow', 'icon-diagonal-arrow']
+        .some((elem) => a.firstElementChild.classList.contains(elem)) : false;
+
+      if (!a.querySelector('img') && !isArrowEle) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
           a.className = 'button primary'; // default
           up.classList.add('button-container');
@@ -686,7 +782,6 @@ const PRODUCTION_DOMAINS = [];
 sampleRUM('top');
 window.addEventListener('load', () => sampleRUM('load'));
 document.addEventListener('click', () => sampleRUM('click'));
-
 loadPage(document);
 
 function buildHeroBlock(main) {
@@ -700,7 +795,7 @@ function buildHeroBlock(main) {
       elems.push(elem);
     });
     let blockName = 'hero-home';
-    if (getMetadata('hero-type') === '2-col' && window.location.pathname !== '/') {
+    if (getMetadata('hero-type') === '2-col') {
       blockName = 'hero';
     }
     section.append(buildBlock(blockName, { elems }));
@@ -720,6 +815,15 @@ function loadFooter(footer) {
   footer.append(footerBlock);
   decorateBlock(footerBlock);
   loadBlock(footerBlock);
+}
+
+function buildLoginBlock(main) {
+  const loginSection = document.createElement('div');
+  loginSection.classList.add('login-overlay');
+  const loginBlock = buildBlock('login', '');
+  loginSection.append(loginBlock);
+  main.prepend(loginSection);
+  decorateBlock(loginBlock);
 }
 
 function buildBannerBlock(main) {
@@ -762,6 +866,7 @@ function buildAutoBlocks(main) {
     if (['yes', 'on'].includes(getMetadata('show-banner'))) {
       buildBannerBlock(main);
     }
+    buildLoginBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -782,8 +887,10 @@ export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
+
   decorateSections(main);
   decorateBlocks(main);
+  decorateAnchor(main, 'main content');
 }
 
 /**

@@ -59,21 +59,27 @@ header primary-nav .nav-tools {
   left: -70px;
   cursor: pointer;
 }
-header primary-nav .nav-tools p {
+header primary-nav .nav-tools > div {
   width: 100%;
   display: flex;
   color: #17252e;
   align-items: center;
 }
-header primary-nav .nav-tools p span {
-  flex-basis: 50%;
+header primary-nav .nav-tools > div a {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
-header primary-nav .nav-tools p span:hover {
+header primary-nav .nav-tools > div span {
+  display: flex;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 5px;
+}
+header primary-nav .nav-tools > div span:hover {
   color: #17252e;
 }
-header primary-nav .nav-tools p:hover {
+header primary-nav .nav-tools > div:hover {
   color: #008533;
 }
 header primary-nav .nav-hamburger {
@@ -109,7 +115,7 @@ header secondary-nav .nav-sections > ul > li.nav-drop {
   position: relative;
 }
 header secondary-nav .nav-sections > ul > li.nav-drop:first-child {
-  font-family: 'Nedbank Sans Bold';
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
   font-size: 14px !important;
   padding-top: 4px;
 }
@@ -146,19 +152,26 @@ header secondary-nav .nav-sections > ul > li > p {
 header secondary-nav .nav-sections > ul > li > ul {
   display: none;
   position: relative;
+  padding-inline-start: 0;
+  min-width: 14em;
 }
 header secondary-nav .nav-sections > ul > li > ul:any-link {
   font-size: var(--body-font-size-m);
 }
 header secondary-nav .nav-sections > ul > li > ul > li {
-  font-size: 18px;
-  padding: 20px 0;
+  color: #494f50;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 16px 20px 16px 32px;
 }
 header secondary-nav .nav-sections > ul > li > ul > li:hover {
-  background-color: #f1f6f5;
+  color: #17252e;
+  background-color: #fafafa;
 }
 header secondary-nav .nav-sections > ul > li > ul > li:first-child {
-  font-family: "Nedbank Sans Bold";
+  font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  padding-top: 24px;
 }
 header secondary-nav .nav-sections > ul > li > ul > li:first-child:hover {
   background-color: var(--background-color);
@@ -173,6 +186,7 @@ header secondary-nav .nav-sections > ul > li[aria-expanded='true'] ul {
   background-color: var(--background-color);
   box-shadow: 3px 3px 16px 0 rgba(0, 0, 0, 0.12);
   border: 0;
+  margin-top: 17px;
 }
 header secondary-nav .nav-sections ul {
   display: flex;
@@ -185,12 +199,8 @@ header secondary-nav .nav-tools {
   font-size: 14px;
   cursor: pointer;
 }
-header secondary-nav .nav-tools p {
-  margin: 0;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
+header secondary-nav .nav-tools img {
+  padding: 0 10px;
 }
 header .nav-brand {
   grid-area: brand;
@@ -221,22 +231,18 @@ header .sticky {
     display: none;
     flex-grow: 1;
   }
-  header secondary-nav .nav-tools p:nth-child(1) {
-    justify-content: right;
-    padding: 0;
-  }
-  header secondary-nav .nav-tools p:nth-child(2) {
-    justify-content: center;
-    padding: 0;
-  }
   header secondary-nav .nav-tools.display-none {
     display: none;
   }
   header secondary-nav .nav-tools.display-flex {
     display: flex;
+    justify-content: space-evenly;
+  }
+  header secondary-nav .nav-tools img {
+    padding: unset;
   }
   header secondary-nav .nav-sections {
-    flex-basis: 70%;
+    flex-basis: 80%;
   }
   header secondary-nav .nav-sections > ul {
     padding-inline-start: unset;
@@ -248,6 +254,21 @@ header .sticky {
     padding-right: unset;
     margin-right: 24px;
     font-size: 16px;
+  }
+  header secondary-nav .nav-sections > ul > li::before {
+    content: ' ';
+    border: 2px solid transparent;
+    display: block;
+    transform: translateY(43px);
+  }
+  header secondary-nav .nav-sections > ul > li[aria-expanded='true']::before {
+    content: ' ';
+    border: 2px solid #008533;
+    display: block;
+    transform: translateY(43px);
+  }
+  header secondary-nav .nav-sections > ul > li[aria-expanded='true'] > a::after {
+    transform: rotate(180deg);
   }
   header secondary-nav .nav-sections > ul > li:first-child {
     display: none;

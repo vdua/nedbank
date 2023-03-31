@@ -32,6 +32,7 @@ autocomment();
 	size-adjust: 105.41%;
 	ascent-override: 105%;
 	src: local("Arial");
+	font-display: swap;
 }
 
 :root {
@@ -60,6 +61,7 @@ autocomment();
 	--nav-height: 64px;
 	--banner-height: 100px;
 	--section-left-right-padding: 105px;
+	-webkit-font-smoothing: antialiased;
 	scroll-behavior: smooth;
 }
 
@@ -94,6 +96,27 @@ body {
 
 	&.appear {
 		display: unset;
+	}
+
+	&.overflow-hidden {
+		overflow: hidden;
+	}
+
+	&.overflowY-hidden {
+		overflow-y: hidden;
+	}
+
+	.frk-modal {
+		width: 100%;
+		height: 100%;
+		z-index: 1050;
+		top: 0px;
+		position: fixed;
+		display: block;
+
+		&.fade {
+			height: 0;
+		}
 	}
 }
 
@@ -206,6 +229,10 @@ a {
 
 	&:hover {
 		color: @color_4;
+	}
+
+	.icon {
+		margin-left: 10px;
 	}
 }
 
@@ -365,7 +392,7 @@ main {
 
 		p {
 			&:hover {
-				>.icon-diagonal-arrow {
+				.icon-diagonal-arrow {
 					transition: transform 900ms;
 					transform: translate(6px, -5px)
 				}
@@ -468,7 +495,7 @@ main {
 
 		&.back-to-top {
 			margin-top: 32px;
-			padding: 40px 35px 40px 15px;
+			padding: 80px 120px 40px 15px;
 
 			p {
 				margin: 0;
@@ -651,6 +678,12 @@ main .home-banner.section {
 }
 
 @media (@width_1025) {
+	body {
+		.frk-modal {
+			top: @spacing-10;
+		}
+	}
+
 	main .home-banner.section {
 		.default-content-wrapper {
 			margin: 0 105px;
@@ -678,7 +711,7 @@ main .home-banner.section {
 				padding: 0;
 				background-color: var(--highlight-background-color);
 				display: grid;
-				grid-template-columns: 0.7fr 1fr 1fr 0.25fr 1fr 0.7fr;
+				grid-template-columns: 0.55fr 1fr 1fr 0.35fr 1fr 0.7fr;
 				grid-template-areas:
 					". a a a a ."
 					". b b . d .";

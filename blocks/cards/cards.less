@@ -21,7 +21,16 @@ autocomment();
     .width-basis();
   }
 
+  &.switchcard {
+    h2  {
+      font-size: @font-size-h2;
+      margin-top: 20px;
+      margin-left: @spacing-07;
+      margin-bottom: -30px;
+    }
+  }
 }
+
 
 /* cards -> when space is less, items will shift accordingly and content of items will be placed horizontal */
 .cards {
@@ -80,6 +89,7 @@ autocomment();
     >p {
       font-size: 14px;
       line-height: 20px;
+      color: @dotcoza-color-body-grey;
 
       &:has(.icon) {
         font-size: 18px;
@@ -105,7 +115,7 @@ autocomment();
         }
       }
 
-      >a+.icon {
+      >a + .icon {
         margin-left: 10px;
       }
     }
@@ -140,8 +150,6 @@ autocomment();
       margin-top: 0;
       margin-bottom: 0;
       transform: none;
-      width: 48px;
-      height: 48px;
     }
 
     .cards-body {
@@ -182,16 +190,14 @@ autocomment();
     }
 
     >p {
-      font-size: 20px;
-      line-height: 28px;
+      font-size: @font-size-medium;
+      line-height: @font-lineheight-medium;
       margin-bottom: 24px;
 
       >a {
         margin-left: 0;
         margin-right: 0;
       }
-
-      ;
     }
   }
 }
@@ -248,11 +254,17 @@ autocomment();
     }
   }
 
+  a {
+    .icon {
+      margin-left: 0;
+    }
+  }
+
   .cards {
     li {
       &:hover {
         :where(p, a.button) {
-          >.icon-arrow {
+          .icon-arrow {
             transition: transform 900ms;
             transform: translateX(8px);
           }
@@ -395,8 +407,9 @@ autocomment();
 
       >p:first-child,
       > :where(h2, h3)+p {
-        font-size: 18px;
-        line-height: 28px;
+        font-size: @font-size-base;
+        color: @dotcoza-color-body-grey;
+        line-height: @font-lineheight-base;
         margin-top: @spacing-03;
       }
     }
@@ -634,7 +647,8 @@ autocomment();
     }
 
     li {
-      padding: 48px 32px 48px 32px;
+      padding: 48px 30px 24px 32px;
+      margin-right: -10px;
     }
 
     .cards-body {
@@ -851,6 +865,46 @@ autocomment();
           }
         }
       }
+    }
+  }
+}
+
+
+div.switchcard h3 {
+  font-weight: @font-weight-regular;
+  line-height: @font-lineheight-h3;
+  font-size: @font-size-h3;
+
+  + p {
+    font-size: @font-paragraph-base;
+    line-height: @font-lineheight-base;
+  }
+}
+
+div.promotion-banner {
+  h2 {
+    strong {
+      margin-left: -@spacing-06;
+      font-size: @font-size-h2;
+    }
+
+  }
+
+  // This is part of the 'See all' link to the right of 'Promotions'
+  a {
+    font-size: @font-size-medium;
+    font-weight: @font-weight-bold;
+  }
+}
+
+@media(@width_1025) {
+  div.switchcard h3 {
+    line-height: @font-lineheight-h2;
+    font-size: @font-size-h2;
+
+    + p {
+      font-size: @font-size-large;
+      line-height: @font-lineheight-large;
     }
   }
 }
